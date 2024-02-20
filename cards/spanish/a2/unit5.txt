@@ -1,0 +1,181 @@
+the shelter (same word for "coat")|el abrigo
+the pavement|la acera
+the event (starts with a)|el acontecimiento
+the agreement|el acuerdo
+the nickname|el apodo
+to take advantage of|aprovechar
+to show (starts with a)|asomar
+the great grandfather|el bisabuelo
+the great grandmother|la bisabuela
+the corpse|el cadáver
+the cart (in mexican this means "car")|el carro
+ashen (masculine)|ceniciento
+ashen (feminine)|cenicienta
+the comfort|la comodidad
+to grow up|crecer
+the dubbing (giving something a name)|el doblaje
+to dub|doblar
+the dramatist (male)|el dramaturgo
+the dramatist (female)|la dramaturga
+the army (starts with e)|el ejército
+the guts|las entrañas
+to hand over|entregar
+to break out (starts with e)|estallar
+to avoid|evitar
+ghostly|fantasmal
+to sign|firmar
+the extract|el fragmento
+the forge|la fragua
+the war front|el frente
+the flight (starts with f)|la fuga
+the gun (starts with f)|el fusil
+the scythe|la hoz
+to flee|huir
+to work (starts with L)|laborar
+distant (masculine)|lejano
+distant (feminine)|lejana
+the leadership|el liderazgo
+to carry out (3 words)|llevar a cabo
+to fight for|luchar por
+the early hours|la madrugada
+birth (adjective) (e.g birth country)|natal
+the working class (starts with o)|el obrero
+the squad|el pelotón
+sadly|penosamente
+the lead (the metal)|el plomo
+the prisoner (starts with p) (masculine)|el preso
+the prisoner (starts with p) (feminine)|la presa
+to star in (starts with p)|protagonizar
+to travel through|recorrer
+to examine/search|registrar
+to return (starts with r)|regresar
+to pray|rezar
+to shake/disturb|sacudir
+the trade union|el sindicato
+to fly over|sobrevolar
+to provide (starts with s)|suministrar
+season (1 word) (starts with t)|la temporada
+the passerby|el transeúnte
+the burial mound|el túmulo
+the executioner (male)|el verdugo
+the executioner (female)|la verduga
+the anvil|el yunque
+DNA|ADN
+agrarian (masculine)|agrario
+agrarian (feminine)|agraria
+the isolation|el aislamiento
+the uprising (starts with a)|el alzamiento
+to put before|anteponer
+the self-rule|la autonomía
+the endorsement (starts with a) (4 letters)|el aval
+buoyant (always ends in e)|boyante
+the fall|la caída
+the criminal charge (2 words)|el cargo penal
+controversial (masculine)|controvertido
+controversial (feminine)|controvertida
+to play a part (3 words) (1st word starts with d)|desempeñar un papel
+to stand out|destacar
+the effigy|la efigie
+to draw up|elaborar
+to lead/to head|encabezar
+to face|enfrentar
+to be wrong|equivocarse
+the expectation|la expectiva
+to die (starts with f)|fallecer
+failed (masculine)|fallido
+failed (feminine)|fallida
+the grave (starts with f)|la fosa
+to become (starts with h)|hacerse
+heir/successor (male)|el heredero
+heir/successor (female)|la heredera
+in honour of|en honor a
+the strike|la huelga
+unexpected (masculine)|improvisto
+unexpected (feminine)|improvista
+to establish (starts with i)|instaurar
+the attempt|el intento
+to manage/to succeed|lograr
+by means of (starts with m)|mediante
+the currency (same as "coins")|la moneda
+to grant (starts wih o)|otorgar
+peacefully (starts with p)|pacíficamente
+the location (starts with p)|el paradero
+to perish|perecer
+the permanence/remaining|la permanencia
+to survive (starts with p)|pervivir
+the commoner (male)|el plebeyo
+the commoner (female)|la plebeya
+to bring to light (starts with poner)|poner de manifiesto
+as (2 words) (starts with p)|puesto que
+to revive (it's reavivar) (there are like 5 synonyms for this all starting with r)|reavivar
+the regime|el régimen
+the reign|el reinado
+to reestablish|restablecer
+to restore (sounds a bit like the english)|restaurar
+to withdraw|retirar
+the womens' suffrage|el sufragio femenino
+the lieutenant|el teniente
+to move (starts with t)|trasladar
+on the eve of|en vísperas de
+the act of contrition|el acto de contrición
+the avenue (it's not avenida)|la alameda
+the breath (starts with a)|el aliento
+to burn (starts with a)|arder
+to overrun (starts with a)|avasallar
+to launder|blanquear
+the barrel of a gun|el cañón
+the prison|la cárcel
+the censorship|la censura
+to concede|conceder
+to condemn|condenar
+the behaviour (starts with c) (feminine)|la conducta
+the fulfilment|el cumplimiento
+to overthrow (it's derribar and the other one's derrocar)|derribar
+the overthrow|el derrocamiento
+to break out (starts with d)|desembocar
+the dismantling|el desmantelamiento
+to dismantle (starts with "desma")|desmantelar
+the fate|el destino
+the radio station|la emisora
+faltering (masculine)|entrecortado
+faltering (feminine)|entrecortada
+to hide (reflexive) (starts with e)|esconderse
+to extradite|extraditar
+to fail (starts with "fal")|fallar
+fateful (masculine)|fatídico
+fateful (feminine)|fatídica
+the railways|los ferrocarriles
+the farm/estate|la hacienda
+relentless (no gender) (starts with i)|implacable
+to initiate (starts with i)|iniciar
+to barge in|irrumpir
+the opponent (like "opposition")|el opositor
+the penalty, sentence|la pena
+the damage (starts with p)|el perjuicio
+to persue|perseguir
+subsequent (starts with p)|posterior
+last (it's "postre" with an extra letter)|postrer
+to catch fire|prenderse fuego
+to bring about (starts with propi)|propiciar
+to cause (starts with p)|provocar
+to be lowered|rebajarse
+the imprisonment (starts with r)|la reclusión
+the resource|el recurso
+the surrender|la rendición
+the prisoner (starts with r) (masculine)|el reo
+the prisoner (starts with r) (feminine)|la rea
+repressive (masculine)|represivo
+repressive (feminine)|represiva
+the break (starts with r)|la ruptura
+the preist (starts with s)|el sacerdote
+to come to light|salir a la luz
+to kidnap (starts with s)|secuestrar
+without trial|sin juicio
+to ask for (to solicit)|solicitar
+the subordinate (male) (not subordinado)|el subalterno
+the subordinate (female) (not subordinada)|la subalterna
+to happen (starts with s)|suceder
+to plunge (starts with s)|sumir
+the traitor (male)|el traidor
+the traitor (female)|la traidora
+the violation|la violación

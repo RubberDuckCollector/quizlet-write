@@ -1,0 +1,175 @@
+to go to the polls (starts with acudir)|acudir a las urnas
+to go to the polls (starts with ir)|ir a las urnas
+somebody else's/foreign|ajeno
+apolitical (masculine)|apolítico
+apolitical (feminine)|apolítica
+to back a party|apostar por un partido
+the grant|la beca
+citizenship/the citizens|la ciudadanía
+the elections|los comicios
+committed (masculine)|comprometido
+committed (feminine)|comprometida
+the demonstrations, protests (starts with c)|las concentraciones
+the civic awareness|la conciencia cívica
+the approval|la conformidad
+the consent|el consentimiento
+the certainty|la convicción
+to fulfil (starts with c)|cumplir
+the defender|el defensor
+the mistrust, distrust|la desconfianza
+desireable (masculine and feminine are the same)|deseable
+to wish, desire|desear
+disenchanted, disillusioned|desencantado
+desperate (masculine)|desesperado
+desperate (feminine)|desesperada
+the ills, misfourtunes|las desgracias
+disappointed/disillusioned (masculine)|desilusionado
+disappointed/disillusioned (feminine)|desilusionada
+the lack of interest, indifference|el desinterés
+the member of parliament (male)|el diputado
+the member of parlliament (female)|la diputada
+the electorate (can only find masculine version of this word)|el electorado
+to worsen|empeorar
+to strengthen|fortalecer
+rogue (un + noun)|un granuja
+to campaign (literally: to make a campaign)|hacer campaña
+angry (starts with i) (masculine)|indignado
+angry (starts with i) (feminine)|indignada
+individual (adjective)|individual
+"an individual" (male)|un individuo
+"an individual" (female)|una individua
+the concern, worry|la inquietud
+to get involved|involucrarse
+the working day|la jornada laboral
+to achieve (starts with L)|lograr
+to express/to state|manifestar
+to lie|mentir
+the activist (i think this only has a masculine form)|el militante
+to be a member of/to be active in a party|militar en un partido
+to demonstrate, to protest|movilizarse
+the wave|la ola
+the supporter (male)|el partidario
+the supporter (female)|la partidaria
+the apathy, indifference|la pasividad
+apathetic (starts with p)|pasota
+to afford (also: to allow) (starts with p)|permitirse
+the stance|la postura
+the job insecurity|la precariedad laboral
+the proposal|la propuesta
+to claim/to demand|reclamar
+to reclaim (starts with rei)|reivindicar
+the representative (male)|el representatnte
+the representative (female)|la representatne
+the trade union|el sindicato
+supportive/caring (masculine)|solidario
+supportive/caring (feminine)|solidaria
+to put up with (starts with s)|soportar
+to put up with (starts with a)|aguantar
+to brand someone|tachar a alguien
+the voter (male)|el votante
+the voter (female)|la votante
+in the long term|a largo plazo
+to sign up (starts with a)|apuntarse
+the help|la ayuda
+to look for|buscar
+to take (starts with co)|coger
+to fight (starts with c)|combatir
+to get (starts with c)|conseguir
+a contract|un contrato
+to pay contributions|cotizar
+to register (3 words)|dar de alta
+the unemployment|el desempleo
+the employees|los empresarios
+in cash|en efectivo
+the job (starts with e)|el empleo
+to find (starts with e)|encontrar
+to be unemployed (3 words)|estar en paro
+to be fed up (masculine)|estar harto
+to be fed up (feminine)|estar harta
+to demand|exigir
+the experience|la experiencia
+the lack of|la falta de
+the training (like "formation")|la formación
+the lost generation|la generación perdida
+the job centre (special name)|el INEM
+the income|el ingreso
+the youth|la juventud
+to launch|lanzar
+to demonstrate (starts with m)|manifestarse
+to leave (starts with m)|marcharse
+to improve|mejorar
+the labour market|el mercado laboral
+to show (starts with m)|mostrar
+the guidance (like "orientation")|la orientación
+the youth unemployment|el paro juvenil
+the work experience (this is plural)|las prácticas laborales
+to claim (starts with p)|pretender
+the position/post|el puesto
+to carry out (starts with r)|realizar
+to solve (starts with r)|resolver
+the security|la seguridad
+the unemployment benefit|el subsidio del paro
+to represent/to make up|suponer
+the rate|la tasa
+to work|trabajar
+to aquire (a bit like the english)|adquirir
+to face, to confront (starts with a)|afrontar
+to reach (like "to reach out")|alcanzar
+the anxiety/anguish|la angustia
+the outbreak/bud|el brote
+the alley|el callejón
+the career/degree|la carerra
+to collaborate|colaborar
+the group|el colectivo
+the committment (also "engagement")|el compromiso
+the comsumer (ends in "ista")|el consumista
+to turn around (3 words)|dar un vuelco
+to owe|deber
+selfish (ends in a)|egoísta
+to enrich|enriquecer
+the effort|el esfuerzo
+the hope|la esperanza
+to be prepared to (3 words)|estar dispuesto a
+to be hopeful|estar esperanzado
+the success|el éxito
+the murder of a woman|el femicidio
+the signature|la firma
+the funds|los fondos
+to face, to confront (3 words) (includes "forehead")|hacer frente a
+the orphan (male)|el huérfano
+the orphan (female)|la huérfana
+the tax|el impuesto
+unattainable, unachievable (resembles "to reach")|inalcanzable
+the income (plural form)|los ingresos
+worrying|inquietante
+to instil|instilar
+unfortunate/terrible (starts with L)|lamentable
+the freedom of speech|la libertad de expresión
+the university degree|la licenciatura
+the enrolment fee|la matrícula
+the nature (starts with n)|la natrualeza
+the leisure|el ocio
+permissive/indulgent (masculine)|permisivo
+permissive/indulgent (feminine)|permisiva
+the request (starts with p)|la petición
+the pleasure|el placer
+to consider (starts with p)|plantearse
+to happen (starts with p)|producirse
+the parent (ends in r) (male)|el progenitor
+the parent (ends in r) (female)|la progenitora
+promising|prometedor
+to complain|quejarse
+the radio listener (male)|el radioyente
+the radio listener (female)|la radioyente
+to raise money|recaudar
+to collect/to gather up (starts with r)|recoger
+to reinforce|reforzar
+to be hopeful (of something) (masculine)|ser esperanzador
+to be hopeful (of something) (feminine)|ser esperanzadora
+the solidarity/support|la solaridad
+to dream of/about|soñar con
+the rise, increase (starts with s)|la subida
+the salary (starts with su)|el sueldo
+the dream|el sueño
+the university fee (literally: university rate)|la tasa universitaria
+the voluntary work|el vuluntariado
