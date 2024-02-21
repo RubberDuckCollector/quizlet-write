@@ -77,23 +77,17 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
 
 
 def make_hint(answer):
-    """Generate hint by showing the first letter of each word in the answer."""
+    # if there's a punctuation mark at the end of any word, show it
     hint = ""
     for word in answer.split():
         if len(word) > 1:
-            if word[-1] in string.punctuation:  # Check if the last character is punctuation
+            if word[-1] in string.punctuation:
                 hint += word[0] + "_" * (len(word) - 2) + word[-1] + " "
             else:
                 hint += word[0] + "_" * (len(word) - 1) + " "
         else:
             hint += word + " "
     return hint.strip()
-
-# def make_hint(answer):
-#     hint = ""
-#     for i in answer.split():
-#         hint += i[0] + "_" * (len(i) - 1) + " "
-#     return hint.strip()
 
 
 def quiz(card_set: dict):
