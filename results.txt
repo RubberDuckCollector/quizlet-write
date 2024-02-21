@@ -1,3 +1,10 @@
 Round 1:
-✓ What is the goal of normalisation?                                                To improve the efficiency of database queries
-✗ First normal form (1NF) [3]                                                       No two records can be identical.
+✗ to take in           acoger
+✗ to contribute        aportar
+✗ to support           apoyar
+✓ to risk(oneself)     arriesgarse
+✓ the political asylum el asilo político
+Round 2:
+✓ to take in           acoger
+✓ to contribute        aportar
+✓ to support           apoyar

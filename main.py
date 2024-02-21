@@ -125,7 +125,7 @@ def quiz(card_set: dict):
                 # print(hint) -> print the hint for the answer
 
                 user_response = input(
-                    f"What's the answer to '{prompt}'?\nHint: {hint}\n> ").strip()
+                    f"What's the answer to '{Color.LightMagenta}{prompt}{Color.Reset}'?\nHint: {hint}\n> ").strip()
 
                 # if the user input is falsy
                 # i.e there were only spaces and strip() has removed them
@@ -142,6 +142,10 @@ def quiz(card_set: dict):
                             break
                         else:
                             print("Try again")
+                    # mark as incorrect as the user doesn't know the answer
+                    f.write(
+                        f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                    f.flush()
                 else:
                     if user_response.lower() == card_set[prompt].lower():
                         print(f"{Color.Green}Correct{Color.Reset}")
@@ -161,12 +165,39 @@ def quiz(card_set: dict):
                             correct_answers[key_to_copy] = card_set[key_to_copy]
 
                     else:
+                        # ask for override
                         print(f"{Color.Red}Incorrect.{
                               Color.Reset} Answer: {Color.LightYellow}{card_set[prompt]}{Color.Reset}")
+                        override = input(
+                            "Override as correct? (empty answer = don't override) ").strip()
+                        # if override has something in it
+                        if override:
+                            # mark as correct as the user wishes
+                            print(f"Overridden as {
+                                  Color.Green}Correct{Color.Reset}.")
 
-                        f.write(
-                            f"✗ {prompt.ljust(max_left_length)} {answer}\n")
-                        f.flush()
+                            num_correct += 1
+
+                            f.write(
+                                f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                            f.flush()
+
+                            time.sleep(0.5)
+                            clear_screen()
+
+                            key_to_copy = prompt
+                            if key_to_copy in card_set:
+                                correct_answers[key_to_copy] = card_set[key_to_copy]
+                        else:
+                            print(f"{Color.Yellow}Not overridden.{
+                                  Color.Reset}")
+                            # mark as incorrect
+                            f.write(
+                                f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                            f.flush()
+
+                            time.sleep(0.5)
+                            clear_screen()
 
             # now delete all the cards that the user got right
             keys_to_remove = []

@@ -1,15 +1,15 @@
 What is a primary key?|A unique field in a table
 What is a composite primary key?|Two or more fields that are unique when combined
-What is the goal of normalisation?|To improve the efficiency of database queries
-First normal form (1NF) [1]|All field names should be unique.
-First normal form (1NF) [2]|Values in fields should be from the same domain and fields should be atomic.
-First normal form (1NF) [3]|No two records can be identical.
-First normal form (1NF) [4]|Each table needs a primary key.
+What is the goal of normalisation?|To improve the efficiency of database queries, to remove repeating data
+First normal form (1NF) [1]: requirements for 1NF|All field names should be unique.
+First normal form (1NF) [2]: requirements for 1NF|Values in fields should be from the same domain and fields should be atomic.
+First normal form (1NF) [3]: requirements for 1NF|No two records can be identical.
+First normal form (1NF) [4]: requirements for 1NF|Each table needs a primary key.
 Second normal form (2NF) [1]|Ensure the data is in 1NF and remove any partial dependencies.
 Second normal form (2NF) [2]|Split tables with dual purposes into multiple tables and establish relationships between them.
 Second normal form (2NF) [3]|Fix any many-to-many relationships created as a result of splitting tables.
-When to confidently split a table [1]|If a field or group of fields can be inferred from a field that is not the whole primary key, they are candidates for splitting into a separate table.
-Second normal form (2NF) [4]|Fixing a many-to-many relationship involves creating a linking table.
+When to confidently split a table [1]|If a field or group of fields can be inferred from a field that is not the whole primary key.
+Second normal form (2NF) [4]|Fix a many-to-many relationship by creating a linking table.
 Second normal form (2NF) [5]|The primary keys from the two initial tables are assigned as a composite key for the new linking table.
 Second normal form (2NF) [6]|The many-to-many crow's feet relationships are flipped to become two one-to-many relationships joined by the new table.
 Second normal form (2NF) [7]|The linking table allows one thing to be a part of many things.
