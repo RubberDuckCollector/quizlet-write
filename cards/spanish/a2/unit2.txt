@@ -1,0 +1,183 @@
+to bully, to harass|acosar
+to act|actuar
+to attack, to assault|agredir
+the attacker (male)|el agresor
+the attacker (female)|la agresora
+to encourage (starts with a)|alentar
+to threaten|amenazar
+shocked (starts with a) (masculine)|anonadado
+shocked (starts with a) (feminine)|anonadada
+to stab|apuñalar
+the weapon|el arma
+to astonish, to amaze|asombrar
+to disgust|asquear
+to frighten|asustar
+the slap|la bofetada
+xenophobic outbreak|el brote xenófobo
+to make fun of|burlarse de
+the slum dweller (male)|el chabolista
+the slum dweller (female)|la chabolista
+the behaviour (starts with com)|el comportamiento
+to behave (starts with c)|comportarse
+the behavoiur (starts with con)|la conducta
+to set an example (2 words)|dar ejemplo
+to slap somebody (3 words)|dar un manotazo
+narrow minded|de mente cerrada
+the hate crime|el delito de odio
+to discourage|desalentar
+the push|el empujón
+to get angry|enfadarse
+the confrontation|el enfrentamiento
+to face, to confront|enfrentarse a
+to sing racist chants|entonar cantos racistas
+to stereotype|estereotipar
+to expel|expulsar
+the gesture|el gesto
+to hit|golpear
+to record|grabar
+the grandstand|la grada
+to shout|gritar
+the football fan (male)|el hincho
+the football fan (female)|la hincha
+jewish (masculine)|judío
+jewish (feminine)|judía
+the thief|el ladrón
+to beg (starts with m)|mendigar
+the muslim|el musulmán
+to suffer (starts with p)|padecer
+to beg (starts with p, 2 words)|pedir limosna
+to come from (starts with p)|proceder de
+to reject|rechazar
+to laugh at|reírse de
+to reproach|reprochar
+the stir/disturbance|el revuelo
+to save someone (starts with s)|salvar
+to be witness to|ser testigo de
+to surprise (starts with s)|sorprender
+the suffering (starts with s)|el sufrimiento
+to fear|temer
+to offend, to insult (starts with u)|ultrajar
+to value|valorar
+shameful (starts with v)|vergonzoso
+to link, to connect|vincular
+to tackle|abordar
+to welcome|acoger
+to put up with, to tolerate|aguantar
+to reach|alcanzar
+the field|el ámbito
+to encourage someone|animar a
+to announce/to advertise|anunciar
+to applaud|aplaudir
+to support|apoyar
+to warn|avisar
+the warning|el aviso
+two yearly|bienal
+the CCTV camera|la cámera de vigilancia
+the poster|el cartel
+blind|ciego
+to combat|combatir
+to make aware|concienciar
+to become aware|concienciarse
+to debate|debatir
+the challenge (starts with d)|el desafío
+disabled|discapacitado
+to eradicate|erradicar
+limited/scarce|escaso
+to make an effort (starts with e)|esforzarse
+the show|el espectáculo
+to label|etiquetar
+to exclude|excluir
+to express rejection|expresar el rechazo
+leaflet|el folleto
+to encourage something|fomentar
+to make an effort (starts with h 3 words)|hacer un esfuerzo
+to impose|imponer
+to launch a campaign|lanzar una campaña
+the slogan (starts with L)|el lema
+to protest|manifestarse
+the measure|la medida
+to make aware, mentally prepare|mentalizar
+to deserve|merecer
+the goal|la meta
+to mix with one another|mezclarse
+disabled (starts with m)|minusválido
+to put together a campaign|montar una campaña
+the NGO|la ONG
+the banner (starts with p)|la pancarta
+the profile|el perfil
+the graffiti|las pintadas
+the spokesman|el portavoz
+the spokeswoman|la portavoz
+to pay attention|prestar atención
+to promote|promover
+to provide with|proporcionar
+to recriminate|recriminar
+story (starts with r)|el relato
+to repatriate|repatriar
+to support (starts with r)|respaldar
+to restrict (starts with res)|restringir
+awareness (starts with s)|la sensibilización
+to make aware (starts with s)|sensibilizar
+deaf|sordo
+to overcome (starts with s)|superar
+the lead singer (male)|el vocalista
+the lead singer (female)|la vocalista
+to approach|acercarse
+alarming|alarmante
+to get further away|alejarse
+the quarrel, altercation|el altercado
+the warning, eprimand (starts with am)|la amonestación
+the criminal record|los antecedentes penales
+the house arrest|el arresto domiciliario
+skinhead|el cabeza rapada
+the life sentence|la cadena perpetua
+the prison|la cárcel
+the identity card|el carnet de identidad
+to punish|castigar
+to grant|conceder
+the sentence|la condena
+to sentence, to condemn|condenar
+the alcohol test|el control de alcoholemia
+the crime rate|la criminalidad
+to criminalise|criminalizar
+to beat (3 words)|dar/propinar una paliza
+the crime (starts with delin)|la delincuencia
+the criminal (male)|el delincuente
+the criminal (female)|la delincuente
+to commit a crime (starts with deli)|delinquir
+the crime|el delito
+to get rid of (starts with d 2 words)|deshacerse de
+the arrest|la detención
+to apologise|disculparse
+to disclose, make public|divulgar
+to jail|encarcelar
+chilling|escalofriante
+the hooligan (male)|el gamberro
+the hooligan (female)|la gamberra
+to guarantee|garantizar
+to stop (impede)|impedir
+the compensation (starts with i)|la indemnización
+to compensate (starts with i)|indemnizar
+the minor offence|la infracción leve
+the judge|el juez
+the court/tribunal|el juzgado
+to judge|juzgar
+to fine|multar
+to refuse to|negarse a
+to force|obligar
+the restraining order|la orden de alejamiento
+to apologise (2 words)|pedir disculpas
+the death penalty|la pena de muerte
+to penalise|penalizar
+to harm/to be detrimental|perjudicar
+to give a fine|poner una multa
+the benefits (starts with p)|las prestaciones
+ban, prohibition|la prohibición
+to ban, to prohibit|prohibir
+on purpose|a propósito
+to remove, take away (starts with q)|quitar
+to fine (sanction)|sancionar
+to sentence|sentenciar
+to be aware of (3 words)|ser consciente de
+to bear in mind (3 words)|tener en cuenta
+the harassment/poor treatment|las vejaciones

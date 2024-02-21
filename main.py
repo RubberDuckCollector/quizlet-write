@@ -125,29 +125,48 @@ def quiz(card_set: dict):
                 # print(hint) -> print the hint for the answer
 
                 user_response = input(
-                    f"Write '{prompt}' in Spanish\nHint: {hint}\n> ")
-                if user_response.lower() == card_set[prompt].lower():
-                    print(f"{Color.Green}Correct{Color.Reset}")
+                    f"What's the answer to '{prompt}'?\nHint: {hint}\n> ").strip()
 
-                    num_correct += 1
-
-                    time.sleep(0.5)
-                    clear_screen()
-
-                    f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
-                    f.flush()
-                    clear_screen()
-
-                    key_to_copy = prompt
-                    if key_to_copy in card_set:
-                        correct_answers[key_to_copy] = card_set[key_to_copy]
-
+                # if the user input is falsy
+                # i.e there were only spaces and strip() has removed them
+                # to leave an empty string
+                if not user_response:
+                    print("Don't know? Copy out the answer so you remember it!")
+                    while True:
+                        user_response = input(
+                            f"Copy the answer below ↓\n- {card_set[prompt]}\n> ")
+                        if user_response.lower() == card_set[prompt].lower():
+                            print(f"{Color.Cyan}Next question{Color.Reset}")
+                            time.sleep(0.5)
+                            clear_screen()
+                            break
+                        else:
+                            print("Try again")
                 else:
-                    print(f"{Color.Red}Incorrect.{
-                          Color.Reset} Answer: {card_set[prompt]}")
+                    if user_response.lower() == card_set[prompt].lower():
+                        print(f"{Color.Green}Correct{Color.Reset}")
 
-                    f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
-                    f.flush()
+                        num_correct += 1
+
+                        time.sleep(0.5)
+                        clear_screen()
+
+                        f.write(
+                            f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                        f.flush()
+                        clear_screen()
+
+                        key_to_copy = prompt
+                        if key_to_copy in card_set:
+                            correct_answers[key_to_copy] = card_set[key_to_copy]
+
+                    else:
+                        print(f"{Color.Red}Incorrect.{
+                              Color.Reset} Answer: {card_set[prompt]}")
+
+                        f.write(
+                            f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                        f.flush()
 
             # now delete all the cards that the user got right
             keys_to_remove = []
@@ -194,6 +213,9 @@ def quiz(card_set: dict):
 # separate cards into groups of 10
 # order is random within each group
 # order of groups is in order
+# make it so if the user supplies an empty string as an answer, make them copy out the answer
+# if the user gets it wrong with a non-empty answer, allow them to override the game and mark as correct anyway
+# must remove answers made up of only spaces
 
 
 def render_cards(filepath: str) -> dict:
