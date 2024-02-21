@@ -1,2 +1,3 @@
 Round 1:
 ✓ to go to the polls (starts with acudir)                       acudir a las urnas
+✓ to go to the polls (starts with ir)                           ir a las urnas

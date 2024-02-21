@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import platform
 from pprint import pprint
@@ -201,7 +202,13 @@ def render_cards(filepath: str) -> dict:
 
 
 def main():
-    cards = render_cards("cards/spanish/a2/unit4.txt")
+
+    if len(sys.argv) != 2:
+        print("Missing 1 command line argument: file path to text file of cards")
+        return
+
+    file_path = sys.argv[1]
+    cards = render_cards(file_path)
 
     clear_screen()
     quiz(cards)
