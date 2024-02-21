@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import string
 import platform
 from pprint import pprint
 
@@ -76,10 +77,23 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
 
 
 def make_hint(answer):
+    """Generate hint by showing the first letter of each word in the answer."""
     hint = ""
-    for i in answer.split():
-        hint += i[0] + "_" * (len(i) - 1) + " "
+    for word in answer.split():
+        if len(word) > 1:
+            if word[-1] in string.punctuation:  # Check if the last character is punctuation
+                hint += word[0] + "_" * (len(word) - 2) + word[-1] + " "
+            else:
+                hint += word[0] + "_" * (len(word) - 1) + " "
+        else:
+            hint += word + " "
     return hint.strip()
+
+# def make_hint(answer):
+#     hint = ""
+#     for i in answer.split():
+#         hint += i[0] + "_" * (len(i) - 1) + " "
+#     return hint.strip()
 
 
 def quiz(card_set: dict):
