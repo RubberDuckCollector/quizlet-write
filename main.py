@@ -162,7 +162,7 @@ def quiz(card_set: dict):
 
                     else:
                         print(f"{Color.Red}Incorrect.{
-                              Color.Reset} Answer: {card_set[prompt]}")
+                              Color.Reset} Answer: {Color.LightYellow}{card_set[prompt]}{Color.Reset}")
 
                         f.write(
                             f"✗ {prompt.ljust(max_left_length)} {answer}\n")

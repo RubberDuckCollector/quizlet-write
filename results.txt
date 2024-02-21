@@ -1,2 +1,3 @@
 Round 1:
-✗ to act                                    actuar
+✓ What is the goal of normalisation?                                                To improve the efficiency of database queries
+✗ First normal form (1NF) [3]                                                       No two records can be identical.
