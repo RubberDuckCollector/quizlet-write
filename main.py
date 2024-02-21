@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import time
 import string
@@ -77,16 +78,12 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
 
 
 def make_hint(answer):
-    # if there's a punctuation mark at the end of any word, show it
+    # if there's a punctuation mark in any of the words of the term, show them
     hint = ""
     for word in answer.split():
-        if len(word) > 1:
-            if word[-1] in string.punctuation:
-                hint += word[0] + "_" * (len(word) - 2) + word[-1] + " "
-            else:
-                hint += word[0] + "_" * (len(word) - 1) + " "
-        else:
-            hint += word + " "
+        first_letter = word[0]
+        remaining = re.sub(r'[^.,\s]', '_', word[1:])
+        hint += first_letter + remaining + " "
     return hint.strip()
 
 

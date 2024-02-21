@@ -1,4 +1,4 @@
-to go to the polls (starts with acudir)|acudir a las urnas
+to go to the polls (starts with acudir)|acu,d,ir a las ur,nas.
 to go to the polls (starts with ir)|ir a las urnas
 somebody else's/foreign|ajeno
 apolitical (masculine)|apolítico
