@@ -4,7 +4,6 @@ import sys
 import time
 import random
 import platform
-from pprint import pprint
 
 my_pattern = re.compile(r'[^.,\s)-]')
 

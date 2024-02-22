@@ -9,3 +9,6 @@
 
 ## 2023-02-22
 - implemented command line arguments
+
+## future plans
+- statistics and tracking
