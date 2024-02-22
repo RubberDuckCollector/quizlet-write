@@ -1,6 +1,6 @@
 What is a primary key?|A unique field in a table
-What is a composite primary key?|Two or more fields that are unique when combined
-What is the goal of normalisation?|To improve the efficiency of database queries, to remove repeating data
+What is a composite key?|Two or more fields that are unique when combined
+What is the goal of normalisation?|To improve the efficiency of database queries, to remove repeating records and data
 First normal form (1NF) [1]: requirements for 1NF|All field names should be unique.
 First normal form (1NF) [2]: requirements for 1NF|Values in fields should be from the same domain and fields should be atomic.
 First normal form (1NF) [3]: requirements for 1NF|No two records can be identical.
@@ -14,7 +14,7 @@ Second normal form (2NF) [5]|The primary keys from the two initial tables are as
 Second normal form (2NF) [6]|The many-to-many crow's feet relationships are flipped to become two one-to-many relationships joined by the new table.
 Second normal form (2NF) [7]|The linking table allows one thing to be a part of many things.
 Second normal form (2NF) [8]|A name in the linking table is not unique, but the combination of name and ID number is unique.
-Second normal form (2NF) [9]|This normalization solves issues such as repeating data and large composite keys.
+Second normal form (2NF) [9]|This normalisation solves issues such as repeating data and large composite keys.
 Third normal form (3NF) [1]|Remove any transitive dependencies or non-key dependencies.
 Third normal form (3NF) [2]: What is a non-key dependency?|A non-key dependency is when the value of a field is determined by the value of another field that isn't the primary key.
 Third normal form (3NF) [3]: what do the fields say in court?|All fields should be dependent on the key, the whole key, and nothing but the key.

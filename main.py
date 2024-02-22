@@ -2,9 +2,11 @@ import os
 import re
 import sys
 import time
-import string
+import random
 import platform
 from pprint import pprint
+
+my_pattern = re.compile(r'[^.,\s)-]')
 
 
 class Color:
@@ -73,21 +75,40 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
 
     print(
         f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
+    with open(filename, "a") as f:
+        f.write(
+            f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
 
     print()
 
 
-def make_hint(answer):
+def make_hint(answer: str, difficulty: str) -> str:
     # if there's a punctuation mark in any of the words of the term, show them
     hint = ""
-    for word in answer.split():
-        first_letter = word[0]
-        remaining = re.sub(r'[^.,\s]', '_', word[1:])
-        hint += first_letter + remaining + " "
+    match difficulty:
+        case "--easy":
+            for word in answer.split():
+                if len(word) <= 3:
+                    hint += word + " "
+                else:
+                    first_three = word[:3]
+                    remaining = re.sub(my_pattern, '_', word[3:])
+                    hint += first_three + remaining + " "
+        case "--normal":
+            for word in answer.split():
+                first_letter = word[0]
+                remaining = re.sub(my_pattern, '_', word[1:])
+                hint += first_letter + remaining + " "
+        case "--hard":
+            for word in answer.split():
+                hint += re.sub(my_pattern, '_', word) + " "
+        case "--very-hard":
+            hint = "No hints!"
+
     return hint.strip()
 
 
-def quiz(card_set: dict):
+def quiz(card_set: dict, difficulty: str):
 
     correct_answers = {}
     round_num = 0
@@ -116,7 +137,7 @@ def quiz(card_set: dict):
             for prompt, answer in card_set.items():
 
                 # the hint is the result of a call of make_hint()
-                hint = make_hint(card_set[prompt])
+                hint = make_hint(card_set[prompt], difficulty)
 
                 num_answered += 1
 
@@ -261,15 +282,60 @@ def render_cards(filepath: str) -> dict:
 
 def main():
 
-    if len(sys.argv) != 2:
-        print("Missing 1 command line argument: file path to text file of cards")
+    if len(sys.argv) != 5:
+        print(
+            "Command line argument order: difficulty, randomise, flip question and answer")
         return
 
+    # order of arguments: file path, easy difficulty, randomise terms, switch question and answer
     file_path = sys.argv[1]
+
+    difficulty = sys.argv[2]
+    match difficulty:
+        case "--easy":
+            # good to go
+            pass
+        case "--normal":
+            # good to go
+            pass
+        case "--hard":
+            # good to go
+            pass
+        case "--very-hard":
+            # good to go
+            pass
+        case other:
+            print(
+                "Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
+            return
+
+    randomise = sys.argv[3]
     cards = render_cards(file_path)
 
+    match randomise:
+        case "--rand":
+            # randomise
+            items = list(cards.items())
+            random.shuffle(items)
+            cards = dict(items)
+        case "--norand":
+            # don't randomise, pass as the cards can be used as-is
+            pass
+        case other:
+            print("Error: randomise setting can only be one of: --rand | --norand")
+            return
+
+    flip_terms = sys.argv[4]
+    match flip_terms:
+        case "--flip":
+            # switch terms and definitions
+            cards = {v: k for k, v in cards.items()}
+        case "--noflip":
+            # good to go, use cards as-is
+            pass
+
     clear_screen()
-    quiz(cards)
+    quiz(cards, difficulty)
 
 
 if __name__ == '__main__':
