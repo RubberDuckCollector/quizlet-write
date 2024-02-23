@@ -5,7 +5,7 @@ import time
 import random
 import platform
 
-my_pattern = re.compile(r'[^.,\s)-]')
+my_pattern = re.compile(r'[^(.,\s)-]')
 
 
 class Color:
@@ -167,7 +167,7 @@ def quiz(card_set: dict, difficulty: str):
                         f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                     f.flush()
                 else:
-                    if user_response.lower() == card_set[prompt].lower():
+                    if user_response == answer:
                         print(f"{Color.Green}Correct{Color.Reset}")
 
                         num_correct += 1
@@ -187,14 +187,16 @@ def quiz(card_set: dict, difficulty: str):
                     else:
                         # ask for override
                         print(f"{Color.Red}Incorrect.{
-                              Color.Reset} Answer: {Color.LightYellow}{card_set[prompt]}{Color.Reset}")
+                            Color.Reset} Answer: {Color.LightYellow}{card_set[prompt]}{Color.Reset}")
+
                         override = input(
                             "Override as correct? (empty answer = don't override) ").strip()
+
                         # if override has something in it
                         if override:
                             # mark as correct as the user wishes
                             print(f"Overridden as {
-                                  Color.Green}Correct{Color.Reset}.")
+                                Color.Green}Correct{Color.Reset}.")
 
                             num_correct += 1
 
@@ -210,7 +212,7 @@ def quiz(card_set: dict, difficulty: str):
                                 correct_answers[key_to_copy] = card_set[key_to_copy]
                         else:
                             print(f"{Color.Yellow}Not overridden.{
-                                  Color.Reset}")
+                                Color.Reset}")
                             # mark as incorrect
                             f.write(
                                 f"✗ {prompt.ljust(max_left_length)} {answer}\n")
@@ -277,6 +279,44 @@ def render_cards(filepath: str) -> dict:
             key, value = line.strip().split("|")
             rendered_cards[key.strip()] = value.strip()
     return rendered_cards
+
+
+def remove_brackets(string):
+    """Remove nested brackets and their contents from the string."""
+    result = ''
+    skip = 0
+    for char in string:
+        if char == '(':
+            skip += 1
+            if skip == 1:  # Only add outermost left bracket
+                result += char
+        elif char == ')':
+            if skip == 1:  # Only add outermost right bracket
+                result += char
+            skip -= 1
+        elif skip == 0:
+            result += char
+    return result
+
+# def remove_brackets(string):
+#     """Remove brackets and their contents from the string."""
+#     result = ''
+#     skip = 0
+#     for char in string:
+#         if char == '(':
+#             skip += 1
+#         elif char == ')':
+#             skip -= 1
+#         elif skip == 0:
+#             result += char
+#     return result
+
+
+def answer_is_changed(original_string: str, no_brackets_string: str) -> bool:
+    # checks whether the answer has been changed vs the original
+    if original_string == no_brackets_string:
+        return True
+    return False
 
 
 def main():

@@ -1,32 +1,5 @@
 Round 1:
-✓ to access                                                                                                                       acceder
-✓ the diary                                                                                                                       la agenda
-✓ to store (starts with an a)                                                                                                     almacenar
-✓ the @ symbol                                                                                                                    la arroba
-✓ on demand                                                                                                                       bajo demanda
-✓ the broadband                                                                                                                   la banda ancha
-✓ to look for                                                                                                                     buscar
-✓ the search engine                                                                                                               el buscador
-✓ to upload (starts with ca)                                                                                                      cargar
-✓ the file (i think it means physical file like a ring binder? computer file is archivo, but a computer folder is also this word) la carpeta
-✓ the cyberscape                                                                                                                  el ciberespacio
-✓ to buy                                                                                                                          comprar
-✓ to share                                                                                                                        compartir
-✓ to communicate                                                                                                                  comunicar
-✓ to connect                                                                                                                      conectarse
-✓ the consumer (male)                                                                                                             el consumidor
-✓ the consumer (female)                                                                                                           la consumidora
-✓ the consumption                                                                                                                 el consumo
-✓ the content                                                                                                                     el contenido
-✓ the spam                                                                                                                        el correo basura
-✓ the email                                                                                                                       el correo electrónico
-✓ to grow                                                                                                                         crecer
-✓ the bank account                                                                                                                la cuenta bancaria
-✗ to develop                                                                                                                      desarrollar
-✓ the unknown person, stranger (male)                                                                                             el desconocido
-✓ the unknown person, stranger (female)                                                                                           la desconocida
-✓ to download                                                                                                                     descargar
-✓ the personal details                                                                                                            los datos personales
-✓ the swindle, scam                                                                                                               la estafa
-✓ to listen                                                                                                                       escuchar
-✓ to ease, facilitate                                                                                                             facilitar
+✓ to bully, to harass                       acosar()()
+✓ to act                                    actuar
+✗ to attack, to assault                     agredir
+✓ the attacker (male)                       el agresor
