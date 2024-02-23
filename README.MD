@@ -10,5 +10,8 @@
 ## 2023-02-22
 - implemented command line arguments
 
+## next features
+- in easy mode and normal mode, the contents of all brackets will be shown in the hint
+
 ## future plans
 - statistics and tracking
