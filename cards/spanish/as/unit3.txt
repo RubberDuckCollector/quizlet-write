@@ -1,0 +1,122 @@
+the hobby|la afición
+the food (starts with "a")|el alimento
+the housewife|la ama de casa
+the house-husband|el amo de casa
+the lover (male) (article does change with gender of lover but not the ending)|el amante
+the lover (female) (article does change with gender of lover but not the ending)|la amante
+the job field|el ámbito laboral
+the gender gap|la brecha de género
+the footwear (starts with c)|el calzado
+the professional post|el cargo profesional
+to share|compartir
+the dressmaker/seamstress/tailor (male)|el costurero
+the dressmaker/seamstress/tailor (female)|la costurera
+to look after (has "a" after the word)|cuidar a
+to spend time (begins with "d" and has "a" after the word)|dedicar a
+to carry out (starts with "d" ("to play" in "to play a role"))|desempeñar
+the inequality|la desigualdad
+to reduce (starts with "d")|disminuir
+the maid|la doncella
+to educate, to raise|educar
+to face up to (starts with "e")|enfrentar
+to scrub, to wash up|fregar
+the mop, skivvy|la fregona
+to earn (starts with g)|ganar
+the home|el hogar
+equal|igual
+equal (has a bit on the end of the word)|igualitaria
+the dishwasher|el lavavajillas
+to clean|limpiar
+the job market|el mercado laboral
+the payment|el pago
+to iron|planchar
+the chores (like "have to do")|los quehaceres
+the challenge (starts with "r")|el reto
+the salary (starts with "sa")|el salario
+the salaries paid to women|los salarios femeninos
+the wage (starts with "su")|el sueldo
+to divert/transfer|trasvasar
+in development (like the saying "endangered, on ways to extinction")|en vías de desarrollo
+the home/housing (starts with "v")|la vivienda
+to slap|abofetear
+to abuse (has "de" after it)|abusar de
+to take in|acoger
+the abuse/harassment ("bullying")|el acoso
+the attacker (male)|el agresor
+the attacker (female)|la agresora
+the murder|el asesinato
+the jealousy (plural word)|los celos
+illegal (starts with c) (masculine)|clandestino
+illegal (starts with c) (feminine)|clandestina
+to organise (starts with "c")|convocar
+to disappear|desaparecer
+to arrest (starts with "d" and is reflexive)|detenerse
+the dictatorship|la dictadura
+the dignity|la dignidad
+pregnant|embarazada
+the wife (starts with "e")|la esposa
+strange (masculine)|extraño
+strange (feminine)|extraña
+the key date|la fecha clave
+the femicide|el femicidio
+unthinkable|impensable
+the injustice|la injusticia
+the fury|la ira
+the blot, blemish|la lacra
+the fight (begins with "L")|la lucha
+the chauvinism|el machismo
+the protest|la manifestación
+the husband (starts with "m")|el marido
+the boyfriend|el novio
+the girlfriend|la novia
+to force (starts with an "o")|obligar
+the political party|el partido político
+the prejudice|el prejuicio
+to forsee|prever
+the anger, rage|la rabia
+to demand (starts with "r")|reclamar
+the respect|el respeto
+to pull, to throw (starts with t)|tirar
+local (starts with v)|vecinal
+the domestic violence|la violencia de género
+to adopt|adoptar
+to pass a law|aprobar una ley
+the wedding|la boda
+drunk (masculine)|borracho
+drunk (feminine)|borracha
+the campaign|la campaña
+the police station|la comisaría
+to become (noun (has "en" after the word))|convertirse en
+suddenly|de repente
+the hate crime|el crimen de odio
+to report (a crime)|denunciar
+the diversity|la diversidad
+diverse (masculine)|diverso
+diverse (feminine)|diversa
+the promotion (from "fomentar")|el fomento
+to hit|golpear
+homophobic (masculine)|homofóbo
+homophobic (feminine)|homofóba
+the tax|el impuesto
+the LGBT community|la comunidad LGTB
+to launch (starts with L)|lanzar
+to make legal|legalizar
+the lesbian|la lesbiana
+full (masculine)|lleno
+full (feminine)|llena
+the marriage|el matrimonio
+the half|la mitad
+to forget|olvidar
+the gay pride|el orgullo gay
+the partner/couple|la pareja
+by nature|por naturaleza
+to try, to intend (starts with p)|pretender
+to promote (starts with "p")|promover
+to recognise|reconocer
+to reflect|reflejar
+to respect|respetar
+the awareness (starts with "s")|la sensibilización
+to make aware (starts with "s")|sensibilizar
+to increase (starts with "s" (like "to go up"))|subir
+the values|los valores
+to violate|violar

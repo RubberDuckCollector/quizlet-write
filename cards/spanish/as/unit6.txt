@@ -1,0 +1,149 @@
+the cliff|el acantilado
+the soul|el alma
+the height|la altura
+the width|el ancho
+in the past/formerly|antiguamente
+the roman baths|los baños romanos
+the neighbourhood/area/district|el barrio
+the bell tower|el campanario
+the cycle of the moon|el ciclo lunar
+to colonise|colonizar
+the conqueror (male)|el conquistador
+the conqueror (female)|la conquistadora
+the mountain range|la cordillera
+to crown|coronar
+the belief|la creencia
+to leave|dejar
+to enrich|enriquecer
+the enrichment|el enriquecimiento
+the legacy|la herencia
+in honour of|en honor a
+the trace/footprint/fingerprint|la huella
+labourious (masculine)|laborioso
+labourious (feminine)|laboriosa
+to measure (irregular)|medir
+the dead|los muertos
+originally (ends in e)|originariamente
+the pilgrimage (feminine)|la peregrinación
+to make a pilgrimage|peregrinar
+the indigenous population (1st word ends with n)|la población aborigen
+the village, settlement (masculine noun)|el poblado
+privileged (masculine)|privilegiado
+privileged (feminine)|privilegiado
+the indigenous people/indigenous settlement|el pueblo indígena
+the ramp|la ranpa
+to pray|rezar
+the wealth|la riqueza
+the priest (male)|el sacerdote
+the priest (female)|la sacerdotista
+the shrine|el santuario
+to loot|saquear
+the grave, tomb|la sepultura
+the treasure|el tesoro
+the value|el valor
+to value|valorar
+the living|los vivos
+the archaeological site|el yacimiento arqueológico
+the rural area|la zona rural
+the urban area|la zona urbana
+the steel|el acero
+the horseshoe arch|el arco de herradura
+the architect (male)|el arquitecto
+the architect (female)|la arquitecta
+the self-portrait|el autorretrato
+the tile|el azulejo
+the vault|la bóveda
+the colouring|el colorido
+to build (starts with c)|construir
+the glass|el cristal
+the painting, canvas (starts with c)|el cuadro
+to wreck, ruin|destrozar
+to build (starts with e)|edificar
+the dwarf, little person (male)|el enano
+the dwarf, little person (female)|la enana
+to sculpt|esculpir
+the sculptor (male)|el escultor
+the sculptor (female)|la escultora
+spectacular|espectacular
+the mirror|el espejo
+the architectural style|el estilo arquitectónico
+the pictorial style|el estilo pictórico
+the façade, front of a building|la fachada
+the straight form/shape|la forma recta
+the architectural genre|el género arquitectónico
+the genius (always ends in o (male)|el genio
+the genius (always ends in o (female)|la genio
+the iron|el hierro
+the interior|el interior
+the architectural jewel|la joya arquitectónica
+the brick|el ladrillo
+the canvas, painting (starts with L)|el lienzo
+the wood|la madera
+the mural (painting)|el mural
+the work of engineering|la obra de ingeniería
+the masterpiece|la obra maestra
+wavy (ends in e)|ondulante
+the wall|la pared
+the stone|piedra
+the paint brush|el pincel
+the portrait painting|la pintura retratista
+the pyramid|la pirámide
+to paint (a portrait), to portray|retratar
+the portrait|el retrato
+the roof, ceiling|el techo
+the stained glass window|la vidriera
+to accompany|acompañar
+to encourage someone|animar a alguien
+to applaud|aplaudir
+the applause|el aplauso
+the harmony|la armonía
+the (flamenco) dancer (male)|el bailaor
+the (flamenco) dancer (female)|la bailaora
+to brandish|blandir
+the (flamenco) singer (male)|el cantaor
+the (flamenco) singer (female)|la cantaora
+the composer (male)|el compositor
+the composer (female)|la compositora
+the double bass|el contrabajo
+naked (masculine)|desnudo
+naked (feminine)|desnuda
+the orchestra conductor (3 words (male))|el director de orquesta
+the orchestra conductor (3 words (female))|la directora de orquesta
+learned (masculine)|docto
+learned (feminine)|docta
+the sword|la espada
+the luggage|el equipaje
+to bring to mind, to evoke|evocar
+the flute|la flauta
+the arrow|la flecha
+the forger (always has "la" regardless of gender (male))|la forjador
+the forger (always has "la" regardless of gender (female))|la forjadora
+the bagpipe|la gaita
+the brilliance|la genialidad
+the gypsy (male)|el gitano
+the gypsy (female)|la gitana
+the great talent|el gran talento
+the guitarist (always ends in a (male))|el guitarrista
+the guitarist (always ends in a (female))|la guitarrista
+the melody|la melodía
+to mix|mezclar
+to suffer (starts with a p)|padecer
+the palm of one's hand|la palma de la mano
+the tambourine (does not start with a t)|la pandereta
+the (musical) score/sheet music|la partitura
+the step|el paso
+the the pilgrimage (masculine)|el peregrinaje
+the branch|la rama
+to rescue|rescatar
+the rhythm|el ritmo
+the sign of identity/distinguishing mark|la seña de identidad
+the symphony|la sinfonía
+the theme song|la sintonía
+to sound|sonar
+the sound|el sonido
+to tap/to click one's heels (i'm assuming in a context where's you're straight jamming)|taconear
+the clicking/the tapping of one's heels|el taconeo
+the drum|el tambor
+to play a song/piece of music (starts with t (3 words))|tocar una composición
+the cellist (male)|el violonchelista
+the cellist (female)|la violonchelista

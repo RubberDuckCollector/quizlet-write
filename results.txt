@@ -1,5 +1,2 @@
 Round 1:
-✓ to bully, to harass                       acosar()()
-✓ to act                                    actuar
-✗ to attack, to assault                     agredir
-✓ the attacker (male)                       el agresor
+✓ to describe + case                                      beschreiben + accusative

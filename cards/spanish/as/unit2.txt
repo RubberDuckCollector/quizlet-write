@@ -12,7 +12,7 @@ the cyberscape|el ciberespacio
 to buy|comprar
 to share|compartir
 to communicate|comunicar
-to connect|conectarse
+to connect (reflexive)|conectarse
 the consumer (male)|el consumidor
 the consumer (female)|la consumidora
 the consumption|el consumo
@@ -33,7 +33,7 @@ the fraud|el fraude
 to work, function|funcionar
 out of control, rapidly increasing (ends with e)|galopante
 to manage, handle (starts with g)|gestionar
-to store, save (starts with a g)|guardar
+to store, save (starts with g)|guardar
 to click|hacer clic
 the tool|la herramienta
 wireless (masculine)|inalámbrico
@@ -47,7 +47,7 @@ to invest|invertir
 to log into facebook (uses meterse)|meterse en Facebook
 the browser|el navegador
 to surf|navegar
-the computer|el ordenador
+the computer (starts with o)|el ordenador
 the screen|la pantalla
 to spend (time)|pasar
 the profile|el perfil

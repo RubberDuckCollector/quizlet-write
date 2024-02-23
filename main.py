@@ -3,9 +3,16 @@ import re
 import sys
 import time
 import random
+import readline
 import platform
 
-my_pattern = re.compile(r'[^(.,\s)-]')
+# static analyser might say readline is unused but it attaches to the input() func
+
+# my_pattern = re.compile(r'[^.,\s)-]')
+my_pattern = re.compile(r'[^(.,\s)-/]')
+# my_pattern = re.compile(r'[^A-z().,!\s\-\?{}äëïöüÄËÏÖÜ0-9]', re.IGNORECASE)
+# my_pattern = re.compile(r'(\([^)]*\)|[^.,!?()\s-])')
+# my_pattern = re.compile(r'[\(\)][^(]*\)')
 
 
 class Color:
@@ -81,6 +88,7 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
     print()
 
 
+# ORIGINAL FUNCTION, DON'T TOUCH
 def make_hint(answer: str, difficulty: str) -> str:
     # if there's a punctuation mark in any of the words of the term, show them
     hint = ""
@@ -154,8 +162,9 @@ def quiz(card_set: dict, difficulty: str):
                     print("Don't know? Copy out the answer so you remember it!")
                     while True:
                         user_response = input(
-                            f"Copy the answer below ↓\n- {card_set[prompt]}\n> ")
-                        if user_response.lower() == card_set[prompt].lower():
+                            f"Copy the answer below ↓\n- {answer}\n> ")
+                        # if user_response.lower() == card_set[prompt].lower():
+                        if user_response.lower() == answer.lower():
                             print(f"{Color.Cyan}Next question{Color.Reset}")
                             time.sleep(0.5)
                             clear_screen()
@@ -281,44 +290,7 @@ def render_cards(filepath: str) -> dict:
     return rendered_cards
 
 
-def remove_brackets(string):
-    """Remove nested brackets and their contents from the string."""
-    result = ''
-    skip = 0
-    for char in string:
-        if char == '(':
-            skip += 1
-            if skip == 1:  # Only add outermost left bracket
-                result += char
-        elif char == ')':
-            if skip == 1:  # Only add outermost right bracket
-                result += char
-            skip -= 1
-        elif skip == 0:
-            result += char
-    return result
-
-# def remove_brackets(string):
-#     """Remove brackets and their contents from the string."""
-#     result = ''
-#     skip = 0
-#     for char in string:
-#         if char == '(':
-#             skip += 1
-#         elif char == ')':
-#             skip -= 1
-#         elif skip == 0:
-#             result += char
-#     return result
-
-
-def answer_is_changed(original_string: str, no_brackets_string: str) -> bool:
-    # checks whether the answer has been changed vs the original
-    if original_string == no_brackets_string:
-        return True
-    return False
-
-
+# main() handles command line arguments
 def main():
 
     if len(sys.argv) != 5:

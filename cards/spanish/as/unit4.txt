@@ -1,0 +1,148 @@
+the performance|la actuación
+to perform (starts with a)|actuar
+the dancer (always ends in "a" (male))|el bailarina
+the dancer (always ends in "a" (female))|la bailarina
+the ballad|la balada
+the soundtrack|la banda sonora
+the full stomach|la barriga llena
+the good will|la buena voluntad
+the singer songwriter (male)|el cantautor
+the singer songwriter (female)|la cantautora
+the behaviour (ends with "o")|el comportamiento
+to behave (starts with c)|comportarse
+the musical piece|la composición
+the composer (male)|el compositor
+the composer (female)|la compositora
+the commitment|el compromiso
+the live concert|el concierto en vivo
+the musical competition|el concurso musical
+the behaviour (ends with "a")|la conducta
+the band (starts with "c")|el conjunto musical
+the choreography|la coreografía
+to create controversy|crear polémica
+the stage|el escenario
+successful|exitoso
+the fan/supporter (male)|el fan
+the follower (male)|el seguidor
+the fan/supporter (female)|la fan
+the follower (female)|la seguidora
+the music festival|el festival de música
+the recording|la grabación
+to record|grabar
+the musical taste|el gusto musical
+to perform a song (3 words (starts with i))|interpretar una canción
+the blot/blemish|la lacra
+the lyrics|la letra
+the charity/charitable organisation|la organización benéfica/caritativa
+catchy (masculine)|pegadizo
+catchy (feminine)|pegadiza
+powerful (masculine)|poderoso
+powerful (feminine)|poderosa
+prestigious (masculine)|prestigioso
+prestigious (feminine)|prestigiosa
+to rap|rapear
+the rapper (male)|el rapero
+the rapper (female)|la rapera
+to revolutionise|revolucionar
+the danceable rhythm|el ritmo bailable
+to become a star|saltar al estrellato
+the sound|el sonido
+talented/gifted (masculine)|talentoso
+talented/gifted (feminine)|talentosa
+the keyboard|el teclado
+to be successful|tener éxito
+to triumph/to win/to succeed|triunfar
+to make a new version of|versionar
+to reach|alcanzar
+to appear/to show up|aparecer
+the adventure|la aventura
+the chapter/episode|el capítulo
+the filmmaker (always ends in "a" (male))|el cineasta
+the filmmaker (always ends in "a" (female))|la cineasta
+to make aware/to raise awareness (starts with c)|concienciar
+to become aware/to be sensitive to something (starts with c)|concienciarse
+to achieve success|conseguir éxito
+to tell a story|contar una historia
+to fulfil a dream|cumplir un sueño
+to set an example|dar ejemplo
+to dismiss/to rule out|descartar
+prominent/renowned (stood out) (masculine)|destacado
+prominent/renowned (stood out) (feminine)|destacada
+misfortune|la desventura
+exemplary|el ejemplar
+to interview|entrevistar
+the effort|el esfuerzo
+to release/to premiere (starts with e)|estrenar
+the foundation|la fundación
+the award (starts with g)|el galardón
+to win an award/prize (3 words)|ganar un premio
+the big screen|la gran pantalla
+gratifying|gratificante
+the film industry|la industria cinematográfica
+to play a role (on screen (3 words (starts with i)))|interpretar un papel
+the humanitarian work (starts with L)|la labor humanitaria
+to propel to stardom|lanzar al estrellato
+linked (starts with L) (masculine)|ligado
+linked (starts with L) (feminine)|ligada
+proud of (masculine)|orgulloso de
+proud of (feminine)|orgullosa de
+the perseverance|la perseverancia
+to contribute in a small way/to help a bit (5 words (starts with p))|poner un granito de arena
+for charity|por caridad
+to promote|promocionar
+main character (always ends in "a" (male))|el protagonista
+main character (always ends in "a" (female))|la protagonista
+to raise funds|recaudar fondos
+to highlight/to stand out (starts with r)|resaltar
+to make aware/to raise awareness (starts with "s")|sensibilizar
+the series|la serie
+the trending topic|el tema tendencia
+the accessory|el accesorio
+to lose weight (starts with "a")|adelgazar
+the height|la altura
+old fashioned (masculine)|anticuado
+old fashioned (feminine)|anticuada
+the advert (2 words (starts with a))|el anuncio publicitario
+the appearance (ends in a)|la apariencia
+the physical appearance (2 words (1st word ends in o))|el aspecto físico
+to catch the eye (3 words (starts with a))|atraer la atención
+the radical change|el cambio radical
+the compatriot/fellow citizen (always starts with "a" (male))|el compatriota
+the compatriot/fellow citizen (always starts with "a" (female))|la compatriota
+the curves|las curvas
+to congratulate (3 words (starts with "d")|dar la enhorabuena
+the thinness|la delgadez
+to model (on a catwalk (starts with d))|desfilar
+the fashion show (3 words (starts with d))|el desfile de moda
+the designer (male)|el diseñador
+the designer (female)|la diseñadora
+the design|el diseño
+to put on/to gain weight|engordar
+to enslave/to make dependent|esclavizar
+skin and bone/extremely thin (masculine)|esquelético
+skin and bone/extremely thin (feminine)|esquelética
+the own-style|el estilo propio
+skinny (starts with f (masculine))|flaco
+skinny (starts with f (feminine))|flaca
+the fatness|la gordura
+the bone|el hueso
+to impact/to shock|impactar
+the investment|la inversión
+to invest|invertir
+the luxury|el lujo
+the makeup|el maquillaje
+to put on makeup|maquillarse
+the measures|las medidas
+large size model ("model" always ends in "o" (male))|el modelo de tallas grandes
+large size model ("model" always ends in "o" (female))|la modelo de tallas grandes
+to become obsessed with|obsesionarse con
+the body (starts with "o")|el organismo
+the body (starts with "c")|el cuerpo
+the catwalk|la pasarela
+the Cibeles fashion show in Madrid|la Pasarela Cibeles
+to sponsor|patrocinar
+to go on a diet (3 words)|ponerse a dieta
+the piece of clothing, garment (3 words (starts with p))|la prenda de ropa
+the face (starts with "r")|el rostro
+fashion week (4 words (starts with s))|la semana de la moda
+to overcome|superar
