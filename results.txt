@@ -1,7 +1,7 @@
 Round 1:
 ✓ to get on with (2 words) + case                         auskommen mit + dative
 ✓ to look like, to appear + case                          aussehen + nominative
-✓ both                                                    beide
+✗ both                                                    beide
 ✓ to describe + case                                      beschreiben + accusative
 ✓ certainly (starts with b)                               bestimmt
 ✓ the cousin (male)                                       der Cousin (-s)

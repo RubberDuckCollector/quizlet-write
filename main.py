@@ -6,13 +6,17 @@ import random
 import readline
 import platform
 
+
 # static analyser might say readline is unused but it attaches to the input() func
 
 # my_pattern = re.compile(r'[^.,\s)-]')
-my_pattern = re.compile(r'[^(.,\s)-/]')
+# my_pattern = re.compile(r'[^(.,\s)-/]')
 # my_pattern = re.compile(r'[^A-z().,!\s\-\?{}äëïöüÄËÏÖÜ0-9]', re.IGNORECASE)
 # my_pattern = re.compile(r'(\([^)]*\)|[^.,!?()\s-])')
 # my_pattern = re.compile(r'[\(\)][^(]*\)')
+
+chars_to_ignore = ['.', '\'', '\"', ' ', '_',
+                   '+', '+', '[', ']', '<', '>']
 
 
 class Color:
@@ -89,30 +93,113 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
 
 
 # ORIGINAL FUNCTION, DON'T TOUCH
-def make_hint(answer: str, difficulty: str) -> str:
-    # if there's a punctuation mark in any of the words of the term, show them
-    hint = ""
-    match difficulty:
-        case "--easy":
-            for word in answer.split():
-                if len(word) <= 3:
-                    hint += word + " "
-                else:
-                    first_three = word[:3]
-                    remaining = re.sub(my_pattern, '_', word[3:])
-                    hint += first_three + remaining + " "
-        case "--normal":
-            for word in answer.split():
-                first_letter = word[0]
-                remaining = re.sub(my_pattern, '_', word[1:])
-                hint += first_letter + remaining + " "
-        case "--hard":
-            for word in answer.split():
-                hint += re.sub(my_pattern, '_', word) + " "
-        case "--very-hard":
-            hint = "No hints!"
+# def make_hint(answer: str, difficulty: str) -> str:
+#     # if there's a punctuation mark in any of the words of the term, show them
+#     hint = ""
+#     match difficulty:
+#         case "--easy":
+#             for word in answer.split():
+#                 if len(word) <= 3:
+#                     hint += word + " "
+#                 else:
+#                     first_three = word[:3]
+#                     remaining = re.sub(my_pattern, '_', word[3:])
+#                     hint += first_three + remaining + " "
+#         case "--normal":
+#             for word in answer.split():
+#                 first_letter = word[0]
+#                 remaining = re.sub(my_pattern, '_', word[1:])
+#                 hint += first_letter + remaining + " "
+#         case "--hard":
+#             for word in answer.split():
+#                 hint += re.sub(my_pattern, '_', word) + " "
+#         case "--very-hard":
+#             hint = "No hints!"
 
-    return hint.strip()
+#     return hint.strip()
+
+def make_very_hard_hint():
+    return "No hints!"
+
+
+def make_hard_hint(msg: str) -> str:
+    hint = ""
+
+    msg = msg.split()  # can equate this to tokenising, each token is a word
+
+    try:
+        for i in range(len(msg)):
+            if i > 0:
+                hint += " "
+            for j in range(len(msg[i])):
+                print(f"looking at char: {msg[i][j]}")
+                if msg[i][j] == '(':
+                    hint += msg[i]
+                    i += 1  # since the bracket stuff is done all at once, need to go to next i
+                elif msg[i][j] in chars_to_ignore:
+                    hint += msg[i][j]
+                else:
+                    hint += '_'
+
+    except IndexError:
+        pass
+
+    return hint
+
+
+def make_normal_hint(msg: str) -> str:
+    hint = ""
+
+    msg = msg.split()  # can equate this to tokenising, each token is a word
+
+    try:
+        for i in range(len(msg)):
+            if i > 0:
+                hint += " "
+            for j in range(len(msg[i])):
+                print(f"looking at char: {msg[i][j]}")
+                if j == 0 and msg[i][j] != '(':
+                    hint += msg[i][j]
+                else:
+                    if msg[i][j] == '(':
+                        hint += msg[i]
+                        i += 1  # since the bracket stuff is done all at once, need to go to next i
+                    elif msg[i][j] in chars_to_ignore:
+                        hint += msg[i][j]
+                    else:
+                        hint += '_'
+
+    except IndexError:
+        pass
+
+    return hint
+
+
+def make_easy_hint(msg: str) -> str:
+    hint = ""
+
+    msg = msg.split()  # can equate this to tokenising, each token is a word
+
+    try:
+        for i in range(len(msg)):
+            if i > 0:
+                hint += " "
+            for j in range(len(msg[i])):
+                if j < 3 and msg[i][j] != '(':
+                    hint += msg[i][j]
+                else:
+                    if msg[i][j] == '(':
+                        hint += msg[i]
+                        i += 1  # since the bracket stuff is done all at once, need to go to next i
+                    elif msg[i][j] in chars_to_ignore:
+                        hint += msg[i][j]
+                    else:
+                        hint += '_'
+
+    except IndexError:
+        pass
+
+    return hint
 
 
 def quiz(card_set: dict, difficulty: str):
@@ -143,8 +230,17 @@ def quiz(card_set: dict, difficulty: str):
 
             for prompt, answer in card_set.items():
 
-                # the hint is the result of a call of make_hint()
-                hint = make_hint(card_set[prompt], difficulty)
+                match difficulty:
+                    case "--easy":
+                        hint = make_easy_hint(answer)
+                    case "--normal":
+                        hint = make_normal_hint(answer)
+                    case "--hard":
+                        hint = make_hard_hint(answer)
+                    case "--very-hard":
+                        hint = make_very_hard_hint()
+                    case other:
+                        print("error while trying to make hint")
 
                 num_answered += 1
 
