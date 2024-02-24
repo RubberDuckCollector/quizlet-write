@@ -300,7 +300,6 @@ def quiz(card_set: dict, difficulty: str):
                         f.write(
                             f"✓ {prompt.ljust(max_left_length)} {answer}\n")
                         f.flush()
-                        clear_screen()
 
                         key_to_copy = prompt
                         if key_to_copy in card_set:
