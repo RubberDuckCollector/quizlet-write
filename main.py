@@ -255,6 +255,7 @@ def quiz(card_set: dict, difficulty: str):
                 # if the user input is falsy
                 # i.e there were only spaces and strip() has removed them
                 # to leave an empty string
+
                 if not user_response:
                     print("Don't know? Copy out the answer so you remember it!")
                     while True:
@@ -308,7 +309,7 @@ def quiz(card_set: dict, difficulty: str):
 
                     else:
                         # ask for override
-                        print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{card_set[prompt]}{Color.Reset}")
+                        print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{answer}{Color.Reset}")
 
                         override = input(
                             "Override as correct? (empty answer = don't override) ").strip()
@@ -316,8 +317,7 @@ def quiz(card_set: dict, difficulty: str):
                         # if override has something in it
                         if override:
                             # mark as correct as the user wishes
-                            print(f"Overridden as {
-                                Color.Green}Correct{Color.Reset}.")
+                            print(f"Overridden as {Color.Green}Correct{Color.Reset}.")
 
                             num_correct += 1
 
