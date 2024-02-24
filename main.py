@@ -1,5 +1,4 @@
 import os
-import re
 import sys
 import time
 import random
@@ -8,12 +7,6 @@ import platform
 
 
 # static analyser might say readline is unused but it attaches to the input() func
-
-# my_pattern = re.compile(r'[^.,\s)-]')
-# my_pattern = re.compile(r'[^(.,\s)-/]')
-# my_pattern = re.compile(r'[^A-z().,!\s\-\?{}äëïöüÄËÏÖÜ0-9]', re.IGNORECASE)
-# my_pattern = re.compile(r'(\([^)]*\)|[^.,!?()\s-])')
-# my_pattern = re.compile(r'[\(\)][^(]*\)')
 
 chars_to_ignore = [',', '.', '\'', '\"', ' ', '_',
                    '+', '+', '[', ']', '<', '>']
@@ -92,32 +85,6 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
 
     print()
 
-
-# ORIGINAL FUNCTION, DON'T TOUCH
-# def make_hint(answer: str, difficulty: str) -> str:
-#     # if there's a punctuation mark in any of the words of the term, show them
-#     hint = ""
-#     match difficulty:
-#         case "--easy":
-#             for word in answer.split():
-#                 if len(word) <= 3:
-#                     hint += word + " "
-#                 else:
-#                     first_three = word[:3]
-#                     remaining = re.sub(my_pattern, '_', word[3:])
-#                     hint += first_three + remaining + " "
-#         case "--normal":
-#             for word in answer.split():
-#                 first_letter = word[0]
-#                 remaining = re.sub(my_pattern, '_', word[1:])
-#                 hint += first_letter + remaining + " "
-#         case "--hard":
-#             for word in answer.split():
-#                 hint += re.sub(my_pattern, '_', word) + " "
-#         case "--very-hard":
-#             hint = "No hints!"
-
-#     return hint.strip()
 
 def make_very_hard_hint():
     return "No hints!"
@@ -414,23 +381,6 @@ def main():
 
     difficulty = sys.argv[2]
     valid_difficulties = {"--easy", "--normal", "--hard", "--very-hard"}
-    # match difficulty:
-    #     case "--easy":
-    #         # good to go
-    #         pass
-    #     case "--normal":
-    #         # good to go
-    #         pass
-    #     case "--hard":
-    #         # good to go
-    #         pass
-    #     case "--very-hard":
-    #         # good to go
-    #         pass
-    #     case other:
-    #         print(
-    #             "Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
-    #         return
 
     if difficulty in valid_difficulties:
         pass
