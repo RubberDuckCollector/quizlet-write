@@ -39,7 +39,7 @@ def parse_msg(msg: str) -> str:
 def main():
     msg = "die Gemeinschaft+ (-en)"
 
-    print(parse_msg(msg))
+    print(f"'{parse_msg(msg)}'")
 
 
 if __name__ == '__main__':

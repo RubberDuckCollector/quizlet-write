@@ -176,7 +176,26 @@ def quiz(card_set: dict, difficulty: str):
                         f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                     f.flush()
                 else:
+                    # the user gets a special message if capitalisation matches perfectly
                     if user_response == answer:
+                        print(f"{Color.Green}Correct. Well done!{Color.Reset}")
+
+                        num_correct += 1
+
+                        time.sleep(0.5)
+                        clear_screen()
+
+                        f.write(
+                            f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                        f.flush()
+                        clear_screen()
+
+                        key_to_copy = prompt
+                        if key_to_copy in card_set:
+                            correct_answers[key_to_copy] = card_set[key_to_copy]
+
+                    # otherwise just a normal message
+                    elif user_response.lower() == answer.lower():
                         print(f"{Color.Green}Correct{Color.Reset}")
 
                         num_correct += 1
@@ -231,16 +250,19 @@ def quiz(card_set: dict, difficulty: str):
                             clear_screen()
 
             # now delete all the cards that the user got right
+            # this is to make sure only the things they got wrong are left
+            # meaning that on the next iteration, the dict will only have
+            # terms that the user got wrong
             keys_to_remove = []
 
-            # Iterate over the keys and values of the new dictionary
+            # iterate over the keys and values of the new dictionary
             for key, value in correct_answers.items():
                 # check if the key exists in the original dictionary
                 if key in card_set:
                     # if it does, add that key to keys_to_remove list
                     keys_to_remove.append(key)
 
-            # Remove keys from original_dict
+            # remove keys from original_dict
             for key in keys_to_remove:
                 card_set.pop(key)
 
@@ -256,9 +278,6 @@ def quiz(card_set: dict, difficulty: str):
                                 round_num}:", num_correct, num_answered)
 
     print("Session summary:")
-    # with open("results.txt", "r") as f:
-    #     for line in f:
-    #         print(line)
 
     with open("results.txt", 'r') as f:
         for line in f:
