@@ -87,7 +87,8 @@ def print_round_summary(filename: str, target_string: str, num_correct: int, num
         f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
     with open(filename, "a") as f:
         f.write(
-            f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
+            f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n")
+        f.flush()
 
     print()
 
@@ -217,7 +218,7 @@ def quiz(card_set: dict, difficulty: str):
     #     print(left.ljust(max_left_length),
     #           right.rjust(len(right) + tab_distance))
 
-    with open("results.txt", "w") as f:
+    with open("results.txt", "a") as f:
         while len(card_set) != 0:
             round_num += 1
 
@@ -466,6 +467,12 @@ def main():
             pass
         case other:
             print("error while looking at flip argument")
+            return
+
+    # prepare results.txt by wiping it
+    # the file contents of the previous session will remain in the file
+    with open("results.txt", "w") as f:
+        f.write("")
 
     clear_screen()
     quiz(cards, difficulty)
