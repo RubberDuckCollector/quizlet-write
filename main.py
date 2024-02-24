@@ -308,8 +308,7 @@ def quiz(card_set: dict, difficulty: str):
 
                     else:
                         # ask for override
-                        print(f"{Color.Red}Incorrect.{
-                            Color.Reset} Answer: {Color.LightYellow}{card_set[prompt]}{Color.Reset}")
+                        print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{card_set[prompt]}{Color.Reset}")
 
                         override = input(
                             "Override as correct? (empty answer = don't override) ").strip()
@@ -333,8 +332,7 @@ def quiz(card_set: dict, difficulty: str):
                             if key_to_copy in card_set:
                                 correct_answers[key_to_copy] = card_set[key_to_copy]
                         else:
-                            print(f"{Color.Yellow}Not overridden.{
-                                Color.Reset}")
+                            print(f"{Color.Yellow}Not overridden.{Color.Reset}")
                             # mark as incorrect
                             f.write(
                                 f"✗ {prompt.ljust(max_left_length)} {answer}\n")
