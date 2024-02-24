@@ -15,7 +15,7 @@ import platform
 # my_pattern = re.compile(r'(\([^)]*\)|[^.,!?()\s-])')
 # my_pattern = re.compile(r'[\(\)][^(]*\)')
 
-chars_to_ignore = ['.', '\'', '\"', ' ', '_',
+chars_to_ignore = [',', '.', '\'', '\"', ' ', '_',
                    '+', '+', '[', ']', '<', '>']
 
 
@@ -132,7 +132,6 @@ def make_hard_hint(msg: str) -> str:
             if i > 0:
                 hint += " "
             for j in range(len(msg[i])):
-                print(f"looking at char: {msg[i][j]}")
                 if msg[i][j] == '(':
                     hint += msg[i]
                     i += 1  # since the bracket stuff is done all at once, need to go to next i
@@ -157,7 +156,6 @@ def make_normal_hint(msg: str) -> str:
             if i > 0:
                 hint += " "
             for j in range(len(msg[i])):
-                print(f"looking at char: {msg[i][j]}")
                 if j == 0 and msg[i][j] != '(':
                     hint += msg[i][j]
                 else:
@@ -222,6 +220,8 @@ def quiz(card_set: dict, difficulty: str):
     with open("results.txt", "w") as f:
         while len(card_set) != 0:
             round_num += 1
+
+            # num_correct and num_answered are for % of correct answers
             num_correct = 0
             num_answered = 0
 
@@ -259,7 +259,6 @@ def quiz(card_set: dict, difficulty: str):
                     while True:
                         user_response = input(
                             f"Copy the answer below ↓\n- {answer}\n> ")
-                        # if user_response.lower() == card_set[prompt].lower():
                         if user_response.lower() == answer.lower():
                             print(f"{Color.Cyan}Next question{Color.Reset}")
                             time.sleep(0.5)
@@ -284,7 +283,6 @@ def quiz(card_set: dict, difficulty: str):
                         f.write(
                             f"✓ {prompt.ljust(max_left_length)} {answer}\n")
                         f.flush()
-                        clear_screen()
 
                         key_to_copy = prompt
                         if key_to_copy in card_set:
@@ -417,23 +415,31 @@ def main():
     file_path = sys.argv[1]
 
     difficulty = sys.argv[2]
-    match difficulty:
-        case "--easy":
-            # good to go
-            pass
-        case "--normal":
-            # good to go
-            pass
-        case "--hard":
-            # good to go
-            pass
-        case "--very-hard":
-            # good to go
-            pass
-        case other:
-            print(
-                "Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
-            return
+    valid_difficulties = {"--easy", "--normal", "--hard", "--very-hard"}
+    # match difficulty:
+    #     case "--easy":
+    #         # good to go
+    #         pass
+    #     case "--normal":
+    #         # good to go
+    #         pass
+    #     case "--hard":
+    #         # good to go
+    #         pass
+    #     case "--very-hard":
+    #         # good to go
+    #         pass
+    #     case other:
+    #         print(
+    #             "Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
+    #         return
+
+    if difficulty in valid_difficulties:
+        pass
+    else:
+        print(
+            "Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
+        return
 
     randomise = sys.argv[3]
     cards = render_cards(file_path)
@@ -459,6 +465,8 @@ def main():
         case "--noflip":
             # good to go, use cards as-is
             pass
+        case other:
+            print("error while looking at flip argument")
 
     clear_screen()
     quiz(cards, difficulty)
