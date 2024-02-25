@@ -1,6 +1,6 @@
 to go to the polls (starts with acudir)|acudir a las urnas
 to go to the polls (starts with ir)|ir a las urnas
-somebody else's/foreign|ajeno
+somebody else's/foreign (can only find masculine examples of this word)|ajeno
 apolitical (masculine)|apolítico
 apolitical (feminine)|apolítica
 to back a party|apostar por un partido
@@ -15,11 +15,13 @@ the approval|la conformidad
 the consent|el consentimiento
 the certainty|la convicción
 to fulfil (starts with c)|cumplir
-the defender|el defensor
+the defender (male)|el defensor
+the defender (female)|la defensora
 the mistrust, distrust|la desconfianza
 desireable (masculine and feminine are the same)|deseable
 to wish, desire|desear
-disenchanted, disillusioned|desencantado
+disenchanted, disillusioned (masculine)|desencantado
+disenchanted, disillusioned (feminine)|desencantada
 desperate (masculine)|desesperado
 desperate (feminine)|desesperada
 the ills, misfourtunes|las desgracias
@@ -44,13 +46,14 @@ the working day|la jornada laboral
 to achieve (starts with L)|lograr
 to express/to state|manifestar
 to lie|mentir
-the activist (i think this only has a masculine form)|el militante
+the activist (male)|el militante
+the activist (female)|la militante
 to be a member of/to be active in a party|militar en un partido
 to demonstrate, to protest (starts with mo)|movilizarse
 the wave|la ola
 the supporter (male)|el partidario
 the supporter (female)|la partidaria
-the apathy, indifference|la pasividad
+the apathy, indifference (starts with p)|la pasividad
 apathetic (starts with p)|pasota
 to afford (also: to allow) (starts with p)|permitirse
 the stance|la postura
@@ -59,7 +62,7 @@ the proposal|la propuesta
 to claim/to demand|reclamar
 to reclaim (starts with rei)|reivindicar
 the representative (male)|el representatnte
-the representative (female)|la representatne
+the representative (female)|la representante
 the trade union|el sindicato
 supportive/caring (masculine)|solidario
 supportive/caring (feminine)|solidaria
@@ -78,7 +81,7 @@ to get (starts with c)|conseguir
 a contract|un contrato
 to pay contributions|cotizar
 to register (3 words)|dar de alta
-the unemployment|el desempleo
+the unemployment (starts with d)|el desempleo
 the employees|los empresarios
 in cash|en efectivo
 the job (starts with e)|el empleo
@@ -86,7 +89,7 @@ to find (starts with e)|encontrar
 to be unemployed (3 words)|estar en paro
 to be fed up (masculine)|estar harto
 to be fed up (feminine)|estar harta
-to demand|exigir
+to demand (starts with e)|exigir
 the experience|la experiencia
 the lack of|la falta de
 the training (like "formation")|la formación
@@ -103,8 +106,8 @@ to show (starts with m)|mostrar
 the guidance (like "orientation")|la orientación
 the youth unemployment|el paro juvenil
 the work experience (this is plural)|las prácticas laborales
-to claim (starts with p)|pretender
-the position/post|el puesto
+to claim, try to (starts with p)|pretender
+the position/post (starts with p)|el puesto
 to carry out (starts with r)|realizar
 to solve (starts with r)|resolver
 the security|la seguridad
