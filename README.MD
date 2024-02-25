@@ -17,3 +17,6 @@
 - the program should tell the user how many cards they have left, the number of correct cards, and the number of incorrect cards
 - all content within () brackets is preserved when a hint is constructed, while still obeying the rules of each difficulty (i.e easy mode still shows first 3 chars, normal: 1, hard: 0, very hard: "No hints!")
 - statistics and tracking
+
+## lesson of the day
+- if you want to combine function arguments with string parsing, don't rely on chatgpt at all
