@@ -55,7 +55,12 @@ def clear_screen():
         os.system("clear")
 
 
-def print_round_summary(filename: str, target_string: str, num_correct: int, num_answered: int):
+def print_round_summary(
+    filename: str,
+    target_string: str,
+    num_correct: int,
+    num_answered: int
+):
     found = False
     with open(filename, 'r') as file:
         for line in file:
@@ -207,7 +212,7 @@ def quiz(card_set: dict, difficulty: str):
                         hint = make_hard_hint(answer)
                     case "--very-hard":
                         hint = make_very_hard_hint()
-                    case other:
+                    case _:
                         print("error while trying to make hint")
 
                 num_answered += 1
@@ -333,8 +338,7 @@ def quiz(card_set: dict, difficulty: str):
             # print(f"END OF ROUND {round_num}")
 
             print(f"Round {round_num} summary:")
-            print_round_summary("results.txt", f"Round {
-                                round_num}:", num_correct, num_answered)
+            print_round_summary("results.txt", f"Round {round_num}:", num_correct, num_answered)
 
     print("Session summary:")
 
@@ -380,6 +384,7 @@ def main():
     file_path = sys.argv[1]
 
     difficulty = sys.argv[2]
+
     valid_difficulties = {"--easy", "--normal", "--hard", "--very-hard"}
 
     if difficulty in valid_difficulties:
@@ -401,7 +406,7 @@ def main():
         case "--norand":
             # don't randomise, pass as the cards can be used as-is
             pass
-        case other:
+        case _:
             print("Error: randomise setting can only be one of: --rand | --norand")
             return
 
@@ -413,7 +418,7 @@ def main():
         case "--noflip":
             # good to go, use cards as-is
             pass
-        case other:
+        case _:
             print("error while looking at flip argument")
             return
 
