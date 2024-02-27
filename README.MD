@@ -1,3 +1,6 @@
+# Quizlet write my version
+- Find the flash cards that work with this program here: https://github.com/RubberDuckCollector/subject-resources
+
 ### technical explanation coming soon!
 
 ## 2023-02-20
