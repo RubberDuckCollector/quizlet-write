@@ -8,6 +8,12 @@ import platform
 
 # static analyser might say readline is unused but it attaches to the input() func
 
+# TODO: must implement a running total of correct and incorrect answers
+# and flash cards remaining for current session
+# all 3 pieces of data will be printed out to the user
+# can be implemented as a list where [0], [1], and [2] are assigned a value
+# or as 3 different variables that store ints (this seems more sensible and more memory efficient)
+
 chars_to_ignore = [',', '.', '\'', '\"', ' ', '_',
                    '+', '+', '[', ']', '<', '>']
 
@@ -41,8 +47,11 @@ class Color:
 # we can emulate the rounds that quizlet write has by looping over the dict
 # keep track of the cards the user has gotten correct by adding it to a seperate dict
 # when the user answers the last card, remove the ones they got correct
-# that will be the next round
-# use a while loop for as long as the dict isn't empty
+# thereby leaving the cards they got incorrect still in the original dict
+
+# the dict containing the remaining cards will be the next round
+# while the length of the original dict is more than 0, keep doing this
+# as when it reaches 0, it must mean the user has seen and marked all cards as correct
 
 # session review system:
 # most sensible move seems to be to write the rounds to a file as the session progresses
@@ -81,11 +90,9 @@ def print_round_summary(
     if not found:
         print("Target string not found in the file.")
 
-    print(
-        f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
+    print(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
     with open(filename, "a") as f:
-        f.write(
-            f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n")
+        f.write(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n")
         f.flush()
 
     print()
@@ -346,20 +353,11 @@ def quiz(card_set: dict, difficulty: str):
         for line in f:
             # print the line without leading/trailing whitespaces
             if '✓' in line:  # check for tick
-                print("\x1b[32m" + line.strip() +
-                      "\x1b[0m")  # print in green
+                print("\x1b[32m" + line.strip() + "\x1b[0m")  # print in green
             elif '✗' in line:  # check for cross
-                print("\x1b[31m" + line.strip() +
-                      "\x1b[0m")  # print in red
+                print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
             else:
                 print(line.strip())  # otherwise don't colour the line
-
-# separate cards into groups of 10
-# order is random within each group
-# order of groups is in order
-# make it so if the user supplies an empty string as an answer, make them copy out the answer
-# if the user gets it wrong with a non-empty answer, allow them to override the game and mark as correct anyway
-# must remove answers made up of only spaces
 
 
 def render_cards(filepath: str) -> dict:
@@ -369,6 +367,10 @@ def render_cards(filepath: str) -> dict:
         for line in f:
             key, value = line.strip().split("|")
             rendered_cards[key.strip()] = value.strip()
+
+    # return this as the dictionary of terms and definitions
+    # e.g: "hello": "hola",
+    # the key is on the left, its corresponding value is on the right
     return rendered_cards
 
 
