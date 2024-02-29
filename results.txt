@@ -1,2 +1,7 @@
 Round 1:
-✓ to go to the polls (starts with acudir)                                 acudir a las urnas
+✓ the mayor (male)                                              el alcalde
+✓ the mayor (female)                                            la alcaldesa
+✓ to threaten                                                   amenazar
+✓ to tie                                                        atar
+✓ to hang (also "to upload", starts with co)                    colgar
+✗ the summit                                                    la cumbre
