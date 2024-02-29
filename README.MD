@@ -1,7 +1,7 @@
 # Quizlet write my version
 - Find the flash cards that work with this program here: https://github.com/RubberDuckCollector/subject-resources
 - note: i recommend using this for german vocab where the plural conjugation is in brackets
-- e.g: the recipe - das Rezept **(-e)**
+- e.g: the recipe - das Rezept *(-e)*
 
 ### technical explanation coming soon!
 
