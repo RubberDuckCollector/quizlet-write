@@ -1,7 +1,5 @@
 Round 1:
-✓ the mayor (male)                                              el alcalde
-✓ the mayor (female)                                            la alcaldesa
-✓ to threaten                                                   amenazar
-✓ to tie                                                        atar
-✓ to hang (also "to upload", starts with co)                    colgar
-✗ the summit                                                    la cumbre
+✓ to get on with (2 words)                                                       auskommen mit
+✓ to look like, to appear + case                                                 aussehen
+✗ both                                                                           beide
+✗ to describe                                                                    beschreiben

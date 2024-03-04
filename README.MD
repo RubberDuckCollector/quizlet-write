@@ -19,7 +19,6 @@
 - in easy mode and normal mode, the contents of all brackets will be shown in the hint
 
 ## future plans
-- the program should tell the user how many cards they have left, the number of correct cards, and the number of incorrect cards
 - statistics and tracking
 
 ## lesson of the day

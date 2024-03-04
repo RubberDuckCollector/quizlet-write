@@ -204,6 +204,8 @@ def quiz(card_set: dict, difficulty: str):
             # num_correct and num_answered are for % of correct answers
             num_correct = 0
             num_answered = 0
+            num_incorrect = 0
+            num_remaining = len(card_set)
 
             f.write(f"Round {round_num}:\n")
             f.flush()
@@ -228,8 +230,10 @@ def quiz(card_set: dict, difficulty: str):
                 # print(card_set[i]) -> print the answer/other side of the card
                 # print(hint) -> print the hint for the answer
 
-                user_response = input(
-                    f"What's the answer to '{Color.LightMagenta}{prompt}{Color.Reset}'?\nHint: {hint}\n> ").strip()
+                user_response = input(f"What's the answer to '{Color.LightMagenta}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}\nHint: {hint}\n> ").strip()
+
+                # print num_remaining, num_correct, num_incorrect
+                # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
 
                 # if the user input is falsy
                 # i.e there were only spaces and strip() has removed them
@@ -248,9 +252,10 @@ def quiz(card_set: dict, difficulty: str):
                         else:
                             print("Try again")
                     # mark as incorrect as the user doesn't know the answer
-                    f.write(
-                        f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                    f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                     f.flush()
+
+                    num_incorrect += 1
                 else:
                     # the user gets a special message if capitalisation matches perfectly
                     if user_response == answer:
@@ -261,8 +266,7 @@ def quiz(card_set: dict, difficulty: str):
                         time.sleep(0.5)
                         clear_screen()
 
-                        f.write(
-                            f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                        f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
                         f.flush()
 
                         key_to_copy = prompt
@@ -278,8 +282,7 @@ def quiz(card_set: dict, difficulty: str):
                         time.sleep(0.5)
                         clear_screen()
 
-                        f.write(
-                            f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                        f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
                         f.flush()
 
                         key_to_copy = prompt
@@ -290,8 +293,7 @@ def quiz(card_set: dict, difficulty: str):
                         # ask for override
                         print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{answer}{Color.Reset}")
 
-                        override = input(
-                            "Override as correct? (empty answer = don't override) ").strip()
+                        override = input("Override as correct? (empty answer = don't override) ").strip()
 
                         # if override has something in it
                         if override:
@@ -300,8 +302,7 @@ def quiz(card_set: dict, difficulty: str):
 
                             num_correct += 1
 
-                            f.write(
-                                f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                            f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
                             f.flush()
 
                             time.sleep(0.5)
@@ -313,9 +314,10 @@ def quiz(card_set: dict, difficulty: str):
                         else:
                             print(f"{Color.Yellow}Not overridden.{Color.Reset}")
                             # mark as incorrect
-                            f.write(
-                                f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                            f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                             f.flush()
+
+                            num_incorrect += 1
 
                             time.sleep(0.5)
                             clear_screen()
