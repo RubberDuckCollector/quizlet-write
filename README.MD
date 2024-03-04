@@ -3,9 +3,9 @@
 - note: i recommend using this for german vocab where the plural conjugation is in brackets. the program will preserve contents in the brackets so you don't have to memorise what's in the brackets.
 - e.g: the recipe - das Rezept *(-e)*
 
-<contents open><summary>Disclaimer:</summary>
+<details open><summary>Disclaimer:</summary>
 - `results.txt` may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
-</contents>
+</details>
 
 ### technical explanation coming soon!
 
