@@ -4,7 +4,7 @@
 - e.g: the recipe - das Rezept *(-e)*
 
 <details open><summary>Disclaimer:</summary>
-- `results.txt` may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
+<li> <code>results.txt</code> may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
 </details>
 
 ### technical explanation coming soon!
