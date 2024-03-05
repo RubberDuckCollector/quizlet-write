@@ -1,5 +1,5 @@
 Round 1:
-✓ to get on with (2 words)                                                       auskommen mit
-✓ to look like, to appear + case                                                 aussehen
-✗ both                                                                           beide
-✗ to describe                                                                    beschreiben
+✓ to have at one's disposal                                                disponer de
+✗ the witness (noun does not change with gender but article does) (female) la testigo
+✗ the psychologist (female)                                                la psicóloga
+✓ in the long term                                                         a largo plazo

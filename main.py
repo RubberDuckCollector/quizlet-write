@@ -321,6 +321,7 @@ def quiz(card_set: dict, difficulty: str):
 
                             time.sleep(0.5)
                             clear_screen()
+                num_remaining -= 1
 
             # now delete all the cards that the user got right
             # this is to make sure only the things they got wrong are left
