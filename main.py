@@ -92,7 +92,7 @@ def print_round_summary(
 
     print(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
     with open(filename, "a") as f:
-        f.write(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n")
+        f.write(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n\n")
         f.flush()
 
     print()

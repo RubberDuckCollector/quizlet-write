@@ -118,7 +118,8 @@ def very_hard(msg: str) -> str:
 
 
 def main():
-    msg = "die Gemeinschaft+ (-en)"
+    msg = "die Gemeinschaft+ (-en a;lsdkfj;lasdj faljdksf ;asdfjkl afdsjkl lafs jfs)"
+    # msg = "to use|usar (or utilizar)"
 
     print(f"'{hard(msg)}'")
     print(f"'{normal(msg)}'")

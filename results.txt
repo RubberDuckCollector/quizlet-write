@@ -1,5 +1,30 @@
 Round 1:
-✓ to have at one's disposal                                                disponer de
-✗ the witness (noun does not change with gender but article does) (female) la testigo
-✗ the psychologist (female)                                                la psicóloga
-✓ in the long term                                                         a largo plazo
+✓ to advise                                                                                                                       aconsejar
+✓ the cyberscape                                                                                                                  el ciberespacio
+✓ the privacy (starts with a p)                                                                                                   la privacidad
+✓ to understand                                                                                                                   entender
+✓ to allow                                                                                                                        permitir
+✓ the user (female)                                                                                                               la usuaria
+✓ to restrict                                                                                                                     restringir
+✓ the tv viewer (female)                                                                                                          la telespectadora
+✓ wireless (masculine)                                                                                                            inalámbrico
+✓ to have an account                                                                                                              tener una cuenta
+✓ to be successful                                                                                                                tener éxito
+✓ the swindle, scam                                                                                                               la estafa
+✓ the identity                                                                                                                    la identidad
+✓ the computer (starts with o)                                                                                                    el ordenador
+✓ the privacy (starts with an i)                                                                                                  la intimidad
+✓ the follower                                                                                                                    el seguidor
+✓ to log into facebook (uses meterse)                                                                                             meterse en Facebook
+✓ to block                                                                                                                        bloquear
+✓ the consumer (male)                                                                                                             el consumidor
+✓ the shyness                                                                                                                     la timidez
+✓ the phone coverage                                                                                                              la cobertura
+✓ the bank account                                                                                                                la cuenta bancaria
+✓ to buy                                                                                                                          comprar
+✓ the fraud                                                                                                                       el fraude
+✓ to work, function                                                                                                               funcionar
+✓ the virtual friend (female)                                                                                                     la amiga virtual
+✓ the text message                                                                                                                el mensaje de texto
+✓ to carry out                                                                                                                    realizar
+✓ to hack                                                                                                                         hackear
