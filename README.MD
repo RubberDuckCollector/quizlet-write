@@ -27,3 +27,4 @@
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
+- 2023-03-7 update: i lied

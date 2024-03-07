@@ -14,8 +14,28 @@ import platform
 # can be implemented as a list where [0], [1], and [2] are assigned a value
 # or as 3 different variables that store ints (this seems more sensible and more memory efficient)
 
-chars_to_ignore = [',', '.', '\'', '\"', ' ', '_',
-                   '+', '+', '[', ']', '<', '>']
+
+chars_to_ignore = [
+    '.',
+    ',',
+    '\'',
+    '\"',
+    '`',
+    ' ',  # space
+    '_',
+    '-',
+    '+',
+    '+',
+    '[',
+    ']',
+    '<',
+    '>',
+    '(',
+    ')',
+    '{',
+    '}',
+    ';'
+]
 
 
 class Color:
@@ -134,56 +154,134 @@ def make_hard_hint(msg: str) -> str:
     return hint
 
 
+# DON'T TOUCH
+# def make_normal_hint(msg: str) -> str:
+#     hint = ""
+
+#     msg = msg.split()  # can equate this to tokenising, each token is a word
+
+#     try:
+#         for i in range(len(msg)):
+#             if i > 0:
+#                 hint += " "
+#             for j in range(len(msg[i])):
+#                 if j == 0 and msg[i][j] != '(':
+#                     hint += msg[i][j]
+#                 else:
+#                     if msg[i][j] == '(':
+#                         hint += msg[i]
+#                         i += 1  # since the bracket stuff is done all at once, need to go to next i
+#                     elif msg[i][j] in chars_to_ignore:
+#                         hint += msg[i][j]
+#                     else:
+#                         hint += '_'
+
+#     except IndexError:
+#         pass
+
+#     return hint
+
+
+# i think this is the best i'm gonna get for the forseeable future
 def make_normal_hint(msg: str) -> str:
     hint = ""
+    msg = list(msg)
 
-    msg = msg.split()  # can equate this to tokenising, each token is a word
+    i = 0
+    # j = 0
+    inside_brackets = False
 
-    try:
-        for i in range(len(msg)):
-            if i > 0:
-                hint += " "
-            for j in range(len(msg[i])):
-                if j == 0 and msg[i][j] != '(':
-                    hint += msg[i][j]
+    while True:
+        try:
+            if msg[i] in chars_to_ignore:
+                hint += msg[i]
+            else:
+                if msg[i] == '(':
+                    inside_brackets = True
+                    hint += msg[i]
+                elif msg[i] == ')':
+                    inside_brackets = False
+                    hint += msg[i]
+                elif msg[i].isspace() and not inside_brackets:
+                    hint += msg[i]
+                elif not inside_brackets:
+                    hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"
                 else:
-                    if msg[i][j] == '(':
-                        hint += msg[i]
-                        i += 1  # since the bracket stuff is done all at once, need to go to next i
-                    elif msg[i][j] in chars_to_ignore:
-                        hint += msg[i][j]
-                    else:
-                        hint += '_'
+                    hint += msg[i]
 
-    except IndexError:
-        pass
-
+            i += 1
+        except IndexError:
+            break
     return hint
+
+
+# old version
+# def make_easy_hint(msg: str) -> str:
+#     hint = ""
+
+#     msg = msg.split()  # can equate this to tokenising, each token is a word
+#     print(msg)
+
+#     try:
+#         for i in range(len(msg)):
+#             if i > 0:
+#                 # i increments on each list element, so after each list element, add a space where it should go
+#                 hint += " "
+#             for j in range(len(msg[i])):
+#                 if j < 3 and msg[i][j] != '(':
+#                     hint += msg[i][j]
+#                 else:
+#                     if msg[i][j] == '(':
+#                         hint += msg[i]
+#                         i += 1  # since the bracket stuff is done all at once, need to go to next i
+#                     elif msg[i][j] in chars_to_ignore:
+#                         hint += msg[i][j]
+#                     else:
+#                         hint += '_'
+
+#     except IndexError:
+#         pass
+
+#     return hint
 
 
 def make_easy_hint(msg: str) -> str:
     hint = ""
+    msg = list(msg)
 
-    msg = msg.split()  # can equate this to tokenising, each token is a word
+    i = 0
+    inside_brackets = False
 
-    try:
-        for i in range(len(msg)):
-            if i > 0:
-                hint += " "
-            for j in range(len(msg[i])):
-                if j < 3 and msg[i][j] != '(':
-                    hint += msg[i][j]
-                else:
-                    if msg[i][j] == '(':
-                        hint += msg[i]
-                        i += 1  # since the bracket stuff is done all at once, need to go to next i
-                    elif msg[i][j] in chars_to_ignore:
-                        hint += msg[i][j]
+    while True:
+        try:
+            if msg[i] in chars_to_ignore:
+                hint += msg[i]
+            else:
+                if msg[i] == '(':
+                    inside_brackets = True
+                    hint += msg[i]  # add the open bracket to the hint
+                elif inside_brackets:
+                    hint += msg[i]
+                elif msg[i] == ')':
+                    inside_brackets = False
+                    hint += msg[i]  # add the close bracket to the hint
+                elif msg[i].isspace() and not inside_brackets:
+                    hint += msg[i]  # if the char we're looking at is a ' ' and we're not in brackets, add it
+                elif not inside_brackets:
+                    if i == 0 or msg[i - 1].isspace():
+                        hint += msg[i]  # Keep the first character of the word
+                    elif msg[i - 2].isspace() or i == 1:
+                        hint += msg[i]  # Keep the second character of the word
+                    elif msg[i - 3].isspace() or i == 2:
+                        hint += msg[i]  # Keep the third character of the word
                     else:
-                        hint += '_'
+                        hint += "_"  # Replace other characters with underscore
+                else:
+                    hint += msg[i]
 
-    except IndexError:
-        pass
+            i += 1
+        except IndexError:
+            break
 
     return hint
 
@@ -197,8 +295,8 @@ def quiz(card_set: dict, difficulty: str):
     max_left_length = max(len(left) for left in card_set.keys())
 
     # calculate the distance to the next tab stop
-    tab_stop = 8
-    tab_distance = tab_stop - (max_left_length % tab_stop)
+    # tab_stop = 8
+    # tab_distance = tab_stop - (max_left_length % tab_stop)
 
     # print the aligned terms
     # for left, right in card_set.items():
