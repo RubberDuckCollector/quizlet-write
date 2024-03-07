@@ -20,7 +20,7 @@
 - implemented command line arguments
 
 ## 2023-03-07
-- i have new hint algorithms. they don't show all the content in the brackets
+- i have new hint algorithms
 
 ## next features
 

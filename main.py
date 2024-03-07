@@ -100,66 +100,24 @@ def make_very_hard_hint():
     return "No hints!"
 
 
-# def make_hard_hint(msg: str) -> str:
-#     # turn the string into a list of chars
-#     msg = list(msg)
-
-#     hint = ""
-#     inside_brackets = False
-
-#     for i in range(1, len(msg)):
-#         if msg[i] in chars_to_ignore:
-#             # if the current char is supposed to be left untouched
-#             # do that and add it straight to the hint
-#             hint += msg[i]
-#         else:
-#             if msg[i] == '(':
-#                 # add the ( to the hint
-#                 # change the program flow to signal that the code is within a pair of brackets
-#                 inside_brackets = True
-#                 hint += '('
-#             elif msg[i] == ')':
-#                 # signal that the program is outside the brackets
-#                 # can now add '_' to the rest of the hint
-#                 inside_brackets = False
-#                 hint += ')'
-#             elif inside_brackets is True:
-#                 # add the actual char to the hint if the char is in betwwen brackets
-#                 hint += msg[i]
-#             else:
-#                 hint += '_'
-
-#     return hint
-
-
-def make_hard_hint(msg: str) -> str:
+def make_hard_hint(msg: str) -> list:
     hint = ""
-    msg = list(msg)
 
-    i = 0
     inside_brackets = False
 
-    while True:
-        try:
-            if msg[i] in chars_to_ignore:
-                hint += msg[i]
-            else:
-                if msg[i] == '(':
-                    inside_brackets = True
-                    hint += msg[i]  # add the open bracket to the hint
-                elif inside_brackets:
-                    hint += msg[i]
-                elif msg[i] == ')':
-                    inside_brackets = False
-                    hint += msg[i]  # add the close bracket to the hint
-                elif msg[i].isspace() and not inside_brackets:
-                    hint += msg[i]  # if the char we're looking at is a ' ' and we're not in brackets, add it
-                elif not inside_brackets:
-                    hint += msg[i]
-
-            i += 1
-        except IndexError:
-            break
+    for i in range(len(msg)):
+        if msg[i] in chars_to_ignore:
+            hint += msg[i]
+        elif msg[i] == '(':
+            hint += '('
+            inside_brackets = True
+        elif msg[i] == ')':
+            hint += ')'
+            inside_brackets = False
+        elif inside_brackets is True:
+            hint += msg[i]
+        else:
+            hint += '_'
 
     return hint
 

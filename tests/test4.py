@@ -113,47 +113,23 @@ chars_to_ignore = [
 
 
 def make_hard_hint(msg: str) -> list:
-    words = []
-    current_word = ''
-    within_brackets = False
-
-    for i in msg:
-        if i == '(':
-            within_brackets = True
-            current_word += i
-        elif i == ')':
-            within_brackets = False
-            current_word += i
-            words.append(current_word)
-            current_word = ''
-        elif i == ' ' and not within_brackets:
-            if current_word:
-                words.append(current_word)
-                current_word = ''
-        else:
-            current_word += i
-
-    if current_word:
-        words.append(current_word)
-
     hint = ""
 
-    print(words)
-    try:
-        for i in range(len(words)):
-            for j in range(len(words[i])):
-                if '(' in words[i]:
-                    hint += words[i]
-                else:
-                    if words[i][j] in chars_to_ignore:
-                        hint += words[i][j]
-                    else:
-                        hint += '_'
+    inside_brackets = False
 
-
-
-    except IndexError:
-        pass
+    for i in range(len(msg)):
+        if msg[i] in chars_to_ignore:
+            hint += msg[i]
+        elif msg[i] == '(':
+            hint += '('
+            inside_brackets = True
+        elif msg[i] == ')':
+            hint += ')'
+            inside_brackets = False
+        elif inside_brackets is True:
+            hint += msg[i]
+        else:
+            hint += '_'
 
     return hint
 
