@@ -19,6 +19,9 @@
 ## 2023-02-22
 - implemented command line arguments
 
+## 2023-03-07
+- i have new hint algorithms. they don't show all the content in the brackets
+
 ## next features
 
 
@@ -27,4 +30,4 @@
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
-- 2023-03-7 update: i lied
+- 2023-03-07 update: i lied
