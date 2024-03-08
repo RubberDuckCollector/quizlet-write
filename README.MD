@@ -9,19 +9,21 @@
 
 # Technical Explanation
 <details><summary>Technical Explanation:</summary>
-    <details><summary>Relevant files:</summary>
+    <details><summary><b>Relevant files:</b></summary>
         <ul>
             <li><a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/constants.py"><code>constants.py</code></a>: contains the <code>chars_to_ignore</code> list. It's in the file because It can be imported to all my test files. It lets me manage a global variable across many scripts, making it easy to test code in different files with a known piece of data. Being requireable in a separate file makes it easier to debug too. I want all my tests and <code>main.py</code> to be on the same page and working with the same constants.</li>
             <li><code></code></li>
         </ul>
     </details>
     <details><summary><b>The code:</b></summary> <!-- THE CODE -->
-        <details><summary>Imports:</summary> <!-- IMPORTS -->
+        <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
             <ol>
                 <li><code>os</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L1"><code>main.py</code></a>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place.</li>
                 <li><code>sys</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L2"><code>main.py</code></a>: used in conjunction with <code>os</code> to clear the terminal, also manages the command line arguments.</li>
                 <li><code>time</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L3"><code>main.py</code></a>: used to pause the program to let the user read what's on the screen. The text is also in different colours which makes it a bit easier to read because it stands out.</li>
                 <li><code>random</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L4"><code>main.py</code></a>: use <code>random.shuffle</code> to jumble up the key and value pairs in the <code></code> dict, they will be in a pseudo-random order when they're looped through if user specifies <code>--rand</code> in the command line arguments.</li>
+                <li><code>readline</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L5"><code>main.py</code></a>: this library attaches onto the builtin python <code>input</code> procedure, it adds support for UP arrow bringing back your last input, pasting from clipboard, arrow keys etc. It's really helpful if you mistype something and only have to change 1 letter, press UP and your previous answer will come back</li>
+                <li><code>platform</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L6"><code>main.py</code></a>: need this to add Windows support. See <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L59"><code>here</code></a> for its implementation.</li>
             </ol>
         </details>
     </details>
@@ -45,6 +47,7 @@
 ## 2023-03-08
 - i think i'm finally finished with it (the code)
 - started development on the technical explanation
+- need to comment the whole code before starting on code lower than the `Color` class
 
 ## next features
 
