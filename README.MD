@@ -10,13 +10,13 @@
 # Technical Explanation
 <details><summary>Technical Explanation:</summary>
     <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
-        <details><summary><strong>Relevant files:</strong></summary>
+        <details><summary><b>Relevant files:</b></summary>
             <ul>
                 <li><a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/constants.py"><code>constants.py</code></a>: contains the <code>chars_to_ignore</code> list. It's in the file because It can be imported to all my test files. It lets me manage a global variable across many scripts, making it easy to test code in different files with a known piece of data. Being requireable in a separate file makes it easier to debug too. I want all my tests and <code>main.py</code> to be on the same page and working with the same constants.</li>
                 <li><code></code></li>
             </ul>
         </details>
-        <details><summary><strong>The code:</strong></summary> <!-- THE CODE -->
+        <details><summary><b>The code:</b></summary> <!-- THE CODE -->
             <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
                 <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
                     <ol type="1">
@@ -30,7 +30,7 @@
                     </ol>
                 </details>
                 <details><summary><u>Other data:</u></summary>
-                    <ul>
+                    <ul style="list-style-type: circle;">
                         <li>Class <code>Color</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L13"><code>main.py</code></a>: This defines the colours that the terminal can use. Python can print to the terminal using these colours. This is useful to me because showing important elements of the program's output to the user in different colours increases the program's usability.</li>
                     </ul>
                 </details>
