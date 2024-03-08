@@ -7,7 +7,17 @@
 <code>results.txt</code> may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
 </details>
 
-### technical explanation coming soon!
+# Technical Explanation
+<details><summary>Technical Explanation:</summary>
+    <details><summary>Imports:</summary> <!-- IMPORTS -->
+        <ol>
+            <li><code>os</code>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place.</li>
+            <li><code>sys</code>: used in conjunction with <code>os</code> to clear the terminal, also manages the command line arguments.</li>
+            <li><code>time</code>: used to pause the program to let the user read what's on the screen. The text is also in different colours which makes it a bit easier to read because it stands out.</li>
+            <li><code>random</code>: use <code>random.shuffle</code> to jumble up the key and value pairs in the <code></code> dict, they will be in a pseudo-random order when they're looped through if user specifies <code>--rand</code> in the command line arguments.</li>
+        </ol>
+    </details>
+</details>
 
 ## 2023-02-20
 - completed development of first revision
@@ -24,6 +34,7 @@
 
 ## 2023-03-08
 - i think i'm finally finished with it (the code)
+- started development on the technical explanation
 
 ## next features
 
