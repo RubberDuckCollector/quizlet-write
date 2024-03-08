@@ -30,8 +30,8 @@
                     </ol>
                 </details>
                 <details><summary><u>Other data:</u></summary>
-                    <ul type="1">
-                        <li>Class <code>Color</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L13"><code>main.py</code></a>: This defines the colours that the terminal can use. Python can print to the terminal using these colours. This is useful to me because showing important elements of the program's output to the user in different colours increases the program's usability.</li>
+                    <ul>
+                        <li>Class <code>Color</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L13"><code>main.py</code></a>: This defines the colours that the terminal can use. Python can print to the terminal using these colours. This is useful to me because showing important elements of the program's output to the user in different colours increases the program's usability. This isn't an import because it doesn't need to be. I'm only using this in one file.</li>
                     </ul>
                 </details>
             </ul>
@@ -43,7 +43,7 @@
 
 ## 2023-02-20
 - completed development of first revision
-- if there are vocab files that are empty, that is known
+- if there are vocab files that are empty (2023-03-08 update: vocab is of course at <https://github.com/RubberDuckCollector/subject-resources>), that is known
 
 ## 2023-02-21
 - starting development of more command line arguments (--randomise)
