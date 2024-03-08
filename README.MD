@@ -15,7 +15,7 @@
             <li><code></code></li>
         </ul>
     </details>
-    <details><summary>The code:</summary> <!-- THE CODE -->
+    <details><summary><h3>The code:</h3></summary> <!-- THE CODE -->
         <details><summary>Imports:</summary> <!-- IMPORTS -->
             <ol>
                 <li><code>os</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L1"><code>main.py</code></a>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place.</li>
