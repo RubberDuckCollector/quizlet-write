@@ -16,7 +16,7 @@
         </ul>
     </details>
     <details><summary><b>The code:</b></summary> <!-- THE CODE -->
-        <ol>
+        <ul>
             <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
                 <ol>
                     <li><code>os</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L1"><code>main.py</code></a>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place. https://docs.python.org/3/library/os.html</li>
@@ -33,7 +33,7 @@
                     <li>Class <code>Color</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L13"><code>main.py</code></a>: This defines the colours that the terminal can use. Python can print to the terminal using these colours. This is useful to me because showing important elements of the program's output to the user in different colours increases the program's usability.</li>
                 </ul>
             </details>
-        </ol>
+        </ul>
     </details>
 </details>
 
