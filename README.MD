@@ -4,13 +4,34 @@
 - e.g: the recipe - das Rezept *(-e)*
 
 <details><summary>Disclaimer:</summary>
-<code>results.txt</code> may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
+    <code>results.txt</code> may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
 </details>
 
 # Technical Explanation
 <details><summary>Technical Explanation:</summary>
     <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
         <details><summary><b>Relevant files:</b></summary>
+            <ul>
+                <p><u>File structure:</u></p>
+                <pre>
+                    <code>
+                        .
+                        ├── LICENSE
+                        ├── README.md
+                        ├── __pycache__
+                        │   └── constants.cpython-312.pyc
+                        ├── constants.py
+                        ├── main.py
+                        ├── results.txt
+                        └── tests
+                            ├── graveyard.py
+                            ├── test.py
+                            ├── test2.py
+                            ├── test3.py
+                            └── test4.py                        
+                    </code>
+                </pre>
+            </ul>
             <ul>
                 <li><a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/constants.py"><code>constants.py</code></a>: contains the <code>chars_to_ignore</code> list. It's in the file because It can be imported to all my test files. It lets me manage a global variable across many scripts, making it easy to test code in different files with a known piece of data. Being requireable in a separate file makes it easier to debug too. I want all my tests and <code>main.py</code> to be on the same page and working with the same constants.</li>
                 <li><code></code></li>
