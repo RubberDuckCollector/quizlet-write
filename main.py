@@ -36,19 +36,6 @@ class Color:
     Reset = "\033[0m"
 
 
-# we can emulate the rounds that quizlet write has by looping over the dict
-# keep track of the cards the user has gotten correct by adding it to a seperate dict
-# when the user answers the last card, remove the ones they got correct
-# thereby leaving the cards they got incorrect still in the original dict
-
-# the dict containing the remaining cards will be the next round
-# while the length of the original dict is more than 0, keep doing this
-# as when it reaches 0, it must mean the user has seen and marked all cards as correct
-
-# session review system:
-# most sensible move seems to be to write the rounds to a file as the session progresses
-# when the session finishes, print the contents of the file
-
 def clear_screen():
     if platform.system() == "Windows":
         os.system("cls")
