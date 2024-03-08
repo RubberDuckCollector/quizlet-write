@@ -9,13 +9,21 @@
 
 # Technical Explanation
 <details><summary>Technical Explanation:</summary>
-    <details><summary>Imports:</summary> <!-- IMPORTS -->
-        <ol>
-            <li><code>os</code>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place.</li>
-            <li><code>sys</code>: used in conjunction with <code>os</code> to clear the terminal, also manages the command line arguments.</li>
-            <li><code>time</code>: used to pause the program to let the user read what's on the screen. The text is also in different colours which makes it a bit easier to read because it stands out.</li>
-            <li><code>random</code>: use <code>random.shuffle</code> to jumble up the key and value pairs in the <code></code> dict, they will be in a pseudo-random order when they're looped through if user specifies <code>--rand</code> in the command line arguments.</li>
-        </ol>
+    <details><summary>Relevant files:</summary>
+        <ul>
+            <li><code>constants.py</code>: contains the <code>chars_to_ignore</code> list. It's in the file because I can be imported to all my test files. It lets me manage a global variable across many scripts, making it easy to test code in different files with a known piece of data. Being requireable in a separate file makes it easier to debug too. I want all my tests and <code>main.py</code> to be on the same page and working with the same constants.</li>
+            <li><code></code></li>
+        </ul>
+    </details>
+    <details><summary>The code:</summary> <!-- THE CODE -->
+        <details><summary>Imports:</summary> <!-- IMPORTS -->
+            <ol>
+                <li><code>os</code> in <code>[main.py](https://github.com/RubberDuckCollector/quizlet-write/main.py)</code>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place.</li>
+                <li><code>sys</code>: used in conjunction with <code>os</code> to clear the terminal, also manages the command line arguments.</li>
+                <li><code>time</code>: used to pause the program to let the user read what's on the screen. The text is also in different colours which makes it a bit easier to read because it stands out.</li>
+                <li><code>random</code>: use <code>random.shuffle</code> to jumble up the key and value pairs in the <code></code> dict, they will be in a pseudo-random order when they're looped through if user specifies <code>--rand</code> in the command line arguments.</li>
+            </ol>
+        </details>
     </details>
 </details>
 
