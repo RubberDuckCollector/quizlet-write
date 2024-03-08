@@ -15,20 +15,20 @@
                 <p><u>File structure:</u></p>
                 <pre>
                     <code>
-                        .
-                        ├── LICENSE
-                        ├── README.md
-                        ├── __pycache__
-                        │   └── constants.cpython-312.pyc
-                        ├── constants.py
-                        ├── main.py
-                        ├── results.txt
-                        └── tests
-                            ├── graveyard.py
-                            ├── test.py
-                            ├── test2.py
-                            ├── test3.py
-                            └── test4.py                        
+.
+├── LICENSE
+├── README.md
+├── __pycache__
+│   └── constants.cpython-312.pyc
+├── constants.py
+├── main.py
+├── results.txt
+└── tests
+├── graveyard.py
+├── test.py
+├── test2.py
+├── test3.py
+└── test4.py                        
                     </code>
                 </pre>
             </ul>
