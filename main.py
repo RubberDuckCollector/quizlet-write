@@ -9,12 +9,6 @@ from constants import chars_to_ignore
 
 # static analyser might say readline is unused but it attaches to the input() func
 
-# TODO: must implement a running total of correct and incorrect answers
-# and flash cards remaining for current session
-# all 3 pieces of data will be printed out to the user
-# can be implemented as a list where [0], [1], and [2] are assigned a value
-# or as 3 different variables that store ints (this seems more sensible and more memory efficient)
-
 
 class Color:
     Red = "\033[031m"
