@@ -53,15 +53,12 @@ def print_round_summary(
     with open(filename, 'r') as file:
         for line in file:
             if found:
-                # print the line without leading/trailing whitespaces
-                if '✓' in line:  # check for tick
-                    print("\x1b[32m" + line.strip() +
-                          "\x1b[0m")  # print in green
-                elif '✗' in line:  # check for cross
-                    print("\x1b[31m" + line.strip() +
-                          "\x1b[0m")  # print in red
+                if '✓' in line:  # print the line in green if there's a tick in it
+                    print("\x1b[32m" + line.strip() + "\x1b[0m")
+                elif '✗' in line:
+                    print("\x1b[31m" + line.strip() + "\x1b[0m")  # print the line in red if there's a cross in it
                 else:
-                    print(line.strip())  # otherwise don't colour the line
+                    print(line.strip())  # otherwise don't colour the line and print it
             elif target_string in line:
                 found = True
                 # don't print the line containing "Round <num>:"
@@ -69,6 +66,7 @@ def print_round_summary(
     if not found:
         print("Target string not found in the file.")
 
+    # print the sore the user got along with their percentage
     print(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
     with open(filename, "a") as f:
         f.write(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n\n")
@@ -109,7 +107,6 @@ def make_normal_hint(msg: str) -> str:
     msg = list(msg)
 
     i = 0
-    # j = 0
     inside_brackets = False
 
     while True:
@@ -136,7 +133,6 @@ def make_normal_hint(msg: str) -> str:
         except IndexError:
             break
     return hint
-
 
 
 def make_easy_hint(msg: str) -> str:
@@ -348,6 +344,9 @@ def quiz(card_set: dict, difficulty: str):
             # print(f"END OF ROUND {round_num}")
 
             print(f"Round {round_num} summary:")
+
+            # here the proc will look for the line in the file containing "Round"
+            # and the number of the current round with a : right after it
             print_round_summary("results.txt", f"Round {round_num}:", num_correct, num_answered)
 
     print("Session summary:")

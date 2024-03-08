@@ -37,7 +37,7 @@
                 <li><code></code></li>
             </ul>
         </details>
-        <details><summary><b>The code:</b></summary> <!-- THE CODE -->
+        <details><summary><strong>The code:</strong></summary> <!-- THE CODE -->
             <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
                 <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
                     <ol type="1">
