@@ -27,6 +27,8 @@
     </details>
 </details>
 
+# Build log
+
 ## 2023-02-20
 - completed development of first revision
 - if there are vocab files that are empty, that is known
