@@ -16,7 +16,7 @@
         </ul>
     </details>
     <details><summary><b>The code:</b></summary> <!-- THE CODE -->
-        <ul>
+        <ol>
             <li>
                 <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
                     <ol>
@@ -37,7 +37,7 @@
                     </ul>
                 </details>
             </li>
-        </ul>
+        </ol>
     </details>
 </details>
 
