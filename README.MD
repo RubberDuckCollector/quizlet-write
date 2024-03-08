@@ -16,7 +16,7 @@
         </ul>
     </details>
     <details><summary><b>The code:</b></summary> <!-- THE CODE -->
-        <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
+        <details><u><summary>Imports:</summary></u> <!-- IMPORTS -->
             <ol>
                 <li><code>os</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L1"><code>main.py</code></a>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place. https://docs.python.org/3/library/os.html</li>
                 <li><code>sys</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L2"><code>main.py</code></a>: used in conjunction with <code>os</code> to clear the terminal, also manages the command line arguments. https://docs.python.org/3/library/sys.html</li>
