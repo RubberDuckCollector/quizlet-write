@@ -22,6 +22,9 @@
 ## 2023-03-07
 - i have new hint algorithms
 
+## 2023-03-08
+- i think i'm finally finished with it
+
 ## next features
 
 
