@@ -4,7 +4,10 @@
 - e.g: the recipe - das Rezept *(-e)*
 
 <details><summary>Disclaimer:</summary>
-    <code>results.txt</code> may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
+    <ul>
+        <code>results.txt</code> may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
+        <p>I also know how cursed this file is if you open it raw. Try not to think about it.</p>
+    </ul>
 </details>
 
 # Technical Explanation
@@ -38,6 +41,11 @@
             </ul>
         </details>
         <details><summary><strong>The code:</strong></summary> <!-- THE CODE -->
+            <ul>
+                <li>I'll try to cover this line by line going downwards through the file</li>
+                <li>But this may not be possible because it's really hard</li>
+                <li>There may not be links to line numbers, and instead there'll be a reference of what is written <code>like this</code> because keeping this file up to date with line numbers that can change is a very daunting task. This is also only my second documentation project (apart from the ocr-programming-challenges) and it's also daunting because of that. I want to keep it at least somewhat easy for myself.</li>
+            </ul>
             <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
                 <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
                     <ol type="1">
