@@ -12,7 +12,7 @@
 
 # User Experience
 <details><summary>User Experience:</summary>
-    <ol type-"1">
+    <ol type="1">
         <li>The user runs the program (e.g <code>python3 main.py ~/subject-resources/cards/languages/spanish/as/unit2.txt --normal --rand --noflip</code>)</li>
     </ol>
 </details>
