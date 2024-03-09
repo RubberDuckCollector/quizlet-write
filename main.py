@@ -86,16 +86,31 @@ def make_hard_hint(msg: str) -> list:
 
     for i in range(len(msg)):
         if msg[i] in chars_to_ignore:
+            # if char should be preserved when hint is being built
             hint += msg[i]
         elif msg[i] == '(':
+            # if we're currently looking at a (
+            # inside_brackets will be assigned True
+            # add the ( to the hint
             hint += '('
             inside_brackets = True
         elif msg[i] == ')':
+            # if we're at the end of the bracket
+            # add the ) to the hint
+            # inside_brackets becomes False
             hint += ')'
             inside_brackets = False
         elif inside_brackets is True:
+            # add the character stright to the hint
+            # we want to preserve the characters inside brackets
+            # into the hint
+            # therefore they shouldn't be an _ underscore
             hint += msg[i]
         else:
+            # if we're not in brackets
+            # the character is neither of ( or )
+            # and the character isn't in chars_to_ignore
+            # it must be turned into an _
             hint += '_'
 
     return hint
@@ -104,9 +119,12 @@ def make_hard_hint(msg: str) -> list:
 # i think this is the best i'm gonna get for the forseeable future
 def make_normal_hint(msg: str) -> str:
     hint = ""
-    msg = list(msg)
+    msg = list(msg)  # turn the string into a list of chars
 
     i = 0
+    # iterating through the list with a while loop
+    # incrementing the iterating variable manually
+
     inside_brackets = False
 
     while True:
@@ -115,23 +133,39 @@ def make_normal_hint(msg: str) -> str:
                 hint += msg[i]
             else:
                 if msg[i] == '(':
+                    # if we're currently looking at a (
+                    # inside_brackets will be assigned True
+                    # add the ( to the hint
                     inside_brackets = True
                     hint += msg[i]
-                elif inside_brackets:
-                    hint += msg[i]
                 elif msg[i] == ')':
+                    # if we're at the end of the bracket
+                    # add the ) to the hint
+                    # inside_brackets becomes False
                     inside_brackets = False
                     hint += msg[i]
-                elif msg[i].isspace() and not inside_brackets:
+                elif inside_brackets:
+                    # add the character stright to the hint
+                    # we want to preserve the characters inside brackets
+                    # into the hint
+                    # therefore they shouldn't be an _ underscore
                     hint += msg[i]
-                elif not inside_brackets:
-                    hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"
                 else:
-                    hint += msg[i]
+                    # if all above conditions haven't been met,
+                    # if we're not inside_brackets
+                    # add the acutal letter to the hint if i == 0, or the previous letter is a space
+                    # otherwise add a '_'
+                    hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"
 
-            i += 1
+            i += 1  # increment i, ready for the next element of the list
+
         except IndexError:
+            # if we try to access an index that's not in the list
+            # it must mean we're at the end of the list
+            # and therefore built up the whole hint
+            # it's safe to break out of the while True
             break
+
     return hint
 
 
@@ -151,13 +185,15 @@ def make_easy_hint(msg: str) -> str:
                     inside_brackets = True
                     hint += msg[i]  # add the open bracket to the hint
                 elif inside_brackets:
+                    # we want to preserve the char, and put it in the hint
+                    # to give the user leniency
+                    # they don't have to memorise what's in the ()
+                    # they'll only have to type it out
                     hint += msg[i]
                 elif msg[i] == ')':
                     inside_brackets = False
                     hint += msg[i]  # add the close bracket to the hint
-                elif msg[i].isspace() and not inside_brackets:
-                    hint += msg[i]  # if the char we're looking at is a ' ' and we're not in brackets, add it
-                elif not inside_brackets:
+                else:
                     if i == 0 or msg[i - 1].isspace():
                         hint += msg[i]  # Keep the first character of the word
                     elif msg[i - 2].isspace() or i == 1:
@@ -166,8 +202,6 @@ def make_easy_hint(msg: str) -> str:
                         hint += msg[i]  # Keep the third character of the word
                     else:
                         hint += "_"  # Replace other characters with underscore
-                else:
-                    hint += msg[i]
 
             i += 1
         except IndexError:
@@ -223,7 +257,9 @@ def quiz(card_set: dict, difficulty: str):
                 num_answered += 1
 
                 # print(i) -> print the first side of the card
+                # print(prompt) -> print the first side of the card
                 # print(card_set[i]) -> print the answer/other side of the card
+                # print(answer) -> print the answer/other side of the card
                 # print(hint) -> print the hint for the answer
 
                 user_response = input(f"What's the answer to '{Color.LightMagenta}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}\nHint: {hint}\n> ").strip()
@@ -249,7 +285,7 @@ def quiz(card_set: dict, difficulty: str):
                             print("Try again")
                     # mark as incorrect as the user doesn't know the answer
                     f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
-                    f.flush()
+                    f.flush()  # essential to prevent a file error
 
                     num_incorrect += 1
                 else:
