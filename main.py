@@ -153,7 +153,7 @@ def make_normal_hint(msg: str) -> str:
                 else:
                     # if all above conditions haven't been met,
                     # if we're not inside_brackets
-                    # add the acutal letter to the hint if i == 0, or the previous letter is a space
+                    # add the letter to the hint if i == 0, or the previous letter is a space
                     # otherwise add a '_'
                     hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"
 
