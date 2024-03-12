@@ -49,7 +49,11 @@
                     </pre>
                 </li>
                 <li><a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/constants.py"><code>constants.py</code></a>: contains the <code>chars_to_ignore</code> list. It's in the file because It can be imported to all my test files. It lets me manage a global variable across many scripts, making it easy to test code in different files with a known piece of data. Being requireable in a separate file makes it easier to debug too. I want all my tests and <code>main.py</code> to be on the same page and working with the same constants.</li>
-                <li><code></code></li>
+                <li><code>main.py</code>: stores all of the logic of the program. Run this file to use it</li>
+                <li><code>README.md</code>: this file.</li>
+                <li><code>constants.py</code>: contains <code>chars_to_ignore</code> and is imported by my python scripts</li>
+                <li><code>LICENSE</code>: license</li>
+                <li><code>tests/</code>: contains files I've used to test python code that I've later added to <code>main.py</code>. I used these test files becauase I don't want to test within <code>main.py</code> to prevent something bad from happening. Feel free to poke around and read the shitty code</li>
             </ul>
         </details>
         <details><summary><strong>The code:</strong></summary> <!-- THE CODE -->
