@@ -88,7 +88,7 @@
 
 ## 2023-02-20
 - completed development of first revision
-- if there are vocab files that are empty, that is known (2023-03-08 update: vocab is of course at <https://github.com/RubberDuckCollector/subject-resources>)
+- if there are vocab files that are empty, that is known (2023-03-08 update: vocab is at <https://github.com/RubberDuckCollector/subject-resources>)
 ## 2023-02-21
 - starting development of more command line arguments (--randomise)
 
