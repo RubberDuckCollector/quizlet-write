@@ -1,16 +1,2 @@
 Round 1:
-✓ to restrict                                                                                                                     restringir
-✓ the screen                                                                                                                      la pantalla
-✓ to fight                                                                                                                        luchar
-✓ the diagnosing through the internet                                                                                             la telemedicina
-✓ to waste time                                                                                                                   perder tiempo
-✓ to access                                                                                                                       acceder
-✓ the language (masculine) (ends with je)                                                                                         el lenguaje
-✓ dangerous (masculine)                                                                                                           peligroso
-✓ to survive                                                                                                                      sobrevivir
-✓ to upload (starts with ca)                                                                                                      cargar
-✓ to hack                                                                                                                         hackear
-✓ the tv viewer (female)                                                                                                          la telespectadora
-✓ to share                                                                                                                        compartir
-✓ the advantage                                                                                                                   la ventaja
-✓ to download                                                                                                                     descargar
+✓ introduction 1  Como estudiante de español, he aprendido de la cultura española y el idioma español.

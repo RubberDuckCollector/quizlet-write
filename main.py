@@ -2,7 +2,7 @@ import os
 import sys
 import time
 import random
-import readline
+# import readline
 import platform
 from constants import chars_to_ignore
 
@@ -325,7 +325,7 @@ def quiz(card_set: dict, difficulty: str):
                         # ask for override
                         print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{answer}{Color.Reset}")
 
-                        override = input("Override as correct? (empty answer = don't override) ").strip()
+                        override = input("Override as correct? (empty answer = don't override) ")
 
                         # if override has something in it
                         if override:
