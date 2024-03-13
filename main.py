@@ -2,7 +2,7 @@ import os
 import sys
 import time
 import random
-# import readline
+import readline
 import platform
 from constants import chars_to_ignore
 
@@ -261,8 +261,9 @@ def quiz(card_set: dict, difficulty: str):
                 # print(card_set[i]) -> print the answer/other side of the card
                 # print(answer) -> print the answer/other side of the card
                 # print(hint) -> print the hint for the answer
-
-                user_response = input(f"What's the answer to '{Color.LightMagenta}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}\nHint: {hint}\n> ").strip()
+                    
+                print(f"What's the answer to '{Color.LightMagenta}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}\nHint: {hint}")
+                user_response = input("> ").strip()
 
                 # print num_remaining, num_correct, num_incorrect
                 # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")

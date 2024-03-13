@@ -1,2 +1,15 @@
 Round 1:
-✓ introduction 1  Como estudiante de español, he aprendido de la cultura española y el idioma español.
+✓ to warn                                   avisar
+✗ to make aware, mentally prepare           mentalizar
+✓ to pay attention                          prestar atención
+✗ to label                                  etiquetar
+✓ xenophobic outbreak                       el brote xenófobo
+✓ the court/tribunal                        el juzgado
+✓ chilling                                  escalofriante
+✗ the slum dweller (female)                 la chabolista
+✓ the muslim                                el musulmán
+✓ to come from (starts with p)              proceder de
+✓ the prison                                la cárcel
+✗ the confrontation                         el enfrentamiento
+✗ to encourage something                    fomentar
+✗ the sentence                              la condena
