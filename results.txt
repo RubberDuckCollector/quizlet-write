@@ -1,15 +1,6 @@
 Round 1:
-✓ to warn                                   avisar
-✗ to make aware, mentally prepare           mentalizar
-✓ to pay attention                          prestar atención
-✗ to label                                  etiquetar
-✓ xenophobic outbreak                       el brote xenófobo
-✓ the court/tribunal                        el juzgado
-✓ chilling                                  escalofriante
-✗ the slum dweller (female)                 la chabolista
-✓ the muslim                                el musulmán
-✓ to come from (starts with p)              proceder de
-✓ the prison                                la cárcel
-✗ the confrontation                         el enfrentamiento
-✗ to encourage something                    fomentar
-✗ the sentence                              la condena
+✗ to apologise                              disculparse
+✗ to approach                               acercarse
+✗ the compensation (starts with i)          la indemnización
+✗ to sentence                               sentenciar
+✓ the attacker (female)                     la agresora

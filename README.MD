@@ -44,7 +44,7 @@
     ├── test.py
     ├── test2.py
     ├── test3.py
-    └── test4.py                        
+    └── test4.py
                         </code>
                     </pre>
                 </li>
