@@ -1,6 +1,0 @@
-Round 1:
-✗ to apologise                              disculparse
-✗ to approach                               acercarse
-✗ the compensation (starts with i)          la indemnización
-✗ to sentence                               sentenciar
-✓ the attacker (female)                     la agresora
