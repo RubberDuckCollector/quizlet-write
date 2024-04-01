@@ -418,7 +418,7 @@ def main():
 
     if len(sys.argv) != 5:
         print(
-            "Command line argument order: difficulty, randomise, flip question and answer")
+            "Command line argument order: card set, difficulty, randomise, flip question and answer")
         return
 
     # order of arguments: file path, easy difficulty, randomise terms, switch question and answer
