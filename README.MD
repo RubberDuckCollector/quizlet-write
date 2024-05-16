@@ -108,10 +108,9 @@
 - added percentage progress
 
 ## next features
-
+- [ ] streak feature (100% = perfect streak)
 
 ## future plans
-- [ ] streak feature (100% = perfect streak)
 - [ ] statistics and tracking
 
 ## lesson of the day
