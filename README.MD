@@ -103,10 +103,15 @@
 - started development on the technical explanation
 - need to comment the whole code before starting on code lower than the `Color` class
 
+## 2023-05-15
+- added percentage correct next to correct counter (in brackets)
+- added percentage progress
+
 ## next features
 
 
 ## future plans
+- streak feature (100% = perfect streak)
 - statistics and tracking
 
 ## lesson of the day

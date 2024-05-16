@@ -69,6 +69,7 @@ def print_round_summary(
     # print the sore the user got along with their percentage
     print(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
     with open(filename, "a") as f:
+        # this should never have division by 0 errors, bc cannot have a card set of 0 cards
         f.write(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n\n")
         f.flush()
 
@@ -236,6 +237,7 @@ def quiz(card_set: dict, difficulty: str):
             num_answered = 0
             num_incorrect = 0
             num_remaining = len(card_set)
+            num_terms = len(card_set)
 
             f.write(f"Round {round_num}:\n")
             f.flush()
@@ -254,15 +256,20 @@ def quiz(card_set: dict, difficulty: str):
                     case _:
                         print("error while trying to make hint")
 
-                num_answered += 1
+                # num_answered += 1
 
                 # print(i) -> print the first side of the card
                 # print(prompt) -> print the first side of the card
                 # print(card_set[i]) -> print the answer/other side of the card
                 # print(answer) -> print the answer/other side of the card
                 # print(hint) -> print the hint for the answer
-                    
-                print(f"What's the answer to '{Color.LightMagenta}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}\nHint: {hint}")
+
+                # super proud of this ternary operator
+                current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
+
+                progress = round(num_answered / num_terms, 2) * 100 if num_answered > 0 else 0.0
+
+                print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {num_correct} ({current_percent_correct}%)\nIncorrect: {num_incorrect}\nProgress: {progress}%\nHint: {Color.Dim}{hint}{Color.Reset}")
                 user_response = input("> ").strip()
 
                 # print num_remaining, num_correct, num_incorrect
@@ -354,6 +361,7 @@ def quiz(card_set: dict, difficulty: str):
 
                             time.sleep(0.5)
                             clear_screen()
+                num_answered += 1
                 num_remaining -= 1
 
             # now delete all the cards that the user got right
@@ -421,7 +429,7 @@ def main():
             "Command line argument order: card set, difficulty, randomise, flip question and answer")
         return
 
-    # order of arguments: file path, easy difficulty, randomise terms, switch question and answer
+    # order of arguments: file path to file containing questions, easy difficulty, randomise terms, switch question and answer
     file_path = sys.argv[1]
 
     difficulty = sys.argv[2]
@@ -465,6 +473,8 @@ def main():
 
     # prepare results.txt by wiping it
     # the file contents of the previous session will remain in the file
+    # if program aborted with an uncaught error
+    # e.g KeyboardInterrupt or KeyError
     with open("results.txt", "w") as f:
         f.write("")
 
