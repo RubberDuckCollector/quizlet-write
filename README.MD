@@ -111,7 +111,7 @@
 
 
 ## future plans
-- streak feature (100% = perfect streak) [ ]
+- [ ] streak feature (100% = perfect streak)
 - statistics and tracking
 
 ## lesson of the day
