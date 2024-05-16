@@ -112,7 +112,7 @@
 
 ## future plans
 - [ ] streak feature (100% = perfect streak)
-- statistics and tracking
+- [ ] statistics and tracking
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
