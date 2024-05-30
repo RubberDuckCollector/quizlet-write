@@ -112,7 +112,7 @@
 
 ## next features
 - [ ] streak feature (100% = perfect streak)
-- [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dict
+- [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 
 ## future plans
 - [ ] statistics and tracking
