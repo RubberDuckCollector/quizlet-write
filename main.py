@@ -4,6 +4,7 @@ import time
 import random
 import readline
 import platform
+from datetime import datetime
 from constants import chars_to_ignore
 
 
@@ -211,6 +212,24 @@ def make_easy_hint(msg: str) -> str:
     return hint
 
 
+# def increment_streak(my_streak: int):
+#     my_streak += 1
+
+
+# def decrement_streak(my_streak: int):
+#     my_streak -= 1
+
+
+# def show_streak(my_streak: int):
+#     return my_streak
+
+def dump_results_to_file():
+    right_now = str(datetime.now())
+    with open("results.txt", 'r') as results_f, open(f"records/{right_now}", 'a') as record_f:
+        for line in results_f:
+            record_f.write(line)
+
+
 def quiz(card_set: dict, difficulty: str):
 
     correct_answers = {}
@@ -229,6 +248,7 @@ def quiz(card_set: dict, difficulty: str):
     #           right.rjust(len(right) + tab_distance))
 
     with open("results.txt", "a") as f:
+        f.write(f"cards from: {sys.argv[1]}\n")
         while len(card_set) != 0:
             round_num += 1
 
@@ -256,7 +276,6 @@ def quiz(card_set: dict, difficulty: str):
                     case _:
                         print("error while trying to make hint")
 
-                # num_answered += 1
 
                 # print(i) -> print the first side of the card
                 # print(prompt) -> print the first side of the card
@@ -278,7 +297,6 @@ def quiz(card_set: dict, difficulty: str):
                 # if the user input is falsy
                 # i.e there were only spaces and strip() has removed them
                 # to leave an empty string
-
                 if not user_response:
                     print("Don't know? Copy out the answer so you remember it!")
                     while True:
@@ -290,12 +308,13 @@ def quiz(card_set: dict, difficulty: str):
                             clear_screen()
                             break
                         else:
-                            print("Try again")
+                            print("Try again.")
                     # mark as incorrect as the user doesn't know the answer
                     f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                     f.flush()  # essential to prevent a file error
 
                     num_incorrect += 1
+
                 else:
                     # the user gets a special message if capitalisation matches perfectly
                     if user_response == answer:
@@ -394,7 +413,9 @@ def quiz(card_set: dict, difficulty: str):
             # and the number of the current round with a : right after it
             print_round_summary("results.txt", f"Round {round_num}:", num_correct, num_answered)
 
-    print("Session summary:")
+    dump_results_to_file()
+
+    print(f"{Color.Bold}Session summary:{Color.Reset}")
 
     with open("results.txt", 'r') as f:
         for line in f:
@@ -405,6 +426,9 @@ def quiz(card_set: dict, difficulty: str):
                 print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
             else:
                 print(line.strip())  # otherwise don't colour the line
+
+    # if round_num == 0 and streak == num_terms:
+    #     print("Perfect streak! Well done!")
 
 
 def render_cards(filepath: str) -> dict:
@@ -425,8 +449,7 @@ def render_cards(filepath: str) -> dict:
 def main():
 
     if len(sys.argv) != 5:
-        print(
-            "Command line argument order: card set, difficulty, randomise, flip question and answer")
+        print("Command line argument order: card set, difficulty, randomise, flip question and answer")
         return
 
     # order of arguments: file path to file containing questions, easy difficulty, randomise terms, switch question and answer
@@ -439,8 +462,7 @@ def main():
     if difficulty in valid_difficulties:
         pass
     else:
-        print(
-            "Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
+        print("Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
         return
 
     randomise = sys.argv[3]

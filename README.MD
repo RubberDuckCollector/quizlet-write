@@ -86,29 +86,33 @@
 
 # Build log
 
-## 2023-02-20
+## 2024-02-20
 - completed development of first revision
 - if there are vocab files that are empty, that is known (2023-03-08 update: vocab is at <https://github.com/RubberDuckCollector/subject-resources>)
-## 2023-02-21
+## 2024-02-21
 - starting development of more command line arguments (--randomise)
 
-## 2023-02-22
+## 2024-02-22
 - implemented command line arguments
 
-## 2023-03-07
+## 2024-03-07
 - i have new hint algorithms
 
-## 2023-03-08
+## 2024-03-08
 - i think i'm finally finished with it (the code)
 - started development on the technical explanation
 - need to comment the whole code before starting on code lower than the `Color` class
 
-## 2023-05-15
+## 2024-05-15
 - added percentage correct next to correct counter (in brackets)
 - added percentage progress
 
+## 2024-05-15 14:33
+- having trouble with the streak functionality and scope. idk how to actually do it
+
 ## next features
 - [ ] streak feature (100% = perfect streak)
+- [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dict
 
 ## future plans
 - [ ] statistics and tracking
