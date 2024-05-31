@@ -12,6 +12,7 @@ from constants import chars_to_ignore
 
 
 class Color:
+    Reset = "\033[0m"
     Red = "\033[031m"
     Green = "\033[32m"
     Yellow = "\033[33m"
@@ -34,7 +35,6 @@ class Color:
     Blink = "\033[5m"
     Dim = "\033[2m"
     Reverse = "\033[7m"
-    Reset = "\033[0m"
 
 
 def clear_screen():
@@ -288,7 +288,7 @@ def quiz(card_set: dict, difficulty: str):
 
                 progress = round(num_answered / num_terms, 2) * 100 if num_answered > 0 else 0.0
 
-                print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {num_correct} ({current_percent_correct}%)\nIncorrect: {num_incorrect}\nProgress: {progress}%\nHint: {Color.Dim}{hint}{Color.Reset}")
+                print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)\nIncorrect: {Color.Red}{num_incorrect}{Color.Reset}\nProgress: {progress}%\nHint: {Color.Dim}{hint}{Color.Reset}")
                 user_response = input("> ").strip()
 
                 # print num_remaining, num_correct, num_incorrect
