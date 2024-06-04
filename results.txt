@@ -1,204 +1,213 @@
 cards from: /Users/luna/subject-resources/sixth-form/cards/languages/spanish/a2-aqa/unit3.txt
 Round 1:
-✓ clinging (starts with a) (masculine)                              aferrado
-✓ foreign (masculine)                                               extranjero
-✓ to get close, to approach (reflexive) (starts with "ac")          acercarse
-✓ prominent (like "emblematic") (feminine)                          emblemática
-✓ to enrich                                                         enriquecer
-✓ to spit (starts with e)                                           escupir
-✓ to reduce (starts with "dis")                                     disminuir
-✓ appropriate, fit, ideal (starts with i) (feminine)                idónea
-✓ paradoxically                                                     paradójicamente
-✓ related to (masculine)                                            relacionado con
-✓ the nature/kind (starts with í)                                   la índole
-✓ to weaken                                                         debilitar
-✓ to experience                                                     experimentar
-✓ the challenge (starts with d)                                     el desafío
-✓ to bring                                                          traer
-✓ to appreciate (like the english word)                             apreciar
-✓ foreign (feminine)                                                extranjera
-✓ to attack (starts with "ag")                                      agredir
-✓ related to (feminine)                                             relacionada con
-✓ the order (starts with m)                                         el mandato
-✓ to provide (starts with "pro")                                    proporcionar
-✓ to school, to teach, provide regular schooling                    escolarizar
-✓ to pretend (starts with f)                                        fingir
-✓ the spring (place name) (starts with F)                           la Fuentecilla
-✓ the moor (person) (female)                                        la mora
-✓ humble (adjective ends in e)                                      humilde
-✓ the chest (anatomy)                                               el pecho
-✓ throughout (4 words) (1st word starts with a)                     a lo largo de
-✓ leant on, leaning on (feminine)                                   apoyada en
-✓ the politicians                                                   los políticos
-✓ the asylum                                                        el asilo
-✗ to hinder, hamper, obstruct (starts with o)                       obstaculizar
-✓ uninhabited (feminine)                                            deshabitada
-✓ to lower                                                          rebajar
-✓ to strengthen (starts with f)                                     fortalecer
-✓ to show off clothes, wear them for the first time                 estrenar
-✓ the witch                                                         la bruja
-✓ to attend, to frequent (a place) (starts with f)                  frecuentar
-✓ to hand over (starts with e)                                      entregar
-✓ to harass, to bully (starts with a)                               acosar
-✓ committed to (has "a" after the word) (feminine)                  comprometida a
-✓ the puerto ricans                                                 los puertoriqueños
-✓ the witness (male)                                                el testigo
-✓ the scope/area/environment/field (starts with á)                  el ámbito
-✓ the workshop                                                      el taller
-✓ the thumps                                                        los golpes
-✓ to reject                                                         rechazar
-✓ in fact                                                           de hecho
-✓ the mayor (female)                                                la alcaldesa
-✓ the fasting                                                       el ayuno
-✓ deep-rooted, entrenched (masculine)                               arraigado
-✓ the moor (person) (male)                                          el moro
-✓ the supporter (starts with p) (male)                              el partidario
-✓ to trust                                                          confiar
-✓ to monitor                                                        vigilar
-✓ the candle (starts with c)                                        el cirio
-✓ to shiver (starts with "ti")                                      tiritar
-✓ the heretic (female)                                              la hereje
-✓ retired (masculine)                                               jubilado
-✓ to choose (starts with "es")                                      escoger
-✓ to come into force (a law)                                        entrar en vigor
-✓ to destroy (3 words)                                              echar por tierra
-✓ the surgeon (male)                                                el cirujano
-✓ to bet on                                                         apostar por
-✓ the coast                                                         el litoral
-✓ uninhabited (masculine)                                           deshabitado
-✓ to complain (reflexive)                                           quejarse
-✓ to bear in mind                                                   tener en cuenta
-✓ to damage (starts with p)                                         perjudicar
-✓ the MP (female)                                                   la diputada
-✓ the political persuasion                                          el signo político
-✓ clinging (starts with a) (feminine)                               aferrada
-✓ verifiable (adjective ends in e)                                  verificable
-✓ the ceasefire                                                     el alto el fuego
-✓ to enroll (reflexive) (starts with m)                             matricularse
-✓ full (starts with p) (masculine)                                  pleno
-✓ the deviation                                                     la desviación
-✓ to run the risk                                                   correr el riesgo
-✓ leant on, leaning on (masculine)                                  apoyado en
-✓ to feel (emotions)                                                sentirse
-✓ to stigmatise                                                     estigmatizar
-✓ to encourage/to induce                                            inducir a
-✓ the legacy (starts with L)                                        el legado
-✓ to restrict                                                       restringir
-✓ to try (in a case)                                                procesar
-✓ to put a stop to                                                  poner remedio
-✓ welcoming (feminine)                                              acogedora
-✓ the success                                                       el éxito
-✓ the MP (male)                                                     el diputado
-✓ to kidnap                                                         secuestrar
-✓ to convene (starts with "con")                                    convocar
-✓ the magic, sorcery                                                el sortilegio
-✓ the religion (starts with c)                                      el culto
-✓ to shut away                                                      encerrar
-✓ to retire (reflexive)                                             jubilarse
-✓ peaceful (adjective ends in e) (starts with a)                    apacible
-✓ retired (feminine)                                                jubilada
-✓ to establish, start something, begin something (starts with "en") entablar
-✓ the level                                                         el nivel
-✓ the myth                                                          el mito
-✓ the site, location, summons (to appear in court) (starts with e)  el emplazamiento
-✓ the mayor (male)                                                  el alcalde
-✓ the deity                                                         la deidad
-✓ prominent (like "emblematic") (masculine)                         emblemático
-✓ to underline                                                      subrayar
-✓ to enlarge (starts with e)                                        engrandecer
-✓ the convert (masculine)                                           el converso
-✓ the political wing                                                el brazo político
-✓ the ladder                                                        la escalera
-✓ to confer                                                         conferir
-✓ from orihuela (masculine)                                         oriolano
-✓ to gain ground                                                    ganar terreno
-✓ the apostasy                                                      la apostasía
-✓ to succeed (starts with l)                                        lograr
-✓ from orihuela (feminine)                                          oriolana
-✓ together (masculine)                                              junto
-✓ the heretic (male)                                                el hereje
-✓ unusual (starts with s)                                           singular
-✓ self-government                                                   el autogobierno
-✓ to delay (starts with r)                                          retrasar
-✓ to fail (starts with "fra")                                       fracasar
-✓ harmoniously (adjective ends in e)                                armónicamente
-✓ to institute                                                      instituir
-✓ the godmother                                                     la madrina
-✓ inclusive (feminine ends in "ra") (feminine)                      integradora
-✓ to register (like "inscribe") (reflexive) (starts with i)         inscribirse
-✓ the performance (starts with r)                                   el rendimiento
-✓ the mix                                                           la mezcla
-✓ the rage                                                          la rabia
-✓ the people                                                        el pueblo
-✓ state (adjective form)                                            estatal
-✓ the threat                                                        la amenaza
-✓ appreciated (starts with p) (masculine)                           preciado
-✓ the firecracker (starts with p)                                   el petardo
-✗ the scorn (starts with e)                                         el escarnio
-✓ to set off for (reflexive)                                        dirigirse a
-✓ the surgeon (female)                                              la cirujana
-✓ to predominate (starts with "pri")                                primar
-✓ spread, distributed (starts with r) (masculine)                   repartido
-✓ the groups (starts with b)                                        las bandas
-✓ the luck                                                          la suerte
 ✓ the noose                                                         la soga
-✓ the right (to do something)                                       el derecho
-✓ spread, distributed (starts with r) (feminine)                    repartida
-✓ the roll/register                                                 el padrón
-✓ the convert (feminine)                                            la conversa
-✓ the salvadorians                                                  los salvadoreños
-✓ the boost (starts with i)                                         el impulso
-✓ to request (like "solicit")                                       solicitar
+✓ the witch                                                         la bruja
 ✓ to lack (2 words starts with c)                                   carecer de
-✓ to mould                                                          moldear
-✓ to pay attention (2 words starts with h)                          hacer caso
-✓ to pursue/to prosecute                                            perseguir
-✓ to double (like "duplicate")                                      duplicar
-✓ combination/outfit/music group (starts with "con")                el conjunto
-✓ second hand                                                       de segunda mano
-✓ the score (of 20)                                                 la veintena
-✓ to remember (starts with r)                                       recordar
-✓ together (feminine)                                               junta
-✓ the court (starts with t)                                         el tribunal
-✓ inclusive (masculine ends in r) (masculine)                       integrador
-✓ to remain (starts with p)                                         permanecer
+✓ the dominicans                                                    los dominicanos
+✓ clinging (starts with a) (masculine)                              aferrado
+✓ to convene (starts with "con")                                    convocar
+✓ state (adjective form)                                            estatal
+✓ humble (adjective ends in e)                                      humilde
+✓ the politicians (male)                                            los políticos
+✓ to bear in mind                                                   tener en cuenta
+✓ the scope/area/environment/field (starts with á)                  el ámbito
+✓ the supporter (starts with p) (female)                            la partidaria
+✓ to hurry (refelxive) (starts with a)                              apresuarse
+✓ the thumps                                                        los golpes
+✓ the boost (starts with i)                                         el impulso
+✓ to put a stop to (3 words) (last word is "a")                     poner remedio a
+✓ the MP (male)                                                     el diputado
+✓ the moor (person) (male)                                          el moro
+✓ welcoming (masculine)                                             acogedor
+✓ the fortune telling (like "divination")                           la adivinación
+✓ the mayor (female)                                                la alcaldesa
+✓ to experience                                                     experimentar
+✓ in fact                                                           de hecho
+✓ the spring (place name) (starts with F)                           la Fuentecilla
+✓ uninhabited (feminine)                                            deshabitada
+✓ committed to (has "a" after the word) (feminine)                  comprometida a
+✓ to shiver (starts with "ti")                                      tiritar
 ✓ appropriate, fit, ideal (starts with i) (masculine)               idóneo
-✓ appreciated (starts with p) (feminine)                            preciada
-✓ the burst of laughter                                             la carcajada
+✓ retired (feminine)                                                jubilada
+✓ to bet on                                                         apostar por
+✓ the fabric (starts with t)                                        el tejido
+✓ together (feminine)                                               juntas
+✓ the ceasefire                                                     el alto el fuego
+✓ from orihuela (masculine)                                         oriolano
+✓ deep-rooted, entrenched (masculine)                               arraigado
+✓ the witness (male)                                                el testigo
+✓ comes from                                                        procedente de
+✓ retired (masculine)                                               jubilado
+✓ the convert (masculine)                                           el converso
+✓ to school, to teach, provide regular schooling                    escolarizar
+✓ to attack (starts with "ag")                                      agredir
+✓ to feel (emotions)                                                sentirse
 ✓ the guatemalans                                                   los guatemaltecos
-✓ to tend to                                                        tender a
+✓ to remember (starts with r)                                       recordar
+✓ appropriate, fit, ideal (starts with i) (feminine)                idónea
+✓ the heretic (male)                                                el hereje
+✓ combination/outfit/music group (starts with "con")                el conjunto
+✓ the wide range                                                    la amplia gama
+✓ to run the risk                                                   correr el riesgo
+✓ to pay attention to (3 words starts with h)                       hacer caso a
+✓ the failure                                                       el fracaso
+✓ to choose (starts with "es")                                      escoger
+✓ the mix                                                           la mezcla
+✓ the firecracker (starts with p)                                   el petardo
+✓ the fasting                                                       el ayuno
+✓ to lower                                                          rebajar
 ✓ to convince                                                       convencer
 ✓ from alicante (masculine)                                         alicantino
-✓ the dominicans                                                    los dominicanos
-✓ deep-rooted, entrenched (feminine)                                arraigada
-✓ full (starts with p) (feminine)                                   plena
-✓ the housing (starts with v)                                       la vivienda
-✓ the façade                                                        la fachada
-✓ committed to (has "a" after the word) (masculine)                 comprometido a
-✓ to deviate                                                        desviar
-✓ the supporter (starts with p) (female)                            la partidaria
-✓ to condemn                                                        condenar
-✓ the witchcraft                                                    la brujería
-✓ to hurry (refelxive) (starts with a)                              apresuarse
-✓ the belief                                                        la creencia
-✓ to defeat                                                         vencer
-✓ the hit from a stone (starts with pe)                             la pedrada
-✓ the fortune telling (like "divination")                           la adivinación
-✓ the wide range                                                    la amplia gama
-✓ the fabric (starts with t)                                        el tejido
-✓ the witness (female)                                              la testigo
-✓ comes from                                                        procedente de
-✓ welcoming (masculine)                                             acogedor
-✓ to prevail                                                        prevalecer
-✓ to avoid (starts with "evi")                                      evitar
+✓ second hand                                                       de segunda mano
+✓ the political persuasion                                          el signo político
+✓ the legacy (starts with L)                                        el legado
+✓ welcoming (feminine)                                              acogedora
+✓ the burst of laughter                                             la carcajada
+✓ uninhabited (masculine)                                           deshabitado
+✓ the magic, sorcery                                                el sortilegio
 ✓ facing (3 words)                                                  de cara a
+✓ to shut away                                                      encerrar
+✓ throughout (4 words) (1st word starts with a)                     a lo largo de
+✓ the surgeon (female)                                              la cirujana
+✗ the apostasy                                                      la apostasía
+✓ to pretend (starts with f)                                        fingir
+✓ the convert (feminine)                                            la conversa
+✓ to get close, to approach (reflexive) (starts with "ac")          acercarse
+✓ leant on, leaning on (feminine)                                   apoyada en
+✓ the hit from a stone (starts with pe)                             la pedrada
+✓ to appreciate (like the english word)                             apreciar
+✓ to complain (reflexive)                                           quejarse
+✓ full (starts with p) (masculine)                                  pleno
+✓ prominent (like "emblematic") (masculine)                         emblemático
+✓ to kidnap                                                         secuestrar
+✗ to underline                                                      subrayar
+✓ related to (feminine)                                             relacionada con
+✓ to institute                                                      instituir
+✓ the chest (anatomy)                                               el pecho
+✓ to show off clothes, wear them for the first time                 estrenar
+✓ to enroll (reflexive) (starts with m)                             matricularse
+✓ spread, distributed (starts with r) (feminine)                    repartida
+✓ to spit (starts with e)                                           escupir
 ✓ the learning                                                      el aprendizaje
+✓ to harass, to bully (starts with a)                               acosar
+✓ the asylum                                                        el asilo
+✓ to hinder, hamper, obstruct (starts with o)                       obstaculizar
+✓ foreign (masculine)                                               extranjero
+✓ the ladder                                                        la escalera
+✓ the threat                                                        la amenaza
+✓ the witness (female)                                              la testigo
+✓ to condemn                                                        condenar
+✓ to establish, start something, begin something (starts with "en") entablar
+✓ from orihuela (feminine)                                          oriolana
+✓ the candle (starts with c)                                        el cirio
+✓ the challenge (starts with d)                                     el desafío
+✓ the heretic (female)                                              la hereje
+✓ the façade                                                        la fachada
+✓ to reject                                                         rechazar
+✓ committed to (has "a" after the word) (masculine)                 comprometido a
+✓ to enlarge (starts with e)                                        engrandecer
+✓ deep-rooted, entrenched (feminine)                                arraigada
+✓ to register (like "inscribe") (reflexive) (starts with i)         inscribirse
+✓ to remain (starts with p)                                         permanecer
+✓ the witchcraft                                                    la brujería
+✓ to tend to                                                        tender a
+✗ to try (in a case)                                                procesar
+✓ to monitor                                                        vigilar
+✓ the moor (person) (female)                                        la mora
+✓ unusual (starts with s)                                           singular
+✓ foreign (feminine)                                                extranjera
+✓ to confer                                                         conferir
+✓ the belief                                                        la creencia
+✓ the housing (starts with v)                                       la vivienda
+✓ the success                                                       el éxito
+✓ to avoid (starts with "evi")                                      evitar
+✓ the groups (starts with b)                                        las bandas
+✗ to damage (starts with p)                                         perjudicar
+✗ to provide (starts with "pro")                                    proporcionar
+✓ to trust                                                          confiar
+✓ to attend, to frequent (a place) (starts with f)                  frecuentar
+✓ to pursue/to prosecute                                            perseguir
+✓ to prevail                                                        prevalecer
+✓ appreciated (starts with p) (masculine)                           preciado
+✓ to stigmatise                                                     estigmatizar
+✓ to restrict                                                       restringir
+✓ the order (starts with m)                                         el mandato
+✓ spread, distributed (starts with r) (masculine)                   repartido
+✓ to fail (starts with "fra")                                       fracasar
+✓ the workshop                                                      el taller
+✓ the rage                                                          la rabia
+✓ prominent (like "emblematic") (feminine)                          emblemática
+✓ the myth                                                          el mito
+✓ appreciated (starts with p) (feminine)                            preciada
+✓ the political wing                                                el brazo político
+✓ to enrich                                                         enriquecer
+✓ to bring                                                          traer
+✓ the luck                                                          la suerte
+✓ the site, location, summons (to appear in court) (starts with e)  el emplazamiento
+✓ harmoniously (adjective ends in e)                                armónicamente
+✓ to gain ground                                                    ganar terreno
+✓ inclusive (feminine ends in "ra") (feminine)                      integradora
+✓ to defeat                                                         vencer
+✓ the mayor (male)                                                  el alcalde
+✓ to delay (starts with r)                                          retrasar
+✓ inclusive (masculine ends in r) (masculine)                       integrador
+✓ to set off for (reflexive)                                        dirigirse a
+✓ self-government                                                   el autogobierno
+✓ the court (starts with t)                                         el tribunal
+✓ to hand over (starts with e)                                      entregar
+✓ the right (to do something)                                       el derecho
+✓ the deity                                                         la deidad
+✓ the religion (starts with c)                                      el culto
+✓ paradoxically                                                     paradójicamente
+✓ full (starts with p) (feminine)                                   plena
+✓ the level                                                         el nivel
+✓ the nature/kind (starts with í)                                   la índole
+✓ together (masculine)                                              juntos
+✓ to deviate                                                        desviar
+✓ the godmother                                                     la madrina
+✓ the politicians (female)                                          las políticas
+✓ clinging (starts with a) (feminine)                               aferrada
+✓ related to (masculine)                                            relacionado con
+✓ to weaken                                                         debilitar
+✓ the coast                                                         el litoral
+✓ the roll/register                                                 el padrón
+✓ the puerto ricans                                                 los puertoriqueños
+✓ to come into force (a law)                                        entrar en vigor
+✓ the deviation                                                     la desviación
+✓ to encourage/to induce                                            inducir a
+✓ to request (like "solicit")                                       solicitar
+✓ the score (of 20)                                                 la veintena
+✓ to mould                                                          moldear
 ✓ from alicante (feminine)                                          alicantina
-✓ the failure                                                       el fracaso
-Score: 193/195 (98.97435897435898%)
+✓ the surgeon (male)                                                el cirujano
+✓ the performance (starts with r)                                   el rendimiento
+✓ the salvadorians                                                  los salvadoreños
+✓ to retire (reflexive)                                             jubilarse
+✓ to destroy (3 words)                                              echar por tierra
+✓ to reduce (starts with "dis")                                     disminuir
+✓ leant on, leaning on (masculine)                                  apoyado en
+✓ to strengthen (starts with f)                                     fortalecer
+✓ to double (like "duplicate")                                      duplicar
+✓ the MP (female)                                                   la diputada
+✓ to succeed (starts with l)                                        lograr
+✓ verifiable (adjective ends in e)                                  verificable
+✓ the supporter (starts with p) (male)                              el partidario
+✓ the people                                                        el pueblo
+✓ peaceful (adjective ends in e) (starts with a)                    apacible
+✓ to predominate (starts with "pri")                                primar
+✗ the scorn (starts with e)                                         el escarnio
+Score: 190/196 (96.93877551020408%)
 
 Round 2:
-✓ to hinder, hamper, obstruct (starts with o)                       obstaculizar
+✓ the apostasy                                                      la apostasía
+✓ to underline                                                      subrayar
+✓ to try (in a case)                                                procesar
+✓ to damage (starts with p)                                         perjudicar
+✓ to provide (starts with "pro")                                    proporcionar
 ✓ the scorn (starts with e)                                         el escarnio
-Score: 2/2 (100.0%)
+Score: 6/6 (100.0%)
 
+
+# Last line of the file is the max streak and whether or not it's a perfect streak
+max_streak = 71
+perfect_streak = False
