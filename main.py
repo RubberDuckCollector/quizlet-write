@@ -212,22 +212,35 @@ def make_easy_hint(msg: str) -> str:
     return hint
 
 
-# def increment_streak(my_streak: int):
-#     my_streak += 1
-
-
-# def decrement_streak(my_streak: int):
-#     my_streak -= 1
-
-
-# def show_streak(my_streak: int):
-#     return my_streak
-
 def dump_results_to_file():
     right_now = str(datetime.now())
     with open("results.txt", 'r') as results_f, open(f"records/{right_now}", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
+
+
+class StreakCounter:
+    def __init__(self):
+        self.current_streak = 0
+        self.max_streak = 0
+
+    def increment_streak(self):
+        # increment the current streak by one
+        self.current_streak += 1
+        # if the current streak then exceeds the max, it must mean there's a new highest
+        # therefore reassign max_streak to current_streak
+        if self.current_streak > self.max_streak:
+            self.max_streak = self.current_streak
+
+    def reset_streak(self):
+        self.current_streak = 0
+
+    # might not use these two that much
+    def get_current_streak(self):
+        return self.current_streak
+
+    def get_max_streak(self):
+        return self.max_streak
 
 
 def quiz(card_set: dict, difficulty: str):
@@ -237,6 +250,8 @@ def quiz(card_set: dict, difficulty: str):
 
     # find the length of the longest term on the left
     max_left_length = max(len(left) for left in card_set.keys())
+
+    quiz_counter = StreakCounter()
 
     # calculate the distance to the next tab stop
     # tab_stop = 8
@@ -258,6 +273,7 @@ def quiz(card_set: dict, difficulty: str):
             num_incorrect = 0
             num_remaining = len(card_set)
             num_terms = len(card_set)
+            theoretical_max_streak = num_terms
 
             f.write(f"Round {round_num}:\n")
             f.flush()
@@ -274,7 +290,7 @@ def quiz(card_set: dict, difficulty: str):
                     case "--very-hard":
                         hint = make_very_hard_hint()
                     case _:
-                        print("error while trying to make hint")
+                        print("Error while trying to make hint")
 
 
                 # print(i) -> print the first side of the card
@@ -286,9 +302,16 @@ def quiz(card_set: dict, difficulty: str):
                 # super proud of this ternary operator
                 current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
 
+                # this is the percentage completed in the current set
                 progress = round(num_answered / num_terms, 2) * 100 if num_answered > 0 else 0.0
 
-                print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?\nRemaining: {num_remaining}\nCorrect: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)\nIncorrect: {Color.Red}{num_incorrect}{Color.Reset}\nProgress: {progress}%\nHint: {Color.Dim}{hint}{Color.Reset}")
+                print(f"Remaining: {num_remaining}")
+                print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
+                print(f"Incorrect: {Color.Red}{num_incorrect}{Color.Reset}")
+                print(f"Progress: {Color.Blue}{progress}{Color.Reset}%")
+                print(f"Streak: {quiz_counter.get_current_streak()}")
+                print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?")
+                print("Hint: {Color.Dim}{hint}{Color.Reset}")
                 user_response = input("> ").strip()
 
                 # print num_remaining, num_correct, num_incorrect
@@ -299,11 +322,12 @@ def quiz(card_set: dict, difficulty: str):
                 # to leave an empty string
                 if not user_response:
                     print("Don't know? Copy out the answer so you remember it!")
+                    quiz_counter.reset_streak()
                     while True:
                         user_response = input(
                             f"Copy the answer below ↓\n- {answer}\n> ")
                         if user_response.lower() == answer.lower():
-                            print(f"{Color.Cyan}Next question{Color.Reset}")
+                            print(f"{Color.Cyan}Next question. Streak reset.{Color.Reset}")
                             time.sleep(0.5)
                             clear_screen()
                             break
@@ -320,6 +344,7 @@ def quiz(card_set: dict, difficulty: str):
                     if user_response == answer:
                         print(f"{Color.Green}Correct. Well done!{Color.Reset}")
 
+                        quiz_counter.increment_streak()
                         num_correct += 1
 
                         time.sleep(0.5)
@@ -336,6 +361,7 @@ def quiz(card_set: dict, difficulty: str):
                     elif user_response.lower() == answer.lower():
                         print(f"{Color.Green}Correct{Color.Reset}")
 
+                        quiz_counter.increment_streak()
                         num_correct += 1
 
                         time.sleep(0.5)
@@ -359,6 +385,7 @@ def quiz(card_set: dict, difficulty: str):
                             # mark as correct as the user wishes
                             print(f"Overridden as {Color.Green}Correct{Color.Reset}.")
 
+                            quiz_counter.increment_streak()
                             num_correct += 1
 
                             f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
@@ -376,6 +403,7 @@ def quiz(card_set: dict, difficulty: str):
                             f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                             f.flush()
 
+                            quiz_counter.reset_streak()
                             num_incorrect += 1
 
                             time.sleep(0.5)
@@ -413,6 +441,12 @@ def quiz(card_set: dict, difficulty: str):
             # and the number of the current round with a : right after it
             print_round_summary("results.txt", f"Round {round_num}:", num_correct, num_answered)
 
+        # write the round list to the file
+
+        f.write(f"max_streak = {quiz_counter.get_max_streak()}\n")
+        f.write(f"perfect_streak = {quiz_counter.get_max_streak() == theoretical_max_streak}")  # this should resolve to True or False
+
+
     dump_results_to_file()
 
     print(f"{Color.Bold}Session summary:{Color.Reset}")
@@ -426,9 +460,6 @@ def quiz(card_set: dict, difficulty: str):
                 print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
             else:
                 print(line.strip())  # otherwise don't colour the line
-
-    # if round_num == 0 and streak == num_terms:
-    #     print("Perfect streak! Well done!")
 
 
 def render_cards(filepath: str) -> dict:
