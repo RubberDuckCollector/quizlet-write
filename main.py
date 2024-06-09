@@ -8,7 +8,8 @@ from datetime import datetime
 from constants import chars_to_ignore
 
 
-# static analyser might say readline is unused but it attaches to the input() func
+# static analyser might say readline is unused
+# but it attaches to the input() func
 
 
 class Color:
@@ -54,12 +55,15 @@ def print_round_summary(
     with open(filename, 'r') as file:
         for line in file:
             if found:
-                if '✓' in line:  # print the line in green if there's a tick in it
+                # print the line in green if there's a tick in it
+                if '✓' in line:
                     print("\x1b[32m" + line.strip() + "\x1b[0m")
                 elif '✗' in line:
-                    print("\x1b[31m" + line.strip() + "\x1b[0m")  # print the line in red if there's a cross in it
+                    # print the line in red if there's a cross in it
+                    print("\x1b[31m" + line.strip() + "\x1b[0m")
                 else:
-                    print(line.strip())  # otherwise don't colour the line and print it
+                    # otherwise don't colour the line and print it
+                    print(line.strip())
             elif target_string in line:
                 found = True
                 # don't print the line containing "Round <num>:"
@@ -155,7 +159,8 @@ def make_normal_hint(msg: str) -> str:
                 else:
                     # if all above conditions haven't been met,
                     # if we're not inside_brackets
-                    # add the letter to the hint if i == 0, or the previous letter is a space
+                    # add the letter to the hint if i == 0,
+                    # or the previous letter is a space
                     # otherwise add a '_'
                     hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"
 
@@ -292,7 +297,6 @@ def quiz(card_set: dict, difficulty: str):
                     case _:
                         print("Error while trying to make hint")
 
-
                 # print(i) -> print the first side of the card
                 # print(prompt) -> print the first side of the card
                 # print(card_set[i]) -> print the answer/other side of the card
@@ -308,10 +312,10 @@ def quiz(card_set: dict, difficulty: str):
                 print(f"Remaining: {num_remaining}")
                 print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
                 print(f"Incorrect: {Color.Red}{num_incorrect}{Color.Reset}")
-                print(f"Progress: {Color.Blue}{progress}{Color.Reset}%")
-                print(f"Streak: {quiz_counter.get_current_streak()}")
+                print(f"Progress: {Color.LightBlue}{progress}{Color.Reset}%")
+                print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_max_streak()}{Color.Reset})")
                 print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?")
-                print("Hint: {Color.Dim}{hint}{Color.Reset}")
+                print(f"Hint: {Color.Dim}{hint}{Color.Reset}")
                 user_response = input("> ").strip()
 
                 # print num_remaining, num_correct, num_incorrect
@@ -327,7 +331,7 @@ def quiz(card_set: dict, difficulty: str):
                         user_response = input(
                             f"Copy the answer below ↓\n- {answer}\n> ")
                         if user_response.lower() == answer.lower():
-                            print(f"{Color.Cyan}Next question. Streak reset.{Color.Reset}")
+                            print(f"{Color.Cyan}Next question.{Color.Reset}")
                             time.sleep(0.5)
                             clear_screen()
                             break
@@ -483,7 +487,12 @@ def main():
         print("Command line argument order: card set, difficulty, randomise, flip question and answer")
         return
 
-    # order of arguments: file path to file containing questions, easy difficulty, randomise terms, switch question and answer
+    # order of arguments:
+    # file path to file containing questions,
+    # easy difficulty,
+    # randomise terms,
+    # switch question and answer
+
     file_path = sys.argv[1]
 
     difficulty = sys.argv[2]
