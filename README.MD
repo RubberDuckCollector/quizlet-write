@@ -115,7 +115,7 @@
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 
 ## future plans
-- [ ] statistics and tracking
+- [ ] statistics and tracking - daily word count of terms done
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
