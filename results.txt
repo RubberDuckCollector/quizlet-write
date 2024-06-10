@@ -1,2 +1,10 @@
-cards from: /Users/luna/subject-resources/sixth-form/cards/languages/spanish/a2-aqa/requiem-words.txt
+cards from: testfile.txt
 Round 1:
+✓ test1 1
+✓ test2 2
+✓ test3 3
+✓ test4 4
+Score: 4/4 (100.0%)
+
+max_streak = 4
+perfect_streak = True

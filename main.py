@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import json
 import random
 import readline
 import platform
@@ -217,11 +218,37 @@ def make_easy_hint(msg: str) -> str:
     return hint
 
 
-def dump_results_to_file():
+def dump_results_to_records_file():
     right_now = str(datetime.now())
     with open("results.txt", 'r') as results_f, open(f"records/{right_now}", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
+
+
+# assign a variable to this to get the json obj as a str
+def get_terms_per_day() -> str:
+    with open("stats/terms-per-day.json", 'r') as f:
+        content = json.load(f)
+
+    return json.dumps(content)
+
+
+def write_terms_per_day(obj_to_be_written: str):
+    file_path = "stats/terms-per-day.json"
+    with open(file_path, 'w') as f:
+        # comes in as a str, to turn it into a valid json obj
+        # this turns any ' into ", which fixes the problem
+        f.write(f"{json.dumps(obj_to_be_written)}")
+
+
+def add_entry_terms_per_day(obj: dict, date, num_terms_done: int):
+    # reassign the value of the key, both given as parameters
+    # alternatively, add new key-value pair in dict if date isn't already there
+    # this is done automatically
+    obj[date] = num_terms_done
+
+    # return the obj
+    return obj
 
 
 class StreakCounter:
@@ -277,8 +304,8 @@ def quiz(card_set: dict, difficulty: str):
             num_answered = 0
             num_incorrect = 0
             num_remaining = len(card_set)
-            num_terms = len(card_set)
-            theoretical_max_streak = num_terms
+            NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
+            THEORETICAL_MAX_STREAK = NUM_TERMS
 
             f.write(f"Round {round_num}:\n")
             f.flush()
@@ -307,7 +334,7 @@ def quiz(card_set: dict, difficulty: str):
                 current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
 
                 # this is the percentage completed in the current set
-                progress = round(num_answered / num_terms, 2) * 100 if num_answered > 0 else 0.0
+                progress = round(num_answered / NUM_TERMS, 2) * 100 if num_answered > 0 else 0.0
 
                 print(f"Remaining: {num_remaining}")
                 print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
@@ -448,10 +475,9 @@ def quiz(card_set: dict, difficulty: str):
         # write the round list to the file
 
         f.write(f"max_streak = {quiz_counter.get_max_streak()}\n")
-        f.write(f"perfect_streak = {quiz_counter.get_max_streak() == theoretical_max_streak}")  # this should resolve to True or False
+        f.write(f"perfect_streak = {quiz_counter.get_max_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
-
-    dump_results_to_file()
+    dump_results_to_records_file()
 
     print(f"{Color.Bold}Session summary:{Color.Reset}")
 
@@ -464,6 +490,23 @@ def quiz(card_set: dict, difficulty: str):
                 print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
             else:
                 print(line.strip())  # otherwise don't colour the line
+
+    # assign contents of terms done per day file to variable
+    terms_done_dict = get_terms_per_day()
+
+    # comes out as a string, to turn it into a json object
+    terms_done_dict = json.loads(terms_done_dict)
+
+    # at the end of the round, update the current day's terms done total
+    today = datetime.today().strftime('%Y-%m-%d')
+    if today in terms_done_dict:
+        # need to look at the int stored at the date key, then add NUM_TERMS to it
+        terms_done_dict[today] += NUM_TERMS
+    else:
+        # not in there, can safely write new day
+        terms_done_dict[today] = NUM_TERMS
+
+    write_terms_per_day(terms_done_dict)
 
 
 def render_cards(filepath: str) -> dict:

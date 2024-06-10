@@ -111,11 +111,11 @@
 - having trouble with the streak functionality and scope. idk how to actually do it
 
 ## next features
-- [ ] streak feature (100% = perfect streak)
+- [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 
 ## future plans
-- [ ] statistics and tracking - daily word count of terms done
+- [x] statistics and tracking - daily word count of terms done
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
