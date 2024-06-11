@@ -1,10 +1,187 @@
-cards from: testfile.txt
+cards from: /Users/luna/subject-resources/sixth-form/cards/languages/spanish/a2-aqa/requiem-words.txt
 Round 1:
-✓ test1 1
-✓ test2 2
-✓ test3 3
-✓ test4 4
-Score: 4/4 (100.0%)
-
-max_streak = 4
-perfect_streak = True
+✓ the misfortune; bad luck (this word is in the phrase for "unfortunately")                                  la desgracia
+✗ to pounce on (reflexive)                                                                                   abalanzarse
+✓ the snore, snoring (starts with r)                                                                         el ronquido
+✓ noisy; scandalous (feminine)                                                                               escandalosa
+✓ the concealment, complicity                                                                                el encubrimiento
+✓ to burst; pop (e.g pop a balloon) (starts with r)                                                          reventar
+✓ the camp follower (starts with m) (male)                                                                   el mochilero
+✓ to come, gather around (same as "to go to" as in, "to go to the polls") (starts with a)                    acudir
+✓ furiously; madly (starts with r)                                                                           rabiosamente
+✓ the cane, reed                                                                                             la caña
+✓ faithful, loyal (same for masculine and feminine) (starts with f)                                          fiel
+✓ the vault                                                                                                  la bóveda
+✓ the harvest, vintage                                                                                       la cosecha
+✓ the distance, stretch of the road (starts with "tr")                                                       el trecho
+✓ the wart (starts with v)                                                                                   la verruga
+✓ the medicine woman (quack doctor/bone-setter) (starts with e)                                              la ensalmadora
+✓ well-mannered, polite; cultured (masculine)                                                                educado
+✓ the blockhead, idiot (male)                                                                                el badulaque
+✓ the holy oil (starts with s)                                                                               el santolio
+✓ the rifle                                                                                                  el fusil
+✓ the time, beat, rhythm of music                                                                            el compás
+✓ the accused person or (person) under sentence of death; prisoner (female)                                  la rea
+✓ blown open (starts with v) (masculine)                                                                     volado
+✓ the poverty, destitution; squalid conditions (like "misery") (starts with m)                               la miseria
+✓ the grindstone; knife-grinder                                                                              el afilador
+✓ the law                                                                                                    la ley
+✓ the rocking chair (starts with m)                                                                          la mecedora
+✗ the shower; spray; hail (of bullets)                                                                       la rociada
+✓ the turn; turn of phase (starts with g)                                                                    el giro
+✓ to inherit                                                                                                 heredar
+✓ troubled, distressed (feminine)                                                                            atribulada
+✓ the slut, whore (female)                                                                                   la pendona
+✗ the mare (starts with y)                                                                                   la yegua
+✓ the care (starts with "es")                                                                                el esmero
+✓ the soldier (ends in o for male and female) (starts with s) (male)                                         el soldado
+✓ the uncle (direct translation); fellow, guy (fam.)                                                         el tío
+✓ swinging, moving to and fro; beating (feminine)                                                            bandea
+✓ the worker (starts with o) (female)                                                                        la obrera
+✗ the talk, chat; sermon (starts with p)                                                                     la plática
+✓ curled, curly; fluted, ridged (starts with r) (feminine)                                                   rizada
+✓ to return something (e.g returning a library book, not returning yourself back to a place) (starts with d) devolver
+✓ to walk, tread, step (on) (starts with p)                                                                  pisar
+✓ the skin, hide; leather (starts with c)                                                                    el cuero
+✓ the branch (of an organisation) (starts with s)                                                            la sucursal
+✓ the iron; iron tool/weapon; triangle (mus.) (the instrument)                                               el hierro
+✓ lubricated, oiled (feminine)                                                                               engrasada
+✓ the mischief, monkey tricks (answer this as plural)                                                        las diabluras
+✓ the dressing, pickling mixture                                                                             el adobo
+✓ to pawn                                                                                                    empeñar
+✓ to discover, find out (starts with a)                                                                      averiguar
+✓ the Manila shawl                                                                                           el mantón de Manila
+✓ to revolve; turn around (like "gyrate") (starts with g)                                                    girar
+✗ Iberian tribe (Huesca/Lérida region) (adjective ends in e)                                                 ilgergete
+✓ the great-grandfather                                                                                      el bisabuelo
+✓ the breast, chest                                                                                          el pecho
+✓ round (starts with r) (masculine)                                                                          redondo
+✓ the marten (female)                                                                                        la garduña
+✓ to fire, shoot (this entry of the word is not reflexive)                                                   disparar
+✓ the hole                                                                                                   el agujero
+✓ the tow; burlap (coarse linen)                                                                             la estopa
+✓ to pursue; urge on (same as "to bully")                                                                    acosar
+✓ the flock; herd (of sheep or goats)                                                                        el rebaño
+✓ the earring                                                                                                el pendiente
+✗ the unhappiness; misfortune (starts with d)                                                                la desdicha
+✓ the rhomb (lozenge-shaped object)                                                                          el rombo
+✓ to stone to death (3 words)                                                                                matar a pedradas
+✓ the priest (starts with s)                                                                                 el sacerdote
+✓ to shriek, scream (starts with "ch")                                                                       chillar
+✗ the ditch; verge                                                                                           la cuneta
+✓ the couple (in a relationship); pair (of Civil Guards) (starts with p)                                     la pareja
+✓ crusty-eyes (feminine)                                                                                     ojisucia
+✓ of little value                                                                                            de poco más o menos
+✓ the punishment                                                                                             el castigo
+✓ devoted, loyal (like "addicted") (feminine)                                                                adicta
+✓ call to urge animals on (can't find this word online) (answer without definite article)                    riia
+✓ shaved, shaven (starts with r) (masculine)                                                                 rasurado
+✓ the guffaw/peal of laughter                                                                                la carcajada
+✓ to tar and feather                                                                                         emplumar
+✗ the headlamp, headlight                                                                                    el faro
+✓ to burst out/split one's sides laughing (3 words)                                                          reventar de risa
+✓ to deliver, hand over                                                                                      entregar
+✓ the door-jamb                                                                                              el quicio
+✓ to jump around                                                                                             brincar
+✓ the master (slave owner) (female)                                                                          la ama
+✗ the shrub, bush                                                                                            el arbusto
+✗ to roll; turn, rotate; travel (starts with "ro")                                                           rodar
+✓ the intercession for soul in Purgatory; sufferage                                                          el sufragio
+✓ cracked; split (starts with "raj") (feminine)                                                              rajada
+✓ the loathing, disgust, revulsion                                                                           el asco
+✓ the kidney                                                                                                 el riñón
+✓ to pray                                                                                                    rezar
+✓ lubricated, oiled (masculine)                                                                              engrasado
+✓ to get down to business (has "asunto")                                                                     ir al asunto
+✓ the rattle                                                                                                 la matraca
+✓ crippled, disabled (masculine)                                                                             impedido
+✓ to totter, reel (starts with t) (reflexive)                                                                tambalearse
+✓ the mayor (female)                                                                                         la alcaldesa
+✓ the consideration, respect (starts with m)                                                                 el miramiento
+✓ lost, missing; strayed (starts with e) (masculine)                                                         extraviado
+✗ to bequeath                                                                                                legar
+✓ the vegetable (strictly a green vegetable) (starts with h)                                                 la hortaliza
+✓ the soldier (ends in o for male and female) (starts with s) (female)                                       la soldado
+✓ the shame (starts with "ver")                                                                              la vergüenza
+✓ lukewarm; cool; unenthusiastic (starts with t) (masculine)                                                 tibio
+✗ to half-close (eyes)                                                                                       entornar
+✓ to make a castanet sound with beak (as a stork)                                                            crotorar
+✗ the insolence, brazenness                                                                                  la procacidad
+✓ the newly-wed (female)                                                                                     la desposada
+✓ cracked, split (starts with "re") (masculine)                                                              resquebrajado
+✓ the cope (ceremonial vestment)                                                                             la capa pluvial
+✓ against the grain (2 words) (first word is "a") (has the word for "skin")                                  a contrapelo
+✓ the housekeeper (male)                                                                                     el amo
+✗ set (in place), embedded (feminine)                                                                        empotrada
+✓ the shoe maker, cobbler (male)                                                                             el zapatero
+✓ the dying person (male)                                                                                    el agonizante
+✓ the hermitage; chapel outside village                                                                      la hermita
+✗ to clasp, grip (starts with "apr")                                                                         apretar
+✓ (in the process of) fasting (has "en" before the word) (like "en paro")                                    en ayunas
+✓ to search (starts with r)                                                                                  registrar
+✓ broken (starts with r) (masculine)                                                                         roto
+✓ the platform, dais (in front of altar) (starts with t)                                                     la tarima
+✓ the frost (starts with h)                                                                                  la helada
+✓ to develop (oneself); evolve (reflexive)                                                                   desarrollarse
+✓ greasy; filthy (starts with "se") (feminine)                                                               sebosa
+✓ to address as "tú" (fam.)                                                                                  tutear
+✓ the councillor (starts with "conceja") (male)                                                              el concejal
+✓ compressed, solid (masculine)                                                                              apelmazado
+✓ crowded; well-attended (starts with c) (feminine)                                                          concurrida
+✓ to notice; point out; notify; advise (like "advert")                                                       advertir
+✓ to limp (starts with c)                                                                                    cojear
+✓ the wax                                                                                                    la cera
+✓ to play jokes                                                                                              gastar bromas
+✓ to confess (like "accuse") (reflexive)                                                                     acusarse
+✓ barefoot, unshod (feminine)                                                                                descalza
+✓ dirty; filthy; disgusting (starts with p) (feminine)                                                       puerca
+✓ to take a risk, to risk oneself (reflexive)                                                                arriesgarse
+✓ the magnet                                                                                                 el imán
+✓ the silver                                                                                                 la plata
+✓ the wrought iron devil (last word starts with "fo") (last word ends with a)                                el diablo de forja
+✓ the marten (male)                                                                                          el garduño
+✗ touched, moved (to pity) (feminine)                                                                        enternecida
+✓ the camp follower (starts with m) (female)                                                                 la mochilera
+✓ the stork                                                                                                  la cigüeña
+✓ the gadabout (pejorative bc this is said to Jerónima in a flurry of insults) (female)                      la trotona
+✓ busy (starts with a) (feminine)                                                                            atareada
+✓ created, made (feminine)                                                                                   creada
+✓ the lawyer (male)                                                                                          el abogado
+✓ to hold (down); subject (starts with s)                                                                    sujetar
+✓ to turn sour                                                                                               agriar
+✓ all dressed up, in one's best clothes (3 words) (feminine)                                                 vestida de gala
+✓ wet (starts with m) (feminine)                                                                             mojada
+✓ the cheers (starts with v)                                                                                 los vítores
+✓ the seedbed (starts with s)                                                                                el semillero
+✗ the cigarette/cigar case; tobacco pouch                                                                    la petaca
+✓ cracked, split (starts with "re") (feminine)                                                               resquebrajada
+✓ to mock, to make fun (reflexive)                                                                           burlarse
+✓ to charge; collect; get paid (starts with "co")                                                            cobrar
+✓ to save oneself (for) (e.g las perdices) (reflexive)                                                       reservarse
+✓ the bandore (guitar/lute-like instrument)                                                                  la bandurria
+✓ the bet, wager                                                                                             la apuesta
+✗ starched (masculine)                                                                                       almidonado
+✓ erect, straight; proud (feminine)                                                                          erguida
+✗ to pull out                                                                                                arrancar
+✓ the chancel, sancturary (reserved for officiating)                                                         el presbiterio
+✗ to play, gambol, romp (starts with "tr")                                                                   triscar
+✓ the priestess (starts with s)                                                                              la sacerdotisa
+✓ the unwillingness, reluctance (starts with d)                                                              la desgana
+✓ to leave; allow; put down; let                                                                             dejar
+✓ noisy, rowdy (starts with "alg") (feminine)                                                                algarera
+✓ the century                                                                                                el siglo
+✓ the lad (starts with m)                                                                                    el mozalbete
+✓ deluded; a dreamer, visionary (this is an adjective) (masculine)                                           iluso
+✓ the tear (crying)                                                                                          la lágrima
+✓ to exceed; overflow                                                                                        desbordar
+✓ the chapter                                                                                                el capítulo
+✓ stuffed (starts with r) (masculine)                                                                        relleno
+✓ the convict, prisoner (starts with p) (female)                                                             la presidiaria
+✗ to become a widow/widower, to be widowed                                                                   enviudar
+✗ the gravel bed                                                                                             la glera
+✗ the dummy, guy (grotesque figure), jerk (female)                                                           la monicaca
+✓ the gossip, scandal; heresay (can also be plural but answer singular) (starts with h)                      la habladuría
+✗ the branch (of a plant/tree)                                                                               el ramo
+✗ to spill, shed (starts with d)                                                                             derramar
+✓ the free, the day off (starts with f) (like "franc")                                                       el franco
+✓ the roof (starts with "tej")                                                                               el tejado

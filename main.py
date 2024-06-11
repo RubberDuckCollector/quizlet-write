@@ -123,7 +123,6 @@ def make_hard_hint(msg: str) -> list:
     return hint
 
 
-# i think this is the best i'm gonna get for the forseeable future
 def make_normal_hint(msg: str) -> str:
     hint = ""
     msg = list(msg)  # turn the string into a list of chars
@@ -241,16 +240,6 @@ def write_terms_per_day(obj_to_be_written: str):
         f.write(f"{json.dumps(obj_to_be_written)}")
 
 
-def add_entry_terms_per_day(obj: dict, date, num_terms_done: int):
-    # reassign the value of the key, both given as parameters
-    # alternatively, add new key-value pair in dict if date isn't already there
-    # this is done automatically
-    obj[date] = num_terms_done
-
-    # return the obj
-    return obj
-
-
 class StreakCounter:
     def __init__(self):
         self.current_streak = 0
@@ -330,7 +319,6 @@ def quiz(card_set: dict, difficulty: str):
                 # print(answer) -> print the answer/other side of the card
                 # print(hint) -> print the hint for the answer
 
-                # super proud of this ternary operator
                 current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
 
                 # this is the percentage completed in the current set
