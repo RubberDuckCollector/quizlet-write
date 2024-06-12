@@ -84,6 +84,10 @@
     </ul>
 </details>
 
+# Notes
+
+- if you don't want the `records/` dict to have my records in it when you download the repo, just delete the files
+
 # Build log
 
 ## 2024-02-20
