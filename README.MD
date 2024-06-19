@@ -23,7 +23,9 @@
 </details>
 
 # Demo video
-![demo](./assets/demo.mp4)
+<video controls>
+<source src="assets/demo.mp4" type="video/mp4">
+</video>
 
 # Technical Explanation
 <details><summary>Technical Explanation:</summary>
