@@ -343,8 +343,7 @@ def quiz(card_set: dict, difficulty: str):
                     print("Don't know? Copy out the answer so you remember it!")
                     quiz_counter.reset_streak()
                     while True:
-                        user_response = input(
-                            f"Copy the answer below ↓\n- {answer}\n> ")
+                        user_response = input(f"Copy the answer below ↓\n- {answer}\n> ")
                         if user_response.lower() == answer.lower():
                             print(f"{Color.Cyan}Next question.{Color.Reset}")
                             time.sleep(0.5)
