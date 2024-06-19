@@ -22,6 +22,9 @@
     </ol>
 </details>
 
+# Demo video
+![demo](./assets/demo.mp4)
+
 # Technical Explanation
 <details><summary>Technical Explanation:</summary>
     <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
