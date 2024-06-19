@@ -23,9 +23,7 @@
 </details>
 
 # Demo video
-<video controls>
-<source src="assets/demo.mp4" type="video/mp4">
-</video>
+<https://youtu.be/rUKUTK_Q52E>
 
 # Technical Explanation
 <details><summary>Technical Explanation:</summary>
