@@ -121,6 +121,7 @@
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 - [x] statistics and tracking - daily word count of terms done
+- [ ] a new command line argument where i use regex to highlight numbers in a special colour
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
