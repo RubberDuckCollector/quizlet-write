@@ -1,5 +1,2 @@
-cards from: /Users/luna/subject-resources/sixth-form/cards/languages/spanish/a2-aqa/unit1.txt
+cards from: /Users/luna/subject-resources/sixth-form/cards/music/bass/individual-strings/g-string-sharp.txt
 Round 1:
-✓ the survivor (female)                              la sobreviviente
-✓ despite                                            a pesar de
-✓ to travel (starts with v)                          viajar

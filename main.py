@@ -544,11 +544,11 @@ def main():
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
-        case "--norand":
+        case "--no-rand":
             # don't randomise, pass as the cards can be used as-is
             pass
         case _:
-            print("Error: randomise setting can only be one of: --rand | --norand")
+            print("Error: randomise setting can only be one of: --rand | --no-rand")
             return
 
     flip_terms = sys.argv[4]
@@ -556,11 +556,11 @@ def main():
         case "--flip":
             # switch terms and definitions
             cards = {v: k for k, v in cards.items()}
-        case "--noflip":
+        case "--no-flip":
             # good to go, use cards as-is
             pass
         case _:
-            print("error while looking at flip argument")
+            print("Error while looking at flip argument. Must be either --flip or --no-flip")
             return
 
     # prepare results.txt by wiping it
