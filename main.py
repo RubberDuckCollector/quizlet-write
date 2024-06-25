@@ -86,7 +86,7 @@ def make_very_hard_hint():
     return "No hints!"
 
 
-def make_hard_hint(msg: str) -> list:
+def make_hard_hint(msg: str) -> str:
     hint = ""
 
     inside_brackets = False
@@ -435,8 +435,8 @@ def quiz(card_set: dict, difficulty: str):
             # terms that the user got wrong
             keys_to_remove = []
 
-            # iterate over the keys and values of the new dictionary
-            for key, value in correct_answers.items():
+            # iterate over the keys of the new dictionary
+            for key, _ in correct_answers.items():
                 # check if the key exists in the original dictionary
                 if key in card_set:
                     # if it does, add that key to keys_to_remove list
