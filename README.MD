@@ -1,7 +1,15 @@
 # Quizlet write my version
-- Find the flash cards that work with this program here: https://github.com/RubberDuckCollector/subject-resources
-- note: i recommend using this for german vocab where the plural conjugation is in brackets. the program will preserve contents in the brackets so you don't have to memorise what's in the brackets.
+- Find the flash cards that work with this program here: https://github.com/RubberDuckCollector/my-flash-cards
+- note: i recommend using this for german vocab where the plural conjugation can be in brackets. the program will preserve contents in the brackets so you don't have to memorise what's in the brackets.
 - e.g: the recipe - das Rezept *(-e)*
+
+# Why I made this
+- I was getting annoyed at how I had to navigate the quizlet flash cards with tab and shift+tab, so I made a replica of their flash card system. This allows me to controll literally everything about how I approach flash cards, memorisation, and revision.
+- In practice: I can write my flash cards using Vim which is faster, therefore allowing me to write more flash cards compared to using Quizlet
+- No waiting for web page loads, just the program loading
+- I have my own system for the format of flash cards now, and I due to writing this from scratch, I can change the source code to my needs. E.g: I've incorportated a streak function and progress percentages, showing how I can take control over my revision and remove the reliance of an internet connection in order to revise.
+- This solution to flash cards is also ad-free.
+- Because this program is open source, the user can clone this repo and edit their version of the source code to suit their specific needs, another benefit over Quizlet
 
 <details><summary>Disclaimer:</summary>
     <ul>
@@ -116,6 +124,10 @@
 
 ## 2024-05-15 14:33
 - having trouble with the streak functionality and scope. idk how to actually do it
+
+## 2024-18-07
+- fixed a bug in the terms per day functionality in `stats/terms-per-day.json` where the terms weren't being updated in the json object correctly
+- fixed by adding another constant called NUM_TERMS but in the correct scope, and switching from `readlines()` to `readline()`. `readlines()` returns a list of strings where each string is a line in the file, but `json.dumps()` cannot take a list input
 
 ## next features
 - [x] streak feature (100% = perfect streak)

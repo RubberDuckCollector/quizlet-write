@@ -224,20 +224,13 @@ def dump_results_to_records_file():
             record_f.write(line)
 
 
-# assign a variable to this to get the json obj as a str
-def get_terms_per_day() -> str:
-    with open("stats/terms-per-day.json", 'r') as f:
-        content = json.load(f)
-
-    return json.dumps(content)
-
-
 def write_terms_per_day(obj_to_be_written: str):
     file_path = "stats/terms-per-day.json"
     with open(file_path, 'w') as f:
         # comes in as a str, to turn it into a valid json obj
         # this turns any ' into ", which fixes the problem
-        f.write(f"{json.dumps(obj_to_be_written)}")
+        to_be_written = json.dumps(obj_to_be_written)
+        f.write(to_be_written)
 
 
 class StreakCounter:
@@ -282,6 +275,8 @@ def quiz(card_set: dict, difficulty: str):
     # for left, right in card_set.items():
     #     print(left.ljust(max_left_length),
     #           right.rjust(len(right) + tab_distance))
+
+    NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
     with open("results.txt", "a") as f:
         f.write(f"cards from: {sys.argv[1]}\n")
@@ -478,11 +473,9 @@ def quiz(card_set: dict, difficulty: str):
             else:
                 print(line.strip())  # otherwise don't colour the line
 
-    # assign contents of terms done per day file to variable
-    terms_done_dict = get_terms_per_day()
+    with open("stats/terms-per-day.json", 'r') as f:
+        terms_done_dict = json.loads(f.readline())
 
-    # comes out as a string, to turn it into a json object
-    terms_done_dict = json.loads(terms_done_dict)
 
     # at the end of the round, update the current day's terms done total
     today = datetime.today().strftime('%Y-%m-%d')
@@ -511,6 +504,7 @@ def render_cards(filepath: str) -> dict:
 
 
 # main() handles command line arguments
+# needed for value checking and presence checking
 def main():
 
     if len(sys.argv) != 5:
@@ -564,7 +558,7 @@ def main():
             return
 
     # prepare results.txt by wiping it
-    # the file contents of the previous session will remain in the file
+    # the file contents of the previous session will remain in the file,
     # if program aborted with an uncaught error
     # e.g KeyboardInterrupt or KeyError
     with open("results.txt", "w") as f:
