@@ -127,7 +127,7 @@
 ### 2024-08-15 ammendment:
 - this feature has since been implemented and is functional
 
-## 2024--07-18
+## 2024-07-18
 - fixed a bug in the terms per day functionality in `stats/terms-per-day.json` where the terms weren't being updated in the json object correctly
 - fixed by adding another constant called NUM_TERMS but in the correct scope, and switching from `readlines()` to `readline()`. `readlines()` returns a list of strings where each string is a line in the file, but `json.dumps()` cannot take a list input
 ### 2024-08-15 additional explanation for above bugfix:
