@@ -124,10 +124,29 @@
 
 ## 2024-05-15 14:33
 - having trouble with the streak functionality and scope. idk how to actually do it
+### 2024-08-15 ammendment:
+- this feature has since been implemented and is functional
 
-## 2024-18-07
+## 2024--07-18
 - fixed a bug in the terms per day functionality in `stats/terms-per-day.json` where the terms weren't being updated in the json object correctly
 - fixed by adding another constant called NUM_TERMS but in the correct scope, and switching from `readlines()` to `readline()`. `readlines()` returns a list of strings where each string is a line in the file, but `json.dumps()` cannot take a list input
+### 2024-08-15 additional explanation for above bugfix:
+the fix i made so that the date shows up correctly in `terms-per-day.json`:
+the date is figured out at the top of the quiz procedure, so the terms done in that day is
+either already there and can be incremented by the number of terms in the card set
+or the date is created in the file and assigned the NUM_TERMS.
+
+`write_terms_per_day()` is called at the very end of the quiz after the whole card set has been
+studied. this ensures that the flash cards studied on that day is only written to the file if
+the user has actually completed that flash card set.
+
+there was a problem with the date not being added but since the date is determined
+at the time the quiz starts, the quiz can be left over several days into the future and
+at the end of the quiz, the file is written to with the date when `quiz()` is called.
+
+i'm essentially storing correct data in advance and then only committing to changing a file
+when i'm absolutely ready
+
 
 ## next features
 - [x] streak feature (100% = perfect streak)
