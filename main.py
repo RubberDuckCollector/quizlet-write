@@ -290,25 +290,6 @@ def quiz(card_set: dict, difficulty: str):
         terms_done_dict[today] += NUM_TERMS
     else:
         # not in there, can safely write new day
-
-        """
-        the fix i made so that the date shows up correctly in `terms-per-day.json`:
-        the date is figured out at the top of the quiz procedure, so the terms done in that day is
-        either already there and can be incremented by the number of terms in the card set
-        or the date is created in the file and assigned the NUM_TERMS.
-
-        `write_terms_per_day()` is called at the very end of the quiz after the whole card set has been
-        studied. this ensures that the flash cards studied on that day is only written to the file if
-        the user has actually completed that flash card set.
-
-        there was a problem with the date not being added but since the date is determined
-        at the time the quiz starts, the quiz can be left over several days into the future and
-        at the end of the quiz, the file is written to with the date when `quiz()` is called.
-
-        i'm essentially storing correct data in advance and then only committing to changing a file
-        when i'm absolutely ready
-        """
-
         terms_done_dict[today] = NUM_TERMS
 
     with open("results.txt", "a") as f:
