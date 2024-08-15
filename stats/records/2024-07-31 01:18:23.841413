@@ -1,4 +1,4 @@
-cards from: tests/testfile.txt
+cards from: ./tests/testfile.txt
 Round 1:
 ✓ test1 1
 ✓ test2 2

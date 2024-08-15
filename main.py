@@ -219,7 +219,7 @@ def make_easy_hint(msg: str) -> str:
 
 def dump_results_to_records_file():
     right_now = str(datetime.now())
-    with open("results.txt", 'r') as results_f, open(f"records/{right_now}", 'a') as record_f:
+    with open("results.txt", 'r') as results_f, open(f"stats/records/{right_now}", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
 
@@ -277,6 +277,39 @@ def quiz(card_set: dict, difficulty: str):
     #           right.rjust(len(right) + tab_distance))
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
+
+    """THIS WILL BE LATER REFERENCED WHEN THE WHOLE SESSION FINISHES"""
+
+    with open("stats/terms-per-day.json", 'r') as f:
+        terms_done_dict = json.loads(f.readline())
+
+    # at the end of the round, update the current day's terms done total
+    today = datetime.today().strftime('%Y-%m-%d')
+    if today in terms_done_dict:
+        # need to look at the int stored at the date key, then add NUM_TERMS to it
+        terms_done_dict[today] += NUM_TERMS
+    else:
+        # not in there, can safely write new day
+
+        """
+        the fix i made so that the date shows up correctly in `terms-per-day.json`:
+        the date is figured out at the top of the quiz procedure, so the terms done in that day is
+        either already there and can be incremented by the number of terms in the card set
+        or the date is created in the file and assigned the NUM_TERMS.
+
+        `write_terms_per_day()` is called at the very end of the quiz after the whole card set has been
+        studied. this ensures that the flash cards studied on that day is only written to the file if
+        the user has actually completed that flash card set.
+
+        there was a problem with the date not being added but since the date is determined
+        at the time the quiz starts, the quiz can be left over several days into the future and
+        at the end of the quiz, the file is written to with the date when `quiz()` is called.
+
+        i'm essentially storing correct data in advance and then only committing to changing a file
+        when i'm absolutely ready
+        """
+
+        terms_done_dict[today] = NUM_TERMS
 
     with open("results.txt", "a") as f:
         f.write(f"cards from: {sys.argv[1]}\n")
@@ -473,18 +506,6 @@ def quiz(card_set: dict, difficulty: str):
             else:
                 print(line.strip())  # otherwise don't colour the line
 
-    with open("stats/terms-per-day.json", 'r') as f:
-        terms_done_dict = json.loads(f.readline())
-
-
-    # at the end of the round, update the current day's terms done total
-    today = datetime.today().strftime('%Y-%m-%d')
-    if today in terms_done_dict:
-        # need to look at the int stored at the date key, then add NUM_TERMS to it
-        terms_done_dict[today] += NUM_TERMS
-    else:
-        # not in there, can safely write new day
-        terms_done_dict[today] = NUM_TERMS
 
     write_terms_per_day(terms_done_dict)
 
