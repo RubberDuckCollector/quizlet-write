@@ -1,10 +1,16 @@
-cards from: tests/testfile.txt
+cards from: /Users/luna/flash-cards/languages/german/aqa/GCSE/unit3.txt
 Round 1:
-✓ test1 1
-✓ test2 2
-✓ test3 3
-✓ test4 4
-Score: 4/4 (100.0%)
-
-max_streak = 4
-perfect_streak = True
+✗ I'm sorry.                                               Das tut mir leid.
+✓ to sell                                                  verkaufen
+✗ the footprint                                            die Fußspur(en)
+✗ the raspberry                                            die Himbeere(n)
+✗ German-speaking                                          deutschsprachig
+✗ the visit                                                der Besuch(e)
+✗ the table tennis                                         das Tischtennis
+✗ the big screen, cinema                                   die Leinwand(¨e)
+✗ to dive                                                  tauchen
+✗ the spicy sausage                                        die Currywurst(¨e)
+✗ the coach (vehicle)                                      der Reisebus(se)
+✗ the seafood (pl)                                         die Meeresfrüchte
+✗ to release (a music record etc.)                         herausbringen
+✗ the cookery course                                       die Kochkurs(e)

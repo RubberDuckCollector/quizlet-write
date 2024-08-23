@@ -10,7 +10,7 @@ from constants import chars_to_ignore
 
 
 # static analyser might say readline is unused
-# but it attaches to the input() func
+# but it attaches to the builtin input() func
 
 
 class Color:
