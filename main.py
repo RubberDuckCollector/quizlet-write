@@ -230,8 +230,10 @@ def write_terms_per_day(obj_to_be_written: str):
     with open(file_path, 'w') as f:
         # comes in as a str, to turn it into a valid json obj
         # this turns any ' into ", which fixes the problem
-        to_be_written = json.dumps(obj_to_be_written)
-        f.write(to_be_written)
+        # to_be_written = json.dumps(obj_to_be_written)
+        # f.write(to_be_written)
+
+        json.dump(obj_to_be_written, f, indent=4)
 
 
 class StreakCounter:
@@ -282,7 +284,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     """THIS WILL BE LATER REFERENCED WHEN THE WHOLE SESSION FINISHES"""
 
     with open("stats/terms-per-day.json", 'r') as f:
-        terms_done_dict = json.loads(f.readline())
+        # terms_done_dict = json.loads(f.readline())
+        terms_done_dict = json.load(f)
 
     # at the end of the round, update the current day's terms done total
     today = datetime.today().strftime('%Y-%m-%d')
