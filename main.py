@@ -481,6 +481,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         # write the round list to the file
 
+        f.write(f"No. terms in the card set = {NUM_TERMS}\n")
         f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
         f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
