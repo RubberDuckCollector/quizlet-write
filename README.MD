@@ -147,6 +147,11 @@ at the end of the quiz, the file is written to with the date when `quiz()` is ca
 i'm essentially storing correct data in advance and then only committing to changing a file
 when i'm absolutely ready
 
+## 2024-08-24 01:53 (AM)
+- added an extra line to the record file saying the number of terms in the card set for the session. allows any people and future programs to see the theoretical max streak
+- updated the code to save each record file as a `.txt` instead of extensionless. more clarity on the purpose of the record files.
+- added functionality to the random feature that allows the user to use the old random functionality (now renamed to `--rand-once`, or just not randomise at all), or use the new functionality of randomising the cards every time the round ends (called `--rand-every-round`).
+- somehow fixed a bug that cropped up where i would complete the cards at `test/testfile.txt` 3 correct 1 wrong, then get the last one right but it would still count as a perfect streak of 4. Hopefully that's fixed now I really hope no more bugs come up about the streak functionality.
 
 ## next features
 - [x] streak feature (100% = perfect streak)
