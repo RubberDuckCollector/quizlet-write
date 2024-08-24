@@ -162,4 +162,4 @@ when i'm absolutely ready
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
-- 2023-03-07 update: i lied
+- 2024-03-07 update: i lied
