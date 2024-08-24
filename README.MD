@@ -164,6 +164,7 @@ when i'm absolutely ready
 - [x] statistics and tracking - daily word count of terms done
 - [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
+- [x] tell the user the previous terms done today and the new terms done today
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
