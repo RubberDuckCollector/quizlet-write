@@ -1,14 +1,2 @@
-cards from: tests/testfile.txt
+cards from: /Users/luna/flash-cards/languages/spanish/aqa/GCSE/unit6.txt
 Round 1:
-✓ test1 1
-✗ test3 3
-✓ test2 2
-✓ test4 4
-Score: 3/4 (75.0%)
-
-Round 2:
-✓ test3 3
-Score: 1/1 (100.0%)
-
-max_streak = 3
-perfect_streak = False
