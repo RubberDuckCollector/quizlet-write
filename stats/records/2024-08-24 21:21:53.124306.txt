@@ -1,0 +1,90 @@
+cards from: /Users/luna/flash-cards/languages/spanish/aqa/GCSE/unit2.txt
+Round 1:
+✓ the follower (female)                                  la seguidora
+✓ the technology                                         la tecnología
+✓ the hard drive                                         el disco duro
+✓ the fact                                               el hecho
+✓ neither, nor                                           tampoco
+✓ interactive (masculine)                                interactivo
+✓ to run                                                 correr
+✓ to send best wishes, to congratulate                   felicitar
+✓ the file                                               el archivo
+✓ as far as i'm concerned (3 words)                      por mi parte
+✓ brilliant, great                                       genial
+✓ interactive (feminine)                                 interactiva
+✓ to start, begin                                        empezar
+✓ any (feminine)                                         cualquiera
+✓ to communicate (reflexive)                             comunicarse
+✓ the user (male)                                        el usuario
+✓ to choose (starts with "esc")                          escoger
+✓ the risk                                               el riesgo
+✓ the development                                        el desarrollo
+✓ the signal                                             la señal
+✓ the credit card                                        la tarjeta de crédito
+✓ rarely (2 words)                                       raras veces
+✓ same, equal (starts with i)                            igual
+✓ to walk                                                andar
+✓ free of charge (ends with a) (feminine)                gratuita
+✓ the disadvantage (starts with d)                       la desventaja
+✓ the laptop                                             el ordenador portátil
+✓ the spam, junk mail                                    el correo basura
+✓ the letter of the alphabet                             la letra
+✓ to answer                                              contestar
+✓ to send (starts with m)                                mandar
+✓ still (starts with a)                                  aún
+✓ low (feminine)                                         baja
+✓ to improve                                             mejorar
+✓ the space                                              el espacio
+✓ the mobile/smartphone                                  el móvil
+✓ the song                                               la canción
+✓ to delete, erase (starts with b)                       borrar
+✓ to share (starts with c)                               compartir
+✓ to excite (starts with "apa")                          apasionar
+✓ the behaviour (starts with "com")                      el comportamiento
+✓ the user (female)                                      la usuaria
+✓ to take photos (1st word starts with s)                sacar fotos
+✓ the advantage (starts with v)                          la ventaja
+✓ the best wishes, congratulations                       las felicidades
+✓ unfortunately (1 word) (ends with e)                   desafortunadamente
+✓ the social media (this is a plural concept in spanish) los medios sociales
+✓ to realise (3 words with de on the end) (reflexive)    darse cuenta de
+✓ until                                                  hasta
+✓ the wireless connection                                la conexión inalámbrica
+✓ simple (feminine)                                      sencilla
+✓ free of charge (ends with o) (masculine)               gratuito
+✓ simple (masculine)                                     sencillo
+✓ to be able to                                          poder
+✓ in my opinion (literally: "in my judgement")           en mi juicio
+✓ the exact opposite                                     todo lo contrario
+✓ to send (starts with e)                                enviar
+✓ the magazine                                           la revista
+✓ the follower (male)                                    el seguidor
+✓ to chat online                                         chatear
+✓ low (masculine)                                        bajo
+✓ the drawback, disadvantage (starts with i)             el inconveniente
+✓ to bully (starts with a)                               acosar
+✓ the chat room                                          la sala de chat
+✓ to be successful                                       tener éxito
+✓ free of charge (ends with s)                           gratis
+✓ the boss (masculine)                                   el jefe
+✓ to have a good time (reflexive)                        divertirse
+✓ the digital magazine                                   la revista digital
+✓ the boss (feminine)                                    la jefa
+✓ the bullying (starts with a)                           el acoso
+✓ to feel (with touch)                                   sentir
+✓ to offer                                               ofrecer
+✓ from time to time                                      de vez en cuando
+✓ to load (starts with c)                                cargar
+✓ even (starts with a)                                   aun
+✓ instead of (literally: "in time of")                   en vez de
+✓ any (masculine)                                        cualquier
+✓ the tablet                                             la tableta
+✓ to worry (reflexive)                                   preocuparse
+✓ essential (adjective ends with e)                      imprescindible
+✓ unfortunately (2 words)                                por desgracia
+✓ the computer (starts with o)                           el ordenador
+Score: 83/83 (100.0%)
+
+No. terms in the card set = 83
+highest_streak = 83
+perfect_streak = True
