@@ -219,6 +219,7 @@ def make_easy_hint(msg: str) -> str:
 
 def dump_results_to_records_file():
     right_now = str(datetime.now())
+    # this copies the data in results.txt to the records file specific to that session
     with open("results.txt", 'r') as results_f, open(f"stats/records/{right_now}.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
