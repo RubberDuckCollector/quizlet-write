@@ -287,14 +287,20 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # terms_done_dict = json.loads(f.readline())
         terms_done_dict = json.load(f)
 
+    # show the user the previous terms done today
+    # and the new terms done today figure after the end of the session
+    new_terms_completed = 0
+
     # at the end of the round, update the current day's terms done total
     today = datetime.today().strftime('%Y-%m-%d')
     if today in terms_done_dict:
         # need to look at the int stored at the date key, then add NUM_TERMS to it
         terms_done_dict[today] += NUM_TERMS
+        new_terms_completed = terms_done_dict[today]
     else:
         # not in there, can safely write new day
         terms_done_dict[today] = NUM_TERMS
+        # new_terms_completed remains 0
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
 
@@ -505,6 +511,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
 
     write_terms_per_day(terms_done_dict)
+
+    # show the user the increase in terms done today
+    print(f"Terms done today: {new_terms_completed  - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
 
 
 def render_cards(filepath: str) -> dict:
