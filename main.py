@@ -236,15 +236,15 @@ def write_terms_per_day(obj_to_be_written: str):
 class StreakCounter:
     def __init__(self):
         self.current_streak = 0
-        self.max_streak = 0
+        self.highest_streak = 0
 
     def increment_streak(self):
         # increment the current streak by one
         self.current_streak += 1
         # if the current streak then exceeds the max, it must mean there's a new highest
-        # therefore reassign max_streak to current_streak
-        if self.current_streak > self.max_streak:
-            self.max_streak = self.current_streak
+        # therefore reassign highest_streak to current_streak
+        if self.current_streak > self.highest_streak:
+            self.highest_streak = self.current_streak
 
     def reset_streak(self):
         self.current_streak = 0
@@ -253,11 +253,11 @@ class StreakCounter:
     def get_current_streak(self):
         return self.current_streak
 
-    def get_max_streak(self):
-        return self.max_streak
+    def get_highest_streak(self):
+        return self.highest_streak
 
 
-def quiz(card_set: dict, difficulty: str):
+def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     correct_answers = {}
     round_num = 0
@@ -292,6 +292,8 @@ def quiz(card_set: dict, difficulty: str):
         # not in there, can safely write new day
         terms_done_dict[today] = NUM_TERMS
 
+    THEORETICAL_MAX_STREAK = NUM_TERMS
+
     with open("results.txt", "a") as f:
         f.write(f"cards from: {sys.argv[1]}\n")
         while len(card_set) != 0:
@@ -302,8 +304,7 @@ def quiz(card_set: dict, difficulty: str):
             num_answered = 0
             num_incorrect = 0
             num_remaining = len(card_set)
-            NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
-            THEORETICAL_MAX_STREAK = NUM_TERMS
+            # NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
             f.write(f"Round {round_num}:\n")
             f.flush()
@@ -337,7 +338,7 @@ def quiz(card_set: dict, difficulty: str):
                 print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
                 print(f"Incorrect: {Color.Red}{num_incorrect}{Color.Reset}")
                 print(f"Progress: {Color.LightBlue}{progress}{Color.Reset}%")
-                print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_max_streak()}{Color.Reset})")
+                print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_highest_streak()}{Color.Reset})")
                 print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?")
                 print(f"Hint: {Color.Dim}{hint}{Color.Reset}")
                 user_response = input("> ").strip()
@@ -467,11 +468,20 @@ def quiz(card_set: dict, difficulty: str):
             # here the proc will look for the line in the file containing "Round"
             # and the number of the current round with a : right after it
             print_round_summary("results.txt", f"Round {round_num}:", num_correct, num_answered)
+            
+            # randomise now if rand flag is set to --rand-every-round
+            if sys_args[3] == "--rand-every-round":
+                items = list(card_set.items())
+                random.shuffle(items)
+                card_set = dict(items)
+            else:
+                pass
+
 
         # write the round list to the file
 
-        f.write(f"max_streak = {quiz_counter.get_max_streak()}\n")
-        f.write(f"perfect_streak = {quiz_counter.get_max_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
+        f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
+        f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
     dump_results_to_records_file()
 
@@ -535,16 +545,23 @@ def main():
     cards = render_cards(file_path)
 
     match randomise:
-        case "--rand":
+        case "--rand-once":
             # randomise
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
+        case "--rand-every-round":
+            # will be handled in quiz()
+            # randomise
+            items = list(cards.items())
+            random.shuffle(items)
+            cards = dict(items)
+            pass
         case "--no-rand":
             # don't randomise, pass as the cards can be used as-is
             pass
         case _:
-            print("Error: randomise setting can only be one of: --rand | --no-rand")
+            print("Error: randomise setting can only be one of: --rand-once | --no-rand | --rand-every-round")
             return
 
     flip_terms = sys.argv[4]
@@ -556,7 +573,7 @@ def main():
             # good to go, use cards as-is
             pass
         case _:
-            print("Error while looking at flip argument. Must be either --flip or --no-flip")
+            print("Error: flip setting can only be one of: --flip | --no-flip")
             return
 
     # prepare results.txt by wiping it
@@ -567,7 +584,7 @@ def main():
         f.write("")
 
     clear_screen()
-    quiz(cards, difficulty)
+    quiz(cards, difficulty, sys.argv)
 
 
 if __name__ == '__main__':

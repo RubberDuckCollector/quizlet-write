@@ -1,0 +1,16 @@
+cards from: tests/testfile.txt
+Round 1:
+✗ test1 1
+✗ test2 2
+✗ test3 3
+✓ test4 4
+Score: 1/4 (25.0%)
+
+Round 2:
+✓ test1 1
+✓ test2 2
+✓ test3 3
+Score: 3/3 (100.0%)
+
+max_streak = 4
+perfect_streak = True
