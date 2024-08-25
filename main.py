@@ -46,7 +46,7 @@ def clear_screen():
         os.system("clear")
 
 
-def print_round_summary(
+def print_round_breakdown(
     filename: str,
     target_string: str,
     num_correct: int,
@@ -472,15 +472,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             # a new line will separate each round to the user
             print("\n")
 
-            # replace this with the round summary
-            # if the last round has passed, do the session summary
+            # replace this with the round breakdown
+            # if the last round has passed, do the session breakdown
             # print(f"END OF ROUND {round_num}")
 
-            print(f"Round {round_num} summary:")
+            print(f"Round {round_num} breakdown:")
 
             # here the proc will look for the line in the file containing "Round"
             # and the number of the current round with a : right after it
-            print_round_summary("results.txt", f"Round {round_num}:", num_correct, num_answered)
+            print_round_breakdown("results.txt", f"Round {round_num}:", num_correct, num_answered)
             
             # randomise now if rand flag is set to --rand-every-round
             if sys_args[3] == "--rand-every-round":
@@ -499,7 +499,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     dump_results_to_records_file()
 
-    print(f"{Color.Bold}Session summary:{Color.Reset}")
+    print(f"{Color.Bold}Session breakdown:{Color.Reset}")
 
     with open("results.txt", 'r') as f:
         for line in f:
