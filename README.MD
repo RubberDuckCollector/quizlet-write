@@ -158,6 +158,9 @@ when i'm absolutely ready
 - previous solution in code converted between json and strings too much (inefficient usage of `json.dumps()` and `json.loads()` where `json.dump()` and `json.load()` was better)
 - new solution makes more efficient use of json so it can be written back to `terms-per-day.json` in a human-readable format (with `json.dump(obj_to_be_written, f, indent=4`)
 
+## 2024-08-25
+- fixed a bug where the program would tell you that you've done a negative number of terms after the first session of the day
+
 ## next features
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
