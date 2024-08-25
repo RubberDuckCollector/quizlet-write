@@ -300,7 +300,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     else:
         # not in there, can safely write new day
         terms_done_dict[today] = NUM_TERMS
-        # new_terms_completed remains 0
+
+        # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
+        new_terms_completed += NUM_TERMS
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
 
@@ -513,7 +515,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     write_terms_per_day(terms_done_dict)
 
     # show the user the increase in terms done today
-    print(f"Terms done today: {new_terms_completed  - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
+    print(f"Terms done today: {new_terms_completed - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
 
 
 def render_cards(filepath: str) -> dict:
