@@ -10,6 +10,11 @@
 - I have my own system for the format of flash cards now, and I due to writing this from scratch, I can change the source code to my needs. E.g: I've incorportated a streak function and progress percentages, showing how I can take control over my revision and remove the reliance of an internet connection in order to revise.
 - This solution to flash cards is also ad-free.
 - Because this program is open source, the user can clone this repo and edit their version of the source code to suit their specific needs, another benefit over Quizlet
+- analysis of study patterns - `stats/terms-per-day.json` holds the number of flash cards studied on each day. JSON is easily machine-readable. Benefits:
+    - [x] I can import the file to a progam and create a graph of my study
+        - [x] Data mining opportunities
+    Current drawbacks:
+        - cannot filter activity by language.
 
 <details><summary>Disclaimer:</summary>
     <ul>
