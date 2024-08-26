@@ -23,6 +23,7 @@
 - If you wait until tomorrow to finish a session, you won't get the cards count towards tomorrow, only the day you started the session on. However, the file name for your session will reflect that you completed the session on a different day.
 - Results.txt may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program.
 - I also know how cursed this file is if you open it raw. Try not to think about it.
+- if you don't want the `records/` dict to have my records in it when you download the repo, just delete the files
 
 # Overview
 <details><summary>Overview:</summary>
@@ -103,7 +104,7 @@
 
 # Notes
 
-- if you don't want the `records/` dict to have my records in it when you download the repo, just delete the files
+none
 
 # Build log
 
@@ -139,15 +140,15 @@
 ### 2024-08-15 additional explanation for above bugfix:
 the fix i made so that the date shows up correctly in `terms-per-day.json`:
 the date is figured out at the top of the quiz procedure, so the terms done in that day is
-either already there and can be incremented by the number of terms in the card set
+either already there and can be incremented by the number of terms in the card set,
 or the date is created in the file and assigned the NUM_TERMS.
 
 `write_terms_per_day()` is called at the very end of the quiz after the whole card set has been
-studied. this ensures that the flash cards studied on that day is only written to the file if
+studied. this ensures that the flash cards studied on that day are only written to the file if
 the user has actually completed that flash card set.
 
-there was a problem with the date not being added but since the date is determined
-at the time the quiz starts, the quiz can be left over several days into the future and
+there was a problem with the date not being added because the date would get messed up if you complete a session in a day after you started the session
+but since the date is determined at the time the quiz starts, the quiz can be left over several days into the future and
 at the end of the quiz, the file is written to with the date when `quiz()` is called.
 
 i'm essentially storing correct data in advance and then only committing to changing a file
