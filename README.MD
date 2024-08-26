@@ -170,6 +170,7 @@ when i'm absolutely ready
 
 ## 2024-08-26 (02:00)
 - added feature to `main.py` where the record file now consists of the start date and time of the session and its end date and time
+- idk when previous records were started so they'll all have the default start time of `0000-00-00 00:00:00.000000`
 
 ## next features
 - [x] streak feature (100% = perfect streak)
