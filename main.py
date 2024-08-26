@@ -217,10 +217,11 @@ def make_easy_hint(msg: str) -> str:
     return hint
 
 
-def dump_results_to_records_file():
-    right_now = str(datetime.now())
+def dump_results_to_records_file(p_start_time):
+    # when the session ends, find out when that is to put it in the session's file name
+    end_time = str(datetime.now())
     # this copies the data in results.txt to the records file specific to that session
-    with open("results.txt", 'r') as results_f, open(f"stats/records/{right_now}.txt", 'a') as record_f:
+    with open("results.txt", 'r') as results_f, open(f"stats/records/{p_start_time} to {end_time}.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
 
@@ -261,6 +262,9 @@ class StreakCounter:
 
 
 def quiz(card_set: dict, difficulty: str, sys_args: list):
+
+    # when the session starts, find out when that is so it can be added to the session's file name
+    start_time = str(datetime.now())
 
     correct_answers = {}
     round_num = 0
@@ -497,7 +501,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
         f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
-    dump_results_to_records_file()
+    dump_results_to_records_file(start_time)
+
+    # after the record file is done, print the session breakdown to the user
 
     print(f"{Color.Bold}Session breakdown:{Color.Reset}")
 
@@ -533,7 +539,7 @@ def render_cards(filepath: str) -> dict:
 
 
 # main() handles command line arguments
-# needed for value checking and presence checking
+# needed for value checking and presence checking of the command line args
 def main():
 
     if len(sys.argv) != 5:
@@ -561,15 +567,15 @@ def main():
     randomise = sys.argv[3]
     cards = render_cards(file_path)
 
+    # will be handled in quiz()
     match randomise:
         case "--rand-once":
-            # randomise
+            # randomise only at the start of the session
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
         case "--rand-every-round":
-            # will be handled in quiz()
-            # randomise
+            # randomise after the end of every round 
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)

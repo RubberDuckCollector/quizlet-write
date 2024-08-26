@@ -16,12 +16,13 @@
     Current drawbacks:
         - cannot filter activity by language.
 
-<details><summary>Disclaimer:</summary>
-    <ul>
-        <code>results.txt</code> may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program
-        <p>I also know how cursed this file is if you open it raw. Try not to think about it.</p>
-    </ul>
-</details>
+# Disclaimer
+
+- **"terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.**
+- A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
+- If you wait until tomorrow to finish a session, you won't get the cards count towards tomorrow, only the day you started the session on. However, the file name for your session will reflect that you completed the session on a different day.
+- Results.txt may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program.
+- I also know how cursed this file is if you open it raw. Try not to think about it.
 
 # Overview
 <details><summary>Overview:</summary>
@@ -38,7 +39,7 @@
 # Demo video
 <https://youtu.be/rUKUTK_Q52E>
 
-# Technical Explanation
+# Technical Explanation (WIP)
 <details><summary>Technical Explanation:</summary>
     <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
         <details><summary><b>Files:</b></summary>
@@ -165,6 +166,9 @@ when i'm absolutely ready
 
 ## 2024-08-25
 - fixed a bug where the program would tell you that you've done a negative number of terms after the first session of the day
+
+## 2024-08-26 (02:00)
+- added feature to `main.py` where the record file now consists of the start date and time of the session and its end date and time
 
 ## next features
 - [x] streak feature (100% = perfect streak)
