@@ -325,6 +325,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             f.write(f"Round {round_num}:\n")
             f.flush()
 
+            # declaring hint to maintain the scope
+            hint = ""
+
             for prompt, answer in card_set.items():
 
                 match difficulty:
@@ -495,8 +498,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 pass
 
 
-        # write the round list to the file
-
+        # write the round list to results.txt
         f.write(f"No. terms in the card set = {NUM_TERMS}\n")
         f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
         f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
