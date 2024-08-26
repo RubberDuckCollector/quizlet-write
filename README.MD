@@ -4,10 +4,9 @@
 - e.g: the recipe - das Rezept *(-e)*
 
 # Why I made this
-- I was getting annoyed at how I had to navigate the quizlet flash cards with tab and shift+tab, so I made a replica of their flash card system. This allows me to controll literally everything about how I approach flash cards, memorisation, and revision.
-- In practice: I can write my flash cards using Vim which is faster, therefore allowing me to write more flash cards compared to using Quizlet
+- I was getting annoyed at how I had to navigate the quizlet flash cards with tab and shift+tab, so I made a replica of their flash card system to give me more control over the vocab learning process. I can use my own editor (Vim) to write the flash cards instead of quizlet's one and use Vim remaps to insert text really fast into the flash cards
 - No waiting for web page loads, just the program loading
-- I have my own system for the format of flash cards now, and I due to writing this from scratch, I can change the source code to my needs. E.g: I've incorportated a streak function and progress percentages, showing how I can take control over my revision and remove the reliance of an internet connection in order to revise.
+- I have my own system for the format of flash cards now, so I can change the source code to my needs. E.g: I've incorportated a streak function and progress percentages -> more control, software can be tailored to my needs instead of living with an imperfect offering from a company serving the software to me
 - This solution to flash cards is also ad-free.
 - Because this program is open source, the user can clone this repo and edit their version of the source code to suit their specific needs, another benefit over Quizlet
 - analysis of study patterns - `stats/terms-per-day.json` holds the number of flash cards studied on each day. JSON is easily machine-readable. Benefits:
