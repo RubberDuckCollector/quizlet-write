@@ -1,94 +1,19 @@
-cards from: /Users/luna/flash-cards/languages/spanish/aqa/GCSE/unit2.txt
+cards from: /Users/luna/flash-cards/languages/basque/self-study/greeting-goodbye.txt
 Round 1:
-✓ the bullying (starts with a)                           el acoso
-✓ the file                                               el archivo
-✓ until                                                  hasta
-✓ to choose (starts with "esc")                          escoger
-✓ to offer                                               ofrecer
-✓ the magazine                                           la revista
-✓ as far as i'm concerned (3 words)                      por mi parte
-✓ the behaviour (starts with "com")                      el comportamiento
-✓ low (masculine)                                        bajo
-✓ the boss (feminine)                                    la jefa
-✓ low (feminine)                                         baja
-✓ to be successful                                       tener éxito
-✓ to chat online                                         chatear
-✓ interactive (feminine)                                 interactiva
-✓ the follower (male)                                    el seguidor
-✓ the spam, junk mail                                    el correo basura
-✓ free of charge (ends with o) (masculine)               gratuito
-✓ the exact opposite                                     todo lo contrario
-✓ to delete, erase (starts with b)                       borrar
-✓ to improve                                             mejorar
-✓ free of charge (ends with s)                           gratis
-✓ to share (starts with c)                               compartir
-✗ still (starts with a)                                  aún
-✓ the best wishes, congratulations                       las felicidades
-✓ the fact                                               el hecho
-✓ to worry (reflexive)                                   preocuparse
-✓ the mobile/smartphone                                  el móvil
-✓ the boss (masculine)                                   el jefe
-✓ simple (masculine)                                     sencillo
-✓ to feel (with touch)                                   sentir
-✓ any (feminine)                                         cualquiera
-✓ the laptop                                             el ordenador portátil
-✓ instead of (literally: "in time of")                   en vez de
-✓ to bully (starts with a)                               acosar
-✓ unfortunately (1 word) (ends with e)                   desafortunadamente
-✓ to answer                                              contestar
-✓ the technology                                         la tecnología
-✓ the hard drive                                         el disco duro
-✓ to realise (3 words with de on the end) (reflexive)    darse cuenta de
-✓ free of charge (ends with a) (feminine)                gratuita
-✓ the risk                                               el riesgo
-✓ even (starts with a)                                   aun
-✓ interactive (masculine)                                interactivo
-✓ the credit card                                        la tarjeta de crédito
-✓ the drawback, disadvantage (starts with i)             el inconveniente
-✓ from time to time                                      de vez en cuando
-✓ the letter of the alphabet                             la letra
-✓ to send (starts with m)                                mandar
-✓ in my opinion (literally: "in my judgement")           en mi juicio
-✓ essential (adjective ends with e)                      imprescindible
-✓ to start, begin                                        empezar
-✓ the social media (this is a plural concept in spanish) los medios sociales
-✓ rarely (2 words)                                       raras veces
-✓ the disadvantage (starts with d)                       la desventaja
-✓ the wireless connection                                la conexión inalámbrica
-✓ to take photos (1st word starts with s)                sacar fotos
-✓ the advantage (starts with v)                          la ventaja
-✓ simple (feminine)                                      sencilla
-✓ any (masculine)                                        cualquier
-✓ the development                                        el desarrollo
-✓ the computer (starts with o)                           el ordenador
-✓ the chat room                                          la sala de chat
-✓ to excite (starts with "apa")                          apasionar
-✓ unfortunately (2 words)                                por desgracia
-✓ the digital magazine                                   la revista digital
-✓ to send best wishes, to congratulate                   felicitar
-✓ to have a good time (starts with "div") (reflexive)    divertirse
-✓ to run                                                 correr
-✓ same, equal (starts with i)                            igual
-✓ to communicate (reflexive)                             comunicarse
-✓ to walk                                                andar
-✓ the space                                              el espacio
-✓ to be able to                                          poder
-✓ the tablet                                             la tableta
-✓ neither, nor                                           tampoco
-✓ to send (starts with e)                                enviar
-✓ brilliant, great (starts with g)                       genial
-✓ to load (starts with c)                                cargar
-✓ the user (male)                                        el usuario
-✓ the follower (female)                                  la seguidora
-✓ the user (female)                                      la usuaria
-✓ the signal                                             la señal
-✓ the song                                               la canción
-Score: 82/83 (98.79518072289156%)
-
-Round 2:
-✓ still (starts with a)                                  aún
-Score: 1/1 (100.0%)
-
-No. terms in the card set = 83
-highest_streak = 61
-perfect_streak = False
+✗ well, good (starts with o)                                ongi
+✓ "también"                                                 ere
+✗ "Que te vaya bien" (2nd word starts with s)               ongi segi
+✗ see you tomorrow                                          bihar arte
+✓ bye                                                       agur
+✓ until                                                     hasta
+✓ "muy bien"                                                oso ondo
+✓ "have fun"                                                ongi pasa
+✗ i'm glad; "me alegro"                                     pozten naiz
+✓ good morning                                              egun on
+✗ good afternoon (starts with e)                            eguerdi on
+✓ good afternoon (starts with a)                            arratsalde on
+✓ good night (informal)                                     gabon
+✓ good night (formal)                                       gau on
+✓ where are you                                             nor zaude zu
+✓ who are you                                               nor zara zu
+✗ "Que te vaya bien" (2nd word starts with i)               ongi izan

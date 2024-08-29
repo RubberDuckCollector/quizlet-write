@@ -171,6 +171,10 @@ when i'm absolutely ready
 - added feature to `main.py` where the record file now consists of the start date and time of the session and its end date and time
 - idk when previous records were started so they'll all have the default start time of `0000-00-00 00:00:00.000000`
 
+## 2024-08-29 (01:00)
+- added feature where you can see the file name of where the cards are from during the session
+- changed all the command line arguments to lead with a single `-` instead of 2 `-`s
+
 ## next features
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir

@@ -331,13 +331,13 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             for prompt, answer in card_set.items():
 
                 match difficulty:
-                    case "--easy":
+                    case "-easy":
                         hint = make_easy_hint(answer)
-                    case "--normal":
+                    case "-normal":
                         hint = make_normal_hint(answer)
-                    case "--hard":
+                    case "-hard":
                         hint = make_hard_hint(answer)
-                    case "--very-hard":
+                    case "-very-hard":
                         hint = make_very_hard_hint()
                     case _:
                         print("Error while trying to make hint")
@@ -353,6 +353,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 # this is the percentage completed in the current set
                 progress = round(num_answered / NUM_TERMS, 2) * 100 if num_answered > 0 else 0.0
 
+                print(f"Working from file {Color.Dim}{os.path.basename(sys_args[1])}{Color.Reset}")
                 print(f"Remaining: {num_remaining}")
                 print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
                 print(f"Incorrect: {Color.Red}{num_incorrect}{Color.Reset}")
@@ -558,12 +559,12 @@ def main():
 
     difficulty = sys.argv[2]
 
-    valid_difficulties = {"--easy", "--normal", "--hard", "--very-hard"}
+    valid_difficulties = {"-easy", "-normal", "-hard", "-very-hard"}
 
     if difficulty in valid_difficulties:
         pass
     else:
-        print("Error: difficulty selection can only be one of: --easy | --normal | --hard | --very-hard")
+        print("Error: difficulty selection can only be one of: -easy | -normal | -hard | -very-hard")
         return
 
     randomise = sys.argv[3]
@@ -571,34 +572,34 @@ def main():
 
     # will be handled in quiz()
     match randomise:
-        case "--rand-once":
+        case "-rand-once":
             # randomise only at the start of the session
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
-        case "--rand-every-round":
+        case "-rand-every-round":
             # randomise after the end of every round 
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
             pass
-        case "--no-rand":
+        case "-no-rand":
             # don't randomise, pass as the cards can be used as-is
             pass
         case _:
-            print("Error: randomise setting can only be one of: --rand-once | --no-rand | --rand-every-round")
+            print("Error: randomise setting can only be one of: -rand-once | -no-rand | -rand-every-round")
             return
 
     flip_terms = sys.argv[4]
     match flip_terms:
-        case "--flip":
+        case "-flip":
             # switch terms and definitions
             cards = {v: k for k, v in cards.items()}
-        case "--no-flip":
+        case "-no-flip":
             # good to go, use cards as-is
             pass
         case _:
-            print("Error: flip setting can only be one of: --flip | --no-flip")
+            print("Error: flip setting can only be one of: -flip | -no-flip")
             return
 
     # prepare results.txt by wiping it
