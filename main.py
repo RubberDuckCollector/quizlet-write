@@ -261,6 +261,9 @@ class StreakCounter:
         return self.highest_streak
 
 
+VALID_DIFFICULTIES = ["-easy", "-normal", "-hard", "-very-hard"]
+
+
 def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     # when the session starts, find out when that is so it can be added to the session's file name
@@ -330,17 +333,26 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
             for prompt, answer in card_set.items():
 
-                match difficulty:
-                    case "-easy":
-                        hint = make_easy_hint(answer)
-                    case "-normal":
-                        hint = make_normal_hint(answer)
-                    case "-hard":
-                        hint = make_hard_hint(answer)
-                    case "-very-hard":
-                        hint = make_very_hard_hint()
-                    case _:
-                        print("Error while trying to make hint")
+                if difficulty == VALID_DIFFICULTIES[0]:
+                    hint = make_easy_hint(answer)
+                elif difficulty == VALID_DIFFICULTIES[1]:
+                    hint = make_normal_hint(answer)
+                elif difficulty == VALID_DIFFICULTIES[2]:
+                    hint = make_hard_hint(answer)
+                elif difficulty == VALID_DIFFICULTIES[3]:
+                    hint = make_very_hard_hint()
+
+                # match difficulty:
+                #     case "-easy":
+                #         hint = make_easy_hint(answer)
+                #     case "-normal":
+                #         hint = make_normal_hint(answer)
+                #     case "-hard":
+                #         hint = make_hard_hint(answer)
+                #     case "-very-hard":
+                #         hint = make_very_hard_hint()
+                #     case _:
+                #         print("Error while trying to make hint")
 
                 # print(i) -> print the first side of the card
                 # print(prompt) -> print the first side of the card
@@ -559,9 +571,8 @@ def main():
 
     difficulty = sys.argv[2]
 
-    valid_difficulties = {"-easy", "-normal", "-hard", "-very-hard"}
 
-    if difficulty in valid_difficulties:
+    if difficulty in VALID_DIFFICULTIES:
         pass
     else:
         print("Error: difficulty selection can only be one of: -easy | -normal | -hard | -very-hard")

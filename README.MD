@@ -174,6 +174,7 @@ when i'm absolutely ready
 ## 2024-08-29 (01:00)
 - added feature where you can see the file name of where the cards are from during the session
 - changed all the command line arguments to lead with a single `-` instead of 2 `-`s
+- refactored code so that the difficulties are stored in a constant list as they won't change, i put it in global scope because it's used by both `quiz()` for deciding what hint to make and `main()` for handling the command line input of the difficulty
 
 ## next features
 - [x] streak feature (100% = perfect streak)

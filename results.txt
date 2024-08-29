@@ -1,19 +1,2 @@
 cards from: /Users/luna/flash-cards/languages/basque/self-study/greeting-goodbye.txt
 Round 1:
-✗ well, good (starts with o)                                ongi
-✓ "también"                                                 ere
-✗ "Que te vaya bien" (2nd word starts with s)               ongi segi
-✗ see you tomorrow                                          bihar arte
-✓ bye                                                       agur
-✓ until                                                     hasta
-✓ "muy bien"                                                oso ondo
-✓ "have fun"                                                ongi pasa
-✗ i'm glad; "me alegro"                                     pozten naiz
-✓ good morning                                              egun on
-✗ good afternoon (starts with e)                            eguerdi on
-✓ good afternoon (starts with a)                            arratsalde on
-✓ good night (informal)                                     gabon
-✓ good night (formal)                                       gau on
-✓ where are you                                             nor zaude zu
-✓ who are you                                               nor zara zu
-✗ "Que te vaya bien" (2nd word starts with i)               ongi izan
