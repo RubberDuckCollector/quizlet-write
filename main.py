@@ -12,6 +12,8 @@ from constants import chars_to_ignore
 # static analyser might say readline is unused
 # but it attaches to the builtin input() func
 
+# a variable starting with `p_...` denotes a parameter, not a pointer
+
 
 class Color:
     Reset = "\033[0m"
@@ -250,10 +252,25 @@ class StreakCounter:
         if self.current_streak > self.highest_streak:
             self.highest_streak = self.current_streak
 
+    def decrement_streak(self):
+        if self.current_streak < 0:
+            self.current_streak = 0
+        elif self.current_streak == 0:
+            pass
+        else:
+            self.current_streak -= 1
+
     def reset_streak(self):
         self.current_streak = 0
 
-    # might not use these two that much
+    # might not use these 4 that much
+
+    def set_current_streak(self, p_current_streak):
+        self.current_streak = p_current_streak
+
+    def set_highest_streak(self, p_highest_streak):
+        self.highest_streak = p_highest_streak
+
     def get_current_streak(self):
         return self.current_streak
 

@@ -176,6 +176,9 @@ when i'm absolutely ready
 - changed all the command line arguments to lead with a single `-` instead of 2 `-`s
 - refactored code so that the difficulties are stored in a constant list as they won't change, i put it in global scope because it's used by both `quiz()` for deciding what hint to make and `main()` for handling the command line input of the difficulty
 
+## 2024-08-30 (01:19)
+- added `set_highest_streak()`, `set_current_streak()`, and `decrement_streak()` methods to the `QuizCounter` class
+
 ## next features
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir

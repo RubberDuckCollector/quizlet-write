@@ -1,2 +1,8 @@
-cards from: /Users/luna/flash-cards/languages/basque/self-study/greeting-goodbye.txt
+cards from: /Users/luna/flash-cards/languages/spanish/aqa/A2/requiem-words.txt
 Round 1:
+✗ starched (feminine)                                                                                        almidonada
+✓ to pursue; urge on (same as "to bully")                                                                    acosar
+✓ embroidered (feminine)                                                                                     bordada
+✓ to burst out laughing                                                                                      soltar la carcajada
+✗ of little value                                                                                            de poco más o menos
+✗ the tailor (female)                                                                                        la sastre

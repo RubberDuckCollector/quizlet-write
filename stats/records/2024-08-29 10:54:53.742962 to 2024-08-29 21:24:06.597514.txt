@@ -1,0 +1,44 @@
+cards from: /Users/luna/flash-cards/languages/basque/self-study/greeting-goodbye.txt
+Round 1:
+✓ see you later (1st word starts with g)                    gero arte
+✓ good night (informal)                                     gabon
+✗ "Que te vaya bien" (2nd word starts with s)               ongi segi
+✓ well, good (starts with o)                                ongi
+✓ until                                                     arte
+✓ "have fun"                                                ongi pasa
+✓ good afternoon (starts with a)                            arratsalde on
+✓ "también"                                                 ere
+✗ i'm glad; "me alegro"                                     pozten naiz
+✗ good afternoon (starts with e)                            eguerdi on
+✓ hi, hello                                                 kaixo
+✓ bye                                                       agur
+✗ see you tomorrow                                          bihar arte
+✓ "Que te vaya bien" (2nd word starts with i)               ongi izan
+✓ who are you                                               nor zara zu
+✓ "muy bien"                                                oso ondo
+✓ good night (formal)                                       gau on
+✗ so long, see you, see you around (1st word starts with i) ikusi arte
+✓ where are you                                             nor zaude zu
+✓ good morning                                              egun on
+Score: 15/20 (75.0%)
+
+Round 2:
+✗ "Que te vaya bien" (2nd word starts with s)               ongi segi
+✗ i'm glad; "me alegro"                                     pozten naiz
+✓ good afternoon (starts with e)                            eguerdi on
+✓ see you tomorrow                                          bihar arte
+✓ so long, see you, see you around (1st word starts with i) ikusi arte
+Score: 3/5 (60.0%)
+
+Round 3:
+✗ "Que te vaya bien" (2nd word starts with s)               ongi segi
+✓ i'm glad; "me alegro"                                     pozten naiz
+Score: 1/2 (50.0%)
+
+Round 4:
+✓ "Que te vaya bien" (2nd word starts with s)               ongi segi
+Score: 1/1 (100.0%)
+
+No. terms in the card set = 20
+highest_streak = 5
+perfect_streak = False
