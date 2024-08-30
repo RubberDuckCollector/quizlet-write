@@ -178,6 +178,7 @@ when i'm absolutely ready
 
 ## 2024-08-30 (01:19)
 - added `set_highest_streak()`, `set_current_streak()`, and `decrement_streak()` methods to the `QuizCounter` class
+- makes the class more expandable in the future
 
 ## next features
 - [x] streak feature (100% = perfect streak)
