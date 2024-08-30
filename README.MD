@@ -187,6 +187,7 @@ when i'm absolutely ready
 - [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
 - [x] tell the user the previous terms done today and the new terms done today
+- [ ] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
