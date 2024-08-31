@@ -13,7 +13,8 @@ from constants import chars_to_ignore
 # but it attaches to the builtin input() func
 
 # a variable starting with `p_...` denotes a parameter, not a pointer
-
+# **"terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.**
+# A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
 
 class Color:
     Reset = "\033[0m"
@@ -219,11 +220,11 @@ def make_easy_hint(msg: str) -> str:
     return hint
 
 
-def dump_results_to_records_file(p_start_time):
+def dump_results_to_records_file(p_start_time, this_sessions_results_file: str):
     # when the session ends, find out when that is to put it in the session's file name
     end_time = str(datetime.now())
-    # this copies the data in results.txt to the records file specific to that session
-    with open("results.txt", 'r') as results_f, open(f"stats/records/{p_start_time} to {end_time}.txt", 'a') as record_f:
+    # this copies the data in this_sessions_results_file to the records file for that session
+    with open(this_sessions_results_file, 'r') as results_f, open(f"stats/records/{p_start_time} to {end_time}.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
 
@@ -305,255 +306,284 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
-    """THIS WILL BE LATER REFERENCED WHEN THE WHOLE SESSION FINISHES"""
-
-    with open("stats/terms-per-day.json", 'r') as f:
-        # terms_done_dict = json.loads(f.readline())
-        terms_done_dict = json.load(f)
-
-    # show the user the previous terms done today
-    # and the new terms done today figure after the end of the session
-    new_terms_completed = 0
-
-    # at the end of the round, update the current day's terms done total
-    today = datetime.today().strftime('%Y-%m-%d')
-    if today in terms_done_dict:
-        # need to look at the int stored at the date key, then add NUM_TERMS to it
-        terms_done_dict[today] += NUM_TERMS
-        new_terms_completed = terms_done_dict[today]
-    else:
-        # not in there, can safely write new day
-        terms_done_dict[today] = NUM_TERMS
-
-        # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
-        new_terms_completed += NUM_TERMS
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
 
-    with open("results.txt", "a") as f:
-        f.write(f"cards from: {sys.argv[1]}\n")
-        while len(card_set) != 0:
-            round_num += 1
+    # each session will have a temporary results file. this allows more than one instance of
+    # the program to be running at a time, because in the old model with only one results file,
+    # if the user created a new session while an old one was happening, `results.txt` would be
+    # overwritten with data from the new session, which removes data integrity from my records system.
+    # this is passed to `quiz()` as a parameter with the type str.
+    # it's deleted at the end of the session as it's only job is to temporarily store data until
+    # the user completes the session. this is how i've implemented atomicity.
+    # either the user completes the whole flash card set, and i write their results to a file,
+    # or they don't complete it and nothing gets written. this is my methodolgy because it's very clear-cut and simple in my eyes
 
-            # num_correct and num_answered are for % of correct answers
-            num_correct = 0
-            num_answered = 0
-            num_incorrect = 0
-            num_remaining = len(card_set)
-            # NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
+    # i chose to format the temp results files this way using date and time
+    # as it's the most reliable way to not have a clash if sessions start close to each other
+    # e.g: if you spam create sessions, they probably won't fall on the same exact time
+    # because datetime keeps time accuracy up to 6 decimal places
 
-            f.write(f"Round {round_num}:\n")
-            f.flush()
+    this_sessions_results_file = f"temp-results-for-session-{datetime.now()}.txt"
+    
+    # user interaction will start in this try block
+    # it's here to catch a keyboard interrupt such as ctrl-c
+    # if it catches one, this_sessions_results_file will still be deleted, which is good
+    try:
+        with open(this_sessions_results_file, "a") as f:
+            f.write(f"cards from: {sys.argv[1]}\n")
+            while len(card_set) != 0:
+                round_num += 1
 
-            # declaring hint to maintain the scope
-            hint = ""
+                # num_correct and num_answered are for % of correct answers
+                num_correct = 0
+                num_answered = 0
+                num_incorrect = 0
+                num_remaining = len(card_set)
+                # NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
-            for prompt, answer in card_set.items():
+                f.write(f"Round {round_num}:\n")
+                f.flush()
 
-                if difficulty == VALID_DIFFICULTIES[0]:
-                    hint = make_easy_hint(answer)
-                elif difficulty == VALID_DIFFICULTIES[1]:
-                    hint = make_normal_hint(answer)
-                elif difficulty == VALID_DIFFICULTIES[2]:
-                    hint = make_hard_hint(answer)
-                elif difficulty == VALID_DIFFICULTIES[3]:
-                    hint = make_very_hard_hint()
+                # declaring hint to maintain the scope
+                hint = ""
 
-                # match difficulty:
-                #     case "-easy":
-                #         hint = make_easy_hint(answer)
-                #     case "-normal":
-                #         hint = make_normal_hint(answer)
-                #     case "-hard":
-                #         hint = make_hard_hint(answer)
-                #     case "-very-hard":
-                #         hint = make_very_hard_hint()
-                #     case _:
-                #         print("Error while trying to make hint")
+                for prompt, answer in card_set.items():
 
-                # print(i) -> print the first side of the card
-                # print(prompt) -> print the first side of the card
-                # print(card_set[i]) -> print the answer/other side of the card
-                # print(answer) -> print the answer/other side of the card
-                # print(hint) -> print the hint for the answer
+                    if difficulty == VALID_DIFFICULTIES[0]:
+                        hint = make_easy_hint(answer)
+                    elif difficulty == VALID_DIFFICULTIES[1]:
+                        hint = make_normal_hint(answer)
+                    elif difficulty == VALID_DIFFICULTIES[2]:
+                        hint = make_hard_hint(answer)
+                    elif difficulty == VALID_DIFFICULTIES[3]:
+                        hint = make_very_hard_hint()
 
-                current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
+                    # match difficulty:
+                    #     case "-easy":
+                    #         hint = make_easy_hint(answer)
+                    #     case "-normal":
+                    #         hint = make_normal_hint(answer)
+                    #     case "-hard":
+                    #         hint = make_hard_hint(answer)
+                    #     case "-very-hard":
+                    #         hint = make_very_hard_hint()
+                    #     case _:
+                    #         print("Error while trying to make hint")
 
-                # this is the percentage completed in the current set
-                progress = round(num_answered / NUM_TERMS, 2) * 100 if num_answered > 0 else 0.0
+                    # print(i) -> print the first side of the card
+                    # print(prompt) -> print the first side of the card
+                    # print(card_set[i]) -> print the answer/other side of the card
+                    # print(answer) -> print the answer/other side of the card
+                    # print(hint) -> print the hint for the answer
 
-                print(f"Working from file {Color.Dim}{os.path.basename(sys_args[1])}{Color.Reset}")
-                print(f"Remaining: {num_remaining}")
-                print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
-                print(f"Incorrect: {Color.Red}{num_incorrect}{Color.Reset}")
-                print(f"Progress: {Color.LightBlue}{progress}{Color.Reset}%")
-                print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_highest_streak()}{Color.Reset})")
-                # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
-                print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?")
-                print(f"Hint: {Color.Dim}{hint}{Color.Reset}")
-                user_response = input("> ").strip()
+                    current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
 
-                # print num_remaining, num_correct, num_incorrect
-                # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
+                    # this is the percentage completed in the current set
+                    progress = round(num_answered / NUM_TERMS, 2) * 100 if num_answered > 0 else 0.0
 
-                # if the user input is falsy
-                # i.e there were only spaces and strip() has removed them
-                # to leave an empty string
-                if not user_response:
-                    print("Don't know? Copy out the answer so you remember it!")
-                    quiz_counter.reset_streak()
-                    while True:
-                        user_response = input(f"Copy the answer below ↓\n- {answer}\n> ")
-                        if user_response.lower() == answer.lower():
-                            print(f"{Color.Cyan}Next question.{Color.Reset}")
-                            time.sleep(0.5)
-                            clear_screen()
-                            break
-                        else:
-                            print("Try again.")
-                    # mark as incorrect as the user doesn't know the answer
-                    f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
-                    f.flush()  # essential to prevent a file error
+                    print(f"Working from file {Color.Dim}{os.path.basename(sys_args[1])}{Color.Reset}")
+                    print(f"Remaining: {num_remaining}")
+                    print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
+                    print(f"Incorrect: {Color.Red}{num_incorrect}{Color.Reset}")
+                    print(f"Progress: {Color.LightBlue}{progress}{Color.Reset}%")
+                    print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_highest_streak()}{Color.Reset})")
+                    # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
+                    print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?")
+                    print(f"Hint: {Color.Dim}{hint}{Color.Reset}")
+                    user_response = input("> ").strip()
 
-                    num_incorrect += 1
+                    # print num_remaining, num_correct, num_incorrect
+                    # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
 
-                else:
-                    # the user gets a special message if capitalisation matches perfectly
-                    if user_response == answer:
-                        print(f"{Color.Green}Correct. Well done!{Color.Reset}")
+                    # if the user input is falsy
+                    # i.e there were only spaces and strip() has removed them
+                    # to leave an empty string
+                    if not user_response:
+                        print("Don't know? Copy out the answer so you remember it!")
+                        quiz_counter.reset_streak()
+                        while True:
+                            user_response = input(f"Copy the answer below ↓\n- {answer}\n> ")
+                            if user_response.lower() == answer.lower():
+                                print(f"{Color.Cyan}Next question.{Color.Reset}")
+                                time.sleep(0.5)
+                                clear_screen()
+                                break
+                            else:
+                                print("Try again.")
+                        # mark as incorrect as the user doesn't know the answer
+                        f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                        f.flush()  # essential to prevent a file error
 
-                        quiz_counter.increment_streak()
-                        num_correct += 1
-
-                        time.sleep(0.5)
-                        clear_screen()
-
-                        f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
-                        f.flush()
-
-                        key_to_copy = prompt
-                        if key_to_copy in card_set:
-                            correct_answers[key_to_copy] = card_set[key_to_copy]
-
-                    # otherwise just a normal message
-                    elif user_response.lower() == answer.lower():
-                        print(f"{Color.Green}Correct{Color.Reset}")
-
-                        quiz_counter.increment_streak()
-                        num_correct += 1
-
-                        time.sleep(0.5)
-                        clear_screen()
-
-                        f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
-                        f.flush()
-
-                        key_to_copy = prompt
-                        if key_to_copy in card_set:
-                            correct_answers[key_to_copy] = card_set[key_to_copy]
+                        num_incorrect += 1
 
                     else:
-                        # ask for override
-                        print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{answer}{Color.Reset}")
-
-                        override = input("Override as correct? (empty answer = don't override) ")
-
-                        # if override has something in it
-                        if override:
-                            # mark as correct as the user wishes
-                            print(f"Overridden as {Color.Green}Correct{Color.Reset}.")
+                        # the user gets a special message if capitalisation matches perfectly
+                        if user_response == answer:
+                            print(f"{Color.Green}Correct. Well done!{Color.Reset}")
 
                             quiz_counter.increment_streak()
                             num_correct += 1
 
-                            f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
-                            f.flush()
-
                             time.sleep(0.5)
                             clear_screen()
+
+                            f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                            f.flush()
 
                             key_to_copy = prompt
                             if key_to_copy in card_set:
                                 correct_answers[key_to_copy] = card_set[key_to_copy]
-                        else:
-                            print(f"{Color.Yellow}Not overridden.{Color.Reset}")
-                            # mark as incorrect
-                            f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
-                            f.flush()
 
-                            quiz_counter.reset_streak()
-                            num_incorrect += 1
+                        # otherwise just a normal message
+                        elif user_response.lower() == answer.lower():
+                            print(f"{Color.Green}Correct{Color.Reset}")
+
+                            quiz_counter.increment_streak()
+                            num_correct += 1
 
                             time.sleep(0.5)
                             clear_screen()
-                num_answered += 1
-                num_remaining -= 1
 
-            # now delete all the cards that the user got right
-            # this is to make sure only the things they got wrong are left
-            # meaning that on the next iteration, the dict will only have
-            # terms that the user got wrong
-            keys_to_remove = []
+                            f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                            f.flush()
 
-            # iterate over the keys of the new dictionary
-            for key, _ in correct_answers.items():
-                # check if the key exists in the original dictionary
-                if key in card_set:
-                    # if it does, add that key to keys_to_remove list
-                    keys_to_remove.append(key)
+                            key_to_copy = prompt
+                            if key_to_copy in card_set:
+                                correct_answers[key_to_copy] = card_set[key_to_copy]
 
-            # remove keys from original_dict
-            for key in keys_to_remove:
-                card_set.pop(key)
+                        else:
+                            # ask for override
+                            print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{answer}{Color.Reset}")
 
-            # a new line will separate each round to the user
-            print("\n")
+                            override = input("Override as correct? (empty answer = don't override) ")
 
-            # replace this with the round breakdown
-            # if the last round has passed, do the session breakdown
-            # print(f"END OF ROUND {round_num}")
+                            # if override has something in it
+                            if override:
+                                # mark as correct as the user wishes
+                                print(f"Overridden as {Color.Green}Correct{Color.Reset}.")
 
-            print(f"Round {round_num} breakdown:")
+                                quiz_counter.increment_streak()
+                                num_correct += 1
 
-            # here the proc will look for the line in the file containing "Round"
-            # and the number of the current round with a : right after it
-            print_round_breakdown("results.txt", f"Round {round_num}:", num_correct, num_answered)
-            
-            # randomise now if rand flag is set to --rand-every-round
-            if sys_args[3] == "--rand-every-round":
-                items = list(card_set.items())
-                random.shuffle(items)
-                card_set = dict(items)
-            else:
-                pass
+                                f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                                f.flush()
+
+                                time.sleep(0.5)
+                                clear_screen()
+
+                                key_to_copy = prompt
+                                if key_to_copy in card_set:
+                                    correct_answers[key_to_copy] = card_set[key_to_copy]
+                            else:
+                                print(f"{Color.Yellow}Not overridden.{Color.Reset}")
+                                # mark as incorrect
+                                f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                                f.flush()
+
+                                quiz_counter.reset_streak()
+                                num_incorrect += 1
+
+                                time.sleep(0.5)
+                                clear_screen()
+                    num_answered += 1
+                    num_remaining -= 1
+
+                # now delete all the cards that the user got right
+                # this is to make sure only the things they got wrong are left
+                # meaning that on the next iteration, the dict will only have
+                # terms that the user got wrong
+                keys_to_remove = []
+
+                # iterate over the keys of the new dictionary
+                for key, _ in correct_answers.items():
+                    # check if the key exists in the original dictionary
+                    if key in card_set:
+                        # if it does, add that key to keys_to_remove list
+                        keys_to_remove.append(key)
+
+                # remove keys from original_dict
+                for key in keys_to_remove:
+                    card_set.pop(key)
+
+                # a new line will separate each round to the user
+                print("\n")
+
+                # replace this with the round breakdown
+                # if the last round has passed, do the session breakdown
+                # print(f"END OF ROUND {round_num}")
+
+                print(f"Round {round_num} breakdown:")
+
+                # here the proc will look for the line in the file containing "Round"
+                # and the number of the current round with a : right after it
+                print_round_breakdown(this_sessions_results_file, f"Round {round_num}:", num_correct, num_answered)
+                
+                # randomise now if rand flag is set to --rand-every-round
+                if sys_args[3] == "--rand-every-round":
+                    items = list(card_set.items())
+                    random.shuffle(items)
+                    card_set = dict(items)
+                else:
+                    pass
 
 
-        # write the round list to results.txt
-        f.write(f"No. terms in the card set = {NUM_TERMS}\n")
-        f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
-        f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
+            # write the round list to this_sessions_results_file
+            f.write(f"No. terms in the card set = {NUM_TERMS}\n")
+            f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
+            f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
-    dump_results_to_records_file(start_time)
+        dump_results_to_records_file(start_time, this_sessions_results_file)
 
-    # after the record file is done, print the session breakdown to the user
+        # after the record file is done, print the session breakdown to the user
 
-    print(f"{Color.Bold}Session breakdown:{Color.Reset}")
+        print(f"{Color.Bold}Session breakdown:{Color.Reset}")
 
-    with open("results.txt", 'r') as f:
-        for line in f:
-            # print the line without leading/trailing whitespaces
-            if '✓' in line:  # check for tick
-                print("\x1b[32m" + line.strip() + "\x1b[0m")  # print in green
-            elif '✗' in line:  # check for cross
-                print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
-            else:
-                print(line.strip())  # otherwise don't colour the line
+        with open(this_sessions_results_file, 'r') as f:
+            for line in f:
+                # print the line without leading/trailing whitespaces
+                if '✓' in line:  # check for tick
+                    print("\x1b[32m" + line.strip() + "\x1b[0m")  # print in green
+                elif '✗' in line:  # check for cross
+                    print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
+                else:
+                    print(line.strip())  # otherwise don't colour the line
 
 
-    write_terms_per_day(terms_done_dict)
+        # putting this code here instead of at the top of `quiz()` fixes the bug,
+        # where only one session would add to the terms done count for that day
+        # instead of a second session
+        # disclaimer: bug only found with two concurrent sessions
+        with open("stats/terms-per-day.json", 'r') as f:
+            # terms_done_dict = json.loads(f.readline())
+            terms_done_dict = json.load(f)
 
-    # show the user the increase in terms done today
-    print(f"Terms done today: {new_terms_completed - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
+        # show the user the previous terms done today
+        # and the new terms done today figure after the end of the session
+        new_terms_completed = 0
+
+        # at the end of the round, update the current day's terms done total
+        today = datetime.today().strftime('%Y-%m-%d')
+        if today in terms_done_dict:
+            # need to look at the int stored at the date key, then add NUM_TERMS to it
+            terms_done_dict[today] += NUM_TERMS
+            new_terms_completed = terms_done_dict[today]
+        else:
+            # not in there, can safely write new day
+            terms_done_dict[today] = NUM_TERMS
+
+            # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
+            new_terms_completed += NUM_TERMS
+
+        write_terms_per_day(terms_done_dict)
+
+        # show the user the increase in terms done today
+        print(f"Terms done today: {new_terms_completed - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
+
+        # the temp-results-for-session... file can be deleted now
+        os.remove(this_sessions_results_file)
+    except KeyboardInterrupt:
+        os.remove(this_sessions_results_file)
 
 
 def render_cards(filepath: str) -> dict:
@@ -573,6 +603,7 @@ def render_cards(filepath: str) -> dict:
 # main() handles command line arguments
 # needed for value checking and presence checking of the command line args
 def main():
+
 
     if len(sys.argv) != 5:
         print("Command line argument order: card set, difficulty, randomise, flip question and answer")
@@ -629,13 +660,6 @@ def main():
         case _:
             print("Error: flip setting can only be one of: -flip | -no-flip")
             return
-
-    # prepare results.txt by wiping it
-    # the file contents of the previous session will remain in the file,
-    # if program aborted with an uncaught error
-    # e.g KeyboardInterrupt or KeyError
-    with open("results.txt", "w") as f:
-        f.write("")
 
     clear_screen()
     quiz(cards, difficulty, sys.argv)

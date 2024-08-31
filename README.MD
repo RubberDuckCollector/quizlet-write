@@ -22,7 +22,7 @@
 - If you wait until tomorrow to finish a session, you won't get the cards count towards tomorrow, only the day you started the session on. However, the file name for your session will reflect that you completed the session on a different day.
 - Results.txt may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program.
 - I also know how cursed this file is if you open it raw. Try not to think about it.
-- if you don't want the `records/` dict to have my records in it when you download the repo, just delete the files
+- if you don't want the `records/` dir to have my records in it when you download the repo, just delete the files
 
 # Overview
 <details><summary>Overview:</summary>
@@ -180,6 +180,17 @@ when i'm absolutely ready
 - added `set_highest_streak()`, `set_current_streak()`, and `decrement_streak()` methods to the `QuizCounter` class
 - makes the class more expandable in the future
 
+## 2024-08-31 (01:11)
+- implemented a feature that allows the user to have more than one session open at a time using a temporary results file - documentation in `main.py`
+- fixed a bug with the above feature where the temporary results file (called `this_sessions_results_file` in `main.py`) where the temp results file wouldn't get deleted if the user pressed ctrl + c
+    - fixed by putting parts of the code the user interacted with in a try-except block. it catches the KeyboardInterrupt and deletes the temp results file.
+- fixed a bug where only one of multiple concurrent sessions add to the count of the terms done today.
+    - solved by moving the code that handles incrementing the count of the terms done today downwards to exactly when it's needed.
+    - it used to be high up in the code which meant that the count would be calculated way before the user started answering questions.
+    - **both concurrent sessions would have the same number of completed terms to start with.**
+        - one session finishes and increments # terms.
+        - the other session finishes, but still has the original term count, so the count doesn't increase/increases to the wrong amount because it adds to the previous amount
+
 ## next features
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
@@ -187,7 +198,7 @@ when i'm absolutely ready
 - [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
 - [x] tell the user the previous terms done today and the new terms done today
-- [ ] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
+- [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
 
 ## lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
