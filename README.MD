@@ -1,3 +1,36 @@
+<!-- vim-markdown-toc GFM -->
+
+* [Quizlet write my version](#quizlet-write-my-version)
+* [Why I made this](#why-i-made-this)
+* [Disclaimer](#disclaimer)
+* [Overview](#overview)
+* [Demo video](#demo-video)
+* [Technical Explanation (WIP)](#technical-explanation-wip)
+* [Notes](#notes)
+* [Build log](#build-log)
+    * [2024-02-20](#2024-02-20)
+    * [2024-02-21](#2024-02-21)
+    * [2024-02-22](#2024-02-22)
+    * [2024-03-07](#2024-03-07)
+    * [2024-03-08](#2024-03-08)
+    * [2024-05-15](#2024-05-15)
+    * [2024-05-15 14:33](#2024-05-15-1433)
+        * [2024-08-15 amendment:](#2024-08-15-amendment)
+    * [2024-07-18](#2024-07-18)
+        * [2024-08-15 additional explanation for above bugfix:](#2024-08-15-additional-explanation-for-above-bugfix)
+    * [2024-08-24 01:53 (AM)](#2024-08-24-0153-am)
+    * [2024-08-24 (22:02)](#2024-08-24-2202)
+    * [2024-08-25](#2024-08-25)
+    * [2024-08-26 (02:00)](#2024-08-26-0200)
+    * [2024-08-29 (01:00)](#2024-08-29-0100)
+    * [2024-08-30 (01:19)](#2024-08-30-0119)
+    * [2024-08-31 (01:11)](#2024-08-31-0111)
+        * [2024-09-01 (00:29) amendment:](#2024-09-01-0029-amendment)
+    * [next features](#next-features)
+    * [lesson of the day](#lesson-of-the-day)
+
+<!-- vim-markdown-toc -->
+
 # Quizlet write my version
 - Find the flash cards that work with this program here: https://github.com/RubberDuckCollector/my-flash-cards
 - note: i recommend using this for german vocab where the plural conjugation can be in brackets. the program will preserve contents in the brackets so you don't have to memorise what's in the brackets.
@@ -19,7 +52,7 @@
 
 - **"terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.**
 - A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
-- If you wait until tomorrow to finish a session, you won't get the cards count towards tomorrow, only the day you started the session on. However, the file name for your session will reflect that you completed the session on a different day.
+- If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the terms done count for the 2nd of Jan., when the session is completed.
 - Results.txt may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program.
 - I also know how cursed this file is if you open it raw. Try not to think about it.
 - if you don't want the `records/` dir to have my records in it when you download the repo, just delete the files
@@ -130,7 +163,7 @@ none
 
 ## 2024-05-15 14:33
 - having trouble with the streak functionality and scope. idk how to actually do it
-### 2024-08-15 ammendment:
+### 2024-08-15 amendment:
 - this feature has since been implemented and is functional
 
 ## 2024-07-18
@@ -190,6 +223,8 @@ when i'm absolutely ready
     - **both concurrent sessions would have the same number of completed terms to start with.**
         - one session finishes and increments # terms.
         - the other session finishes, but still has the original term count, so the count doesn't increase/increases to the wrong amount because it adds to the previous amount
+### 2024-09-01 (00:29) amendment:
+- "solved by moving the code that handles..." this has meant that when you end a session on a day after you start it, you no longer increase the term count for the day you started the session on.
 
 ## next features
 - [x] streak feature (100% = perfect streak)
