@@ -13,7 +13,7 @@ from constants import chars_to_ignore
 # but it attaches to the builtin input() func
 
 # a variable starting with `p_...` denotes a parameter, not a pointer
-# **"terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.**
+# "terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.
 # A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
 
 class Color:
