@@ -7,14 +7,7 @@ import readline
 import platform
 from datetime import datetime
 from constants import chars_to_ignore
-
-# this will be relevant in the future
-# import matplotlib.pyplot as plt
-"""
-1. turn the session.txt names into dir names - DONE
-2. make the session files called `session.txt` - DONE
-3. plot % correct over # terms remaining on a line graph and save it as `line-graph.pdf` in the session dir
-"""
+import matplotlib.pyplot as plt
 
 
 # static analyser might say readline is unused
@@ -23,6 +16,7 @@ from constants import chars_to_ignore
 # a variable starting with `p_...` denotes a parameter, not a pointer
 # "terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.
 # A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
+
 
 class Color:
     Reset = "\033[0m"
@@ -237,6 +231,8 @@ def dump_results_to_records_file(p_start_time, this_sessions_results_file: str):
     with open(this_sessions_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
+    
+    return session_dir
 
 
 def write_terms_per_day(obj_to_be_written: str):
@@ -316,6 +312,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
+    x_axis = []  # terms remaining
+    y_axis = []  # % correct
+    
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
 
@@ -444,6 +443,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                             if key_to_copy in card_set:
                                 correct_answers[key_to_copy] = card_set[key_to_copy]
 
+
                         # otherwise just a normal message
                         elif user_response.lower() == answer.lower():
                             print(f"{Color.Green}Correct{Color.Reset}")
@@ -498,6 +498,11 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     num_answered += 1
                     num_remaining -= 1
 
+                    # this is for adding data to the graph
+                    if round_num == 1:
+                        x_axis.append(progress)
+                        y_axis.append(current_percent_correct)
+
                 # now delete all the cards that the user got right
                 # this is to make sure only the things they got wrong are left
                 # meaning that on the next iteration, the dict will only have
@@ -542,7 +547,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
             f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
-        dump_results_to_records_file(start_time, this_sessions_results_file)
+        session_dir = dump_results_to_records_file(start_time, this_sessions_results_file)
+
+        # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
+        # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
+        plt.plot(x_axis, y_axis)
+        plt.title(f"Consistency line graph for session starting at {start_time}")
+        plt.xlabel("% progress")
+        plt.ylabel("% accuracy")
+        plt.savefig(f"{session_dir}/line-graph.pdf")
 
         # after the record file is done, print the session breakdown to the user
 

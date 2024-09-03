@@ -238,18 +238,13 @@ when i'm absolutely ready
 - [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - the file would have the name `"{filename} {session_end_date_and_time} incorrect.txt"`
-- [ ] implement a feature that track every session's % correct and generates a line graph of the session
+- [x] implement a feature that track every session's % correct and generates a line graph of the session
     - REQUIREMENTS: would need to make every session inside `stats/records` its own directory containing the record file and the graph
     - accuracy on the y axis, words done on the x axis
     - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
     - could also do x axis as "% terms completed" or "% terms remaining"
     - this would be a measure of consistency
-    - From `main.py`:
-    """
-    1. turn the session.txt names into dir names
-    2. make the session files called `session.txt`
-    3. plot % correct over # terms remaining on a line graph and save it as `line-graph.pdf` in the session dir
-    """
+
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
 - 2024-03-07 update: i lied

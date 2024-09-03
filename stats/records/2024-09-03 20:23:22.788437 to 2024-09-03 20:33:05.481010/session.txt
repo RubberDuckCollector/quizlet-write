@@ -1,0 +1,106 @@
+cards from: /Users/luna/flash-cards/languages/spanish/aqa/GCSE/unit5.txt
+Round 1:
+✓ the bridge                                         el puente
+✓ the city, large town                               la ciudad
+✓ the place, spot                                    el lugar
+✓ the (small) town, willage, people                  el pueblo
+✓ welcome (said to a man)                            bienvenido
+✓ the woods, forest                                  el bosque
+✓ the drawback, inconvenience                        el inconveniente
+✓ worse, worst                                       peor
+✓ the poverty                                        la pobreza
+✓ lively (masculine)                                 animado
+✗ the heating                                        la calefacción
+✓ the theatre                                        el teatro
+✓ the view, sight                                    la vista
+✓ the fitted kitchen                                 la cocina amueblada
+✓ the factory                                        la fábrica
+✗ therefore (3 words)                                por lo tanto
+✓ above, upstairs, up                                arriba
+✓ the post office                                    las correos
+✓ unemployed                                         en paro
+✓ spacious, roomy (feminine)                         amplia
+✗ the piece of furniture                             el mueble
+✓ to found                                           fundar
+✓ to meet up with (reflexive)                        encontrarse con
+✓ the country                                        el país
+✓ the square (in a town)                             la plaza
+✓ the flower                                         la flor
+✓ to go shopping (uses "ir")                         ir de compras
+✓ old (starts with a) (feminine)                     antigua
+✓ the tree                                           el árbol
+✓ the mountain                                       la montaña
+✓ the pet                                            la mascota
+✓ the countryside, field, ground                     el campo
+✓ essential, indispensable (adjective ends in e)     imprescindible
+✓ inhabitant (noun ends in e) (female)               la habitante
+✓ the shelf                                          el estante
+✓ the sports centre                                  el polideportivo
+✓ the oil industry                                   la industria petrolera
+✗ the bungalow, detached house, villa                el chalet (also chalé)
+✓ friendly (feminine)                                amistosa
+✓ the business, shop (starts with c, masculine noun) el comercio
+✗ under, downstairs                                  abajo
+✓ to build (starts with c)                           construir
+✓ the nightclub                                      la sala de fiestas
+✓ the balcony                                        el balcón
+✓ luxurious (feminine)                               lujosa
+✓ to find (starts with e)                            encontrar
+✓ the poverty, hardship                              la miseria
+✓ the mountain range                                 la sierra
+✓ the swimming pool                                  la piscina
+✓ to look after, to take care of (starts with "cu")  cuidar
+✓ the dining room                                    el comedor
+✓ the garden                                         el jardín
+✓ old (starts with a) (masculine)                    antiguo
+✓ the lake                                           el lago
+✓ to move house (reflexive)                          mudarse de casa
+✓ inhabitant (noun ends in e) (male)                 el habitante
+✓ to keep, to put away, to save (starts with g)      guardar
+✓ isolated (feminine)                                aislada
+✓ the pollution (starts with c)                      la contaminación
+✓ the shop                                           la tienda
+✓ to be situated; meet up (reflexive)                encontrarse
+✓ the shopping centre                                el centro comercial
+✓ the flat, floor (of a building)                    el piso
+✓ the coast                                          la costa
+✓ upper, higher (adjective ends in r)                superior
+✓ luxurious (masculine)                              lujoso
+✓ damaging                                           perjudicial
+✓ spacious, roomy (masculine)                        amplio
+✓ the avenue (starts with "av")                      la avenida
+✓ the estate, (large) farm (starts with f)           la finca
+✓ the wildlife                                       la flora y fauna
+✓ the outskirts                                      las afueras
+✓ isolated (masculine)                               aislado
+✓ the place, site                                    el sitio
+✓ the tower, tower block                             la torre
+✓ the floor (of a building), plant                   la planta
+✓ welcome (said to a woman)                          bienvenida
+✓ ... ago                                            hace (+ expression of time)
+✓ the ground floor                                   la planta baja
+✓ the town hall                                      el ayuntamiento
+✓ friendly (masculine)                               amistoso
+✓ the century                                        el siglo
+✓ lively (feminine)                                  animada
+✓ to become (starts with c, has "en" after the verb) convertirse en (+ noun)
+✓ the farm (starts with g)                           la granja
+✓ lower                                              inferior
+✗ the bookcase, bookshelf                            la librería
+✓ the church                                         la iglesia
+✓ the youth club                                     el club de jóvenes
+✓ the green spaces                                   los espacios verdes
+Score: 84/90 (93.33333333333333%)
+
+Round 2:
+✓ the heating                                        la calefacción
+✓ therefore (3 words)                                por lo tanto
+✓ the piece of furniture                             el mueble
+✓ the bungalow, detached house, villa                el chalet (also chalé)
+✓ under, downstairs                                  abajo
+✓ the bookcase, bookshelf                            la librería
+Score: 6/6 (100.0%)
+
+No. terms in the card set = 90
+highest_streak = 45
+perfect_streak = False
