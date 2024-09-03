@@ -5,6 +5,7 @@
 * [Quizlet write my version](#quizlet-write-my-version)
 * [Why I made this](#why-i-made-this)
 * [Disclaimer](#disclaimer)
+* [Prerequisites](#prerequisites)
 * [Overview](#overview)
 * [Demo video](#demo-video)
 * [Technical Explanation (WIP)](#technical-explanation-wip)
@@ -58,6 +59,10 @@
 - Results.txt may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program.
 - I also know how cursed this file is if you open it raw. Try not to think about it.
 - if you don't want the `records/` dir to have my records in it when you download the repo, just delete the files
+
+# Prerequisites
+
+- matplotlib (working on a no-matplotlib version)
 
 # Overview
 <details><summary>Overview:</summary>
