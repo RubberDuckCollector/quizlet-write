@@ -8,6 +8,14 @@ import platform
 from datetime import datetime
 from constants import chars_to_ignore
 
+# this will be relevant in the future
+# import matplotlib.pyplot as plt
+"""
+1. turn the session.txt names into dir names
+2. make the session files called `session.txt`
+3. plot % correct over # terms remaining on a line graph and save it as `line-graph.pdf` in the session dir
+"""
+
 
 # static analyser might say readline is unused
 # but it attaches to the builtin input() func

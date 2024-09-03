@@ -1,3 +1,5 @@
+# Table of contents
+
 <!-- vim-markdown-toc GFM -->
 
 * [Quizlet write my version](#quizlet-write-my-version)
@@ -26,8 +28,8 @@
     * [2024-08-30 (01:19)](#2024-08-30-0119)
     * [2024-08-31 (01:11)](#2024-08-31-0111)
         * [2024-09-01 (00:29) amendment:](#2024-09-01-0029-amendment)
-    * [next features](#next-features)
-    * [lesson of the day](#lesson-of-the-day)
+* [Next features](#next-features)
+* [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
 
@@ -226,7 +228,7 @@ when i'm absolutely ready
 ### 2024-09-01 (00:29) amendment:
 - "solved by moving the code that handles..." this has meant that when you end a session on a day after you start it, you no longer increase the term count for the day you started the session on.
 
-## next features
+# Next features
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 - [x] statistics and tracking - daily word count of terms done
@@ -234,7 +236,20 @@ when i'm absolutely ready
 - [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
 - [x] tell the user the previous terms done today and the new terms done today
 - [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
-
-## lesson of the day
+- [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
+    - the file would have the name `"{filename} {session_end_date_and_time} incorrect.txt"`
+- [ ] implement a feature that track every session's % correct and generates a line graph of the session
+    - REQUIREMENTS: would need to make every session inside `stats/records` its own directory containing the record file and the graph
+    - accuracy on the y axis, words done on the x axis
+    - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
+    - could also do x axis as "% terms completed" or "% terms remaining"
+    - this would be a measure of consistency
+    - From `main.py`:
+    """
+    1. turn the session.txt names into dir names
+    2. make the session files called `session.txt`
+    3. plot % correct over # terms remaining on a line graph and save it as `line-graph.pdf` in the session dir
+    """
+# Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
 - 2024-03-07 update: i lied
