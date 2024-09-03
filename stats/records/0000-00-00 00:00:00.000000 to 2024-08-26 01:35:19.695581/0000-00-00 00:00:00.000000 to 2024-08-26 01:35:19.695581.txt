@@ -1,0 +1,133 @@
+cards from: /Users/luna/flash-cards/languages/spanish/aqa/GCSE/unit1.txt
+Round 1:
+✓ open (feminine)                                                  abierta
+✓ the age                                                          la edad
+✓ the wedding (starts with b)                                      la boda
+✓ understanding, sympathetic (masculine)                           comprensivo
+✓ certian, sure (masculine)                                        seguro
+✓ proud (feminine)                                                 orgullosa
+✓ different (like "distinct") (masculine)                          distinto
+✓ jealous (masculine)                                              celoso
+✓ naughty (masculine)                                              travieso
+✓ sensitive (adjective ends in e)                                  sensible
+✓ the others (feminine)                                            las demás
+✓ the widower                                                      el viduo
+✓ strong (adjective ends in e)                                     fuerte
+✓ understanding, sympathetic (feminine)                            comprensiva
+✓ nowadays (3 words)                                               hoy en día
+✓ in the first place, firstly                                      en primer lugar
+✓ to change                                                        cambiar
+✓ disappointed (feminine)                                          decepcionada
+✓ dangerous (masculine)                                            peligroso
+✓ disappointed (masculine)                                         decepcionado
+✓ the thing                                                        la cosa
+✓ the user (masculine)                                             el usuario
+✓ to write                                                         escribir
+✓ honest (masculine)                                               honrado
+✓ lazy (feminine)                                                  perezosa
+✓ sad (adjective ends in e)                                        triste
+✓ the sense of humor                                               el sentido del humor
+✓ the widow                                                        la vidua
+✓ to bear, to put up with (starts with a)                          aguantar
+✓ to be lucky                                                      tener suerte
+✓ to get married (reflexive)                                       casarse
+✓ to laugh (reflexive)                                             reírse
+✓ to cause (starts with p, like "provoke")                         provocar
+✓ talkative (feminine)                                             habladora
+✓ the place (starts with s)                                        el sitio
+✓ dangerous (feminine)                                             peligrosa
+✓ to be happy about (reflexive)                                    alegrarse de
+✓ mature (feminine)                                                madura
+✓ against (3 words)                                                en contra de
+✓ still (adverb) (starts with t)                                   todavía
+✓ the colleague, friend (feminine)                                 la compañera
+✓ to tidy (starts with a)                                          arreglar
+✓ even (e.g even the road melts in the summer, not just ice cream) incluso
+✓ the team (starts with e)                                         el equipo
+✓ to forget                                                        olvidar
+✓ to know a person or place                                        conocer
+✓ to bear, to put up with (starts with s)                          soportar
+✓ to hear about (2 verbs and de on the end)                        oír hablar de
+✓ the argument (like "dispute")                                    la disputa
+✓ fed up (masculine)                                               harto
+✓ different (like "distinct") (feminine)                           distinta
+✓ same (adjective starts with m) (masculine)                       mismo
+✓ to find (starts with e)                                          encontrar
+✓ the niece                                                        la sobrina
+✓ to tend to                                                       tender a
+✓ the skin                                                         la piel
+✓ the argument (like "discussion")                                 la discusión
+✓ the retired person, pensioner (feminine)                         la jubilada
+✓ naughty (feminine)                                               traviesa
+✓ to treat                                                         tratar
+✓ alone, only (masculine)                                          solo
+✓ the partner (starts with p)                                      la pareja
+✓ the summer                                                       el verano
+✓ on the other hand                                                por otro lado
+✓ mature (masculine)                                               maduro
+✓ face to face                                                     cara a cara
+✓ the affection                                                    el cariño
+✓ unfairly (adjective ends in e)                                   injustamente
+✓ the retired person, pensioner (masculine)                        el jubilado
+✓ now                                                              ahora
+✓ jealous (feminine)                                               celosa
+✓ proud (masculine)                                                orgulloso
+✓ open (masculine)                                                 abierto
+✓ currently, nowadays (starts with a)                              actualmente
+✓ the way (starts with m)                                          la manera
+✓ someone                                                          alguien
+✓ single (feminine)                                                soltera
+✓ the fight (starts with p)                                        la pelea
+✓ together (plural) (feminine)                                     juntas
+✓ the wedding (starts with c)                                      el casamiento
+✗ to look for                                                      buscar
+✓ the home                                                         el hogar
+✓ fun, good fun (feminine)                                         divertida
+✓ the advice                                                       el consejo
+✓ single (masculine)                                               soltero
+✓ to agree (literally: "to be of agreement")                       estar de acuerdo
+✓ lazy (masculine)                                                 perezoso
+✓ the others (masculine)                                           los demás
+✓ similar (starts with p) (masculine)                              parecido
+✓ the user (feminine)                                              la usuaria
+✓ the happiness (starts with f)                                    la felicidad
+✓ selfish (always ends in the same vowel)                          egoísta
+✓ to advise                                                        aconsejar
+✓ so, therefore (2 words starts with a)                            así que
+✓ next (starts with p) (masculine)                                 próximo
+✓ together (plural) (masculine)                                    juntos
+✓ fun, good fun (masculine)                                        divertido
+✓ certian, sure (feminine)                                         segura
+✓ similar (starts with p) (feminine)                               parecida
+✓ to look after                                                    cuidar
+✓ the blame, fault                                                 la culpa
+✓ the colleague, friend (masculine)                                el compañero
+✓ to bother, annoy (starts with m)                                 molestar
+✓ to pay                                                           pagar
+✓ often (2 words)                                                  a menudo
+✓ talkative (masculine)                                            hablador
+✓ therefore (2 words starts with p)                                por eso
+✓ the generation gap                                               la barrera generacional
+✓ fed up (feminine)                                                harta
+✗ alone, only (feminine)                                           sola
+✓ to annoy, to bother (starts with f)                              fastidar
+✓ next (starts with p) (feminine)                                  próxima
+✓ the party, festival                                              la fiesta
+✓ same (adjective starts with m) feminine)                         misma
+✓ the nephew                                                       el sobrino
+✓ honest (feminine)                                                honrada
+✓ the freedom                                                      la libertad
+Score: 115/117 (98.29059829059828%)
+
+Round 2:
+✓ to look for                                                      buscar
+✗ alone, only (feminine)                                           sola
+Score: 1/2 (50.0%)
+
+Round 3:
+✓ alone, only (feminine)                                           sola
+Score: 1/1 (100.0%)
+
+No. terms in the card set = 117
+highest_streak = 80
+perfect_streak = False

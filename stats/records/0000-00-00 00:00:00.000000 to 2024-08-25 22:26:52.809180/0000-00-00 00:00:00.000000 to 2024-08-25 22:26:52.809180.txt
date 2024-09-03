@@ -1,0 +1,185 @@
+cards from: /Users/luna/flash-cards/languages/spanish/aqa/GCSE/unit4.txt
+Round 1:
+✓ the one that (masculine)                                        el que
+✓ full (masculine)                                                lleno
+✓ the origin                                                      el origen
+✓ the bull                                                        el toro
+✓ the competition (starts with "con")                             el concurso
+✓ mine (feminine)                                                 mía
+✓ to wear, take, carry                                            llevar
+✓ the cementry                                                    el cementerio
+✓ the language (starts with i)                                    el idioma
+✓ to find (starts with e)                                         encontrar
+✓ to hear                                                         oír
+✓ pretty (feminine)                                               bonita
+✓ the computer (starts with o)                                    el ordenador
+✓ to have a good time                                             pasarlo bien
+✓ the miner (feminine)                                            la minera
+✓ the performance                                                 la actuación
+✓ the ancestors (female)                                          las antepasadas
+✓ to bring                                                        traer
+✓ awful (starts with f)                                           fatal
+✓ to commemorate                                                  conmemorar
+✓ only, unique (masculine)                                        único
+✓ however (2 words)                                               sin embargo
+✓ beautiful (starts with p) (feminine)                            preciosa
+✓ the parade                                                      el desfile
+✓ the miner (masculine)                                           el minero
+✓ the mole sauce                                                  el mole
+✓ the remains                                                     los restos
+✓ the village, (small) town                                       el pueblo
+✓ the procession                                                  la procesión
+✓ the souvenir; the memory                                        el recuerdo
+✓ the suit, costume                                               el traje
+✓ to win, to earn, to gain                                        ganar
+✓ old (starts with v) (masculine)                                 viejo
+✓ the people                                                      la gente
+✓ the wood                                                        la madera
+✓ to get together (reflexive)                                     reunirse
+✓ the silver                                                      la plata
+✓ the name                                                        el nombre
+✓ to relax (reflexive)                                            relajarse
+✓ to attend                                                       asistir
+✓ impressive (adjective ends in e)                                impresionante
+✓ the chat people have at the table after a meal                  la sobremesa
+✓ the firefighter (male)                                          el bombero
+✓ the shop                                                        la tienda
+✓ short (starts with c) (feminine)                                corta
+✓ the candle                                                      la vela
+✓ no one                                                          nadie
+✓ straight away                                                   en seguida
+✓ dressed up, disguised (feminine)                                disfrazada
+✓ the family members (female)                                     las familiares
+✓ exciting (adjective ends in e)                                  emocionante
+✓ full (feminine)                                                 llena
+✓ the quantity                                                    la cantidad
+✓ mine (masculine)                                                mío
+✓ to spend                                                        gastar
+✓ a while, whort time                                             un rato
+✓ the flower                                                      la flor
+✓ apart from                                                      aparte de
+✓ the atmosphere                                                  el ambiente
+✓ close to, near to                                               cerca de
+✓ strange (starts with e) (feminine)                              extraña
+✓ to go up                                                        subir
+✓ the theme                                                       el tema
+✓ the prize (starts with p)                                       el premio
+✓ the safety, security                                            la seguridad
+✓ over (3 words)                                                  por encima de
+✓ short (starts with c) (masculine)                               corto
+✓ to understand (starts with e)                                   entender
+✓ to wake up (reflexive)                                          despertarse
+✓ to stay (e.g at home) (reflexive)                               quedarse
+✓ the museum                                                      el museo
+✓ the wife (starts with m)                                        la marida
+✓ sad (adjective ends in e)                                       triste
+✓ dead (feminine)                                                 muerta
+✓ uncomfortable (feminine)                                        incómoda
+✓ the Moor (historically a person from North Africa) (male)       el moro
+✓ dangerous (feminine)                                            peligrosa
+✓ the walk, stroll                                                el paseo
+✓ to throw                                                        tirar
+✓ to jump                                                         saltar
+✓ the area, neighbourhood                                         el barrio
+✓ to enjoy oneself (starts with "div") (reflexive)                divertirse
+✓ the carpenter (male)                                            el carpintero
+✓ the mess                                                        el desorden
+✓ uncomfortable (masculine)                                       incómodo
+✓ the square (in a town)                                          la plaza
+✓ the wax                                                         la cera
+✓ last (feminine)                                                 última
+✓ to sell                                                         vender
+✓ hispanic (i.e of the spanish speaking world) (masculine)        hispánico
+✓ lit (feminine)                                                  encendida
+✓ to form                                                         formar
+✓ the skeleton                                                    el esqueleto
+✓ dangerous (masculine)                                           peligroso
+✓ the show, display (starts with "es")                            el espectáculo
+✓ the paper                                                       el papel
+✓ the present, gift (starts with r)                               el regalo
+✓ the firefighter (female)                                        la bombera
+✓ the tin (starts with e)                                         el estaño
+✓ the battle                                                      la batalla
+✓ the mountain                                                    la montaña
+✓ the noise                                                       el ruido
+✓ the sugar (can be el or la, answer this without an article)     azúcar
+✓ lit (masculine)                                                 encendido
+✓ the spring                                                      la primavera
+✓ last (masculine)                                                último
+✓ dressed up, disguised (masculine)                               disfrazado
+✓ to hold a celebration (reflexive)                               celebrarse
+✓ the shirt                                                       la camisa
+✓ hispanic (i.e of the spanish speaking world) (feminine)         hispánica
+✓ the ancestors (male)                                            los antepasados
+✓ the trend                                                       la tendencia
+✓ old (starts with a) (feminine)                                  antigua
+✓ the parade, procession                                          el desfile
+✓ the festivities                                                 los festejos
+✓ beautiful (starts with p) (masculine)                           precioso
+✓ to go to bed (reflexive)                                        acostarse
+✓ to clean                                                        limpiar
+✓ to offer                                                        ofrecer
+✓ completely                                                      completamente
+✓ the bonfire                                                     la hoguera
+✓ the fair (e.g book fair)                                        la feria
+✓ to watch, to look (starts with m)                               mirar
+✓ old (starts with a) (masculine)                                 antiguo
+✓ the husband (starts with m)                                     el marido
+✓ to train oneself (reflexive)                                    entrenarse
+✓ to keep (starts with g)                                         guardar
+✓ the banger (british slang for firecracker, had to look that up) el petardo
+✓ the luck                                                        la suerte
+✓ to set fire (not reflexive)                                     prender fuego
+✓ the danger                                                      el peligro
+✓ to build (starts with c)                                        construir
+✓ the carpenter (female)                                          la carpintera
+✓ to bother, to annoy (starts with m)                             molestar
+✓ to try, to try out (starts with p)                              probar
+✓ great, fantastic (starts with e) (masculine)                    estupendo
+✓ the skull (starts with ca)                                      la calavera
+✓ to catch                                                        coger
+✓ the Moor (historically a person from North Africa) (female)     la mora
+✓ to employ                                                       contratar
+✓ pretty (masculine)                                              bonito
+✓ it is hot                                                       hace calor
+✓ the fireworks                                                   los fuegos artificiales
+✓ the partner; couple                                             la pareja
+✓ pleasant (adjective ends in e)                                  agradable
+✓ the devil                                                       el diablo
+✓ only, unique (feminine)                                         única
+✓ old (starts with v) (feminine)                                  vieja
+✓ to appear                                                       aparecer
+✓ great, amazing (starts with f)                                  fenomenal
+✓ the rubbish, litter                                             la basura
+✓ to burn                                                         quemar
+✓ strange (starts with e) (masculine)                             extraño
+✓ dead (masculine)                                                muerto
+✓ numerous (feminine)                                             numerosa
+✓ several (masculine)                                             varios
+✓ the tower                                                       la torre
+✓ to get up (reflexive)                                           levantarse
+✓ the bull run                                                    el encierro
+✓ several (feminine)                                              varias
+✓ great, fantastic (starts with e) (feminine)                     estupenda
+✓ the horse                                                       el caballo
+✓ worse                                                           peor
+✓ numerous (masculine)                                            numeroso
+✓ to clear the table                                              quitar la mesa
+✓ the workshop                                                    el taller
+✓ to start (starts with c)                                        comenzar
+✓ Greece                                                          Grecia
+✓ to dress (reflexive)                                            vestirse
+✓ to close                                                        cerrar
+✓ the city, town                                                  la ciudad
+✓ the beginning                                                   el principio
+✓ the one that (feminine)                                         la que
+✓ the family members (male)                                       los familiares
+✓ the majority                                                    la mayoría
+✓ the custom                                                      la costumbre
+✓ the normality                                                   la normalidad
+✓ the grave                                                       la tumba
+Score: 178/178 (100.0%)
+
+No. terms in the card set = 178
+highest_streak = 178
+perfect_streak = True

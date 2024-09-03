@@ -1,0 +1,211 @@
+cards from: /Users/luna/flash-cards/languages/spanish/aqa/GCSE/unit3.txt
+Round 1:
+✓ delicious, tasty (masculine)                              rico
+✓ the fish                                                  el pescado
+✓ the soup                                                  la sopa
+✓ the squid                                                 el calamar
+✓ fun (feminine)                                            divertida
+✓ therefore, so (2 words, starts with p)                    por eso
+✓ the tournament                                            el torneo
+✓ spicy (adjective ends in e)                               picante
+✓ attentive (masculine)                                     atento
+✓ to follow                                                 seguir
+✓ the sandwhich (oval shaped, not square)                   el bocadillo
+✓ any (masculine)                                           cualquier
+✓ so much, so many (feminine)                               tanta
+✗ indian (masculine)                                        indio
+✓ the player (male)                                         jugador
+✓ to develop                                                desarrollar
+✗ nice (this word is used to describe a person) (masculine) simpático
+✗ to rest                                                   descansar
+✓ to train                                                  entrenar
+✓ to leave, to let, to allow                                dejar
+✓ the match                                                 el partido
+✓ the red wine                                              el vino tinto
+✓ hard (feminine)                                           dura
+✗ the green beans                                           las judías verdes
+✓ the member (masc and fem both end in o) (feminine)        la miembro
+✓ the luck                                                  la suerte
+✓ boring (feminine)                                         aburrida
+✓ to choose (starts wtih es)                                escoger
+✓ the exercise                                              el ejercicio
+✓ the rock climbing                                         el alpinismo
+✓ the taste                                                 el gusto
+✓ in the open air, outdoors                                 al aire libre
+✗ the lunch, food, meal                                     la comida
+✓ so much, so many (masculine)                              tanto
+✓ silly, stupid (masculine)                                 tonto
+✓ balanced (masculine)                                      equilibrado
+✓ entertaining (masculine)                                  entretenido
+✗ pleasant (adjective ends in e)                            agradable
+✓ in general                                                por lo general
+✓ the marriage (starts with m)                              el matrimonio
+✓ the temptation                                            la tentación
+✓ the others (masculine)                                    los demás
+✓ to retire                                                 jubilarse
+✓ hard (masculine)                                          duro
+✓ the glass                                                 el vaso
+✓ to rely on                                                contar con
+✓ the time, occasion                                        la vez
+✗ the pulses                                                los legumbres
+✓ daily, every day                                          diariamente
+✓ the banana                                                el plátano
+✓ the beer                                                  la cerveza
+✓ the butter                                                la mantequilla
+✓ the mushrooms                                             los champiñones
+✓ the champion (female)                                     la campeona
+✓ the horror                                                el terror
+✓ silly, stupid (feminine)                                  tonta
+✓ to promote, to encourage (starts with f)                  fomentar
+✓ the egg                                                   el huevo
+✓ the prawns                                                las gambas
+✗ the lamb                                                  el cordero
+✓ the cod                                                   el bacalao
+✓ the health                                                la salud
+✓ the portion, serving                                      la ración
+✓ the pork                                                  el cerdo
+✓ the drums                                                 la batería
+✓ to chat (in person)                                       charlar
+✓ the benefit                                               el beneficio
+✗ police, detective, crime (adj.) (feminine)                policíaca
+✓ the waitress                                              la camarera
+✓ healthy (masculine)                                       sano
+✓ boring (masculine)                                        aburrido
+✓ the cartoons                                              los dibujos animados
+✓ the dessert, pudding                                      el postre
+✓ police, detective, crime (adj.) (masculine)               policíaco
+✓ chinese (masculine)                                       chino
+✓ the effort                                                el esfuerzo
+✓ any (feminine)                                            cualquiera
+✓ the cured ham                                             el jamón serrano
+✓ great                                                     genial
+✓ fun (masculine)                                           divertido
+✓ the tea                                                   el té
+✓ to break                                                  romper
+✓ sure (masculine)                                          seguro
+✗ the loaf (starts with b)                                  la barra
+✓ to agree, reach an agreement                              ponerse de acuerdo
+✓ to start (sarts with e)                                   empezar
+✗ to take, have (food, drink)                               tomar
+✓ to answer                                                 contestar
+✓ the weekend                                               el fin de semana
+✓ exciting (adjective ends in e)                            emocionante
+✓ to go for a walk                                          dar un paseo
+✓ the sauce                                                 la salsa
+✓ nice (this word is used to describe a person) (feminine)  simpática
+✗ the news                                                  las noticias
+✓ delicious, tasty (feminine)                               rica
+✓ the routine                                               la rutina
+✓ to enjoy                                                  disfrutar
+✓ the sailing                                               la vela
+✓ to win                                                    ganar
+✓ the ball                                                  la pelota
+✓ to record (starts with g)                                 grabar
+✓ tasty (feminine)                                          sabrosa
+✓ the husband (starts with e)                               el esposo
+✓ together with (masculine)                                 junto con
+✓ during                                                    durante
+✓ expensive (feminine)                                      cara
+✓ the soap opera                                            la telenovela
+✓ the player (female)                                       jugadora
+✓ the cold vegetable soup                                   el gazpacho
+✓ the steak                                                 el bistec
+✓ the theatre                                               el teatro
+✓ to opt for                                                optar por
+✓ expensive (masculine)                                     caro
+✗ the olive                                                 la aceituna
+✓ to relax                                                  relajarse
+✓ the strawberry                                            la fresa
+✓ the tin, can                                              la lata
+✓ the wife (starts with e)                                  la esposa
+✓ the toast                                                 la tostada
+✓ the seafood                                               los mariscos
+✓ the lyrics, words                                         la letra
+✓ to try, test                                              probar
+✓ the slope                                                 la pista
+✓ the others (feminine)                                     las demás
+✓ to be fit, to be in shape                                 estar en forma
+✓ challenging (adjective ends in e)                         desafiante
+✓ the competition                                           el concurso
+✓ to take, to carry, to wear                                llevar
+✓ is it worth it, is it worthwhile                          vale la pena
+✓ the waiter                                                el camarero
+✓ to stop ...ing, to quit ...ing (de comes after this verb) dejar de
+✓ the member (masc and fem both end in o) (masculine)       el miembro
+✓ the spanish omelette                                      la tortilla
+✓ to have an evening meal                                   cenar
+✓ from time to time, occasionally                           de vez en cuando
+✓ afterwards                                                después
+✓ the hot dog                                               el perrito caliente
+✓ the rubbish, junk                                         la basura
+✓ the choir                                                 el coro
+✓ to bring                                                  traer
+✓ to finish                                                 terminar
+✓ the team, squad                                           la selección
+✗ balanced (feminine)                                       equilibrada
+✓ together with (feminine)                                  junta con
+✓ healthy (feminine)                                        sana
+✓ the peach (starts with m)                                 el melocotón
+✗ the chop                                                  la chuleta
+✗ to have a good time                                       pasarlo bien
+✓ tasty (masculine)                                         sabroso
+✓ the skiing                                                el esquí
+✓ the champion (male)                                       el campeón
+✓ the song                                                  la canción
+✗ the training                                              el entrenamiento
+✓ the white wine                                            el vino blanco
+✓ the rice                                                  el arroz
+✓ indian (feminine)                                         india
+✗ the spaghetti                                             el espagueti
+✓ the afternoon, evening                                    la tarde
+✗ the peas (starts with g)                                  los guisantes
+✓ the documentary                                           el documental
+✓ the interview                                             la entrevista
+✓ the (green) vegetables                                    las verduras
+✓ the ice cream                                             el helado
+✗ the race (also "career")                                  la carrera
+✗ entertaining (feminine)                                   entretenida
+✓ the pineapple                                             la piña
+✓ the defeat                                                la derrota
+✓ relaxing (adjective ends in e)                            relajante
+✓ to spend (time)                                           pasar
+✓ attentive (feminine)                                      atenta
+✓ to go down                                                bajar
+✓ sure (feminine)                                           segura
+✓ the tuna                                                  el atún
+✓ the rule (starts with r)                                  la regla
+✓ chinese (feminine)                                        china
+✓ the trainers                                              las zapatillas de deporte
+Score: 155/176 (88.06818181818183%)
+
+Round 2:
+✓ to rest                                                   descansar
+✓ the news                                                  las noticias
+✓ pleasant (adjective ends in e)                            agradable
+✓ the chop                                                  la chuleta
+✓ police, detective, crime (adj.) (feminine)                policíaca
+✓ the green beans                                           las judías verdes
+✓ balanced (feminine)                                       equilibrada
+✓ nice (this word is used to describe a person) (masculine) simpático
+✓ the olive                                                 la aceituna
+✓ indian (masculine)                                        indio
+✓ the loaf (starts with b)                                  la barra
+✓ the training                                              el entrenamiento
+✓ the pulses                                                los legumbres
+✓ to have a good time                                       pasarlo bien
+✓ the spaghetti                                             el espagueti
+✓ the lamb                                                  el cordero
+✗ entertaining (feminine)                                   entretenida
+✓ the race (also "career")                                  la carrera
+✓ the lunch, food, meal                                     la comida
+✓ the peas (starts with g)                                  los guisantes
+✓ to take, have (food, drink)                               tomar
+Score: 20/21 (95.23809523809523%)
+
+Round 3:
+✓ entertaining (feminine)                                   entretenida
+Score: 1/1 (100.0%)
+
+No. terms in the card set = 176
+highest_streak = 28
+perfect_streak = False

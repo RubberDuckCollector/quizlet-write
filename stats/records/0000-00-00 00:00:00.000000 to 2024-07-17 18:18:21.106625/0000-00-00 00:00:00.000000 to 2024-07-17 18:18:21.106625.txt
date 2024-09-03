@@ -1,0 +1,36 @@
+cards from: /Users/luna/subject-resources/sixth-form/cards/music/bass/individual-strings/sharp/g-string-sharp.txt
+Round 1:
+✓ (Sharp) G string, fret 3  A#
+✓ (Sharp) G string, fret 11 F#
+✓ (Sharp) G string, fret 4  B
+✓ (Sharp) G string, fret 14 A
+✓ (Sharp) G string, fret 2  A
+✓ (Sharp) G string, fret 1  G#
+✓ (Sharp) G string, fret 13 G#
+✗ (Sharp) G string, fret 21 E
+✓ (Sharp) G string, fret 22 F
+✓ (Sharp) G string, fret 7  D
+✓ (Sharp) G string, fret 5  C
+✓ (Sharp) G string, fret 17 C
+✓ (Sharp) G string, fret 15 A#
+✓ (Sharp) G string, fret 12 G
+✓ (Sharp) G string, fret 9  E
+✓ (Sharp) G string, fret 16 B
+✓ (Sharp) G string, fret 18 C#
+✗ (Sharp) G string, fret 10 F
+✓ (Sharp) G string, fret 6  C#
+✓ (Sharp) G string, fret 0  G
+✓ (Sharp) G string, fret 19 D
+✓ (Sharp) G string, fret 24 G
+✓ (Sharp) G string, fret 8  D#
+✓ (Sharp) G string, fret 20 D#
+✓ (Sharp) G string, fret 23 F#
+Score: 23/25 (92.0%)
+
+Round 2:
+✓ (Sharp) G string, fret 21 E
+✓ (Sharp) G string, fret 10 F
+Score: 2/2 (100.0%)
+
+max_streak = 9
+perfect_streak = False

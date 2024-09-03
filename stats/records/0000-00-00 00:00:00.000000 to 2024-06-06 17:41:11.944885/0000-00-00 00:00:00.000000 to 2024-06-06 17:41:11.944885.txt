@@ -1,0 +1,187 @@
+cards from: /Users/luna/subject-resources/sixth-form/cards/languages/spanish/a2-aqa/unit1.txt
+Round 1:
+✓ the black market                                   el mercado sumergido
+✓ to enter (starts with i)                           ingresar
+✓ the civil servant (male)                           el funcionario
+✓ western (adjective ends in "al")                   occidental
+✓ the policy (or the politics)                       la política
+✓ to travel (starts with v)                          viajar
+✓ to lead, to head (starts with d)                   dirigir
+✓ to contribute (starts with "ap")                   aportar
+✓ to leave (starts with m) (reflexive)               marcharse
+✓ to resort to                                       recurrir
+✓ to retire (reflexive)                              jubilarse
+✓ the hospitality sector                             la hostelería
+✓ to move (starts with "tras")                       trasladar
+✓ to arrest (starts with d)                          detener
+✓ to help (starts with "au")                         auxiliar
+✓ the legal advice                                   el asesoramiento jurídico
+✓ the straits (of gibraltar)                         el estrecho
+✓ the links with                                     los lazos con
+✓ the press                                          la prensa
+✓ the refugee (female)                               la refugiada
+✓ to provide for                                     mantener a
+✓ the support (starts with "arra")                   el arraigo
+✓ to survive (starts with s)                         sobrevivir
+✓ to make ends meet                                  llegar a fin de mes
+✓ to discover                                        descubrir
+✓ suspicious (masculine)                             sospechoso
+✓ to grow up (also "to grow")                        crecer
+✓ the threshold                                      el umbral
+✓ the foreigner (female)                             la extranjera
+✓ to strengthen/to reinforce                         reforzar
+✓ to carry (starts with "tran")                      transportar
+✓ to share (starts with c)                           compartir
+✓ the spanish-speaking world                         el mundo hispánico
+✓ to fall (starts with c)                            caer
+✓ the destination                                    el destino
+✓ to start, to set in motion (3 words)               poner en marcha
+✓ to enrich                                          enriquecer
+✓ the rights                                         los derechos
+✓ to die (starts with f)                             fallecer
+✓ to avoid (starts with "eva")                       evadir
+✓ to head/to lead (starts with e)                    encabezar
+✓ to spread (starts with d)                          difundir
+✓ to earn a living (3 words) (reflexive)             ganarse la vida
+✓ to save (starts with s)                            salvar
+✓ the colonies                                       las colonias
+✓ the war (starts with g not "guerra")               la guerrilla
+✓ the GDP                                            el producto interior bruto
+✓ the European Union                                 la Unión Europea
+✓ the survivor (male)                                el sobreviviente
+✓ the arrival                                        el arribo
+✓ to achieve (starts with L)                         lograr
+✓ to report                                          denunciar
+✓ the human rights                                   los derechos humanos
+✓ to get (starts with c)                             conseguir
+✓ the boat (starts with e)                           la embarcación
+✓ the spokeswoman                                    la portavoz
+✓ to change                                          cambiar
+✓ the remittances                                    las remesas
+✓ the freedom                                        la libertad
+✓ to carry out (starts with r)                       realizar
+✓ to land (2 words 1st word starts with t)           tocar tierra
+✓ the survivor (female)                              la sobreviviente
+✓ the refugee (male)                                 el refugiado
+✓ to carry on/to follow                              seguir
+✓ the hunger                                         la hambre
+✓ to improve                                         mejorar
+✓ the civil servant (female)                         la funcionaria
+✓ to return (starts with "reg")                      regresar
+✓ the training (starts with f)                       la formación
+✗ the wall/border (starts with v)                    la valla
+✓ the trafficker (male)                              el traficante
+✓ to stay (starts with p)                            permanecer
+✓ the refugee centre                                 el centro de asistencia
+✓ to break out (starts with e)                       estallar
+✓ the census                                         el censo
+✓ the trafficker (female)                            la traficante
+✓ the quality of life (1st word starts with c)       la calidad de vida
+✓ to increase (starts with i)                        incrementar
+✓ the birth rate (4 words)                           la tasa de natalidad
+✓ suspicious (feminine)                              sospechosa
+✓ to fight (starts with L)                           luchar
+✓ the lack of (starts with f)                        la falta de
+✗ to drown (reflexive)                               ahogarse
+✓ the rate of                                        la tasa de
+✓ to show gratitude for, to thank                    agradecer
+✓ to get together (starts with u) (reflexive)        unirse
+✓ to waste                                           despilfarrar
+✓ the hope                                           la esperanza
+✓ native (starts with a) (feminine)                  autóctona
+✓ the treatment/the agreement                        el trato
+✓ to look for                                        buscar
+✓ to pay                                             pagar
+✓ to head to (3 words)                               poner rumbo a
+✓ adrift                                             a la deriva
+✓ the social security                                la seguridad social
+✓ to sink                                            hundir
+✓ the political asylum                               el asilo político
+✓ to take away (starts with q)                       quitar
+✓ the smuggler (male)                                el contrabandista
+✓ to be born                                         nacer
+✓ to sign                                            firmar
+✓ to risk (oneself) (reflexive)                      arriesgarse
+✓ the journey (starts with "trav")                   la travesía
+✓ the native population (last word starts with "au") la población autóctona
+✓ to accept/to embrace, take in                      acoger
+✓ a host country                                     un país receptor
+✓ to rescue                                          rescatar
+✓ to support (starts with "ap")                      apoyar
+✓ to find (starts with h)                            hallar
+✓ the brain drain                                    la fuga de cerebros
+✓ the lack, scarcity (starts with e)                 la escasez
+✓ the illegal immigrant (female)                     la inmigrante irregular
+✓ to take in                                         acoger
+✓ to camp out                                        acampar
+✓ to cross                                           cruzar
+✓ to deport                                          deportar
+✓ to choose (starts with "es")                       escoger
+✓ the stability                                      la estabilidad
+✓ the foreigner (male)                               el extranjero
+✓ the spokesman                                      el portavoz
+✓ to take refuge (reflexive)                         refugiarse
+✓ the journey (starts with "tray")                   el trayecto
+✓ the citizenship                                    la ciudadanía
+✓ injured person (female)                            la herida
+✓ the equality                                       la igualdad
+✓ to relocate/to move (starts with t) (reflexive)    trasladarse
+✓ to hit                                             golpear
+✓ the work permit                                    el permiso de trabajo
+✓ nevertheless                                       no obstante
+✓ coming from (2 words 2nd word is de)               procedente de
+✗ to yearn                                           anhelar
+✓ the Castro revolution                              la revolución castrista
+✓ to flee (starts with h)                            huir
+✓ to shout                                           gritar
+✓ to register (starts with e)                        empadronar
+✓ to suffer (starts with p)                          padecer
+✓ the poverty                                        la pobreza
+✓ the wealth                                         la riqueza
+✓ native (starts with a) (masculine)                 autóctono
+✓ wave/surge/flood of (3 words starts with o)        la oleada de
+✓ despite                                            a pesar de
+✓ the workforce                                      la mano de obra
+✓ to legalise (starts with r)                        regularizar
+✓ to leave (starts with d)                           dejar
+✓ to return (starts with "ret")                      retornar
+✗ the ancestry                                       la ascendencia
+✓ the small boat                                     la patera
+✓ the risk                                           el riesgo
+✓ to have just (done something)                      acabar de
+✓ to need (2 words 1st word starts with h)           hacer falta
+✓ the collapse                                       el derrumbe
+✓ to try your luck                                   probar suerte
+✓ injured person (male)                              el herido
+✓ to highlight (starts with "se")                    señalar
+✓ the residency permit                               el permiso de residencia
+✓ to look after                                      cuidar
+✓ to push                                            empujar
+✓ to go deep into (starts with "ad")                 adentrar
+✓ to earn (starts with g)                            ganar
+✗ to process (paperwork)                             tramitar
+✓ the immigrants without any documents/papers        los indocumentados
+✓ the illegal immigrant (male)                       el inmigrante irregular
+✓ to live with                                       convivir
+✓ to invest                                          invertir
+✓ the post/position (starts with p)                  el puesto
+✓ the boom                                           el auge
+✗ to arrest (starts with a)                          apresar
+✓ the smuggler (female)                              la contrabandista
+✓ to feed                                            alimentar
+✗ to live (starts with r)                            residir
+✓ to pay taxes                                       pagar impuestos
+Score: 164/171 (95.90643274853801%)
+
+Round 2:
+✓ the wall/border (starts with v)                    la valla
+✓ to drown (reflexive)                               ahogarse
+✓ to yearn                                           anhelar
+✓ the ancestry                                       la ascendencia
+✓ to process (paperwork)                             tramitar
+✓ to arrest (starts with a)                          apresar
+✓ to live (starts with r)                            residir
+Score: 7/7 (100.0%)
+
+max_streak = 69
+perfect_streak = False

@@ -11,8 +11,8 @@ from constants import chars_to_ignore
 # this will be relevant in the future
 # import matplotlib.pyplot as plt
 """
-1. turn the session.txt names into dir names
-2. make the session files called `session.txt`
+1. turn the session.txt names into dir names - DONE
+2. make the session files called `session.txt` - DONE
 3. plot % correct over # terms remaining on a line graph and save it as `line-graph.pdf` in the session dir
 """
 
@@ -232,7 +232,9 @@ def dump_results_to_records_file(p_start_time, this_sessions_results_file: str):
     # when the session ends, find out when that is to put it in the session's file name
     end_time = str(datetime.now())
     # this copies the data in this_sessions_results_file to the records file for that session
-    with open(this_sessions_results_file, 'r') as results_f, open(f"stats/records/{p_start_time} to {end_time}.txt", 'a') as record_f:
+    session_dir = f"stats/records/{p_start_time} to {end_time}"
+    os.mkdir(session_dir)
+    with open(this_sessions_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
 
@@ -405,8 +407,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
 
                     # if the user input is falsy
-                    # i.e there were only spaces and strip() has removed them
-                    # to leave an empty string
+                    # i.e there were only spaces and strip() has removed them to leave an empty string
                     if not user_response:
                         print("Don't know? Copy out the answer so you remember it!")
                         quiz_counter.reset_streak()
