@@ -249,6 +249,7 @@ when i'm absolutely ready
     - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
     - could also do x axis as "% terms completed" or "% terms remaining"
     - this would be a measure of consistency
+- [ ] implement a feature where each round on the line graph has a different coloured line
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all

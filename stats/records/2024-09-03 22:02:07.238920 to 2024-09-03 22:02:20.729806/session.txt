@@ -1,0 +1,13 @@
+cards from: /Users/luna/flash-cards/languages/basque/self-study/pronouns.txt
+Round 1:
+✓ you (singular) zu
+✓ you (plural)   zuek
+✓ he, she, it    bera
+✓ i              ni
+✓ we             gu
+✓ they           haiek
+Score: 6/6 (100.0%)
+
+No. terms in the card set = 6
+highest_streak = 6
+perfect_streak = True

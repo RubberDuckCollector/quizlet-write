@@ -1,14 +1,20 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def make_line_graph():
-    # this is a line graph of x versus y
-    plt.plot([1, 2, 3, 4], [12, 3, 123, 3214])
-    plt.ylabel("some measuremetn")
-    plt.xlabel("some time")
-    plt.savefig("testimg.pdf", bbox_inches="tight")
-    # .show() frees the plot from memory, so saving the fig after doing so will result in a blank white file
+    # importing package
+
+    # create data
+    x = [1,2,3,4,5]
+    y = [3,3,3,3,3]
+
+    # plot lines
+    plt.plot(x, y, label = "line 1", linestyle="-")
+    plt.plot(y, x, label = "line 2", linestyle="--")
+    plt.plot(x, np.sin(x), label = "curve 1", linestyle="-.")
+    plt.plot(x, np.cos(x), label = "curve 2", linestyle=":")
+    plt.legend()
     plt.show()
-    plt.close()
 
 
 def main():
