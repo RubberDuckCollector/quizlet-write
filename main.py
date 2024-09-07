@@ -87,7 +87,7 @@ def print_round_breakdown(
     print()
 
 
-def make_very_hard_hint():
+def make_very_hard_hint() -> str:
     return "No hints!"
 
 
@@ -222,7 +222,7 @@ def make_easy_hint(msg: str) -> str:
     return hint
 
 
-def dump_results_to_records_file(p_start_time, this_sessions_results_file: str):
+def dump_results_to_records_file(p_start_time, this_sessions_results_file: str) -> str:
     # when the session ends, find out when that is to put it in the session's file name
     end_time = str(datetime.now())
     # this copies the data in this_sessions_results_file to the records file for that session
@@ -398,6 +398,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     print(f"Progress: {Color.LightBlue}{progress}{Color.Reset}%")
                     print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_highest_streak()}{Color.Reset})")
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
+                    # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?")
                     print(f"Hint: {Color.Dim}{hint}{Color.Reset}")
                     user_response = input("> ").strip()
@@ -543,6 +544,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
 
             # write the round list to this_sessions_results_file
+            f.write(f"Difficulty: {sys_args[2]}\n")
+            f.write(f"Randomise: {sys_args[3]}\n")
+            f.write(f"Flip: {sys_args[4]}\n")
             f.write(f"No. terms in the card set = {NUM_TERMS}\n")
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
             f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False

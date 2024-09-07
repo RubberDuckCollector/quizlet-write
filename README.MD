@@ -250,6 +250,7 @@ when i'm absolutely ready
     - could also do x axis as "% terms completed" or "% terms remaining"
     - this would be a measure of consistency
 - [ ] implement a feature where each round on the line graph has a different coloured line
+- [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
