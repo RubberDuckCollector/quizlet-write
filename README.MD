@@ -29,6 +29,7 @@
     * [2024-08-30 (01:19)](#2024-08-30-0119)
     * [2024-08-31 (01:11)](#2024-08-31-0111)
         * [2024-09-01 (00:29) amendment:](#2024-09-01-0029-amendment)
+    * [2024-09-07 (01:20)](#2024-09-07-0120)
 * [Next features](#next-features)
 * [Lesson of the day](#lesson-of-the-day)
 
@@ -233,6 +234,9 @@ when i'm absolutely ready
 ### 2024-09-01 (00:29) amendment:
 - "solved by moving the code that handles..." this has meant that when you end a session on a day after you start it, you no longer increase the term count for the day you started the session on.
 
+## 2024-09-07 (01:20)
+implemented a feature where the command line arguments that are passed into the quiz are also written to the record file
+
 # Next features
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
@@ -251,6 +255,7 @@ when i'm absolutely ready
     - this would be a measure of consistency
 - [ ] implement a feature where each round on the line graph has a different coloured line
 - [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
+- [ ] implement a feature where the time taken to complete the quiz is written to the record file
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all

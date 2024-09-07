@@ -535,7 +535,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 print_round_breakdown(this_sessions_results_file, f"Round {round_num}:", num_correct, num_answered)
                 
                 # randomise now if rand flag is set to --rand-every-round
-                if sys_args[3] == "--rand-every-round":
+                if sys_args[3] == "-rand-every-round":
                     items = list(card_set.items())
                     random.shuffle(items)
                     card_set = dict(items)
