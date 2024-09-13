@@ -608,7 +608,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         # the temp-results-for-session... file can be deleted now
         os.remove(this_sessions_results_file)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, EOFError) as _:
+        # if the user stops the program with ctrl c or ctrl d, also delete the file
+        # to make it like nothing ever happened
         os.remove(this_sessions_results_file)
 
 

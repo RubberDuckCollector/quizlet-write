@@ -1,9 +1,0 @@
-cards from: tests/testfile.txt
-Round 1:
-✓ test1 1
-✓ test2 2
-✗ test3 3
-✗ test4 4
-Score: 2/4 (50.0%)
-
-Round 2:
