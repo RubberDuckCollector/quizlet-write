@@ -166,7 +166,8 @@ none
 - [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
 - [ ] implement a feature where the time taken to complete the quiz is written to the record file
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
-    - files are appended to each other for the test
+    - files are appended to each other for the test (hold file paths in a list?)
+- [ ] implement a feature where the program ignores lines starting with a #. this allows me to put metadata in the flash card file and print it out when the session starts.
 
 # Build log
 
