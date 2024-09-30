@@ -544,9 +544,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
 
             # write the round list to this_sessions_results_file
-            f.write(f"Difficulty: {sys_args[2]}\n")
-            f.write(f"Randomise: {sys_args[3]}\n")
-            f.write(f"Flip: {sys_args[4]}\n")
+            f.write(f"{sys_args[2]}\n")
+            f.write(f"{sys_args[3]}\n")
+            f.write(f"{sys_args[4]}\n")
             f.write(f"No. terms in the card set = {NUM_TERMS}\n")
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
             f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
