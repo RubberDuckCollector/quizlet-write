@@ -1,0 +1,42 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/greetings.txt
+Round 1:
+✓ not                                                nicht
+✓ Goodbye (formal) (starts with A)                   Auf Wiedersehen
+✓ What's your name? (informal)                       Wie heißt du?
+✓ Your name is... ("you're called") (informal)       Du heißt...
+✓ yes                                                ja
+✓ also, too (starts with a)                          auch
+✓ Goodbye (informal) (starts with T)                 Tschüss
+✓ Mrs, the gentlemen                                 die Herren
+✓ What's your name (formal)                          Wie heißen sie?
+✓ My name is...                                      Mein Name ist...
+✓ and                                                und
+✗ no                                                 nein
+✓ pleased to meet you                                Freut mich
+✓ Hello (formal)                                     Guten Tag
+✓ I'm fine                                           Es geht mir gut
+✓ bad(ly)                                            schlecht
+✓ wonderful(ly), great (starts with w)               wunderbar
+✓ good; fine, well                                   gut
+✓ take care (informal) (2 words) (starts with M)     Mach's gut
+✓ Your name is... ("you're called") (formal)         Sie heißen...
+✓ i'm tired                                          Ich bin müde
+✓ Good evening                                       Guten Abend
+✓ Good morning                                       Guten Morgen
+✓ please; you're welome                              bitte
+✓ to be called                                       heißen
+✓ Mr, the gentleman                                  der Herr
+✓ see you later (informal) (2 words) (starts with B) Bis später
+✓ thank you                                          danke
+Score: 27/28 (96.42857142857143%)
+
+Round 2:
+✓ no                                                 nein
+Score: 1/1 (100.0%)
+
+Difficulty: -normal
+Randomise: -rand-every-round
+Flip: -no-flip
+No. terms in the card set = 28
+highest_streak = 17
+perfect_streak = False

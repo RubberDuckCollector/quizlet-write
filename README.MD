@@ -10,6 +10,7 @@
 * [Demo video](#demo-video)
 * [Technical Explanation (WIP)](#technical-explanation-wip)
 * [Notes](#notes)
+* [Next features](#next-features)
 * [Build log](#build-log)
     * [2024-02-20](#2024-02-20)
     * [2024-02-21](#2024-02-21)
@@ -30,7 +31,6 @@
     * [2024-08-31 (01:11)](#2024-08-31-0111)
         * [2024-09-01 (00:29) amendment:](#2024-09-01-0029-amendment)
     * [2024-09-07 (01:20)](#2024-09-07-0120)
-* [Next features](#next-features)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -146,6 +146,28 @@
 
 none
 
+# Next features
+- [x] streak feature (100% = perfect streak)
+- [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
+- [x] statistics and tracking - daily word count of terms done
+- [ ] a new command line argument where i use regex to highlight numbers in a special colour
+- [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
+- [x] tell the user the previous terms done today and the new terms done today
+- [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
+- [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
+    - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
+- [x] implement a feature that track every session's % correct and generates a line graph of the session
+    - REQUIREMENTS: would need to make every session inside `stats/records` its own directory containing the record file and the graph
+    - accuracy on the y axis, words done on the x axis
+    - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
+    - could also do x axis as "% terms completed" or "% terms remaining"
+    - this would be a measure of consistency
+- [ ] implement a feature where each round on the line graph has a different coloured line
+- [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
+- [ ] implement a feature where the time taken to complete the quiz is written to the record file
+- [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
+    - files are appended to each other for the test
+
 # Build log
 
 ## 2024-02-20
@@ -236,26 +258,6 @@ when i'm absolutely ready
 
 ## 2024-09-07 (01:20)
 implemented a feature where the command line arguments that are passed into the quiz are also written to the record file
-
-# Next features
-- [x] streak feature (100% = perfect streak)
-- [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
-- [x] statistics and tracking - daily word count of terms done
-- [ ] a new command line argument where i use regex to highlight numbers in a special colour
-- [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
-- [x] tell the user the previous terms done today and the new terms done today
-- [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
-- [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
-    - the file would have the name `"{filename} {session_end_date_and_time} incorrect.txt"`
-- [x] implement a feature that track every session's % correct and generates a line graph of the session
-    - REQUIREMENTS: would need to make every session inside `stats/records` its own directory containing the record file and the graph
-    - accuracy on the y axis, words done on the x axis
-    - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
-    - could also do x axis as "% terms completed" or "% terms remaining"
-    - this would be a measure of consistency
-- [ ] implement a feature where each round on the line graph has a different coloured line
-- [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
-- [ ] implement a feature where the time taken to complete the quiz is written to the record file
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all

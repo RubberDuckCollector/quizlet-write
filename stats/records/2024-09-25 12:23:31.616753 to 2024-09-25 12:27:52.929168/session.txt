@@ -1,0 +1,36 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/classroom.txt
+Round 1:
+✓ the window                         das Fenster(-)
+✓ the book                           das Buch(¨er)
+✓ to listen                          hören
+✓ the paper                          das Papier(e)
+✓ the classroom                      das Klassenzimmer
+✓ to listen (to something, somebody) zuhören
+✓ blue                               blau
+✓ dark blue                          dunkelblau
+✓ the notebook                       das Heft(e)
+✓ the pen                            der Kuli(s)
+✓ yellow                             gelb
+✓ the table                          der Tisch(e)
+✗ the pencil                         der Bleistift(e)
+✓ now                                jetzt
+✗ the dialogue                       das Gespräch
+✓ the chair                          der Stuhl(¨e)
+✓ light blue                         hellblau
+✓ to answer                          antworten
+✓ to mean (starts with b)            bedeuten
+✗ the chalk                          die Kreide(n)
+Score: 17/20 (85.0%)
+
+Round 2:
+✓ the pencil                         der Bleistift(e)
+✓ the chalk                          die Kreide(n)
+✓ the dialogue                       das Gespräch
+Score: 3/3 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 20
+highest_streak = 12
+perfect_streak = False

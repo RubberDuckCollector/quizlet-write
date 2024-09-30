@@ -1,0 +1,20 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/colours.txt
+Round 1:
+✓ pink   rosa
+✓ red    rot
+✓ blue   blau
+✓ green  grün
+✓ grey   grau
+✓ orange orange
+✓ white  weiß
+✓ yellow gelb
+✓ black  schwarz
+✓ brown  braun
+Score: 10/10 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 10
+highest_streak = 10
+perfect_streak = True
