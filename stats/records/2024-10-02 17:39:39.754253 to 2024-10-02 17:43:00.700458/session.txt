@@ -1,0 +1,27 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/LAN4045/hiragana/aiueo.txt
+Round 1:
+✓ お o
+✓ え e
+✗ う u
+✓ あ a
+✓ い i
+Score: 4/5 (80.0%)
+
+Round 2:
+✗ う u
+Score: 0/1 (0.0%)
+
+Round 3:
+✗ う u
+Score: 0/1 (0.0%)
+
+Round 4:
+✓ う u
+Score: 1/1 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 5
+highest_streak = 2
+perfect_streak = False

@@ -1,0 +1,38 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/LAN4045/hiragana/k-characters.txt
+Round 1:
+✗ き ki
+✓ け ke
+✗ か ka
+✗ こ ko
+✓ く ku
+Score: 2/5 (40.0%)
+
+Round 2:
+✗ か ka
+✗ き ki
+✓ こ ko
+Score: 1/3 (33.33333333333333%)
+
+Round 3:
+✓ か ka
+✗ き ki
+Score: 1/2 (50.0%)
+
+Round 4:
+✗ き ki
+Score: 0/1 (0.0%)
+
+Round 5:
+✗ き ki
+Score: 0/1 (0.0%)
+
+Round 6:
+✓ き ki
+Score: 1/1 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 5
+highest_streak = 2
+perfect_streak = False
