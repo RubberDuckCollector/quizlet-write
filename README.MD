@@ -167,7 +167,7 @@ none
 - [ ] implement a feature where the time taken to complete the quiz is written to the record file
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
     - files are appended to each other for the test (hold file paths in a list?)
-- [ ] implement a feature where the program ignores lines starting with a #. this allows me to put metadata in the flash card file and print it out when the session starts.
+- [ ] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
 - [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart
 
 # Build log
