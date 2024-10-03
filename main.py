@@ -399,7 +399,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_highest_streak()}{Color.Reset})")
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
                     # print(f"DEBUG: sys_args: {sys_args}")
-                    print(f"What's the answer to '{Color.Bold}{prompt}{Color.Reset}'?")
+                    print(f"What's the answer to {Color.LightCyan}{prompt}{Color.Reset}?")
                     print(f"Hint: {Color.Dim}{hint}{Color.Reset}")
                     user_response = input("> ").strip()
 
