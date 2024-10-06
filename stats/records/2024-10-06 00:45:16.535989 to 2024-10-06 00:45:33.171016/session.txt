@@ -1,0 +1,20 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/LAN4045/hiragana/s-characters.txt
+Round 1:
+✓ さ sa
+✓ し shi
+✗ そ so
+✗ す su
+✓ せ se
+Score: 3/5 (60.0%)
+
+Round 2:
+✓ そ so
+✓ す su
+Score: 2/2 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 5
+highest_streak = 3
+perfect_streak = False
