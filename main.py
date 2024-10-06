@@ -619,8 +619,11 @@ def render_cards(filepath: str) -> dict:
 
     with open(filepath, "r") as f:
         for line in f:
-            key, value = line.strip().split("|")
-            rendered_cards[key.strip()] = value.strip()
+            if line[0] == "#":
+                pass
+            else:
+                key, value = line.strip().split("|")
+                rendered_cards[key.strip()] = value.strip()
 
     # return this as the dictionary of terms and definitions
     # e.g: "hello": "hola",
