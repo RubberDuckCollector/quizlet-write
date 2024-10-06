@@ -246,6 +246,17 @@ def write_terms_per_day(obj_to_be_written: str):
         json.dump(obj_to_be_written, f, indent=4)
 
 
+def write_sessions_per_day(obj_to_be_written: str):
+    file_path = "stats/sessions-per-day.json"
+    with open(file_path, 'w') as f:
+        # comes in as a str, to turn it into a valid json obj
+        # this turns any ' into ", which fixes the problem
+        # to_be_written = json.dumps(obj_to_be_written)
+        # f.write(to_be_written)
+
+        json.dump(obj_to_be_written, f, indent=4)
+
+
 class StreakCounter:
     def __init__(self):
         self.current_streak = 0
@@ -338,6 +349,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
     # if it catches one, this_sessions_results_file will still be deleted, which is good
+    # because it's a temp file and all actions are aborted if the session finishes early
     try:
         with open(this_sessions_results_file, "a") as f:
             f.write(f"cards from: {sys.argv[1]}\n")
@@ -576,38 +588,69 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     print(line.strip())  # otherwise don't colour the line
 
 
-        # putting this code here instead of at the top of `quiz()` fixes the bug,
-        # where only one session would add to the terms done count for that day
-        # instead of a second session
-        # disclaimer: bug only found with two concurrent sessions
-        with open("stats/terms-per-day.json", 'r') as f:
-            # terms_done_dict = json.loads(f.readline())
-            terms_done_dict = json.load(f)
+        try:
+            # putting this code here instead of at the top of `quiz()` fixes the bug,
+            # where only one session would add to the terms done count for that day
+            # instead of a second session
+            # disclaimer: bug only found with two concurrent sessions
+            with open("stats/terms-per-day.json", 'r') as terms_f:
+                # terms_done_dict = json.loads(f.readline())
+                terms_done_dict = json.load(terms_f)
 
-        # show the user the previous terms done today
-        # and the new terms done today figure after the end of the session
-        new_terms_completed = 0
+            # show the user the previous terms done today
+            # and the new terms done today figure after the end of the session
+            new_terms_completed = 0
 
-        # at the end of the round, update the current day's terms done total
-        today = datetime.today().strftime('%Y-%m-%d')
-        if today in terms_done_dict:
-            # need to look at the int stored at the date key, then add NUM_TERMS to it
-            terms_done_dict[today] += NUM_TERMS
-            new_terms_completed = terms_done_dict[today]
-        else:
-            # not in there, can safely write new day
-            terms_done_dict[today] = NUM_TERMS
+            # at the end of the round, update the current day's terms done total
+            today = datetime.today().strftime('%Y-%m-%d')
+            if today in terms_done_dict:
+                # need to look at the int stored at the date key, then add NUM_TERMS to it
+                terms_done_dict[today] += NUM_TERMS
+                new_terms_completed = terms_done_dict[today]
+            else:
+                # not in there, can safely write new day
+                terms_done_dict[today] = NUM_TERMS
 
-            # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
-            new_terms_completed += NUM_TERMS
+                # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
+                new_terms_completed += NUM_TERMS
 
-        write_terms_per_day(terms_done_dict)
+            write_terms_per_day(terms_done_dict)
 
-        # show the user the increase in terms done today
-        print(f"Terms done today: {new_terms_completed - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
+            # show the user the increase in terms done today
+            print(f"Terms done today: {new_terms_completed - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
 
-        # the temp-results-for-session... file can be deleted now
-        os.remove(this_sessions_results_file)
+            # repeat the same process but for sessions done today
+            with open("stats/sessions-per-day.json", "r") as sessions_f:
+                sessions_done_dict = json.load(sessions_f)
+
+            new_sessions_completed = 0
+            
+            # current date and time not assigned again so we can have the same date for both the session and the terms count
+            # i.e date cannot progress in between that code and this code and have an effect on the code's function
+
+            if today in sessions_done_dict:
+                sessions_done_dict[today] += 1
+                new_sessions_completed = sessions_done_dict[today]
+            else:
+                # not in there, can safely write new day
+                sessions_done_dict[today] = 1
+
+                # fixes the bug where new_sessions_completed is negative on a day with 0 previously completed sessions
+                new_sessions_completed += 1
+
+            write_sessions_per_day(sessions_done_dict)
+
+            # show the user the increase in sessions done today
+            print(f"Sessions done today: {new_sessions_completed - 1} {Color.LightGreen}->{Color.Reset} {new_sessions_completed}")
+
+
+            # delete the temp file as it has served its purpose
+            os.remove(this_sessions_results_file)
+        except Exception as e:
+            print("error while saving data.")
+            print(e)
+
+
     except (KeyboardInterrupt, EOFError) as _:
         # if the user stops the program with ctrl c or ctrl d, also delete the file
         # to make it like nothing ever happened

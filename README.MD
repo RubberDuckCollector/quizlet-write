@@ -169,7 +169,7 @@ none
     - files are appended to each other for the test (hold file paths in a list?)
 - [ ] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
 - [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
-- [ ] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
+- [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
 
 # Build log
 
