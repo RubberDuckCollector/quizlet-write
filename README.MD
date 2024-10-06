@@ -31,6 +31,7 @@
     * [2024-08-31 (01:11)](#2024-08-31-0111)
         * [2024-09-01 (00:29) amendment:](#2024-09-01-0029-amendment)
     * [2024-09-07 (01:20)](#2024-09-07-0120)
+    * [2024-10-06 (02:21)](#2024-10-06-0221)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -170,6 +171,7 @@ none
 - [ ] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
 - [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
 - [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
+    - can now calculate the average length of a flash card set on a given day knowing the number of terms studied
 
 # Build log
 
@@ -261,6 +263,10 @@ when i'm absolutely ready
 
 ## 2024-09-07 (01:20)
 implemented a feature where the command line arguments that are passed into the quiz are also written to the record file
+
+## 2024-10-06 (02:21)
+- added a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
+    - can now calculate the average length of a flash card set on a given day knowing the number of terms studied
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
