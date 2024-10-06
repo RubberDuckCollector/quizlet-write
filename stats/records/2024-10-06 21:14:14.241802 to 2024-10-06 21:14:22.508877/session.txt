@@ -1,0 +1,15 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/LAN4045/hiragana/n-characters.txt
+Round 1:
+✓ ね ne
+✓ の no
+✓ な na
+✓ ぬ nu
+✓ に ni
+Score: 5/5 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 5
+highest_streak = 5
+perfect_streak = True
