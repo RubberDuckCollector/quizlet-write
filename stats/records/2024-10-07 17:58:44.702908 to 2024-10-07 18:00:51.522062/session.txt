@@ -1,0 +1,23 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/schritte/page-25-phrases.txt
+Round 1:
+✓ please write that             schreiben Sie das bitte
+✓ i beg your pardon?            wie bitte?
+✓ please repeat that            widerholen Sie das bitte
+✓ open the book to page...      öffnen Sie das Buch auf Seite...
+✓ is that correct?              ist das richtig?
+✓ how do you say ... in German? wie sagt man ... auf Deutsch?
+✓ i don't know                  ich weiß nicht
+✓ how do you spell that?        wie schreibt man das?
+✓ (speak) slowly please         (sprechen Sie) bitte langsam
+✓ i have a question             ich habe eine Frage
+✓ i don't understand that       das verstehe ich nicht
+✓ what does ... mean?           was bedeutet ...?
+✓ say that again please         sagen Sie das bitte noch einmal
+Score: 13/13 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 13
+highest_streak = 13
+perfect_streak = True
