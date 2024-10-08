@@ -157,7 +157,7 @@ none
 - [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
-- [x] implement a feature that track every session's % correct and generates a line graph of the session
+- [x] implement a feature that tracks every session's % correct and generates a line graph of the session
     - REQUIREMENTS: would need to make every session inside `stats/records` its own directory containing the record file and the graph
     - accuracy on the y axis, words done on the x axis
     - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
