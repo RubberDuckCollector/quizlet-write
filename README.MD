@@ -295,6 +295,7 @@ implemented a feature where the command line arguments that are passed into the 
     1. content presence check - the content on both sides of the `|` has been removed, only the `|` remains on that line
 ![screenshot](assets/flash-card-data-presence-check.png)
 
+
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
 - 2024-03-07 update: i lied
