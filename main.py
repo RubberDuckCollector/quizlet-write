@@ -661,8 +661,37 @@ def render_cards(filepath: str) -> dict:
     rendered_cards = {}
 
     with open(filepath, "r") as f:
+        # first, check that the cards have no errors in them
+        line_num = 1
         for line in f:
-            if line[0] == "#":
+            # presence check for 
+            if line.strip() == "":
+                continue
+            elif "|" not in line:
+                print(f"Error while parsing flash cards from {filepath}: a | character was not found at line {line_num}.")
+                sys.exit(0)
+            elif line.count("|") > 1:
+                print(f"Error while parsing flash cards from {filepath}: more than one | character not found at line {line_num}.")
+                sys.exit(0)
+            else:
+                left, right = line.split("|", 1)
+                if not left.strip():
+                    print(f"Error while parsing flash cards from {filepath}: term (content on the left of the |) was not found at line {line_num}.")
+                    sys.exit(0)
+                if not right.strip():
+                    """
+                    .strip() is important here because:
+                        - if there is no content on the right side on the line to begin with (e.g: `hello|`)
+                        - an empty string will be processed, which is not what we want, we want the error to trigger.
+                    """
+                    print(f"Error while parsing flash cards from {filepath}: definition (content on the right of the |) was not found at line {line_num}.")
+                    sys.exit(0)
+            line_num += 1
+
+    # now we can start parsing.
+    with open(filepath, "r") as f:
+        for line in f:
+            if line.strip() == "" or line[0] == "#":
                 pass
             else:
                 key, value = line.strip().split("|")

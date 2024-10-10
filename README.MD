@@ -6,6 +6,7 @@
 * [Why I made this](#why-i-made-this)
 * [Disclaimer](#disclaimer)
 * [Prerequisites](#prerequisites)
+* [Optional](#optional)
 * [Overview](#overview)
 * [Demo video](#demo-video)
 * [Technical Explanation (WIP)](#technical-explanation-wip)
@@ -32,6 +33,7 @@
         * [2024-09-01 (00:29) amendment:](#2024-09-01-0029-amendment)
     * [2024-09-07 (01:20)](#2024-09-07-0120)
     * [2024-10-06 (02:21)](#2024-10-06-0221)
+    * [2024-10-10 (21:45)](#2024-10-10-2145)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -65,6 +67,17 @@
 # Prerequisites
 
 - matplotlib (working on a no-matplotlib version)
+- a text file in the format `content|more-content`, on each line of the file like this:
+```
+hello|hola
+goodbye|adiós
+how are you?|¿qué tal?
+```
+for the whole length of the file, save for lines starting with a `#`. They'll be 
+
+# Optional
+
+- matplotlib (will be made optional through an extra command line argument in the future)
 
 # Overview
 <details><summary>Overview:</summary>
@@ -172,6 +185,8 @@ none
 - [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
 - [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
     - can now calculate the average length of a flash card set on a given day knowing the number of terms studied
+- [ ] make matplotlib optional through only importing it if an if statement has been checked, also if statements whenever it's used elsewhere
+    - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
 
 # Build log
 
@@ -267,6 +282,18 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-10-06 (02:21)
 - added a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
     - can now calculate the average length of a flash card set on a given day knowing the number of terms studied
+
+## 2024-10-10 (21:45)
+- added code to `render_cards()`. explicitly does nothing if line of the flash card file is empty with `line.strip()`, as the line will be removed if it's empty
+- added a feature to the program in `render_cards()` that tells the user when an error is detected parsing the flash card file where the format of `term|defnition` isn't followed
+- also gonna start screenshotting my tests
+- order of tests:
+    1. pipe character `|` presence check - the `|` on the line has been removed on that line
+    1. pipe character `|` presence check - more `|` characters have been added on that line
+    1. content presence check - right side of the `|` has been removed on that line
+    1. content presence check - left side of the `|` has been removed on that line
+    1. content presence check - the content on both sides of the `|` has been removed, only the `|` remains on that line
+![screenshot](assets/flash-card-data-presence-check.png)
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
