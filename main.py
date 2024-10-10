@@ -664,21 +664,24 @@ def render_cards(filepath: str) -> dict:
         # first, check that the cards have no errors in them
         line_num = 1
         for line in f:
-            # presence check for 
             if line.strip() == "":
                 continue
             elif "|" not in line:
+                # presence check for the | 
                 print(f"Error while parsing flash cards from {filepath}: a | character was not found at line {line_num}.")
                 sys.exit(0)
             elif line.count("|") > 1:
+                # presence check for the | 
                 print(f"Error while parsing flash cards from {filepath}: more than one | character not found at line {line_num}.")
                 sys.exit(0)
             else:
                 left, right = line.split("|", 1)
                 if not left.strip():
+                    # presence check for the content left of the |
                     print(f"Error while parsing flash cards from {filepath}: term (content on the left of the |) was not found at line {line_num}.")
                     sys.exit(0)
                 if not right.strip():
+                    # presence check for the content right of the |
                     """
                     .strip() is important here because:
                         - if there is no content on the right side on the line to begin with (e.g: `hello|`)
