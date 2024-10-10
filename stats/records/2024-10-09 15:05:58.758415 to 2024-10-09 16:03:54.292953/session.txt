@@ -1,0 +1,265 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/schritte/end-of-schritte-vocab.txt
+Round 1:
+✓ yellow                                              gelb
+✓ they count                                          sie zählen
+✓ the picture                                         das Bild(er)
+✓ white                                               weiß
+✓ the table                                           der Tisch(e)
+✓ June                                                Juni
+✓ hot                                                 heiß
+✗ the chair                                           der Stuhl(e)
+✓ the euro (one euro, ten euros)                      der Euro(s) (ein Euro, zehn Euro)
+✓ i count                                             ich zähle
+✓ today                                               heute
+✓ in the evening                                      abends
+✓ you (formal) are                                    Sie sind
+✓ the spring                                          der Frühling
+✓ isn't it?; isn't that right?                        nicht wahr?
+✓ the Mr; gentleman                                   der Herr(en)
+✓ the watch; clock; o'clock                           die Uhr(en)
+✓ what colour is ...?                                 welche Farbe hat ...?
+✓ the chalk                                           die Kreide
+✓ it is...                                            es ist...
+✗ Thursday                                            Donnerstag
+✓ expensive (starts with t)                           teuer
+✓ Saturday                                            Samstag
+✓ the student (female)                                die Studentin(nen)
+✓ the weather                                         das Wetter
+✓ please write that                                   schreiben Sie das bitte
+✓ wonderful(ly), great (starts with w)                wunderbar
+✓ too bad (starts with s)                             schade
+✓ you (familiar) have                                 du hast
+✓ to be called                                        heißen
+✓ hello (formal)                                      guten Tag
+✓ how are you (casual)                                wie geht's
+✓ there                                               da
+✓ for tomorrow                                        für morgen
+✓ it is                                               es ist
+✓ please; you're welcome (starts with b)              bitte
+✗ the wall                                            die Wand(¨e)
+✓ when where you born? (familiar)                     wann bist du geboren?
+✓ now                                                 jetzt
+✓ to begin                                            beginnen
+✓ no                                                  nein
+✓ short (used for objects)                            kurz
+✓ (at) quarter past one                               (um) Virtel nach eins
+✓ cold                                                kalt
+✓ the summer                                          der Sommer
+✓ the time of day                                     die Uhrzeit(en)
+✓ the trousers                                        die Hose(n)
+✓ to repeat                                           wiederholen
+✓ new                                                 neu
+✓ to hear                                             hören
+✓ the book                                            das Buch(¨er)
+✓ to eat (starts with e)                              essen
+✓ the second                                          die Sekunde(n)
+✓ to be                                               sein
+✓ red                                                 rot
+✓ i'm fine (4 words) (1st word starts with e)         es geht mir gut
+✓ take care (colloquial)                              mach's gut
+✓ to take                                             nehmen
+✓ in German                                           auf Deutsch
+✓ what's your name (familiar)                         wie heißt du
+✓ pink                                                rosa
+✓ the student (male)                                  der Student(en)
+✓ the colour                                          die Farbe(n)
+✓ nice; beautiful (starts with s)                     schön
+✓ the notebook                                        das Heft(e)
+✓ thick; fat                                          dick
+✓ the week has seven days                             Die Woche hat sieben Tage
+✓ the sun is shining                                  Die Sonne scheint
+✓ February                                            Februar
+✓ and                                                 und
+✓ where is ...?                                       wo ist ...?
+✓ the blackboard                                      die Tafel(n)
+✓ October                                             Oktober
+✓ to find                                             finden
+✓ November                                            November
+✓ how are you (familiar)                              wie geht es dir
+✓ awful(ly), terrible, terribly                       furchtbar
+✓ really; indeed (starts with w)                      wirklich
+✗ the coat                                            der Mantel(¨)
+✓ Monday                                              Montag
+✓ how do you spell that                               wie schreibt man ...
+✓ to count                                            zählen
+✓ here                                                hier
+✓ the jeans (this is already plural)                  die Jeans
+✓ That comes to...; that costs...                     Das kostet...
+✓ cool                                                kühl
+✓ green                                               grün
+✓ brown                                               braun
+✓ i'm tired                                           ich bin müde
+✓ again                                               (schon) wieder
+✓ tomorrow                                            morgen
+✓ August                                              August
+✗ to ask (starts with f)                              fragen
+✓ finished, done                                      fertig
+✓ long                                                lang
+✓ goodbye; bye (colloquial)                           tschüss
+✓ super, superb                                       super
+✓ we have                                             wir haben
+✓ yes                                                 ja
+✗ the opposite                                        das Gegenteil(e)
+✓ the cent (of a Euro) (one cent, five cents)         der Cent(s) (ein Cent, fünf Cent)
+✗ great; wonderful (starts with p)                    prima
+✓ i have                                              ich habe
+✓ the (university) lecture; class                     die Vorlesung(en)
+✓ July                                                Juli
+✓ you (familiar) are                                  du bist
+✓ it is two o'clock                                   es ist zwei Uhr
+✓ the winter                                          der Winter
+✓ at noon                                             mittags
+✓ good morning                                        guten Morgen
+✓ the sweatshirt                                      das Sweatshirt(s)
+✓ the door                                            die Tür(en)
+✓ (at) quarter to two                                 (um) Virtel vor zwei
+✓ what time is it                                     wie viel Uhr ist es
+✓ to have                                             haben
+✓ it's raining                                        es regnet
+✓ the month                                           der Monat(e)
+✓ please repeat that                                  wiederholen Sie das bitte
+✓ you count (formal)                                  Sie zählen
+✓ the window                                          das Fenster
+✓ January                                             Januar
+✓ the t-shirt                                         das T-Shirt(s)
+✓ how many                                            wie viele
+✓ to cost; come to (a certain amount)                 kosten
+✓ good evening                                        guten Abend
+✓ the shoe                                            der Schuh(e)
+✓ to learn; to study                                  lernen
+✓ the paper                                           das Papier(e)
+✓ i think so too                                      Das finde ich auch
+✓ say that again please                               sagen Sie das bitte noch einmal
+✓ warm                                                warm
+✓ not                                                 nicht
+✓ it's snowing                                        es schneit
+✓ black                                               schwarz
+✓ the pen                                             der Kuli(s)
+✓ the dress                                           das Kleid(er)
+✓ blue                                                blau
+✓ (at) one o'clock                                    (um) eins
+✓ what does ... mean?                                 was bedeutet ...?
+✓ the week                                            die Woche(n)
+✗ the course                                          der Kurs(e)
+✓ what's your name (formal)                           wie heißen Sie
+✓ dirty                                               schmutzig
+✓ the number (starts with Z)                          die Zahl(en)
+✓ wrong; false(ly)                                    falsch
+✓ (at) two o'clock                                    (um) zwei
+✓ April                                               April
+✓ fast, quick(ly)                                     schnell
+✓ or                                                  oder
+✓ it's twenty (minutes) after seven                   es ist zwanzig (Minuten) nach sieben
+✓ they are                                            sie sind
+✓ pleased to meet you                                 freut mich
+✓ i was born in May                                   ich bin im Mai geboren
+✓ see you later (literally: until later) (colloquial) Bis Später
+✓ think; skinny                                       dünn
+✓ bad(ly) (starts with s)                             schlecht
+✓ what is that?                                       was ist das?
+✓ the blouse                                          die Bluse(n)
+✗ in English                                          auf Englisch
+✓ Tuesday                                             Dienstag
+✓ it's ten (minutes) to three                         es ist zehn (Minuten) vor drei
+✓ the autumn, fall                                    der Herbst
+✓ the day                                             der Tag(e)
+✓ slow(ly)                                            langsam
+✓ the jacket                                          die Jacke(n)
+✓ but, however                                        aber
+✓ i don't know                                        ich weiß es nicht
+✓ December                                            Dezember
+✓ my name is...                                       mein Name ist...
+✓ the Mrs; woman; wife                                die Frau(en)
+✓ i don't understand                                  das verstehe ich nicht
+✓ correct(ly); right(ly)                              richtig
+✓ to play tennis                                      Tennis spielen
+✓ the hour (starts with S)                            die Stunde(n)
+✓ open the book to page...                            öffnen Sie das Buch auf Seite...
+✓ i beg your pardon?                                  wie bitte?
+✓ windy                                               windig
+✓ the shirt                                           das Hemd(en)
+✓ how much                                            wie viel
+✓ orange                                              orange
+✓ too (with adjective or adverb)                      zu
+✓ very                                                sehr
+✓ in the morning                                      morgens
+✓ your name is... (familiar)                          Du heißt...
+✓ they have                                           sie haben
+✓ that is                                             Das ist
+✓ (at) half past one                                  (um) halb zwei
+✓ only (starts with n)                                nur
+✓ to go                                               gehen
+✓ May                                                 Mai
+✓ how are you (formal)                                wie geht es Ihnen
+✓ it has                                              es hat
+✓ i am                                                ich bin
+✓ how does one say ... in German                      wie sagt man ... auf Deutsch
+✓ the jumper (starts with Pullo)                      der Pullover(-)
+✓ short; small, little                                klein
+✗ the season                                          die Jahreszeit(en)
+✓ inexpensive, cheap                                  billig
+✓ March                                               März
+✓ to say                                              sagen
+✓ the jumper (starts with Pulli)                      der Pulli(s)
+✓ i have a question                                   ich habe eine Frage
+✓ Goodbye                                             Auf Wiedersehen
+✓ grey                                                grau
+✓ again, once more (2 words)                          noch einmal
+✓ in the afternoon                                    nachmittags
+✓ old (starts with a)                                 alt
+✓ the year                                            das Jahr(e)
+✓ good; fine, well                                    gut
+✓ September                                           September
+✓ i don't have time                                   ich habe keine Zeit
+✓ Sunday                                              Sonntag
+✓ how late is it                                      wie spät ist es
+✓ to read                                             lesen
+✓ it's five after four (time)                         es ist fünf nach vier
+✓ how much is ...?                                    was kostet ...?
+✓ speak slowly please                                 sprechen Sie bitte langsam
+✓ the room (starts with Z)                            das Zimmer(-)
+✓ thank you (starts with d)                           danke
+✓ we count                                            wir zählen
+✓ the time                                            die Zeit(en)
+✓ Wednesday                                           Mittwoch
+✓ to answer                                           antworten
+✓ great, terrific (starts with t)                     toll
+✓ how much are ...?                                   was kosten ...?
+✓ is that correct?                                    ist das richtig?
+✓ the skirt                                           der Rock(¨e)
+✓ also, too                                           auch
+✓ your name is... (formal)                            Sie heißen...
+✓ it is one o'clock                                   es ist ein Uhr
+✓ tall; big, large                                    groß
+✓ the minute                                          die Minute(n)
+✓ to need                                             brauchen
+✓ clean; neat                                         sauber
+✓ the clothing                                        die Kleidung
+✓ you (formal) have                                   Sie haben
+✓ the pencil                                          der Bleistift(e)
+Score: 227/237 (95.78059071729957%)
+
+Round 2:
+✓ Thursday                                            Donnerstag
+✓ the opposite                                        das Gegenteil(e)
+✓ great; wonderful (starts with p)                    prima
+✓ the wall                                            die Wand(¨e)
+✓ the coat                                            der Mantel(¨)
+✗ the chair                                           der Stuhl(e)
+✓ the season                                          die Jahreszeit(en)
+✓ to ask (starts with f)                              fragen
+✓ the course                                          der Kurs(e)
+✗ in English                                          auf Englisch
+Score: 8/10 (80.0%)
+
+Round 3:
+✓ the chair                                           der Stuhl(e)
+✓ in English                                          auf Englisch
+Score: 2/2 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 237
+highest_streak = 45
+perfect_streak = False
