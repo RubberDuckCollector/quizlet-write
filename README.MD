@@ -167,6 +167,7 @@ none
 - [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
 - [x] tell the user the previous terms done today and the new terms done today
 - [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
+    - 11-10-2024: (this is done by having separate files tracking the progress of each session, no two files would conceivably be of the same session because the name is decided by time up to 6 digits on the second)
 - [x] implement a feature that tracks every session's % correct and generates a line graph of the session
 - [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
 - [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day

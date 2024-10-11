@@ -1,0 +1,18 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/greetings.txt
+Round 1:
+✓ yes              はい
+✓ no               いいえ
+✓ good morning     おはようございます。
+✓ goodbye          さようなら
+✓ good night       こんばんは
+✓ thank you        ありがとう
+✓ sorry; excuse me すみません
+✓ hello            こんにちは
+Score: 8/8 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 8
+highest_streak = 8
+perfect_streak = True
