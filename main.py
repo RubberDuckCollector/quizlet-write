@@ -685,7 +685,7 @@ def render_cards(filepath: str) -> dict:
                     """
                     .strip() is important here because:
                         - if there is no content on the right side on the line to begin with (e.g: `hello|`)
-                        - an empty string will be processed, which is not what we want, we want the error to trigger.
+                        - an empty string will be processed, which is not what we want because the if statement will not trigger, we want the error to trigger.
                     """
                     print(f"Error while parsing flash cards from {filepath}: definition (content on the right of the |) was not found at line {line_num}.")
                     sys.exit(0)
