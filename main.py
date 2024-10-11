@@ -130,7 +130,7 @@ def make_hard_hint(msg: str) -> str:
 
 def make_normal_hint(msg: str) -> str:
     hint = ""
-    msg = list(msg)  # turn the string into a list of chars
+    msg = list(msg)  # type: ignore # turn the string into a list of chars
 
     i = 0
     # iterating through the list with a while loop
@@ -183,7 +183,7 @@ def make_normal_hint(msg: str) -> str:
 
 def make_easy_hint(msg: str) -> str:
     hint = ""
-    msg = list(msg)
+    msg = list(msg)  # type: ignore
 
     i = 0
     inside_brackets = False
@@ -664,7 +664,7 @@ def render_cards(filepath: str) -> dict:
         # first, check that the cards have no errors in them
         line_num = 1
         for line in f:
-            if line.strip() == "":
+            if line.strip() == "" or line[0] == "#":
                 continue
             elif "|" not in line:
                 # presence check for the | 
