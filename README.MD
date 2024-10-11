@@ -8,7 +8,7 @@
 * [Prerequisites](#prerequisites)
 * [Optional](#optional)
 * [Overview](#overview)
-* [Demo video](#demo-video)
+* [Demo video (old)](#demo-video-old)
 * [Technical Explanation (WIP)](#technical-explanation-wip)
 * [Notes](#notes)
 * [Next features](#next-features)
@@ -91,7 +91,7 @@ for the whole length of the file, save for lines starting with a `#`. They'll be
     </ol>
 </details>
 
-# Demo video
+# Demo video (old)
 <https://youtu.be/rUKUTK_Q52E>
 
 # Technical Explanation (WIP)
