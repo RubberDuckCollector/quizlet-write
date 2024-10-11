@@ -73,7 +73,7 @@ hello|hola
 goodbye|adiós
 how are you?|¿qué tal?
 ```
-for the whole length of the file, save for lines starting with a `#`. They'll be 
+for the whole length of the file, save for lines starting with a `#`. They'll be ignored by the program as code comments.
 
 # Optional
 
@@ -164,26 +164,26 @@ none
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 - [x] statistics and tracking - daily word count of terms done
-- [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
 - [x] tell the user the previous terms done today and the new terms done today
 - [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
+- [x] implement a feature that tracks every session's % correct and generates a line graph of the session
+- [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
+- [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
+- [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
-- [x] implement a feature that tracks every session's % correct and generates a line graph of the session
     - REQUIREMENTS: would need to make every session inside `stats/records` its own directory containing the record file and the graph
     - accuracy on the y axis, words done on the x axis
     - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
     - could also do x axis as "% terms completed" or "% terms remaining"
     - this would be a measure of consistency
 - [ ] implement a feature where each round on the line graph has a different coloured line
-- [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
 - [ ] implement a feature where the time taken to complete the quiz is written to the record file
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
     - files are appended to each other for the test (hold file paths in a list?)
 - [ ] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
 - [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
-- [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
     - can now calculate the average length of a flash card set on a given day knowing the number of terms studied
 - [ ] make matplotlib optional through only importing it if an if statement has been checked, also if statements whenever it's used elsewhere
     - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
