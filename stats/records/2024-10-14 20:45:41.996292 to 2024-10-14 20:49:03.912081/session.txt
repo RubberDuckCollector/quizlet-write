@@ -1,0 +1,48 @@
+cards from: /Users/luna/flash-cards/languages/spanish/university/spekaing/vegetables.txt
+Round 1:
+✓ the brocoli                   el brócoli
+✓ the pepper (vegetable)        el pimiento
+✓ the garlic                    el ajo
+✗ the chard, swiss chard        la acelga
+✓ the onion                     la cebolla
+✓ the spinach                   la espinaca
+✓ the cauliflower               la coliflor
+✓ the lettuce                   la lechuga
+✗ the mushrooms (starts with h) los hongos
+✗ the broad beans               las habas
+✗ the cucumber                  el pepino
+✗ the parsley                   el perejil
+✗ the pumpkin                   la calabaza
+✗ the lentils                   las lentejas
+✗ the celery                    el apio
+Score: 7/15 (46.666666666666664%)
+
+Round 2:
+✗ the lentils                   las lentejas
+✓ the mushrooms (starts with h) los hongos
+✓ the celery                    el apio
+✓ the chard, swiss chard        la acelga
+✗ the broad beans               las habas
+✓ the parsley                   el perejil
+✗ the pumpkin                   la calabaza
+✗ the cucumber                  el pepino
+Score: 4/8 (50.0%)
+
+Round 3:
+✓ the lentils                   las lentejas
+✗ the broad beans               las habas
+✗ the pumpkin                   la calabaza
+✓ the cucumber                  el pepino
+Score: 2/4 (50.0%)
+
+Round 4:
+✓ the broad beans               las habas
+✓ the pumpkin                   la calabaza
+Score: 2/2 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 15
+highest_streak = 4
+perfect_streak = False

@@ -1,0 +1,57 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/my-family-your-family.txt
+Round 1:
+✓ what's their/your age? (starts with お)          おいくつですか。
+✓ what's their/your age? (literally: [what] age?) なんさいですか。
+✓ my wife                                         つま
+✗ someone else's husband                          ごしゅじん
+✗ someone else's kids                             おこさん
+✓ who is this person?                             このひとはだれですか。
+✗ we live in London.                              わたしたちはLondonにすんでいます。
+✓ my mother                                       はは
+✓ my younger sister                               いもうと
+✓ who is this child?                              このこはだれですか。
+✓ there are 3 people in my family.                わたしのかぞくは３にんです。
+✓ 1 person                                        ひとり
+✗ how many members are in your family?            かぞくはなんにんですか。
+✓ me; i                                           わたし
+✓ where do they/you live?                         どこにすんでいますか。
+✓ my father                                       ちち
+✓ 7 people                                        ７にん
+✓ 3 people                                        ３にん
+✓ my husband                                      おっと
+✓ kids                                            こども
+✓ my dad, my mum, and me.                         ちちと、ははと、わたしです。
+✓ 2 people                                        ふたり
+✓ family                                          かぞく
+✓ 4 people                                        ４にん
+✗ someone else's wife                             おくさん
+✓ 5 people                                        ５にん
+✓ 6 people                                        ６にん
+✓ my younger brother                              おとうと
+✓ my older brother                                あに
+✓ my older sister                                 あね
+Score: 25/30 (83.33333333333334%)
+
+Round 2:
+✓ someone else's kids                             おこさん
+✗ someone else's husband                          ごしゅじん
+✗ someone else's wife                             おくさん
+✓ how many members are in your family?            かぞくはなんにんですか。
+✓ we live in London.                              わたしたちはLondonにすんでいます。
+Score: 3/5 (60.0%)
+
+Round 3:
+✓ someone else's wife                             おくさん
+✗ someone else's husband                          ごしゅじん
+Score: 1/2 (50.0%)
+
+Round 4:
+✓ someone else's husband                          ごしゅじん
+Score: 1/1 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 30
+highest_streak = 11
+perfect_streak = False

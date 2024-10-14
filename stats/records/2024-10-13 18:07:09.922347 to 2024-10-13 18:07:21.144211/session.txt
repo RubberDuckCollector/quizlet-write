@@ -1,0 +1,15 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/hiragana/m-characters.txt
+Round 1:
+✓ め me
+✓ み mi
+✓ ま ma
+✓ む mu
+✓ も mo
+Score: 5/5 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 5
+highest_streak = 5
+perfect_streak = True

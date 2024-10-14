@@ -1,0 +1,31 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/images-romaji-english-sheets.txt
+Round 1:
+✓ alcohol; sake                    おさけ
+✓ up; above; on top (of something) うえ
+✓ subway                           ちかてつ
+✓ meat                             にく
+✓ star                             ほし
+✓ love                             あい
+✓ flower                           はな
+✗ roof                             やね
+✓ person (starts with ひ)           ひと
+✗ chrysanthemum                    きく
+✓ peach                            もも
+✓ boat                             ふね
+✓ lotus root                       れんこん
+✓ insect; bug                      むし
+✓ night                            よる
+✓ i                                わたし
+Score: 14/16 (87.5%)
+
+Round 2:
+✓ roof                             やね
+✓ chrysanthemum                    きく
+Score: 2/2 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 16
+highest_streak = 8
+perfect_streak = False

@@ -1,0 +1,22 @@
+cards from: /Users/luna/flash-cards/languages/spanish/university/spekaing/foods.txt
+Round 1:
+✓ the hamburger            la hamburguesa
+✓ the turkey               el pavo
+✓ the dessert              el postre
+✓ the eggs                 los huevos
+✓ the stew (starts with e) el estofado
+✓ the salad                la ensalada
+✓ the (green) vegetables   las verduras
+✓ the soup                 la sopa
+✓ the meat                 la carne
+✓ the chicken              el pollo
+✓ the omelettes            las tortillas
+✓ the pizza                la pizza
+Score: 12/12 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 12
+highest_streak = 12
+perfect_streak = True

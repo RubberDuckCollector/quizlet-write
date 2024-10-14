@@ -1,0 +1,30 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/schritte/clothing.txt
+Round 1:
+✓ the shoe                       der Schuh(e)
+✓ the jacket                     die Jacke(n)
+✓ the bag                        die Tasche(n)
+✓ the sock                       die Socke(n)
+✓ the shirt                      das Hemd(en)
+✓ the blouse                     die Bluse(n)
+✓ the sneaker                    der Turnschuh(e)
+✓ the trousers                   die Hose(n)
+✓ the glove                      der Handschuh(e)
+✗ the scarf                      der Schal(s)
+✓ the jumper (starts with Pulli) der Pulli(s)
+✗ the hat                        die Mütze(n)
+✓ the dress                      das Kleid(er)
+✓ the skirt                      der Rock(¨e)
+✓ the jumper (starts with Pullo) der Pullover(-)
+Score: 13/15 (86.66666666666667%)
+
+Round 2:
+✓ the hat                        die Mütze(n)
+✓ the scarf                      der Schal(s)
+Score: 2/2 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 15
+highest_streak = 9
+perfect_streak = False
