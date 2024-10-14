@@ -7,7 +7,7 @@ import readline
 import platform
 from datetime import datetime
 from constants import chars_to_ignore
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # type: ignore
 
 
 # static analyser might say readline is unused
@@ -361,7 +361,6 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 num_answered = 0
                 num_incorrect = 0
                 num_remaining = len(card_set)
-                # NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
                 f.write(f"Round {round_num}:\n")
                 f.flush()
@@ -660,8 +659,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 def render_cards(filepath: str) -> dict:
     rendered_cards = {}
 
+    # first, check that the cards have no errors in them
     with open(filepath, "r") as f:
-        # first, check that the cards have no errors in them
         line_num = 1
         for line in f:
             if line.strip() == "" or line[0] == "#":
@@ -690,6 +689,30 @@ def render_cards(filepath: str) -> dict:
                     print(f"Error while parsing flash cards from {filepath}: definition (content on the right of the |) was not found at line {line_num}.")
                     sys.exit(0)
             line_num += 1
+
+    # TODO: make it so the program checks the whole file for #s instead of just the first instance. record the largest line number's length as a string and place the |s after the last digit of the longest line number found, e.g: `1  |, 100|`
+    # then, print out the lines that start with hashtags
+    hashtag_in_file = False
+    with open(filepath, "r") as f:
+        for line in f:
+            if line[0] == "#":
+                hashtag_in_file = True
+                break
+
+    if hashtag_in_file is True:
+        clear_screen()
+        with open(filepath, "r") as f:
+            line_num = 1
+            print("Comments found in the flash card file:")
+            for line in f:
+                if line[0] == "#":
+                    # for some reason they're printed with two \ns instea of the usual one \n
+                    print(f"{line_num}|{line}", end="")
+                else:
+                    pass
+                line_num += 1
+            input("Press enter to proceed.")
+
 
     # now we can start parsing.
     with open(filepath, "r") as f:
