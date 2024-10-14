@@ -171,6 +171,7 @@ none
 - [x] implement a feature that tracks every session's % correct and generates a line graph of the session
 - [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
 - [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
+- [x] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
 - [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
@@ -183,7 +184,6 @@ none
 - [ ] implement a feature where the time taken to complete the quiz is written to the record file
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
     - files are appended to each other for the test (hold file paths in a list?)
-- [ ] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
 - [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
     - can now calculate the average length of a flash card set on a given day knowing the number of terms studied
 - [ ] make matplotlib optional through only importing it if an if statement has been checked, also if statements whenever it's used elsewhere
