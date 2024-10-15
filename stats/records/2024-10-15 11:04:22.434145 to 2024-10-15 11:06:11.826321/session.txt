@@ -1,0 +1,36 @@
+cards from: /Users/luna/flash-cards/languages/spanish/university/spekaing/shapes-and-textures.txt
+Round 1:
+✓ the bark                            la corteza
+✓ soft (feminine)                     blanda
+✓ the stripes                         las rayas
+✓ the pyramid                         la pirámide
+✓ the die                             el dado
+✓ changing                            cambiante
+✓ the cylinder                        el cilindro
+✗ the spots, moles (on face)          los lunares
+✓ the prism                           la prisma
+✓ thick (starts with g)               gruesa
+✓ the relief; terrain (starts with r) el relieve
+✓ beige                               crema
+✓ plushie                             de peluche
+✓ the rhombus                         el rombo
+✓ rough (starts with r)               rugoso
+✗ translucent                         traslúcio
+✓ the cube                            el cubo
+✓ ochre                               ocre
+✓ the box                             la caja
+✓ the bottle                          la botella
+✓ soft (masculine)                    blando
+Score: 19/21 (90.47619047619048%)
+
+Round 2:
+✓ the spots, moles (on face)          los lunares
+✓ translucent                         traslúcio
+Score: 2/2 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 21
+highest_streak = 7
+perfect_streak = False
