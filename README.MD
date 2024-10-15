@@ -189,6 +189,7 @@ none
 - [ ] make matplotlib optional through only importing it if an if statement has been checked, also if statements whenever it's used elsewhere
     - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
+- [ ] add feature that puts the start and end date/times in the results file
 
 # Build log
 
