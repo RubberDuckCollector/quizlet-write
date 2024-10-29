@@ -190,6 +190,7 @@ none
     - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
+- [ ] might not be recording accuracy at 100% completion of the round PLEASE FIX
 
 # Build log
 

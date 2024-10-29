@@ -568,8 +568,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
         plt.plot(x_axis, y_axis)
         plt.title(f"Consistency line graph for session starting at {start_time}")
-        plt.xlabel("% progress")
-        plt.ylabel("% accuracy")
+        plt.xlabel("% Progress")
+        plt.ylabel("% Accuracy")
         plt.savefig(f"{session_dir}/line-graph.pdf")
 
         # after the record file is done, print the session breakdown to the user
