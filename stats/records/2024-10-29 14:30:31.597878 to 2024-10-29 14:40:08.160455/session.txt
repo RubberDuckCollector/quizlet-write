@@ -1,0 +1,125 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/chapter-2/kapitelwortschatz.txt
+Round 1:
+✓ the fruit                                        das Obst
+✓ the supermarket                                  der Supermarkt(¨e)
+✓ i would like (to have) (verb starts with m)      ich möchte (gern)
+✓ the salesperson (female)                         die Verkäuferin(nen)
+✓ the store (starts with L)                        der Laden
+✓ a few, some                                      ein paar
+✓ the cheese                                       der Käse(-)
+✓ everything, all                                  alles
+✓ gladly                                           gern
+✓ open                                             offen
+✓ not                                              nicht
+✓ to belive; to think (starts with g)              glauben
+✗ where do you/they have ...?                      wo gibt's ...?
+✓ or                                               oder
+✓ the glass                                        das Glas(¨er)
+✓ to be                                            sein
+✗ the breakfast                                    das Frühstuck
+✓ around (a place); at (time)                      um
+✓ there is, there are                              es gibt
+✓ the thirst                                       der Durst
+✓ without                                          ohne
+✓ fresh(ly)                                        frisch
+✗ the bookstore                                    die Buchhandlung(en)
+✓ the coffee                                       der Kaffee(s)
+✓ why                                              warum
+✓ the lettuce; salad                               der Salat(e)
+✓ the tomato                                       die Tomate(n)
+✓ what do you/they have ...?                       was gibt's ...?
+✓ the bread roll                                   das Brötchen(-)
+✓ that's all; that's it                            das ist alles
+✓ the juice                                        der Saft(e)
+✓ and                                              und
+✓ the tea                                          der Tee(s)
+✓ the pea                                          die Erbse(n)
+✓ the milk                                         die Milch
+✗ the groceries                                    die Lebensmittel
+✓ the orange                                       die Orange(n)
+✓ of course (2 words) (1st word starts with n)     na klar
+✓ the piece                                        das Stück(e)
+✗ the banana                                       die Banane(n)
+✓ the (farmers') market                            der Markt(¨e)
+✓ something, some, a little                        etwas
+✓ whom?                                            wen?
+✗ the cup                                          die Tasse(n)
+✗ the hot dog; small sausage                       das Würstchen(-)
+✓ what kind of ...?                                was für ...?
+✓ of course (1 word) (starts with n)               natürlich
+✓ the bread                                        das Brot(e)
+✓ the (big) sausage                                die Wurst(¨e)
+✓ the meat                                         das Fleisch
+✓ the bean                                         die Bohne(n)
+✓ together                                         zusammen
+✓ i go shopping                                    ich gehe ... einkaufen
+✓ i would like (to have) (verb starts with h)      ich hätte gern
+✓ the drugstore                                    die Drogerie(n)
+✓ the fish                                         die Fisch(e)
+✓ the egg                                          das Ei(er)
+✓ the jam (starts with M)                          die Marmelade(n)
+✓ for                                              für
+✓ against                                          gegen
+✓ i'm thirsty                                      ich habe Durst
+✗ the wine                                         der Wein(e)
+✓ to sell                                          verkaufen
+✓ the lemon                                        die Zitrone(n)
+✓ the soft drink; lemonade (starts with L)         die Limonade(n)
+✓ the pharmacy                                     die Apotheke(n)
+✓ but; however                                     aber
+✓ the water                                        das Wasser
+✓ the cola                                         die Cola
+✓ the pound (weight)                               das Pfund
+✓ the bakery                                       die Bäckerei(en)
+✓ i like to eat                                    ich esse gern
+✓ you're welcome                                   bitte, bitte!
+✓ closed (starts with z)                           zu
+✓ the flower                                       die Blume(n)
+✓ the vegetable                                    das Gemüse(-)
+✓ all sorts of; various                            allerlei
+✓ because, for (starts with d)                     denn
+✓ the strawberry                                   die Erdbeere(n)
+✓ the cookie (starts with P)                       das Plätzchen(-)
+✓ to make; to do                                   machen
+✓ the yoghurt                                      der Joghurt(s)
+✓ no; none                                         kein
+✓ the beer                                         das Bier(e)
+✓ the apple                                        der Apfel(¨)
+✓ through                                          durch
+✓ on tuesdays                                      dienstags
+✓ the salesperson (male)                           der Verkäufer(-)
+✓ to look for                                      suchen
+✗ the butter                                       das Butter
+✓ i like to drink                                  ich trinke gern
+✓ on mondays                                       montags
+✓ the hunger                                       der Hunger
+✓ the carrot                                       die Karotte(n)
+✓ to buy                                           kaufen
+✓ to have                                          haben
+✓ the department store                             das Kaufhaus(¨er)
+✓ i'm hungry                                       ich habe Hunger
+✓ yes (affirmative response to negative statement) doch
+✓ the cake                                         der Kuchen(¨)
+✓ the cucumber; pickle                             die Gurke(n)
+✓ then (temporal)                                  dann
+✓ the store (starts with G)                        das Geschäft(e)
+Score: 94/103 (91.2621359223301%)
+
+Round 2:
+✓ the banana                                       die Banane(n)
+✓ the bookstore                                    die Buchhandlung(en)
+✓ the butter                                       das Butter
+✓ the breakfast                                    das Frühstuck
+✓ the hot dog; small sausage                       das Würstchen(-)
+✓ the cup                                          die Tasse(n)
+✓ the wine                                         der Wein(e)
+✓ the groceries                                    die Lebensmittel
+✓ where do you/they have ...?                      wo gibt's ...?
+Score: 9/9 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 103
+highest_streak = 27
+perfect_streak = False
