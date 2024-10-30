@@ -1,23 +1,23 @@
 import matplotlib.pyplot as plt  # type: ignore
 import numpy as np
 
-# Example: Creating data for n lines
-n = 10  # Number of lines
-x = np.linspace(0, 10, 100)  # Shared x-axis values for simplicity
+x_axes = [0.0, 25.0, 50.0, 75.0, 100]
 
-# Generate different y-values for each line
-y_data = [np.sin(x + i) for i in range(n)]  # Example: Sine waves with phase shifts
+y_axes = [[0.0, 100.0, 100.0, 67.0, 100],
+          [0.0, 0.0, 100.0, 67.0, 100]]
+
+plt.xlim(0, 100)
+plt.xticks([i for i in range(0, 105, 5)])
 
 # Plot each line
-plt.figure(figsize=(10, 6))  # Adjust figure size as needed
-for i in range(n):
-    plt.plot(x, y_data[i], label=f'Line {i+1}')  # Plot with a label for each line
+for i, y_data in enumerate(y_axes):
+    plt.plot(x_axes, y_data, label=f'Round {i + 1}')
 
-# Labels and legend
-plt.xlabel('X-axis')
-plt.ylabel('Y-axis')
-plt.title(f'Line Graph with {n} Lines')
-plt.legend()  # Add legend to distinguish lines
+# Set plot titles and labels
+plt.title("Quiz Accuracy Over Progress")
+plt.xlabel("% Progress")
+plt.ylabel("% Accuracy")
+plt.legend(loc="lower right")
 
+# Display the plot
 plt.show()
-
