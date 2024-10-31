@@ -519,7 +519,6 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
                                 time.sleep(0.5)
                                 clear_screen()
-
                     # if this is the first question answered,
                     # need to plot % on the graph early before
                     # num_answered and num_remaining are incremented

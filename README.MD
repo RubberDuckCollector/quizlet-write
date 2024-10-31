@@ -34,6 +34,7 @@
     * [2024-09-07 (01:20)](#2024-09-07-0120)
     * [2024-10-06 (02:21)](#2024-10-06-0221)
     * [2024-10-10 (21:45)](#2024-10-10-2145)
+    * [2024-10-31 (15:31)](#2024-10-31-1531)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -299,6 +300,8 @@ implemented a feature where the command line arguments that are passed into the 
     1. content presence check - the content on both sides of the `|` has been removed, only the `|` remains on that line
 ![screenshot](assets/flash-card-data-presence-check.png)
 
+## 2024-10-31 (15:31)
+- re-imagined line graph feature to plot % accuracy vs num. of questions answered instead of % accuracy vs % progress
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all
