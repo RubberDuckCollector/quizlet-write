@@ -1,0 +1,23 @@
+cards from: tests/testfile.txt
+Round 1:
+✗ test1 1
+✓ test2 2
+✗ test3 3
+✓ test4 4
+Score: 2/4 (50.0%)
+
+Round 2:
+✗ test1 1
+✓ test3 3
+Score: 1/2 (50.0%)
+
+Round 3:
+✓ test1 1
+Score: 1/1 (100.0%)
+
+-normal
+-no-rand
+-no-flip
+No. terms in the card set = 4
+highest_streak = 2
+perfect_streak = False
