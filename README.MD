@@ -175,6 +175,9 @@ none
 - [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
 - [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
 - [x] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
+- [x] remove the 0/0 on the graph (2024-11-01)
+- [x] might not be recording accuracy at 100% completion of the round PLEASE FIX (2024-11-01)
+- [x] implement a feature where each round on the line graph has a different coloured line (2024-11-01)
 - [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
@@ -183,7 +186,6 @@ none
     - could do x axis as "terms remaining" and count down, or as "terms completed" and count up
     - could also do x axis as "% terms completed" or "% terms remaining"
     - this would be a measure of consistency
-- [ ] implement a feature where each round on the line graph has a different coloured line
 - [ ] implement a feature where the time taken to complete the quiz is written to the record file
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
     - files are appended to each other for the test (hold file paths in a list?)
@@ -193,9 +195,7 @@ none
     - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
-- [ ] might not be recording accuracy at 100% completion of the round PLEASE FIX
-- [ ] remove the 0/0 on the graph
-- [ ] track the min and maximum % accuracy and make the y ticks go between them
+- [ ] make a `graph-data.txt` file that writes the data used to plot the graph to that file
 
 # Build log
 
