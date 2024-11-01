@@ -35,6 +35,7 @@
     * [2024-10-06 (02:21)](#2024-10-06-0221)
     * [2024-10-10 (21:45)](#2024-10-10-2145)
     * [2024-10-31 (15:31)](#2024-10-31-1531)
+    * [2024-11-01 (10:02)](#2024-11-01-1002)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -302,6 +303,9 @@ implemented a feature where the command line arguments that are passed into the 
 
 ## 2024-10-31 (15:31)
 - re-imagined line graph feature to plot % accuracy vs num. of questions answered instead of % accuracy vs % progress
+
+## 2024-11-01 (10:02)
+- made it so the graph's width scales to accommodate the number of xticks ther are. if not, then they overlap and the x axis becomes unreadable though still technically functional
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all

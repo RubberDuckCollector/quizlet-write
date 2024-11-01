@@ -589,13 +589,26 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         session_dir = dump_results_to_records_file(start_time, this_sessions_results_file)
 
+        width_per_label = 0.3
+
+        # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
+        # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
+        # ... (which are 2 different things)
+        my_x_ticks = [i for i in range(NUM_TERMS + 1)]
+        
+        # Calculate the figure width based on the number of x-axis labels
+        fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
+
+        # Set up figure with calculated width
+        plt.figure(figsize=(fig_width, 6))
+
         # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
         # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
         plt.plot(x_axis, y_axis)
         plt.title(f"Consistency line graph for session starting at {start_time}")
         plt.xlabel("# Terms completed")
         plt.ylabel("% Accuracy")
-        plt.xticks([i for i in range(NUM_TERMS + 1)])
+        plt.xticks(my_x_ticks)
         plt.yticks([i for i in range(0, 101, 5)])
         plt.savefig(f"{session_dir}/line-graph.pdf")
 
