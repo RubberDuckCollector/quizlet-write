@@ -36,6 +36,7 @@
     * [2024-10-10 (21:45)](#2024-10-10-2145)
     * [2024-10-31 (15:31)](#2024-10-31-1531)
     * [2024-11-01 (10:02)](#2024-11-01-1002)
+    * [2024-11-01](#2024-11-01)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -308,6 +309,9 @@ implemented a feature where the command line arguments that are passed into the 
 
 ## 2024-11-01 (10:02)
 - made it so the graph's width scales to accommodate the number of xticks ther are. if not, then they overlap and the x axis becomes unreadable though still technically functional
+
+## 2024-11-01
+- implemented feature that plots all rounds' consistencies on a single graph, complete with a key and different colours for each line
 
 # Lesson of the day
 - if you want to combine function arguments with string parsing, don't rely on chatgpt at all

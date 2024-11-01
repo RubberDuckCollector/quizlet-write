@@ -75,10 +75,10 @@ def print_round_breakdown(
             if found:
                 # print the line in green if there's a tick in it
                 if '✓' in line:
-                    print("\x1b[32m" + line.strip() + "\x1b[0m")
+                    print(f"{Color.Green}{line.strip()}{Color.Reset}")
                 elif '✗' in line:
                     # print the line in red if there's a cross in it
-                    print("\x1b[31m" + line.strip() + "\x1b[0m")
+                    print(f"{Color.Red}{line.strip()}{Color.Reset}")
                 else:
                     # otherwise don't colour the line and print it
                     print(line.strip())
@@ -335,8 +335,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
-    x_axis = []  # terms remaining
-    y_axis = []  # % correct
+    x_axes = []  # terms completed
+    y_axes = []  # % correct
     
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
@@ -373,6 +373,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 num_answered = 0
                 num_incorrect = 0
                 num_remaining = len(card_set)
+
+                this_rounds_x_axis = []
+                this_rounds_y_axis = []
 
                 f.write(f"Round {round_num}:\n")
                 f.flush()
@@ -519,6 +522,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
                                 time.sleep(0.5)
                                 clear_screen()
+
                     # if this is the first question answered,
                     # need to plot % on the graph early before
                     # num_answered and num_remaining are incremented
@@ -526,18 +530,16 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     if num_answered == 0: 
                         current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
                         # this is for adding data to the graph
-                        if round_num == 1:
-                            x_axis.append(num_answered)
-                            y_axis.append(current_percent_correct)
+                        this_rounds_x_axis.append(num_answered)
+                        this_rounds_y_axis.append(current_percent_correct)
 
                     num_answered += 1
                     num_remaining -= 1
 
                     current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
                     # this is for adding data to the graph
-                    if round_num == 1:
-                        x_axis.append(num_answered)
-                        y_axis.append(current_percent_correct)
+                    this_rounds_x_axis.append(num_answered)
+                    this_rounds_y_axis.append(current_percent_correct)
 
                 # now delete all the cards that the user got right
                 # this is to make sure only the things they got wrong are left
@@ -577,6 +579,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 else:
                     pass
 
+                this_rounds_x_axis.pop(0)
+                this_rounds_y_axis.pop(0)
+
+                x_axes.append(this_rounds_x_axis)
+                y_axes.append(this_rounds_y_axis)
+
+                this_rounds_x_axis = []
+                this_rounds_y_axis = []
+
 
             # write the round list to this_sessions_results_file
             f.write(f"{sys_args[2]}\n")
@@ -588,13 +599,32 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         session_dir = dump_results_to_records_file(start_time, this_sessions_results_file)
 
+        width_per_label = 0.3
+
+        # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
+        # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
+        # ... (which are 2 different things)
+        my_x_ticks = [i for i in range(1, NUM_TERMS + 1)]
+        
+        # Calculate the figure width based on the number of x-axis labels
+        fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
+
+        # Set up figure with calculated width
+        plt.figure(figsize=(fig_width, 6))
+
         # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
         # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
-        plt.plot(x_axis, y_axis)
+
+        # plot each y-axis data series with its corresponding x-axis values
+        for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
+            plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
+
+        # plt.plot(x_axes, y_axes)
         plt.title(f"Consistency line graph for session starting at {start_time}")
-        plt.xlabel("# Terms completed")
+        plt.xlabel("# Terms answered")
         plt.ylabel("% Accuracy")
-        plt.xticks([i for i in range(NUM_TERMS + 1)])
+        plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area
+        plt.xticks(my_x_ticks, rotation=90)
         plt.yticks([i for i in range(0, 101, 5)])
         plt.savefig(f"{session_dir}/line-graph.pdf")
 
@@ -606,9 +636,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             for line in f:
                 # print the line without leading/trailing whitespaces
                 if '✓' in line:  # check for tick
-                    print("\x1b[32m" + line.strip() + "\x1b[0m")  # print in green
+                    print(f"{Color.Green}{line.strip()}{Color.Reset}")
                 elif '✗' in line:  # check for cross
-                    print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
+                    print(f"{Color.Red}{line.strip()}{Color.Reset}")
                 else:
                     print(line.strip())  # otherwise don't colour the line
 
@@ -674,7 +704,6 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         except Exception as e:
             print("error while saving data.")
             print(e)
-
 
     except (KeyboardInterrupt, EOFError) as _:
         # if the user stops the program with ctrl c or ctrl d, also delete the file

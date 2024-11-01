@@ -335,8 +335,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
-    x_axis = []  # terms remaining
-    y_axis = []  # % correct
+    x_axes = []  # terms completed
+    y_axes = []  # % correct
     
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
@@ -373,6 +373,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 num_answered = 0
                 num_incorrect = 0
                 num_remaining = len(card_set)
+
+                this_rounds_x_axis = []
+                this_rounds_y_axis = []
 
                 f.write(f"Round {round_num}:\n")
                 f.flush()
@@ -527,18 +530,16 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     if num_answered == 0: 
                         current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
                         # this is for adding data to the graph
-                        if round_num == 1:
-                            x_axis.append(num_answered)
-                            y_axis.append(current_percent_correct)
+                        this_rounds_x_axis.append(num_answered)
+                        this_rounds_y_axis.append(current_percent_correct)
 
                     num_answered += 1
                     num_remaining -= 1
 
                     current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
                     # this is for adding data to the graph
-                    if round_num == 1:
-                        x_axis.append(num_answered)
-                        y_axis.append(current_percent_correct)
+                    this_rounds_x_axis.append(num_answered)
+                    this_rounds_y_axis.append(current_percent_correct)
 
                 # now delete all the cards that the user got right
                 # this is to make sure only the things they got wrong are left
@@ -578,6 +579,17 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 else:
                     pass
 
+                # this ensures that the null response isn't plotted
+                # which would skew the results of the data set and make the graph less readable
+                this_rounds_x_axis.pop(0)
+                this_rounds_y_axis.pop(0)
+
+                x_axes.append(this_rounds_x_axis)
+                y_axes.append(this_rounds_y_axis)
+
+                this_rounds_x_axis = []
+                this_rounds_y_axis = []
+
 
             # write the round list to this_sessions_results_file
             f.write(f"{sys_args[2]}\n")
@@ -590,9 +602,6 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         session_dir = dump_results_to_records_file(start_time, this_sessions_results_file)
 
         width_per_label = 0.3
-
-        x_axis.pop(0)
-        y_axis.pop(0)
 
         # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
         # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
@@ -607,11 +616,17 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
         # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
-        plt.plot(x_axis, y_axis)
+
+        # plot each y-axis data series with its corresponding x-axis values
+        for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
+            plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
+
+        # plt.plot(x_axes, y_axes)
         plt.title(f"Consistency line graph for session starting at {start_time}")
-        plt.xlabel("# Terms completed")
+        plt.xlabel("# Terms answered")
         plt.ylabel("% Accuracy")
-        plt.xticks(my_x_ticks)
+        plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area
+        plt.xticks(my_x_ticks, rotation=90)
         plt.yticks([i for i in range(0, 101, 5)])
         plt.savefig(f"{session_dir}/line-graph.pdf")
 
@@ -691,7 +706,6 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         except Exception as e:
             print("error while saving data.")
             print(e)
-
 
     except (KeyboardInterrupt, EOFError) as _:
         # if the user stops the program with ctrl c or ctrl d, also delete the file
