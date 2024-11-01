@@ -591,10 +591,13 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         width_per_label = 0.3
 
+        x_axis.pop(0)
+        y_axis.pop(0)
+
         # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
         # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
         # ... (which are 2 different things)
-        my_x_ticks = [i for i in range(NUM_TERMS + 1)]
+        my_x_ticks = [i for i in range(1, NUM_TERMS + 1)]
         
         # Calculate the figure width based on the number of x-axis labels
         fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width

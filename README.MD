@@ -193,6 +193,8 @@ none
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
 - [ ] might not be recording accuracy at 100% completion of the round PLEASE FIX
+- [ ] remove the 0/0 on the graph
+- [ ] track the min and maximum % accuracy and make the y ticks go between them
 
 # Build log
 
