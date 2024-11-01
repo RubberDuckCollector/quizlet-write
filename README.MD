@@ -6,6 +6,7 @@
 * [Why I made this](#why-i-made-this)
 * [Disclaimer](#disclaimer)
 * [Prerequisites](#prerequisites)
+    * [input for the program:](#input-for-the-program)
 * [Optional](#optional)
 * [Overview](#overview)
 * [Demo video (old)](#demo-video-old)
@@ -71,14 +72,17 @@
 
 # Prerequisites
 
+- a Python version past 3.10 (this was built on python 3.12)
 - matplotlib (working on a no-matplotlib version)
+
+## input for the program:
 - a text file in the format `content|more-content`, on each line of the file like this:
 ```
 hello|hola
 goodbye|adiós
 how are you?|¿qué tal?
 ```
-for the whole length of the file, save for lines starting with a `#`. They'll be ignored by the program as code comments.
+for the whole length of the file, save for lines starting with a `#`. They'll be ignored by the program as code comments/handled separately.
 
 # Optional
 
@@ -196,7 +200,10 @@ none
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
     - files are appended to each other for the test (hold file paths in a list?)
 - [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
-    - can now calculate the average length of a flash card set on a given day knowing the number of terms studied
+    - can now calculate the average length of a flash card set on a given day knowing the total number of terms studied and the total number sessions studied
+    - implement it as a command line argument taken at the first position
+- [ ] implement a `-help` command line argument
+    - maybe make the program run a bash script, integrating the `less` command or something idk
 - [ ] make matplotlib optional through only importing it if an if statement has been checked, also if statements whenever it's used elsewhere
     - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
