@@ -579,6 +579,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 else:
                     pass
 
+                # this ensures that the null response isn't plotted
+                # which would skew the results of the data set and make the graph less readable
                 this_rounds_x_axis.pop(0)
                 this_rounds_y_axis.pop(0)
 
