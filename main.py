@@ -75,10 +75,10 @@ def print_round_breakdown(
             if found:
                 # print the line in green if there's a tick in it
                 if '✓' in line:
-                    print("\x1b[32m" + line.strip() + "\x1b[0m")
+                    print(f"{Color.Green}{line.strip()}{Color.Reset}")
                 elif '✗' in line:
                     # print the line in red if there's a cross in it
-                    print("\x1b[31m" + line.strip() + "\x1b[0m")
+                    print(f"{Color.Red}{line.strip()}{Color.Reset}")
                 else:
                     # otherwise don't colour the line and print it
                     print(line.strip())
@@ -607,9 +607,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             for line in f:
                 # print the line without leading/trailing whitespaces
                 if '✓' in line:  # check for tick
-                    print("\x1b[32m" + line.strip() + "\x1b[0m")  # print in green
+                    print(f"{Color.Green}{line.strip()}{Color.Reset}")
                 elif '✗' in line:  # check for cross
-                    print("\x1b[31m" + line.strip() + "\x1b[0m")  # print in red
+                    print(f"{Color.Red}{line.strip()}{Color.Reset}")
                 else:
                     print(line.strip())  # otherwise don't colour the line
 
