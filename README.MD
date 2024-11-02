@@ -3,6 +3,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Quizlet write my version](#quizlet-write-my-version)
+* [Features](#features)
 * [Why I made this](#why-i-made-this)
 * [Disclaimer](#disclaimer)
 * [Prerequisites](#prerequisites)
@@ -49,6 +50,12 @@
 - Find the flash cards that work with this program here: https://github.com/RubberDuckCollector/my-flash-cards
 - note: i recommend using this for german vocab where the plural conjugation can be in brackets. the program will preserve contents in the brackets so you don't have to memorise what's in the brackets.
 - e.g: the recipe - das Rezept *(-e)*
+
+# Features
+
+- Overall, the same as Quizlet Write (type the answer on the flash card)
+- Can have multiple sessions going at the same time (they're all tracked independently)
+- Can generate cool graphs of how you did on each round of the quiz
 
 # Why I made this
 
