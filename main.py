@@ -622,14 +622,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
 
         # plt.plot(x_axes, y_axes)
-        plt.title(f"Consistency line graph for session starting at {start_time}")
+        plt.title(f"Consistency line graph for session starting at {start_time}\nPath to cards: {sys.argv[1]}")
         plt.xlabel("# Terms answered")
         plt.ylabel("% Accuracy")
         plt.ylim(0, 100)
         plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area
         plt.xticks(my_x_ticks, rotation=90)
         plt.yticks([i for i in range(0, 101, 5)])
-        plt.savefig(f"{session_dir}/line-graph.pdf")
+        # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
+        plt.savefig(f"{session_dir}/line-graph.pdf", bbox_inches = "tight")
 
         # after the record file is done, print the session breakdown to the user
 

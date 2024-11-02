@@ -38,6 +38,7 @@
     * [2024-10-31 (15:31)](#2024-10-31-1531)
     * [2024-11-01 (10:02)](#2024-11-01-1002)
     * [2024-11-01](#2024-11-01)
+    * [2024-11-02 (20:40)](#2024-11-02-2040)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -188,6 +189,7 @@ none
 - [x] remove the 0/0 on the graph (2024-11-01)
 - [x] might not be recording accuracy at 100% completion of the round PLEASE FIX (2024-11-01)
 - [x] implement a feature where each round on the line graph has a different coloured line (2024-11-01)
+- [x] write the path to flash cards on the graph title
 - [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
@@ -351,6 +353,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-01
 
 - implemented feature that plots all rounds' consistencies on a single graph, complete with a key and different colours for each line
+
+## 2024-11-02 (20:40)
+
+- added the path to flash cards on the graph title
 
 # Lesson of the day
 
