@@ -599,7 +599,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
             f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
-        session_dir = dump_results_to_records_file(start_time, this_sessions_results_file)
+        this_sessions_dir = dump_results_to_records_file(start_time, this_sessions_results_file)
 
         width_per_label = 0.3
 
@@ -630,7 +630,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         plt.xticks(my_x_ticks, rotation=90)
         plt.yticks([i for i in range(0, 101, 5)])
         # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
-        plt.savefig(f"{session_dir}/line-graph.pdf", bbox_inches = "tight")
+        plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
+
+        # write the x axis data and the y axis data to special files in `this_sessions_dir`
+        # this allows the graph to be reproduced
+        with open(f"{this_sessions_dir}/x-axis-data.txt", "w") as f:
+            f.write(f"{x_axes}")
+
+        with open(f"{this_sessions_dir}/y-axis-data.txt", "w") as f:
+            f.write(f"{y_axes}")
 
         # after the record file is done, print the session breakdown to the user
 

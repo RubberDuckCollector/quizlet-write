@@ -39,6 +39,7 @@
     * [2024-11-01 (10:02)](#2024-11-01-1002)
     * [2024-11-01](#2024-11-01)
     * [2024-11-02 (20:40)](#2024-11-02-2040)
+    * [2024-11-02 (21:32)](#2024-11-02-2132)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -190,6 +191,7 @@ none
 - [x] might not be recording accuracy at 100% completion of the round PLEASE FIX (2024-11-01)
 - [x] implement a feature where each round on the line graph has a different coloured line (2024-11-01)
 - [x] write the path to flash cards on the graph title
+- [x] make 2 txt files each for the data used to plot the x and y axis, saved under that session's particular dir
 - [ ] a new command line argument where i use regex to highlight numbers in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
@@ -210,7 +212,6 @@ none
     - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
-- [ ] make a `graph-data.txt` file that writes the data used to plot the graph to that file
 - [ ] add signals that tell the user the program is loading/importing libraries/when the program is first run and there's a big loading time, this would let the user that nothing's going wrong
     - maybe with a ... that increments
     - or integrate a logging system (with proper standardised logging library)
@@ -357,6 +358,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-02 (20:40)
 
 - added the path to flash cards on the graph title
+
+## 2024-11-02 (21:32)
+
+- made 2 txt files each for the data used to plot the x and y axis, saved under that session's particular dir
 
 # Lesson of the day
 
