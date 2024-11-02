@@ -209,6 +209,9 @@ none
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
 - [ ] make a `graph-data.txt` file that writes the data used to plot the graph to that file
+- [ ] add signals that tell the user the program is loading/importing libraries/when the program is first run and there's a big loading time, this would let the user that nothing's going wrong
+    - maybe with a ... that increments
+    - or integrate a logging system (with proper standardised logging library)
 
 # Build log
 
