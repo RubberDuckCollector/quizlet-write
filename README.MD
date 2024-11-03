@@ -82,7 +82,7 @@
 # Prerequisites
 
 - a Python version past 3.10 (this was built on python 3.12)
-- matplotlib (working on a no-matplotlib version)
+- matplotlib (i install this with `/usr/local/bin/python3 -m pip install matplotlib` on my MacOS computer) (working on a no-matplotlib version)
 
 ## input for the program:
 - a text file in the format `content|more-content`, on each line of the file like this:
