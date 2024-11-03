@@ -228,7 +228,7 @@ none
 ## 2024-02-20
 
 - completed development of first revision
-- if there are vocab files that are empty, that is known (2023-03-08 update: vocab is at <https://github.com/RubberDuckCollector/my-flash-cards>)
+- if there are vocab files that are empty, that is known (2024-03-08 update: vocab is at <https://github.com/RubberDuckCollector/my-flash-cards>)
 ## 2024-02-21
 
 - starting development of more command line arguments (--randomise)
