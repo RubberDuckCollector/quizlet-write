@@ -1,15 +1,3 @@
-# the list for the x axis will be from 1-number of terms in the card set
-# each round will have its own list recording the percentage correct,
-# after the first question has been answered
-# and then after each question answered
-    # (get this in right after the last questkon has beed answered, everything needs to be updated first then this)
-# at the end of the round, append that list to the master list of y axes,
-# so they're all in 1 place for easier plotting (iterate through th 2d list)
-# it's inevitable that rounds after the first round will result in short lists
-# therefore cut off the line somehow or pad the lists with 0s
-# plot all lines together with the single x axis
-
-
 import os
 import sys
 import time
@@ -19,6 +7,7 @@ import readline
 import platform
 from datetime import datetime
 from constants import chars_to_ignore
+print("Importing matplotlib.pylot...")
 import matplotlib.pyplot as plt  # type: ignore
 
 
@@ -823,6 +812,8 @@ def main():
         return
 
     randomise = sys.argv[3]
+
+    print("Rendering cards...")
     cards = render_cards(file_path)
 
     # will be handled in quiz()

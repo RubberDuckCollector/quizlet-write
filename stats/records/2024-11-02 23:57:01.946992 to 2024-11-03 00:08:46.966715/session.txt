@@ -1,0 +1,31 @@
+cards from: /Users/luna/flash-cards/languages/spanish/university/speaking/vegetables.txt
+Round 1:
+✓ the cauliflower               la coliflor
+✗ the celery                    el apio
+✓ the mushrooms (starts with h) los hongos
+✓ the lettuce                   la lechuga
+✓ the pepper (vegetable)        el pimiento
+✓ the spinach                   la espinaca
+✓ the onion                     la cebolla
+✗ the cucumber                  el pepino
+✓ the brocoli                   el brócoli
+✓ the lentils                   las lentejas
+✓ the garlic                    el ajo
+✗ the chard, swiss chard        la acelga
+✓ the broad beans               las habas
+✓ the parsley                   el perejil
+✓ the pumpkin                   la calabaza
+Score: 12/15 (80.0%)
+
+Round 2:
+✓ the celery                    el apio
+✓ the cucumber                  el pepino
+✓ the chard, swiss chard        la acelga
+Score: 3/3 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 15
+highest_streak = 6
+perfect_streak = False
