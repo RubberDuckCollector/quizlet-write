@@ -619,6 +619,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         plt.xticks(my_x_ticks, rotation=90)
         plt.yticks([i for i in range(0, 101, 5)])
         # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
+        # https://stackoverflow.com/a/59372013
         plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
 
         # write the x axis data and the y axis data to special files in `this_sessions_dir`
