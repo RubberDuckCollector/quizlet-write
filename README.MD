@@ -41,6 +41,7 @@
     * [2024-11-01](#2024-11-01)
     * [2024-11-02 (20:40)](#2024-11-02-2040)
     * [2024-11-02 (21:32)](#2024-11-02-2132)
+    * [2024-11-04 (22:45)](#2024-11-04-2245)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -372,6 +373,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-02 (21:32)
 
 - made 2 txt files each for the data used to plot the x and y axis, saved under that session's particular dir
+
+## 2024-11-04 (22:45)
+
+- added support for Japanese monospaced brackets （ ）
 
 # Lesson of the day
 

@@ -6,7 +6,7 @@ import random
 import readline
 import platform
 from datetime import datetime
-from constants import chars_to_ignore
+import constants
 print("Importing matplotlib.pylot...")
 import matplotlib.pyplot as plt  # type: ignore
 
@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt  # type: ignore
 
 # a variable starting with `p_...` denotes a parameter, not a pointer
 # "terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.
-# A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
+# A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly once.
 
 
 class Color:
@@ -98,20 +98,20 @@ def make_hard_hint(msg: str) -> str:
     inside_brackets = False
 
     for i in range(len(msg)):
-        if msg[i] in chars_to_ignore:
+        if msg[i] in constants.chars_to_ignore:
             # if char should be preserved when hint is being built
             hint += msg[i]
-        elif msg[i] == '(':
+        elif msg[i] in ['(', '（']:
             # if we're currently looking at a (
             # inside_brackets will be assigned True
             # add the ( to the hint
-            hint += '('
+            hint += msg[i]
             inside_brackets = True
-        elif msg[i] == ')':
+        elif msg[i] == [')', '）']:
             # if we're at the end of the bracket
             # add the ) to the hint
             # inside_brackets becomes False
-            hint += ')'
+            hint += msg[i]
             inside_brackets = False
         elif inside_brackets is True:
             # add the character stright to the hint
@@ -122,7 +122,7 @@ def make_hard_hint(msg: str) -> str:
         else:
             # if we're not in brackets
             # the character is neither of ( or )
-            # and the character isn't in chars_to_ignore
+            # and the character isn't in constants.chars_to_ignore
             # it must be turned into an _
             hint += '_'
 
@@ -141,16 +141,16 @@ def make_normal_hint(msg: str) -> str:
 
     while True:
         try:
-            if msg[i] in chars_to_ignore:
+            if msg[i] in constants.chars_to_ignore:
                 hint += msg[i]
             else:
-                if msg[i] == '(':
+                if msg[i] in ['(', '（']:
                     # if we're currently looking at a (
                     # inside_brackets will be assigned True
                     # add the ( to the hint
                     inside_brackets = True
                     hint += msg[i]
-                elif msg[i] == ')':
+                elif msg[i] == [')', '）']:
                     # if we're at the end of the bracket
                     # add the ) to the hint
                     # inside_brackets becomes False
@@ -191,10 +191,10 @@ def make_easy_hint(msg: str) -> str:
 
     while True:
         try:
-            if msg[i] in chars_to_ignore:
+            if msg[i] in constants.chars_to_ignore:
                 hint += msg[i]
             else:
-                if msg[i] == '(':
+                if msg[i] in ['(', '（']:
                     inside_brackets = True
                     hint += msg[i]  # add the open bracket to the hint
                 elif inside_brackets:
@@ -203,7 +203,7 @@ def make_easy_hint(msg: str) -> str:
                     # they don't have to memorise what's in the ()
                     # they'll only have to type it out
                     hint += msg[i]
-                elif msg[i] == ')':
+                elif msg[i] == [')', '）']:
                     inside_brackets = False
                     hint += msg[i]  # add the close bracket to the hint
                 else:
