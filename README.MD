@@ -201,7 +201,7 @@ none
 - [x] implement a feature where each round on the line graph has a different coloured line (2024-11-01)
 - [x] write the path to flash cards on the graph title
 - [x] make 2 txt files each for the data used to plot the x and y axis, saved under that session's particular dir
-- [ ] a new command line argument where i use regex to highlight numbers in a special colour
+- [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
     - REQUIREMENTS: would need to make every session inside `stats/records` its own directory containing the record file and the graph
