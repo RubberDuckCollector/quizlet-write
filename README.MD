@@ -222,6 +222,9 @@ none
 - [ ] add signals that tell the user the program is loading/importing libraries/when the program is first run and there's a big loading time, this would let the user that nothing's going wrong
     - maybe with a ... that increments
     - or integrate a logging system (with proper standardised logging library)
+- [ ] for the progress through the quiz, make a progress bar
+    - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
+    - store the progress bar stages in a separate file and import them in `main.py`
 
 # Build log
 
