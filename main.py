@@ -150,6 +150,7 @@ def make_hard_hint(msg: str) -> str:
 def make_normal_hint(msg: str) -> str:
     hint = ""
     msg = list(msg)  # type: ignore # turn the string into a list of chars
+    # print(msg)
 
     i = 0
     # iterating through the list with a while loop
