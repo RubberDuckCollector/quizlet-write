@@ -43,6 +43,7 @@
     * [2024-11-02 (21:32)](#2024-11-02-2132)
     * [2024-11-04 (22:45)](#2024-11-04-2245)
     * [2024-11-04 (23:16)](#2024-11-04-2316)
+* [Known issues](#known-issues)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -382,6 +383,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-04 (23:16)
 
 - made it so that the program detects if a character is Latin, or Japanese or Chinese when the hint is being made. this lets the program enter a Japanese/Chinese monospaced underscore '＿' instead of a Latin underscore '_', which makes the app more readable during the quiz
+
+# Known issues
+
+1. Japanese text after Japanese brackets `（）` isn't making it to the hint, doesn't even register when user is prompted to answer as all the text before and including the brackets is present and required to answer correctly
 
 # Lesson of the day
 
