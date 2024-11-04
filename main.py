@@ -685,6 +685,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             # current date and time not assigned again so we can have the same date for both the session and the terms count
             # i.e date cannot progress in between that code and this code and have an effect on the code's function
 
+            # sessions that end on a particular day will contribute to the terms and sessions done per day counts
             if today in sessions_done_dict:
                 sessions_done_dict[today] += 1
                 new_sessions_completed = sessions_done_dict[today]
