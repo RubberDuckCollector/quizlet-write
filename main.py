@@ -88,6 +88,18 @@ def print_round_breakdown(
     print()
 
 
+# https://www.geeksforgeeks.org/how-to-find-chinese-and-japanese-character-in-a-string-in-python/
+def is_japanese_char(character):
+    if '\u3040' <= character <= '\u30FF' or '\u4E00' <= character <= '\u9FFF':
+        return True
+    else:
+        return False
+
+def is_chinese_char(character):
+    if '\u4E00' <= character <= '\u9FFF' or '\u3400' <= character <= '\u4DBF':
+            return True
+    return False
+
 def make_very_hard_hint() -> str:
     return "No hints!"
 
@@ -124,7 +136,13 @@ def make_hard_hint(msg: str) -> str:
             # the character is neither of ( or )
             # and the character isn't in constants.chars_to_ignore
             # it must be turned into an _
-            hint += '_'
+
+            # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
+            if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+                hint += '＿'
+            else:
+                # otherwise, it's most likely a latin alphabet character
+                hint += '_'
 
     return hint
 
@@ -168,7 +186,18 @@ def make_normal_hint(msg: str) -> str:
                     # add the letter to the hint if i == 0,
                     # or the previous letter is a space
                     # otherwise add a '_'
-                    hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"
+                    # hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"  # fancy but useless syntax 
+
+                    if i == 0 or msg[i - 1].isspace():
+                        hint += msg[i]
+                    else:
+                        # hint += '_'
+                        # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
+                        if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+                            hint += '＿'
+                        else:
+                            # otherwise, it's most likely a latin alphabet character
+                            hint += '_'
 
             i += 1  # increment i, ready for the next element of the list
 
@@ -214,7 +243,13 @@ def make_easy_hint(msg: str) -> str:
                     elif msg[i - 3].isspace() or i == 2:
                         hint += msg[i]  # Keep the third character of the word
                     else:
-                        hint += "_"  # Replace other characters with underscore
+                        # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
+                        if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+                            hint += '＿'
+                        else:
+                            # otherwise, it's most likely a latin alphabet character
+                            # replace other characters with underscore
+                            hint += '_'
 
             i += 1
         except IndexError:

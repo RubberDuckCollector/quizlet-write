@@ -42,6 +42,7 @@
     * [2024-11-02 (20:40)](#2024-11-02-2040)
     * [2024-11-02 (21:32)](#2024-11-02-2132)
     * [2024-11-04 (22:45)](#2024-11-04-2245)
+    * [2024-11-04 (23:16)](#2024-11-04-2316)
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
@@ -377,6 +378,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-04 (22:45)
 
 - added support for Japanese monospaced brackets （ ）
+
+## 2024-11-04 (23:16)
+
+- made it so that the program detects if a character is Latin, or Japanese or Chinese when the hint is being made. this lets the program enter a Japanese/Chinese monospaced underscore '＿' instead of a Latin underscore '_', which makes the app more readable during the quiz
 
 # Lesson of the day
 
