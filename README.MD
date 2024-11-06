@@ -230,6 +230,7 @@ none
     - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
     - store the progress bar stages in a separate file and import them in `main.py`
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
+- [ ] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
 
 # Build log
 
