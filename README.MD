@@ -388,7 +388,7 @@ implemented a feature where the command line arguments that are passed into the 
 
 # Known issues
 
-1. Japanese text after Japanese brackets `（）` isn't making it to the hint, doesn't even register when user is prompted to answer as all the text before and including the brackets is present and required to answer correctly
+1. text after Japanese brackets `（）` isn't making it to the hint, doesn't even register when user is prompted to answer as all the text before and including the brackets is present and required to answer correctly
 
 # Lesson of the day
 
