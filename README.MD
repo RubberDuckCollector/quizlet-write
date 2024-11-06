@@ -90,11 +90,12 @@
 ## input for the program:
 - a text file in the format `content|more-content`, on each line of the file like this:
 ```
-hello|hola
+hello (spanish)|hola
 goodbye|adiós
 how are you?|¿qué tal?
+hello (japanese)|こんにちは
 ```
-for the whole length of the file, save for lines starting with a `#`. They'll be ignored by the program as code comments/handled separately.
+for the whole length of the file, save for empty lines and starting with a `#`. They'll be ignored by the program as code comments/handled separately.
 
 # Optional
 
