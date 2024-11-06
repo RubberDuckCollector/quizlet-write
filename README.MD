@@ -13,7 +13,7 @@
 * [Demo video (old)](#demo-video-old)
 * [Technical Explanation (WIP)](#technical-explanation-wip)
 * [Notes](#notes)
-* [Next features](#next-features)
+* [Next features/TODO](#next-featurestodo)
 * [Build log](#build-log)
     * [2024-02-20](#2024-02-20)
     * [2024-02-21](#2024-02-21)
@@ -184,7 +184,7 @@ for the whole length of the file, save for lines starting with a `#`. They'll be
 
 none
 
-# Next features
+# Next features/TODO
 
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
@@ -228,6 +228,7 @@ none
 - [ ] for the progress through the quiz, make a progress bar
     - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
     - store the progress bar stages in a separate file and import them in `main.py`
+- [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
 
 # Build log
 
