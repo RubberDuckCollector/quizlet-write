@@ -1,0 +1,21 @@
+cards from: /Users/luna/flash-cards/languages/japanese/university/marugoto-a1/jobs.txt
+Round 1:
+✓ teacher (starts with きょ) きょうし
+✓ enjineer                 エンジニア
+✓ what's your job?         おしごとはなんですか。
+✓ office worker            かいしゃいん
+✓ housewife                しゅふ
+✗ civil servant            こうむいん
+✓ student                  がくせい
+Score: 6/7 (85.71428571428571%)
+
+Round 2:
+✓ civil servant            こうむいん
+Score: 1/1 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 7
+highest_streak = 5
+perfect_streak = False
