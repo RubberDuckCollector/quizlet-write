@@ -1,5 +1,13 @@
 import os
 import sys
+
+if len(sys.argv) < 5:
+    print("Too few command line arguments. Order: card set, difficulty, randomise, flip question and answer")
+    sys.exit(0)
+elif len(sys.argv) > 5:
+    print("Too few command line arguments. Order: card set, difficulty, randomise, flip question and answer")
+    sys.exit(0)
+
 import time
 import json
 import random
@@ -827,10 +835,12 @@ def render_cards(filepath: str) -> dict:
 # needed for value checking and presence checking of the command line args
 def main():
 
-
-    if len(sys.argv) != 5:
-        print("Command line argument order: card set, difficulty, randomise, flip question and answer")
-        return
+    if len(sys.argv) < 5:
+        print("Too few command line arguments. Order: card set, difficulty, randomise, flip question and answer")
+        sys.exit(0)
+    elif len(sys.argv) > 5:
+        print("Too many command line arguments. Order: card set, difficulty, randomise, flip question and answer")
+        sys.exit(0)
 
     # order of arguments:
     # file path to file containing questions,

@@ -43,6 +43,7 @@
     * [2024-11-02 (21:32)](#2024-11-02-2132)
     * [2024-11-04 (22:45)](#2024-11-04-2245)
     * [2024-11-04 (23:16)](#2024-11-04-2316)
+    * [2024-11-23](#2024-11-23)
 * [Known issues](#known-issues)
 * [Lesson of the day](#lesson-of-the-day)
 
@@ -386,6 +387,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-04 (23:16)
 
 - made it so that the program detects if a character is Latin, or Japanese or Chinese when the hint is being made. this lets the program enter a Japanese/Chinese monospaced underscore '＿' instead of a Latin underscore '_', which makes the app more readable during the quiz
+
+## 2024-11-23
+
+- made it so the check for the number of command line arguments is done before matplotlib is imported to save time if the user doesn't supply the correct number of arguments, they don't ahve to wait for `matplotlib.pyplot` to fully import before the check happens
 
 # Known issues
 
