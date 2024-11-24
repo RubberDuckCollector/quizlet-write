@@ -1,0 +1,17 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/chapter-3/dative-verbs.txt
+Round 1:
+✓ to help              helfen
+✓ to belong to         gehören
+✓ to like              gefallen
+✓ to answer            antworten
+✓ to thank             danken
+✓ to believe; to think glauben
+✓ to taste good to     schmecken
+Score: 7/7 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 7
+highest_streak = 7
+perfect_streak = True
