@@ -1,4 +1,6 @@
+print("Importing os...")
 import os
+print("Importing sys...")
 import sys
 
 if len(sys.argv) < 5:
@@ -8,12 +10,19 @@ elif len(sys.argv) > 5:
     print("Too few command line arguments. Order: card set, difficulty, randomise, flip question and answer")
     sys.exit(0)
 
+print("Importing time...")
 import time
+print("Importing json...")
 import json
+print("Importing random...")
 import random
+print("Importing readline...")
 import readline
+print("Importing platform...")
 import platform
+print("Importing datetime from datetime...")
 from datetime import datetime
+print("Importing constants...")
 import constants
 print("Importing matplotlib.pylot...")
 import matplotlib.pyplot as plt  # type: ignore

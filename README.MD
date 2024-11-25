@@ -44,6 +44,7 @@
     * [2024-11-04 (22:45)](#2024-11-04-2245)
     * [2024-11-04 (23:16)](#2024-11-04-2316)
     * [2024-11-23](#2024-11-23)
+    * [2024-11-25 (13:23)](#2024-11-25-1323)
 * [Known issues](#known-issues)
 * [Lesson of the day](#lesson-of-the-day)
 
@@ -391,6 +392,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-23
 
 - made it so the check for the number of command line arguments is done before matplotlib is imported to save time if the user doesn't supply the correct number of arguments, they don't ahve to wait for `matplotlib.pyplot` to fully import before the check happens
+
+## 2024-11-25 (13:23)
+
+- added more print statements for when the libraries are importing it reassures the user that something is going on rather than the program crashing
 
 # Known issues
 
