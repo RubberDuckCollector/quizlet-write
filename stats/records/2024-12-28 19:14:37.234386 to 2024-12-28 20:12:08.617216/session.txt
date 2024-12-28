@@ -1,0 +1,100 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/chapter-4.txt
+Round 1:
+✓ Have a good New Year! (literally: "A good new year")                           Ein gutes neues Jahr!
+✓ Get well soon!                                                                 Gute Besserung!
+✓ to fall                                                                        fallen
+✓ When is your birthday? (formal)                                                Wann haben Sie Geburtstag?
+✓ sure(ly), certain(ly) (starts with s)                                          sicher
+✓ the present, gift                                                              das Geschenk(e)
+✓ loud(ly), noisy, noisily                                                       laut
+✓ the day before yesterday                                                       vorgestern
+✓ to wish                                                                        wünschen
+✓ Congratulations on your birthday!                                              Herzlichen Glückwünsch zum Geburtstag!
+✓ Today is the first of may (5/1)                                                Heute ist der erste Mai (1.5.)
+✓ Best wishes!                                                                   Herzliche Glückwünsche!
+✓ Merry Christmas!                                                               Frohe/Fröhliche Weihnachten!
+✓ to name, call (starts with n)                                                  nennen
+✓ at/for Christmas                                                               zu Weihnachten
+✓ the day after tomorrow                                                         übermorgen
+✓ the birthday                                                                   der Geburtstag(e)
+✓ Thank you very much!                                                           Vielen/Herzlichen Dank!
+✓ to be fun                                                                      Spaß haben
+✓ You're welcome!, My pleasure!                                                  Nichts zu danken!
+✓ at/for Easter                                                                  zu Ostern
+✓ I (you were, she was, etc.) lucky                                              Glück gehabt!
+✓ never                                                                          nie
+✓ if, whether (starts with o)                                                    ob
+✓ You're welcome!                                                                Bitte schön!
+✓ to do (starts with t)                                                          tun
+✓ How long?                                                                      Wie lange?
+✓ Happy birthday! (literally: "All good for birthday")                           Alles Gute zum Geburtstag!
+✓ I was born on the first of May 1993                                            Ich bin am ersten Mai 1993 geboren
+✓ Thanks a lot!                                                                  Danke schön!
+✓ funny, amusing                                                                 lustig
+✓ I don't believe it!, That's impossible!                                        Das gibt's doch nicht!
+✓ at/for New Year's Eve                                                          zu Silvester
+✓ the celebration                                                                die Feier(n)
+✓ to congratulate                                                                gratulieren
+✓ tomorrow                                                                       morgen
+✓ All the best!                                                                  Alles Gute!
+✓ Have a nice weekend!                                                           (Ein) schönes Wochenende!
+✓ Congratulations ...! (literally: "I congratulate you (informal)/you (formal)") Ich gratuliere dir/Ihnen ...!
+✓ to study a particular field; to be a student at a university; to study at uni  studieren
+✓ My birthday is on the first of May                                             Ich habe am ersten Mai (1.5.) Geburtstag
+✓ That's fun to me                                                               Das macht mir Spaß
+✓ just, right now (starts with g)                                                gerade
+✓ yesterday                                                                      gestern
+✓ to get, receive                                                                bekommen
+✓ The vacation is from ... until ...                                             Die Ferien sind vom ... bis zum ...
+✓ always                                                                         immer
+✓ to surprise                                                                    überraschen
+✓ the fest, festival                                                             das Fest(e)
+✓ actually                                                                       eigentlich
+✓ What's the date today?                                                         Welches Datum ist heute?
+✓ before (starts with b)                                                         bevor
+✓ to give a gift                                                                 schenken
+✓ the calendar date                                                              das Datum
+✓ (over) there (used for far away places like countries)                         dort
+✓ I was born in 1993                                                             Ich bin in 1993 geboren
+✓ crazy                                                                          verrückt
+✓ the party                                                                      die Party(s)
+✓ that (conjunction) (starts with d)                                             dass
+✓ on the weekend                                                                 am Wochenende
+✓ to sing                                                                        singen
+✓ That's fun                                                                     Das macht Spaß
+✓ because (starts with w)                                                        weil
+✓ the calendar dates                                                             die Daten
+✓ the vacation (this is plural) (starts with F)                                  die Ferien
+✓ the song                                                                       das Lied(er)
+✓ When were you born? (formal)                                                   Wann sind Sie geboren?
+✓ to dance                                                                       tanzen
+✓ still; else (starts with n)                                                    noch
+✓ I wish you ...!                                                                Ich wünsche dir/Ihnen ...!
+✓ the candle                                                                     die Kerze(n)
+✓ to celbrate, party (starts with d)                                             deiern
+✓ the number                                                                     die Zahl(en)
+✓ the surprise                                                                   die Überraschung(en)
+✓ the ordinal number                                                             die Ordinalzahl(en)
+✓ the holiday                                                                    der Feiertag(e)
+✓ a week ago (1st word starts with v)                                            vor einer Woche
+✓ Congratulations!                                                               Herzlichen Glückwünsch!
+✓ although (starts with o)                                                       obwohl
+✓ if; when(ever) (starts with w)                                                 wenn
+✓ to last, take (duration)                                                       dauern
+✓ to be lucky                                                                    Glück haben
+✓ the champagne (prosecco)                                                       der Sekt(e)
+✓ Really? (starts wtih E)                                                        Echt?
+✓ I was (you were, she was, etc.) unlucky (the is an exclamation)                Pech gehabt!
+✓ What a surprise!                                                               So eine Überraschung!
+✓ never before                                                                   noch nie
+✓ on/for one's birthday                                                          zum Geburtstag
+✓ to be unlucky                                                                  Pech haben
+✓ to think                                                                       denken
+Score: 90/90 (100.0%)
+
+-normal
+-rand-every-round
+-no-flip
+No. terms in the card set = 90
+highest_streak = 90
+perfect_streak = True

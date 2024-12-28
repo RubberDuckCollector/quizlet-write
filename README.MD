@@ -46,6 +46,7 @@
     * [2024-11-23](#2024-11-23)
     * [2024-11-25 (13:23)](#2024-11-25-1323)
     * [2024-12-28 (17:18)](#2024-12-28-1718)
+    * [2024-12-28 (21:28)](#2024-12-28-2128)
 * [Known issues](#known-issues)
 * [Lesson of the day](#lesson-of-the-day)
 
@@ -207,6 +208,9 @@ none
 - [x] implement a feature where each round on the line graph has a different coloured line (2024-11-01)
 - [x] write the path to flash cards on the graph title
 - [x] make 2 txt files each for the data used to plot the x and y axis, saved under that session's particular dir
+- [ ] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
+- [ ] make the graph generated gradute in 1s instead of 5s (have to make the graph taller to do so)
+- [ ] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
 - [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
@@ -234,7 +238,6 @@ none
     - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
     - store the progress bar stages in a separate file and import them in `main.py`
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
-- [ ] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
 
 # Build log
 
@@ -402,6 +405,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-12-28 (17:18)
 
 - fixed bug on `hard` and `normal` modes where after text in brackets, all text after the brackets would also be shown. The solution was to put `inside_brackets = False` before `hint += msg[i]` in the `elif` statement checking for the closing bracket. I think `inside_brackets = False` turned out to be an unreachable line of code. this issue still persists on `easy` mode though
+
+## 2024-12-28 (21:28)
+
+- made it so the y axis is copied to the right side of the graph and the x axis is copied to the top of the graph, y axis now increments in 1s instead of 5s
 
 # Known issues
 

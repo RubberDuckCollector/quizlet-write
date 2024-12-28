@@ -654,8 +654,11 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # Calculate the figure width based on the number of x-axis labels
         fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
 
+        fig_height = width_per_label * 101  # 0.3 width per label multiplied by 101 y ticks from 0-100 inclusive
+
         # Set up figure with calculated width
-        plt.figure(figsize=(fig_width, 6))
+        plt.figure(figsize=(fig_width, fig_height))
+
 
         # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
         # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
@@ -668,10 +671,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         plt.title(f"Consistency line graph for session starting at {start_time}\nPath to cards: {sys.argv[1]}")
         plt.xlabel("# Terms answered")
         plt.ylabel("% Accuracy")
-        plt.ylim(0, 100)
-        plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area
-        plt.xticks(my_x_ticks, rotation=90)
-        plt.yticks([i for i in range(0, 101, 5)])
+        plt.ylim(0, 100)  # y axis goes from 0 to 100
+        plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
+        plt.xticks(my_x_ticks, rotation=90)  # numbers rotated 90 degrees, allows the axis to be readable
+        # plt.yticks([i for i in range(0, 101, 5)])
+        plt.yticks([i for i in range(0, 101, 1)])
+        plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
+        plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees
+        plt.gca().yaxis.set_ticks_position('both')
+        plt.gca().tick_params(axis='y', labelright=True)  # enable y axis numbers on the top of the graph as well as the bottom
         # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
         # https://stackoverflow.com/a/59372013
         plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
