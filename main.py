@@ -667,6 +667,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
             plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
 
+        plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+
         # plt.plot(x_axes, y_axes)
         plt.title(f"Consistency line graph for session starting at {start_time}\nPath to cards: {sys.argv[1]}")
         plt.xlabel("# Terms answered")
