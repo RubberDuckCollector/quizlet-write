@@ -45,6 +45,7 @@
     * [2024-11-04 (23:16)](#2024-11-04-2316)
     * [2024-11-23](#2024-11-23)
     * [2024-11-25 (13:23)](#2024-11-25-1323)
+    * [2024-12-28 (17:18)](#2024-12-28-1718)
 * [Known issues](#known-issues)
 * [Lesson of the day](#lesson-of-the-day)
 
@@ -397,6 +398,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-11-25 (13:23)
 
 - added more print statements for when the libraries are importing it reassures the user that something is going on rather than the program crashing
+
+## 2024-12-28 (17:18)
+
+- fixed bug on `hard` and `normal` modes where after text in brackets, all text after the brackets would also be shown. The solution was to put `inside_brackets = False` before `hint += msg[i]` in the `elif` statement checking for the closing bracket. I think `inside_brackets = False` turned out to be an unreachable line of code. this issue still persists on `easy` mode though
 
 # Known issues
 

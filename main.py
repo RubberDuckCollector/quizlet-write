@@ -136,12 +136,12 @@ def make_hard_hint(msg: str) -> str:
             # add the ( to the hint
             hint += msg[i]
             inside_brackets = True
-        elif msg[i] == [')', '）']:
+        elif msg[i] in [')', '）']:
             # if we're at the end of the bracket
             # add the ) to the hint
             # inside_brackets becomes False
-            hint += msg[i]
             inside_brackets = False
+            hint += msg[i]
         elif inside_brackets is True:
             # add the character stright to the hint
             # we want to preserve the characters inside brackets
@@ -149,6 +149,7 @@ def make_hard_hint(msg: str) -> str:
             # therefore they shouldn't be an _ underscore
             hint += msg[i]
         else:
+            inside_brackets = False
             # if we're not in brackets
             # the character is neither of ( or )
             # and the character isn't in constants.chars_to_ignore
@@ -186,7 +187,7 @@ def make_normal_hint(msg: str) -> str:
                     # add the ( to the hint
                     inside_brackets = True
                     hint += msg[i]
-                elif msg[i] == [')', '）']:
+                elif msg[i] in [')', '）']:
                     # if we're at the end of the bracket
                     # add the ) to the hint
                     # inside_brackets becomes False
@@ -250,7 +251,7 @@ def make_easy_hint(msg: str) -> str:
                     # they don't have to memorise what's in the ()
                     # they'll only have to type it out
                     hint += msg[i]
-                elif msg[i] == [')', '）']:
+                elif msg[i] in [')', '）']:
                     inside_brackets = False
                     hint += msg[i]  # add the close bracket to the hint
                 else:
