@@ -77,6 +77,7 @@
 
 # Disclaimer
 
+- **NOT TESTED FOR WINDOWS, ONLY MACOS AND LINUX**
 - **"terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.**
 - A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
 - If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the terms done count for the 2nd of Jan., when the session is completed.
@@ -91,7 +92,7 @@
 
 ## input for the program:
 - a text file in the format `content|more-content`, on each line of the file like this:
-```
+```txt
 hello (spanish)|hola
 goodbye|adiós
 how are you?|¿qué tal?

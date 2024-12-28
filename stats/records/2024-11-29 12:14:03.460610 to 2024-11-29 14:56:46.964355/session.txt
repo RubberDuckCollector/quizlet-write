@@ -1,0 +1,116 @@
+cards from: /Users/luna/flash-cards/languages/german/university/introductory-german/chapter-3.txt
+Round 1:
+✓ to carry; wear                                                                                     tragen
+✓ something                                                                                          etwas
+✓ the soup                                                                                           die Suppe(n)
+✓ to belong to                                                                                       gehören
+✓ the hand                                                                                           die Hand(¨e)
+✓ how many?                                                                                          wie viele?
+✓ since; for (duration e.g: "studying for 2 years")                                                  seit
+✓ especially                                                                                         besonders
+✓ the server (at a restaurant); service                                                              die Bedienung
+✓ to help                                                                                            helfen
+✓ the spoon                                                                                          der Löffel(-)
+✓ to remain; to stay                                                                                 bleiben
+✓ the male friend; boyfriend                                                                         der Freund(e)
+✓ to answer                                                                                          antworten
+✓ to sleep                                                                                           schlafen
+✓ the sugar                                                                                          der Zucker
+✓ another                                                                                            noch ein
+✓ usual(ly)                                                                                          gewöhnlich
+✗ the supper; dinner                                                                                 das Abendessen
+✓ to eat breakfast                                                                                   frühstücken
+✓ What is there to eat?                                                                              Was gibt's zu essen?
+✓ much                                                                                               viel
+✓ towards home                                                                                       nach Hause
+✓ That's good!, That tastes good!                                                                    Das schmeckt gut!
+✓ What is there to drink?                                                                            Was gibt's zu trinken?
+✓ the café                                                                                           das Café(s)
+✓ with; together with                                                                                mit
+✓ to see                                                                                             sehen
+✓ besides (e.g: „_____ Kaufland ist alles zu”)                                                       außer
+✓ many                                                                                               viele
+✓ the student cafeteria                                                                              die Mensa
+✓ to recommend                                                                                       empfehlen
+✓ the plate                                                                                          der Teller(-)
+✓ the pepper                                                                                         der Pfeffer
+✓ the waiter (starts with K) (male)                                                                  der Kellner(-)
+✓ I would like to have ... (2nd word starts wtih m)                                                  Ich möchte gern ...
+✓ the waitress (starts with K) (female)                                                              die Kellnerin(nen)
+✓ to thank                                                                                           danken
+✓ the female friend; girlfriend                                                                      die Freundin(nen)
+✓ the french fries                                                                                   die Pommes frites
+✓ perhaps; maybe (starts with v)                                                                     vielleicht
+✓ at/or a company; near, by (a place in a city like a park); at the home of, with (a person)         bei
+✓ the salt                                                                                           das Salz
+✓ the fork                                                                                           die Gabel(n)
+✓ I'd like to pay please                                                                             Ich möchte zahlen bitte
+✓ the rice                                                                                           der Reis
+✓ the bottle                                                                                         die Flasche(n)
+✓ the restaurant                                                                                     das Restaurant(s)
+✓ the menu (starts with S)                                                                           die Speisekarte(n)
+✓ the noodle                                                                                         die Nudel(n)
+✓ nothing to drink                                                                                   nichts zu trinken
+✓ to believe                                                                                         glauben
+✓ to take; to have (food)                                                                            nehmen
+✓ to give                                                                                            geben
+✓ not only ... but also ...                                                                          nicht nur ... sondern auch ...
+✓ the pudding                                                                                        der Pudding(s)
+✓ Waiter!/Waitress! (starts with B)                                                                  Bedienung!
+✓ to pay                                                                                             zahlen
+✓ to walk; run                                                                                       laufen
+✓ the lunch, midday meal                                                                             das Mittagessen
+✓ to become, to get (state, e.g: „ich _____ müde” "i'm getting tired")                               werden
+✓ the food; meal                                                                                     das Essen
+✓ the check; the bill                                                                                die Rechnung(en)
+✓ I would like to have ... (2nd word starts wtih h)                                                  Ich hätte gern ...
+✓ to pay for                                                                                         bezahlen
+✓ to taste; (to taste good to)                                                                       schmecken
+✓ the knife                                                                                          das Messer(-)
+✓ I don't like ...                                                                                   Ich mag kein ...
+✓ everywhere (starts with ü)                                                                         überall
+✗ something to eat                                                                                   etwas zu essen
+✓ at home                                                                                            zu Hause
+✓ sometimes                                                                                          manchmal
+✓ to order                                                                                           bestellen
+✓ the dessert                                                                                        der Nachtisch
+✓ Thanks, you too!                                                                                   Danke, gleichfalls!
+✓ to please; be pleasing to                                                                          gefallen
+✓ one (e.g one would not run in the corridoors)                                                      man
+✓ nothing                                                                                            nichts
+✓ Bon appétit!                                                                                       Guten Appetit!
+✓ What's for lunch?                                                                                  Was gibt's zum Mittagessen?
+✓ What's for breakfast?                                                                              Was gibt's zum Frühstück?
+✓ I like it (it tastes good) (3rd word starts with m)                                                Das schmeckt mir
+✓ of; from; by (creator, doer of an action)                                                          von
+✓ how much?                                                                                          wie viel?
+✓ the ice cream                                                                                      das Eis
+✗ the waiter (starts with O)                                                                         der Ober(-)
+✓ the breakfast                                                                                      das Frühstück
+✓ out of; from (a country of origin)                                                                 aus
+✓ after (time e.g: Virtel ____ eins); to (cities, countries continents); to (in certain expressions) nach
+✓ to be fattening                                                                                    dick machen
+✓ to drive                                                                                           fahren
+✓ to eat                                                                                             essen
+✓ to (int he direction of); at (in certain expressions) for (purpose e.g: i buy a pan to cook)       zu
+✓ to bring                                                                                           bringen
+✓ the potato                                                                                         die Kartoffel(n)
+✓ Waiter! (2nd word starts with O)                                                                   Herr Ober
+✓ the serviette                                                                                      die Serviette(n)
+✓ to read                                                                                            lesen
+✓ the pizza                                                                                          die Pizza
+✓ a bottle of ...                                                                                    eine Flasche ...
+Score: 97/100 (97.0%)
+
+Round 2:
+✓ the supper; dinner                                                                                 das Abendessen
+✓ the waiter (starts with O)                                                                         der Ober(-)
+✓ something to eat                                                                                   etwas zu essen
+Score: 3/3 (100.0%)
+
+-hard
+-rand-every-round
+-no-flip
+No. terms in the card set = 100
+highest_streak = 50
+perfect_streak = False
