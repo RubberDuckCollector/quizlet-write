@@ -48,6 +48,7 @@
     * [2024-12-28 (17:18)](#2024-12-28-1718)
     * [2024-12-28 (21:28)](#2024-12-28-2128)
     * [2024-12-29 (1:00)](#2024-12-29-100)
+    * [2024-12-29](#2024-12-29)
 * [Known issues](#known-issues)
 * [Lesson of the day](#lesson-of-the-day)
 
@@ -85,9 +86,8 @@
 - **File names will have colons : in them, which is prohibited on Windows but not MacOS or Linux. I personally recommend running this in WSL or changing the code to accommodate Windows if you want to use this program Windows.**
 - A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
 - If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the terms done count for the 2nd of Jan., when the session is completed.
-- Results.txt may have random vocab answers in it, i guess it can be a demonstration of what goes on during program execution and the file when you abort the program with Ctrl + C (contents of the file haven't been cleared yet) but it's mainly from my testing of the program.
-- I also know how cursed this file is if you open it raw. Try not to think about it.
-- if you don't want the `records/` dir to have my records in it when you download the repo, just delete the files
+- I know how cursed this file is if you open it raw. Try not to think about it.
+- If you don't want the `records/` dir to have my records in it when you download the repo, just delete the files
 
 # Prerequisites
 
@@ -215,6 +215,12 @@ none
     - maybe with a ... that increments
     - or integrate a logging system (with proper standardised logging library)
 - [x] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
+- [x] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
+- [wip] break up `main.py` into many smaller files containing their own procedures
+    - maybe separate ones for the hint system, the quiz, and others
+- [wip] implement a `-help` command line argument
+    - can now calculate the average length of a flash card set on a given day knowing the total number of terms studied and the total number sessions studied
+    - implement it as a command line argument taken at the first position
 - [ ] make the colours on the bar charts pretty
 - [ ] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
 - [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
@@ -228,10 +234,6 @@ none
 - [ ] implement a feature where the time taken to complete the quiz is written to the record file
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
     - files are appended to each other for the test (hold file paths in a list?)
-- [ ] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
-    - can now calculate the average length of a flash card set on a given day knowing the total number of terms studied and the total number sessions studied
-    - implement it as a command line argument taken at the first position
-- [ ] implement a `-help` command line argument
     - maybe make the program run a bash script, integrating the `less` command or something idk
 - [ ] make matplotlib optional through only importing it if an if statement has been checked, also if statements whenever it's used elsewhere
     - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
@@ -248,6 +250,7 @@ none
 
 - completed development of first revision
 - if there are vocab files that are empty, that is known (2024-03-08 update: vocab is at <https://github.com/RubberDuckCollector/my-flash-cards>)
+
 ## 2024-02-21
 
 - starting development of more command line arguments (--randomise)
@@ -274,7 +277,9 @@ none
 ## 2024-05-15 14:33
 
 - having trouble with the streak functionality and scope. idk how to actually do it
+
 ### 2024-08-15 amendment:
+
 - this feature has since been implemented and is functional
 
 ## 2024-07-18
@@ -283,6 +288,7 @@ none
 - fixed by adding another constant called NUM_TERMS but in the correct scope, and switching from `readlines()` to `readline()`. `readlines()` returns a list of strings where each string is a line in the file, but `json.dumps()` cannot take a list input
 
 ### 2024-08-15 additional explanation for above bugfix:
+
 the fix i made so that the date shows up correctly in `terms-per-day.json`:
 the date is figured out at the top of the quiz procedure, so the terms done in that day is
 either already there and can be incremented by the number of terms in the card set,
@@ -416,6 +422,10 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-12-29 (1:00)
 
 - changed the command line argument detection a bit, started on the `-help` command, added features to create bar charts of the number of sessions/flash cards done on each day
+
+## 2024-12-29
+
+- moved hint system, colors, help, constants, and commands to a separate `my_modules/` folder
 
 # Known issues
 

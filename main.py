@@ -1,72 +1,56 @@
-print("Importing os...")
+print("Loading...")
+
+# external library code
 import os
-print("Importing sys...")
 import sys
-print("Importing time...")
 import time
-print("Importing json...")
 import json
-print("Importing random...")
 import random
-print("Importing readline...")
 import readline
-# print("Importing platform...")  # see clear_screen()
 # import platform
-print("Importing datetime from datetime...")
 from datetime import datetime
-print("Importing constants...")
-import constants
-print("Importing matplotlib.pylot...")
 import matplotlib.pyplot as plt  # type: ignore
+
+# my own library code
+import my_modules.constants
+import my_modules.help
+import my_modules.color
+import my_modules.hint_system
+
+"""
+IMPORT GUIDE (examples of how you would use my library code)
+
+`my_modules.constants` refers to `my_modules/constants.py`
+`my_modules.help` refers to `my_modules/help.py`
+`my_modules.color` refers to `my_modules/color.py`
+
+`my_modules.constants.chars_to_ignore[i]`  # access the value at index `i` in the chars_to_ignore list
+`my_modules.help.help_command()`  # call the help_command() procedure
+`my_modules.color.Color.Blue(/Magenta/Bold/Reset)`  # access the specific color from the Color class
+
+To explain it in a sentence (2 ways):
+1. "call the help command from the file `help`, which is in the folder/directory `my_modules`."
+2. "go to the folder/directory `my_modules`, go to the file `help`, call the help command."
+"""
 
 
 # static analyser might say readline is unused
 # but it attaches to the builtin input() func
 
-# a variable starting with `p_...` denotes a parameter, not a pointer
-# "terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.
-# A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly once.
-
-
-class Color:
-    Reset = "\033[0m"
-    Red = "\033[031m"
-    Green = "\033[32m"
-    Yellow = "\033[33m"
-    Blue = "\033[34m"
-    Magenta = "\033[35m"
-    Cyan = "\033[96m"
-    LightGray = "\033[37m"
-    DarkGray = "\033[90m"
-    LightRed = "\033[91m"
-    LightGreen = "\033[92m"
-    LightYellow = "\033[93m"
-    LightBlue = "\033[94m"
-    LightMagenta = "\033[95m"
-    LightCyan = "\033[96m"
-    White = "\033[97m"
-    Warn = "\033[93m"
-    Underline = "\033[4m"
-    Bold = "\033[1m"
-    Hidden = "\033[8m"
-    Blink = "\033[5m"
-    Dim = "\033[2m"
-    Reverse = "\033[7m"
 
 """
+a variable starting with `p_...` denotes a parameter, not a pointer
+"terms" and "flash cards" are interchangable. 
+    "term" refers to both the question and answer on each side of the flash card.
+A "session" is one completion of all the flash cards from a file.
+    A completed session means you've answered all the cards correctly once.
+
 CONVENTIONS:
 
 File paths in help text are written in Light Magenta
 Commands in help text are written in Cyan
 """
 
-# TODO: PUT ALL OF THIS INTO A SEPARATE help.py FILE BECAUSE THERE WILL BE A LOT OF HELPS
-def help_command():
-    print("\nQuizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)")
-    print(f"To make a bar chart of the number of sessions done on each day, write `{Color.Cyan}python3 main.py -make-session-bar-chart{Color.Reset}`")
-    print(f"To make a bar chart of the number of flash cards done on each day, write `{Color.Cyan}python3 main.py -make-flash-card-bar-chart{Color.Reset}`")
-
-    sys.exit(0)
 
 def plotting_graph():
     print("Plotting graph...")
@@ -90,7 +74,7 @@ def make_session_bar_chart() -> str:
 
             # group the values and keys of the dict into tuples.
             # `max()`: look at the tuple with the highest value at index 0 of the tuple
-            # [0]: using index 0 of the tuple with the max value
+            # [0]: assigning index 0 of the tuple to the max value
             most_sessions_done = max(zip(sessions.values(), sessions.keys()))[0]
 
             # width per label * number of key-value pairs in the dict
@@ -124,7 +108,7 @@ def make_session_bar_chart() -> str:
 
 
         # if all goes well
-        result = f"Session bar chart created successfully in `{Color.LightMagenta}stats/session-bar-charts/{Color.Reset}`."
+        result = f"Session bar chart created successfully in `{my_modules.color.Color.LightMagenta}stats/session-bar-charts/{my_modules.color.Color.Reset}`."
         return result
     except Exception as e:
         result = f"Error: {e}"
@@ -164,7 +148,7 @@ def make_flash_card_bar_chart() -> str:
             plt.title(f"Flash card bar chart generated at {now}")
             plt.xlabel("# Flash cards answered")
             plt.ylabel("Date (YYYY-MM-DD)")
-            plt.xticks([i for i in range(0, most_terms_done + 1, 1)])
+            plt.xticks([i for i in range(0, most_terms_done + 1, 1)])  # this can be as a list or one of Python's range() objects
             plt.gca().xaxis.set_ticks_position('both')
             plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable the dates on the y axis to be on the top of the graph as well as the bottom, rotates 90 degrees to make them readable
             plt.gca().yaxis.set_ticks_position('both')
@@ -175,16 +159,16 @@ def make_flash_card_bar_chart() -> str:
             plt.savefig(f"stats/flash-card-bar-charts/{now}.pdf", bbox_inches = "tight")
 
         # if all goes well
-        result = f"Flash card bar chart created successfully in `{Color.LightMagenta}stats/flash-card-bar-charts/{Color.Reset}`."
+        result = f"Flash card bar chart created successfully in `{my_modules.color.Color.LightMagenta}stats/flash-card-bar-charts/{my_modules.color.Color.Reset}`."
         return result
     except Exception as e:
         result = f"Error: {e}"
         return result
 
 
-
 if sys.argv[1] == "-help":
-    help_command()
+    my_modules.help.help_command()
+    sys.exit(0)
 elif sys.argv[1] == "-make-session-bar-chart":
     print(make_session_bar_chart())
     sys.exit(0)
@@ -192,10 +176,10 @@ elif sys.argv[1] == "-make-flash-card-bar-chart":
     print(make_flash_card_bar_chart())
     sys.exit(0)
 elif len(sys.argv) < 5:
-    print(f"Too few command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{Color.Cyan}-help{Color.Reset}` by running this file again like this: `{Color.Cyan}python3 main.py -help{Color.Reset}`")
+    print(f"Too few command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{my_modules.color.Color.Cyan}-help{my_modules.color.Color.Reset}` by running this file again like this: `{my_modules.color.Color.Cyan}python3 main.py -help{my_modules.color.Color.Reset}`")
     sys.exit(0)
 elif len(sys.argv) > 5:
-    print(f"Too many command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{Color.Cyan}-help{Color.Reset}` by running this file again like this: `{Color.Cyan}python3 main.py -help{Color.Reset}`")
+    print(f"Too many command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{my_modules.color.Color.Cyan}-help{my_modules.color.Color.Reset}` by running this file again like this: `{my_modules.color.Color.Cyan}python3 main.py -help{my_modules.color.Color.Reset}`")
     sys.exit(0)
 
 
@@ -219,10 +203,10 @@ def print_round_breakdown(
             if found:
                 # print the line in green if there's a tick in it
                 if '✓' in line:
-                    print(f"{Color.Green}{line.strip()}{Color.Reset}")
+                    print(f"{my_modules.color.Color.Green}{line.strip()}{my_modules.color.Color.Reset}")
                 elif '✗' in line:
                     # print the line in red if there's a cross in it
-                    print(f"{Color.Red}{line.strip()}{Color.Reset}")
+                    print(f"{my_modules.color.Color.Red}{line.strip()}{my_modules.color.Color.Reset}")
                 else:
                     # otherwise don't colour the line and print it
                     print(line.strip())
@@ -243,176 +227,6 @@ def print_round_breakdown(
     print()
 
 
-# https://www.geeksforgeeks.org/how-to-find-chinese-and-japanese-character-in-a-string-in-python/
-def is_japanese_char(character):
-    if '\u3040' <= character <= '\u30FF' or '\u4E00' <= character <= '\u9FFF':
-        return True
-    else:
-        return False
-
-def is_chinese_char(character):
-    if '\u4E00' <= character <= '\u9FFF' or '\u3400' <= character <= '\u4DBF':
-            return True
-    return False
-
-def make_very_hard_hint() -> str:
-    return "No hints!"
-
-
-def make_hard_hint(msg: str) -> str:
-    hint = ""
-
-    inside_brackets = False
-
-    for i in range(len(msg)):
-        if msg[i] in constants.chars_to_ignore:
-            # if char should be preserved when hint is being built
-            hint += msg[i]
-        elif msg[i] in ['(', '（']:
-            # if we're currently looking at a (
-            # inside_brackets will be assigned True
-            # add the ( to the hint
-            hint += msg[i]
-            inside_brackets = True
-        elif msg[i] in [')', '）']:
-            # if we're at the end of the bracket
-            # add the ) to the hint
-            # inside_brackets becomes False
-            inside_brackets = False
-            hint += msg[i]
-        elif inside_brackets is True:
-            # add the character stright to the hint
-            # we want to preserve the characters inside brackets
-            # into the hint
-            # therefore they shouldn't be an _ underscore
-            hint += msg[i]
-        else:
-            inside_brackets = False
-            # if we're not in brackets
-            # the character is neither of ( or )
-            # and the character isn't in constants.chars_to_ignore
-            # it must be turned into an _
-
-            # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
-            if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
-                hint += '＿'
-            else:
-                # otherwise, it's most likely a latin alphabet character
-                hint += '_'
-
-    return hint
-
-
-def make_normal_hint(msg: str) -> str:
-    hint = ""
-    msg = list(msg)  # type: ignore # turn the string into a list of chars
-    # print(msg)
-
-    i = 0
-    # iterating through the list with a while loop
-    # incrementing the iterating variable manually
-
-    inside_brackets = False
-
-    while True:
-        try:
-            if msg[i] in constants.chars_to_ignore:
-                hint += msg[i]
-            else:
-                if msg[i] in ['(', '（']:
-                    # if we're currently looking at a (
-                    # inside_brackets will be assigned True
-                    # add the ( to the hint
-                    inside_brackets = True
-                    hint += msg[i]
-                elif msg[i] in [')', '）']:
-                    # if we're at the end of the bracket
-                    # add the ) to the hint
-                    # inside_brackets becomes False
-                    inside_brackets = False
-                    hint += msg[i]
-                elif inside_brackets:
-                    # add the character stright to the hint
-                    # we want to preserve the characters inside brackets
-                    # into the hint
-                    # therefore they shouldn't be an _ underscore
-                    hint += msg[i]
-                else:
-                    # if all above conditions haven't been met,
-                    # if we're not inside_brackets
-                    # add the letter to the hint if i == 0,
-                    # or the previous letter is a space
-                    # otherwise add a '_'
-                    # hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"  # fancy but useless syntax 
-
-                    if i == 0 or msg[i - 1].isspace():
-                        hint += msg[i]
-                    else:
-                        # hint += '_'
-                        # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
-                        if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
-                            hint += '＿'
-                        else:
-                            # otherwise, it's most likely a latin alphabet character
-                            hint += '_'
-
-            i += 1  # increment i, ready for the next element of the list
-
-        except IndexError:
-            # if we try to access an index that's not in the list
-            # it must mean we're at the end of the list
-            # and therefore built up the whole hint
-            # it's safe to break out of the while True
-            break
-
-    return hint
-
-
-def make_easy_hint(msg: str) -> str:
-    hint = ""
-    msg = list(msg)  # type: ignore
-
-    i = 0
-    inside_brackets = False
-
-    while True:
-        try:
-            if msg[i] in constants.chars_to_ignore:
-                hint += msg[i]
-            else:
-                if msg[i] in ['(', '（']:
-                    inside_brackets = True
-                    hint += msg[i]  # add the open bracket to the hint
-                elif inside_brackets:
-                    # we want to preserve the char, and put it in the hint
-                    # to give the user leniency
-                    # they don't have to memorise what's in the ()
-                    # they'll only have to type it out
-                    hint += msg[i]
-                elif msg[i] in [')', '）']:
-                    inside_brackets = False
-                    hint += msg[i]  # add the close bracket to the hint
-                else:
-                    if i == 0 or msg[i - 1].isspace():
-                        hint += msg[i]  # Keep the first character of the word
-                    elif msg[i - 2].isspace() or i == 1:
-                        hint += msg[i]  # Keep the second character of the word
-                    elif msg[i - 3].isspace() or i == 2:
-                        hint += msg[i]  # Keep the third character of the word
-                    else:
-                        # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
-                        if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
-                            hint += '＿'
-                        else:
-                            # otherwise, it's most likely a latin alphabet character
-                            # replace other characters with underscore
-                            hint += '_'
-
-            i += 1
-        except IndexError:
-            break
-
-    return hint
 
 
 def dump_results_to_records_file(p_start_time, this_sessions_results_file: str) -> str:
@@ -489,9 +303,6 @@ class StreakCounter:
         return self.highest_streak
 
 
-VALID_DIFFICULTIES = ["-easy", "-normal", "-hard", "-very-hard"]
-
-
 def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     # when the session starts, find out when that is so it can be added to the session's file name
@@ -566,24 +377,24 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
                 for prompt, answer in card_set.items():
 
-                    if difficulty == VALID_DIFFICULTIES[0]:
-                        hint = make_easy_hint(answer)
-                    elif difficulty == VALID_DIFFICULTIES[1]:
-                        hint = make_normal_hint(answer)
-                    elif difficulty == VALID_DIFFICULTIES[2]:
-                        hint = make_hard_hint(answer)
-                    elif difficulty == VALID_DIFFICULTIES[3]:
-                        hint = make_very_hard_hint()
+                    if difficulty == my_modules.hint_system.VALID_DIFFICULTIES[0]:
+                        hint = my_modules.hint_system.make_easy_hint(answer)
+                    elif difficulty == my_modules.hint_system.VALID_DIFFICULTIES[1]:
+                        hint = my_modules.hint_system.make_normal_hint(answer)
+                    elif difficulty == my_modules.hint_system.VALID_DIFFICULTIES[2]:
+                        hint = my_modules.hint_system.make_hard_hint(answer)
+                    elif difficulty == my_modules.hint_system.VALID_DIFFICULTIES[3]:
+                        hint = my_modules.hint_system.make_very_hard_hint()
 
                     # match difficulty:
                     #     case "-easy":
-                    #         hint = make_easy_hint(answer)
+                    #         hint = my_modules.hint_system.make_easy_hint(answer)
                     #     case "-normal":
-                    #         hint = make_normal_hint(answer)
+                    #         hint = my_modules.hint_system.make_normal_hint(answer)
                     #     case "-hard":
-                    #         hint = make_hard_hint(answer)
+                    #         hint = my_modules.hint_system.make_hard_hint(answer)
                     #     case "-very-hard":
-                    #         hint = make_very_hard_hint()
+                    #         hint = my_modules.hint_system.make_very_hard_hint()
                     #     case _:
                     #         print("Error while trying to make hint")
 
@@ -598,16 +409,16 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     # this is the percentage completed in the current set
                     progress = round(num_answered / NUM_TERMS, 2) * 100 if num_answered > 0 else 0.0
 
-                    print(f"Working from file {Color.Dim}{os.path.basename(sys_args[1])}{Color.Reset}")
+                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(sys_args[1])}{my_modules.color.Color.Reset}")
                     print(f"Remaining: {num_remaining}")
-                    print(f"Correct: {Color.Green}{num_correct}{Color.Reset} ({current_percent_correct}%)")
-                    print(f"Incorrect: {Color.Red}{num_incorrect}{Color.Reset}")
-                    print(f"Progress: {Color.LightBlue}{progress}{Color.Reset}%")
-                    print(f"Streak: {Color.LightMagenta}{quiz_counter.get_current_streak()}{Color.Reset} ({Color.LightMagenta}{quiz_counter.get_highest_streak()}{Color.Reset})")
+                    print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
+                    print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
+                    print(f"Progress: {my_modules.color.Color.LightBlue}{progress}{my_modules.color.Color.Reset}%")
+                    print(f"Streak: {my_modules.color.Color.LightMagenta}{quiz_counter.get_current_streak()}{my_modules.color.Color.Reset} ({my_modules.color.Color.LightMagenta}{quiz_counter.get_highest_streak()}{my_modules.color.Color.Reset})")
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
                     # print(f"DEBUG: sys_args: {sys_args}")
-                    print(f"What's the answer to {Color.LightCyan}{prompt}{Color.Reset}?")
-                    print(f"Hint: {Color.Dim}{hint}{Color.Reset}")
+                    print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
+                    print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}")
                     user_response = input("> ").strip()
 
                     # print num_remaining, num_correct, num_incorrect
@@ -621,7 +432,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                         while True:
                             user_response = input(f"Copy the answer below ↓\n- {answer}\n> ")
                             if user_response.lower() == answer.lower():
-                                print(f"{Color.Cyan}Next question.{Color.Reset}")
+                                print(f"{my_modules.color.Color.Cyan}Next question.{my_modules.color.Color.Reset}")
                                 time.sleep(0.5)
                                 clear_screen()
                                 break
@@ -636,7 +447,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     else:
                         # the user gets a special message if capitalisation matches perfectly
                         if user_response == answer:
-                            print(f"{Color.Green}Correct. Well done!{Color.Reset}")
+                            print(f"{my_modules.color.Color.Green}Correct. Well done!{my_modules.color.Color.Reset}")
 
                             quiz_counter.increment_streak()
                             num_correct += 1
@@ -654,7 +465,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
                         # otherwise just a normal message
                         elif user_response.lower() == answer.lower():
-                            print(f"{Color.Green}Correct{Color.Reset}")
+                            print(f"{my_modules.color.Color.Green}Correct{my_modules.color.Color.Reset}")
 
                             quiz_counter.increment_streak()
                             num_correct += 1
@@ -671,14 +482,14 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
                         else:
                             # ask for override
-                            print(f"{Color.Red}Incorrect.{Color.Reset} Answer: {Color.LightYellow}{answer}{Color.Reset}")
+                            print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} Answer: {my_modules.color.Color.LightYellow}{answer}{my_modules.color.Color.Reset}")
 
                             override = input("Override as correct? (empty answer = don't override) ")
 
                             # if override has something in it
                             if override:
                                 # mark as correct as the user wishes
-                                print(f"Overridden as {Color.Green}Correct{Color.Reset}.")
+                                print(f"Overridden as {my_modules.color.Color.Green}Correct{my_modules.color.Color.Reset}.")
 
                                 quiz_counter.increment_streak()
                                 num_correct += 1
@@ -693,7 +504,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                                 if key_to_copy in card_set:
                                     correct_answers[key_to_copy] = card_set[key_to_copy]
                             else:
-                                print(f"{Color.Yellow}Not overridden.{Color.Reset}")
+                                print(f"{my_modules.color.Color.Yellow}Not overridden.{my_modules.color.Color.Reset}")
                                 # mark as incorrect
                                 f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                                 f.flush()
@@ -815,6 +626,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         plt.ylim(0, 100)  # y axis goes from 0 to 100
         plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
         # plt.yticks([i for i in range(0, 101, 5)])
+        plt.xticks([i for i in range(0, NUM_TERMS + 1, 1)])
         plt.yticks([i for i in range(0, 101, 1)])
         plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
         plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
@@ -835,15 +647,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         # after the record file is done, print the session breakdown to the user
 
-        print(f"{Color.Bold}Session breakdown:{Color.Reset}")
+        print(f"{my_modules.color.Color.Bold}Session breakdown:{my_modules.color.Color.Reset}")
 
         with open(this_sessions_results_file, 'r') as f:
             for line in f:
                 # print the line without leading/trailing whitespaces
                 if '✓' in line:  # check for tick
-                    print(f"{Color.Green}{line.strip()}{Color.Reset}")
+                    print(f"{my_modules.color.Color.Green}{line.strip()}{my_modules.color.Color.Reset}")
                 elif '✗' in line:  # check for cross
-                    print(f"{Color.Red}{line.strip()}{Color.Reset}")
+                    print(f"{my_modules.color.Color.Red}{line.strip()}{my_modules.color.Color.Reset}")
                 else:
                     print(line.strip())  # otherwise don't colour the line
 
@@ -877,7 +689,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             write_terms_per_day(terms_done_dict)
 
             # show the user the increase in terms done today
-            print(f"Terms done today: {new_terms_completed - NUM_TERMS} {Color.LightGreen}->{Color.Reset} {new_terms_completed}")
+            print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
 
             # repeat the same process but for sessions done today
             with open("stats/sessions-per-day.json", "r") as sessions_f:
@@ -902,7 +714,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             write_sessions_per_day(sessions_done_dict)
 
             # show the user the increase in sessions done today
-            print(f"Sessions done today: {new_sessions_completed - 1} {Color.LightGreen}->{Color.Reset} {new_sessions_completed}")
+            print(f"Sessions done today: {new_sessions_completed - 1} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_sessions_completed}")
 
 
             # delete the temp file as it has served its purpose
@@ -1006,7 +818,7 @@ def main():
     difficulty = sys.argv[2]
 
 
-    if difficulty in VALID_DIFFICULTIES:
+    if difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass
     else:
         print("Error: difficulty selection can only be one of: -easy | -normal | -hard | -very-hard")
