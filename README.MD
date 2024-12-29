@@ -106,8 +106,6 @@ for the whole length of the file, save for empty lines and starting with a `#`. 
 
 # Optional
 
-- matplotlib (WIP) (will be made optional through an extra command line argument in the future)
-
 # Overview
 
 <details><summary>Overview:</summary>
@@ -235,8 +233,6 @@ none
 - [ ] implement a feature where the command line arguments accept multiple files like this: `/file /file /file -difficulty -rand -flip`
     - files are appended to each other for the test (hold file paths in a list?)
     - maybe make the program run a bash script, integrating the `less` command or something idk
-- [ ] make matplotlib optional through only importing it if an if statement has been checked, also if statements whenever it's used elsewhere
-    - can only be done with modular code with very few lines outside of global scope, as matplotlib will hopefully be imported in `main()`
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
 - [ ] for the progress through the quiz, make a progress bar
