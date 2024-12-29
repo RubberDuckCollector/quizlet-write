@@ -6,6 +6,7 @@ import sys
 import time
 import json
 import random
+import argparse
 import readline
 # import platform
 from datetime import datetime
@@ -51,6 +52,9 @@ File paths in help text are written in Light Magenta
 Commands in help text are written in Cyan
 """
 
+parser = argparse.ArgumentParser(prog="Quizlet Write my version",
+                                 description="<https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
+                                 epilog="Made for flash card revision")
 
 def plotting_graph():
     print("Plotting graph...")
@@ -166,7 +170,10 @@ def make_flash_card_bar_chart() -> str:
         return result
 
 
-if sys.argv[1] == "-help":
+if len(sys.argv) == 1:
+    my_modules.help.help_command()
+    sys.exit(0)
+elif sys.argv[1] == "-help":
     my_modules.help.help_command()
     sys.exit(0)
 elif sys.argv[1] == "-make-session-bar-chart":
@@ -812,6 +819,7 @@ def main():
     # difficulty,
     # randomise terms,
     # switch question and answer
+
 
     file_path = sys.argv[1]
 

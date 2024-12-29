@@ -219,6 +219,7 @@ none
 - [wip] implement a `-help` command line argument
     - can now calculate the average length of a flash card set on a given day knowing the total number of terms studied and the total number sessions studied
     - implement it as a command line argument taken at the first position
+- [ ] mirgrage to argparse
 - [ ] make the colours on the bar charts pretty
 - [ ] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
 - [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
