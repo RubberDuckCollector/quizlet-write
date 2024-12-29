@@ -2,14 +2,6 @@ print("Importing os...")
 import os
 print("Importing sys...")
 import sys
-
-if len(sys.argv) < 5:
-    print("Too few command line arguments. Order: card set, difficulty, randomise, flip question and answer")
-    sys.exit(0)
-elif len(sys.argv) > 5:
-    print("Too few command line arguments. Order: card set, difficulty, randomise, flip question and answer")
-    sys.exit(0)
-
 print("Importing time...")
 import time
 print("Importing json...")
@@ -18,8 +10,8 @@ print("Importing random...")
 import random
 print("Importing readline...")
 import readline
-print("Importing platform...")
-import platform
+# print("Importing platform...")  # see clear_screen()
+# import platform
 print("Importing datetime from datetime...")
 from datetime import datetime
 print("Importing constants...")
@@ -61,12 +53,158 @@ class Color:
     Dim = "\033[2m"
     Reverse = "\033[7m"
 
+"""
+CONVENTIONS:
+
+File paths in help text are written in Light Magenta
+Commands in help text are written in Cyan
+"""
+
+# TODO: PUT ALL OF THIS INTO A SEPARATE help.py FILE BECAUSE THERE WILL BE A LOT OF HELPS
+def help_command():
+    print("\nQuizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)")
+    print(f"To make a bar chart of the number of sessions done on each day, write `{Color.Cyan}python3 main.py -make-session-bar-chart{Color.Reset}`")
+    print(f"To make a bar chart of the number of flash cards done on each day, write `{Color.Cyan}python3 main.py -make-flash-card-bar-chart{Color.Reset}`")
+
+    sys.exit(0)
+
+def plotting_graph():
+    print("Plotting graph...")
+
+def saving_graph():
+    print("Saving graph...")
+
+def make_session_bar_chart() -> str:
+    # accesses stats/sessions-per-day.json to create a bar chart of sessions done per day using matplotlib
+    try:
+        with open("stats/sessions-per-day.json", "r") as f:
+            data = f.read()
+            sessions = json.loads(data)
+
+            # DEBUGGING
+            # print(sessions)
+            # for key, value in sessions.items():
+            #     print(f"KEY: {key}, VALUE: {value}")
+
+            width_per_label = 0.3
+
+            # group the values and keys of the dict into tuples.
+            # `max()`: look at the tuple with the highest value at index 0 of the tuple
+            # [0]: using index 0 of the tuple with the max value
+            most_sessions_done = max(zip(sessions.values(), sessions.keys()))[0]
+
+            # width per label * number of key-value pairs in the dict
+            # we're plotting horizontally, so the sessions done (the dependent variable) go on the x axis, which controls the width of the graph
+            fig_width = width_per_label * most_sessions_done
+
+            # we're plotting horizontally, so the dates go on the y axis, which controls the height of the graph
+            fig_height = width_per_label * len(sessions)
+
+            # Set up figure with calculated width
+            plt.figure(figsize=(fig_width, fig_height))
+
+            plotting_graph()
+            for key, value in sessions.items():
+                plt.barh(key, value)
+
+            plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+            now = datetime.now()
+            plt.title(f"Session bar chart generated at {now}")
+            plt.xlabel("# Sessions completed")
+            plt.ylabel("Date (YYYY-MM-DD)")
+            plt.xticks([i for i in range(0, most_sessions_done + 1, 1)])
+            plt.gca().xaxis.set_ticks_position('both')
+            plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable the dates on the y axis to be on the top of the graph as well as the bottom, rotates 90 degrees to make them readable
+            plt.gca().yaxis.set_ticks_position('both')
+            plt.gca().tick_params(axis='y', labelright=True)  # enable the dates on the y axis to be on the top of the graph as well as the bottom
+
+            # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
+            saving_graph()
+            plt.savefig(f"stats/session-bar-charts/{now}.pdf", bbox_inches = "tight")
+
+
+        # if all goes well
+        result = f"Session bar chart created successfully in `{Color.LightMagenta}stats/session-bar-charts/{Color.Reset}`."
+        return result
+    except Exception as e:
+        result = f"Error: {e}"
+        return result
+
+
+def make_flash_card_bar_chart() -> str:
+    # accesses stats/terms-per-day.json and plots a bar chart of the # terms done on each day
+    try:
+        with open("stats/terms-per-day.json", "r") as f:
+            data = f.read()
+            terms_per_day = json.loads(data)
+
+            # DEBUGGING
+            # print(terms_per_day)
+            # for key, value in terms_per_day.items():
+            #     print(f"KEY: {key}, VALUE: {value}")
+
+            width_per_label = 0.3
+
+            most_terms_done = max(zip(terms_per_day.values(), terms_per_day.keys()))[0]
+
+            # we're plotting horizontally, so the terms done go on the x axis, which controls the width of the graph
+            fig_width = width_per_label * most_terms_done
+
+            # we're plotting horizontally, so the dates go on the y axis, which controls the height of the graph
+            fig_height = width_per_label * len(terms_per_day)
+
+            plt.figure(figsize=(fig_width, fig_height))
+
+            plotting_graph()
+            for key, value in terms_per_day.items():
+                plt.barh(key, value)
+
+            plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+            now = datetime.now()
+            plt.title(f"Flash card bar chart generated at {now}")
+            plt.xlabel("# Flash cards answered")
+            plt.ylabel("Date (YYYY-MM-DD)")
+            plt.xticks([i for i in range(0, most_terms_done + 1, 1)])
+            plt.gca().xaxis.set_ticks_position('both')
+            plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable the dates on the y axis to be on the top of the graph as well as the bottom, rotates 90 degrees to make them readable
+            plt.gca().yaxis.set_ticks_position('both')
+            plt.gca().tick_params(axis='y', labelright=True)  # enable the dates on the y axis to be on the top of the graph as well as the bottom
+
+            # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
+            saving_graph()
+            plt.savefig(f"stats/flash-card-bar-charts/{now}.pdf", bbox_inches = "tight")
+
+        # if all goes well
+        result = f"Flash card bar chart created successfully in `{Color.LightMagenta}stats/flash-card-bar-charts/{Color.Reset}`."
+        return result
+    except Exception as e:
+        result = f"Error: {e}"
+        return result
+
+
+
+if sys.argv[1] == "-help":
+    help_command()
+elif sys.argv[1] == "-make-session-bar-chart":
+    print(make_session_bar_chart())
+    sys.exit(0)
+elif sys.argv[1] == "-make-flash-card-bar-chart":
+    print(make_flash_card_bar_chart())
+    sys.exit(0)
+elif len(sys.argv) < 5:
+    print(f"Too few command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{Color.Cyan}-help{Color.Reset}` by running this file again like this: `{Color.Cyan}python3 main.py -help{Color.Reset}`")
+    sys.exit(0)
+elif len(sys.argv) > 5:
+    print(f"Too many command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{Color.Cyan}-help{Color.Reset}` by running this file again like this: `{Color.Cyan}python3 main.py -help{Color.Reset}`")
+    sys.exit(0)
+
 
 def clear_screen():
-    if platform.system() == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
+    # not currently tested on Windows
+    # if platform.system() == "Windows":
+    #     os.system("cls")
+    # else:
+    os.system("clear")
 
 
 def print_round_breakdown(
@@ -664,6 +802,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
 
         # plot each y-axis data series with its corresponding x-axis values
+        plotting_graph()
         for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
             plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
 
@@ -675,13 +814,13 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         plt.ylabel("% Accuracy")
         plt.ylim(0, 100)  # y axis goes from 0 to 100
         plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-        plt.xticks(my_x_ticks, rotation=90)  # numbers rotated 90 degrees, allows the axis to be readable
         # plt.yticks([i for i in range(0, 101, 5)])
         plt.yticks([i for i in range(0, 101, 1)])
         plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
-        plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees
+        plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
         plt.gca().yaxis.set_ticks_position('both')
         plt.gca().tick_params(axis='y', labelright=True)  # enable y axis numbers on the top of the graph as well as the bottom
+        saving_graph()
         # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
         # https://stackoverflow.com/a/59372013
         plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
@@ -855,16 +994,10 @@ def render_cards(filepath: str) -> dict:
 # needed for value checking and presence checking of the command line args
 def main():
 
-    if len(sys.argv) < 5:
-        print("Too few command line arguments. Order: card set, difficulty, randomise, flip question and answer")
-        sys.exit(0)
-    elif len(sys.argv) > 5:
-        print("Too many command line arguments. Order: card set, difficulty, randomise, flip question and answer")
-        sys.exit(0)
-
     # order of arguments:
+    # help/main.py/bar-chart
     # file path to file containing questions,
-    # easy difficulty,
+    # difficulty,
     # randomise terms,
     # switch question and answer
 
