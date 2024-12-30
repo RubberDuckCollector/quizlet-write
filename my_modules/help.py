@@ -1,4 +1,3 @@
-import textwrap
 import my_modules.color
 
 
@@ -9,9 +8,6 @@ File paths in help text are written in Light Magenta
 Commands in help text are written in Cyan
 """
 
-# https://stackoverflow.com/questions/16430200/a-good-way-to-make-long-strings-wrap-to-newline
-def wrap(string, max_width):
-    return '\n'.join(textwrap.wrap(string,max_width))
 
 def help_command():
     help_statements = {
@@ -25,4 +21,5 @@ def help_command():
 
     print("\nQuizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)")
     for key, value in help_statements.items():
-        print(f"  {key.ljust(max_left_length)}\t\t{wrap(value, max_left_length * " " + "\t\t")}")
+        print(f"  {key.ljust(max_left_length)}\t\t{value}")
+

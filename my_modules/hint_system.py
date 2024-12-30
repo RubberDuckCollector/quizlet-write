@@ -1,6 +1,6 @@
 import my_modules.constants
 
-VALID_DIFFICULTIES = ["-easy", "-normal", "-hard", "-very-hard"]
+VALID_DIFFICULTIES = ["easy", "normal", "hard", "very-hard"]
 
 
 # https://www.geeksforgeeks.org/how-to-find-chinese-and-japanese-character-in-a-string-in-python/

@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt  # type: ignore
 
 # my own library code
 import my_modules.constants
-import my_modules.help
+# import my_modules.help
 import my_modules.color
 import my_modules.hint_system
 
@@ -52,9 +52,11 @@ File paths in help text are written in Light Magenta
 Commands in help text are written in Cyan
 """
 
-parser = argparse.ArgumentParser(prog="Quizlet Write my version",
-                                 description="<https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
-                                 epilog="Made for flash card revision")
+parser = argparse.ArgumentParser(prog="main.py",
+                                 description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
+                                 epilog="Made for flash card revision. Recommended for short answers.")
+
+# parser = argparse.ArgumentParser()
 
 def plotting_graph():
     print("Plotting graph...")
@@ -170,26 +172,6 @@ def make_flash_card_bar_chart() -> str:
         return result
 
 
-if len(sys.argv) == 1:
-    my_modules.help.help_command()
-    sys.exit(0)
-elif sys.argv[1] == "-help":
-    my_modules.help.help_command()
-    sys.exit(0)
-elif sys.argv[1] == "-make-session-bar-chart":
-    print(make_session_bar_chart())
-    sys.exit(0)
-elif sys.argv[1] == "-make-flash-card-bar-chart":
-    print(make_flash_card_bar_chart())
-    sys.exit(0)
-elif len(sys.argv) < 5:
-    print(f"Too few command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{my_modules.color.Color.Cyan}-help{my_modules.color.Color.Reset}` by running this file again like this: `{my_modules.color.Color.Cyan}python3 main.py -help{my_modules.color.Color.Reset}`")
-    sys.exit(0)
-elif len(sys.argv) > 5:
-    print(f"Too many command line arguments/unrecognised argument(s). General order: card set, difficulty, randomise, flip question and answer. Refer to `{my_modules.color.Color.Cyan}-help{my_modules.color.Color.Reset}` by running this file again like this: `{my_modules.color.Color.Cyan}python3 main.py -help{my_modules.color.Color.Reset}`")
-    sys.exit(0)
-
-
 def clear_screen():
     # not currently tested on Windows
     # if platform.system() == "Windows":
@@ -232,8 +214,6 @@ def print_round_breakdown(
         f.flush()
 
     print()
-
-
 
 
 def dump_results_to_records_file(p_start_time, this_sessions_results_file: str) -> str:
@@ -820,53 +800,88 @@ def main():
     # randomise terms,
     # switch question and answer
 
+    # add optional arguments
+    parser.add_argument("--explain_app_usage", action="store_true", help="gives a walkthrough of the average user's interactions with the program")
+    parser.add_argument("--technical_explanation", action="store_true", help="gives a walkthrough of the average user's interactions with the program")
 
-    file_path = sys.argv[1]
+    """
+    `nargs="?"`: makes the positional argument optional.
+    usually positional arguments are required but sometimes they have to change to
+    accommodate the optional arguments.
+    PREVIOUS ERROR: argparse didn't let the optional arguments because it was expecting
+    positional arguments before even considering optional ones.
 
-    difficulty = sys.argv[2]
+    `default=None`: if the user doesn't provide an argument in that place, it wil default to None.
+    this is used to better keep track of what's going on with the positional arguments.
+    since None is different to emtpy string/0 value it gives me more immediate information about
+    how the program is behaving
+    """ 
+    # add positional arguments
+    parser.add_argument("flash_card_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
+    parser.add_argument("difficulty", nargs="?", default=None,  help="Difficulty of the quiz", type=str)
+    parser.add_argument("randomise", nargs="?", default=None,  help="How you want to randomise the flash cards in the quiz", type=str)
+    parser.add_argument("flip_terms", nargs="?", default=None,  help="Wether or not you want to flip the cards over and answer with the question", type=str)
 
+    # if sys.argv only contains `main.py`
+    # print help and halt program execution
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(0)
+
+    args = parser.parse_args()  # parse arguments in the order declared in the code
+
+    if args.explain_app_usage:
+        print("explain app usage - import commands.py (write long things in there)")
+        sys.exit(0)
+    elif args.technical_explanation:
+        print("technical explanation - commands.py")
+        sys.exit(0)
+
+    file_path = args.flash_card_file_path
+
+    difficulty = args.difficulty
 
     if difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass
     else:
-        print("Error: difficulty selection can only be one of: -easy | -normal | -hard | -very-hard")
+        print("Error: difficulty selection can only be one of: easy | normal | hard | very-hard")
         return
 
-    randomise = sys.argv[3]
+    randomise = args.randomise
 
     print("Rendering cards...")
     cards = render_cards(file_path)
 
     # will be handled in quiz()
     match randomise:
-        case "-rand-once":
+        case "rand-once":
             # randomise only at the start of the session
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
-        case "-rand-every-round":
+        case "rand-every-round":
             # randomise after the end of every round 
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
             pass
-        case "-no-rand":
+        case "no-rand":
             # don't randomise, pass as the cards can be used as-is
             pass
         case _:
-            print("Error: randomise setting can only be one of: -rand-once | -no-rand | -rand-every-round")
+            print("Error: randomise setting can only be one of: rand-once | no-rand | rand-every-round")
             return
 
-    flip_terms = sys.argv[4]
+    flip_terms = args.flip_terms
     match flip_terms:
-        case "-flip":
+        case "flip":
             # switch terms and definitions
             cards = {v: k for k, v in cards.items()}
-        case "-no-flip":
+        case "no-flip":
             # good to go, use cards as-is
             pass
         case _:
-            print("Error: flip setting can only be one of: -flip | -no-flip")
+            print("Error: flip setting can only be one of: flip | no-flip")
             return
 
     clear_screen()
