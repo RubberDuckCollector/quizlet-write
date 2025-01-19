@@ -219,6 +219,8 @@ none
 - [wip] implement a `-help` command line argument
     - can now calculate the average length of a flash card set on a given day knowing the total number of terms studied and the total number sessions studied
     - implement it as a command line argument taken at the first position
+- [ ] port the app to the blessed library and make it a fully featured TUI app
+- [ ] compile the program to be shipped
 - [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
 - [ ] mirgrage to argparse
 - [ ] make the colours on the bar charts pretty

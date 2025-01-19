@@ -56,13 +56,14 @@ parser = argparse.ArgumentParser(prog="main.py",
                                  description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
                                  epilog="Made for flash card revision. Recommended for short answers.")
 
-# parser = argparse.ArgumentParser()
 
 def plotting_graph():
     print("Plotting graph...")
 
+
 def saving_graph():
     print("Saving graph...")
+
 
 def make_session_bar_chart() -> str:
     # accesses stats/sessions-per-day.json to create a bar chart of sessions done per day using matplotlib
@@ -259,7 +260,7 @@ class StreakCounter:
     def increment_streak(self):
         # increment the current streak by one
         self.current_streak += 1
-        # if the current streak then exceeds the max, it must mean there's a new highest
+        # if the current streak then exceeds the current highest, it must mean there's a new highest
         # therefore reassign highest_streak to current_streak
         if self.current_streak > self.highest_streak:
             self.highest_streak = self.current_streak
