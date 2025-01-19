@@ -221,7 +221,7 @@ def dump_results_to_records_file(p_start_time, this_sessions_results_file: str) 
     # when the session ends, find out when that is to put it in the session's file name
     end_time = str(datetime.now())
     # this copies the data in this_sessions_results_file to the records file for that session
-    session_dir = f"stats/records/{p_start_time} to {end_time}"
+    session_dir = f"stats/records/Session {p_start_time} to {end_time}"
     os.mkdir(session_dir)
     with open(this_sessions_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
         for line in results_f:
