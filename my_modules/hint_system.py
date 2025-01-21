@@ -21,7 +21,6 @@ def make_very_hard_hint() -> str:
 
 def make_hard_hint(msg: str) -> str:
     hint = ""
-
     inside_brackets = False
 
     for i in range(len(msg)):
@@ -65,6 +64,10 @@ def make_hard_hint(msg: str) -> str:
 
 def make_normal_hint(msg: str) -> str:
     hint = ""
+
+    slashes = [i for i in range(len(msg)) if msg[i] == "/"]
+    msg = msg.replace("/", " ")
+
     msg = list(msg)  # type: ignore # turn the string into a list of chars
     # print(msg)
 
@@ -125,11 +128,21 @@ def make_normal_hint(msg: str) -> str:
             # it's safe to break out of the while True
             break
 
+    hint = list(hint)
+    for i in slashes:
+        hint[i] = "/"
+
+    hint = "".join(hint)
+
     return hint
 
 
 def make_easy_hint(msg: str) -> str:
     hint = ""
+
+    slashes = [i for i in range(len(msg)) if msg[i] == "/"]
+    msg = msg.replace("/", " ")
+
     msg = list(msg)  # type: ignore
 
     i = 0
@@ -171,5 +184,11 @@ def make_easy_hint(msg: str) -> str:
             i += 1
         except IndexError:
             break
+
+    hint = list(hint)
+    for i in slashes:
+        hint[i] = "/"
+
+    hint = "".join(hint)
 
     return hint

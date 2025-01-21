@@ -177,6 +177,7 @@ none
     - or integrate a logging system (with proper standardised logging library)
 - [x] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
 - [x] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
+- [x] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
 - [wip] break up `main.py` into many smaller files containing their own procedures
     - maybe separate ones for the hint system, the quiz, and others
 - [wip] implement a `-help` command line argument
@@ -187,7 +188,6 @@ none
 - [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
 - [ ] mirgrage to argparse
 - [ ] make the colours on the bar charts pretty
-- [ ] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
 - [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
