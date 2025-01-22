@@ -1,4 +1,2 @@
 .DS_Store
-stats/records/Session*
-stats/*bar-charts/
-stats/*.json
+stats/
