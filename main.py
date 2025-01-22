@@ -687,7 +687,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
             # repeat the same process but for sessions done today
             sessions_per_day_file_path = "stats/sessions-per-day.json"
-            if not os.path.exists(terms_per_day_file_path):
+            if not os.path.exists(sessions_per_day_file_path):
                 # create file if it doesn't exist
                 with open(sessions_per_day_file_path, 'w') as f:
                     f.write("{}")
