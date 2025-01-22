@@ -185,7 +185,8 @@ none
 - [wip] implement a `-help` command line argument
     - can now calculate the average length of a flash card set on a given day knowing the total number of terms studied and the total number sessions studied
     - implement it as a command line argument taken at the first position
-- [ ] port the app to the blessed library and make it a fully featured TUI app
+- [ ] sort out build log on github
+- [ ] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
 - [ ] compile the program to be shipped
 - [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
 - [ ] mirgrage to argparse
@@ -208,3 +209,4 @@ none
     - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
     - store the progress bar stages in a separate file and import them in `main.py`
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
+- [ ] port the app to the blessed library and make it a fully featured TUI app
