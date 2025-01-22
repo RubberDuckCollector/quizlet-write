@@ -23,6 +23,8 @@
 - note: i recommend using this for german vocab where the plural conjugation can be in brackets. the program will preserve contents in the brackets so you don't have to memorise what's in the brackets.
 - e.g: the recipe - das Rezept *(-e)*
 
+Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD_LOG.md>
+
 # Features
 
 - Overall, the same as Quizlet Write (type the answer on the flash card)
