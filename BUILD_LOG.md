@@ -1,7 +1,6 @@
-# Build log
-
 <!-- vim-markdown-toc GFM -->
 
+* [Build log](#build-log)
     * [2024-02-20](#2024-02-20)
     * [2024-02-21](#2024-02-21)
     * [2024-02-22](#2024-02-22)
@@ -40,6 +39,8 @@
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
+
+# Build log
 
 ## 2024-02-20
 
