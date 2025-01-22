@@ -1,3 +1,4 @@
+<details><summary>Contents</summary>
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
@@ -39,6 +40,8 @@
 * [Lesson of the day](#lesson-of-the-day)
 
 <!-- vim-markdown-toc -->
+</details>
+
 
 # Build log
 
