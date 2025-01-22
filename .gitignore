@@ -1,2 +1,5 @@
 .DS_Store
-stats/*
+stats/records/Session*
+stats/*bar-charts/
+stats/sessions-per-day.json
+stats/terms-per-day.json
