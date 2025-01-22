@@ -1,5 +1,6 @@
 .DS_Store
 stats/records/Session*
-stats/*bar-charts/
-stats/sessions-per-day.json
+stats/session-bar-charts/*.pdf
+stats/flash-card-bar-charts/*.pdf
 stats/terms-per-day.json
+stats/sessions-per-day.json
