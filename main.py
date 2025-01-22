@@ -852,10 +852,10 @@ def main():
         print("technical explanation - commands.py")
         sys.exit(0)
     elif args.make_session_bar_chart:
-        make_session_bar_chart()
+        print(make_session_bar_chart())
         sys.exit(0)
     elif args.make_flash_card_bar_chart:
-        make_flash_card_bar_chart()
+        print(make_flash_card_bar_chart())
         sys.exit(0)
 
     file_path = args.flash_card_file_path
