@@ -658,7 +658,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             if not os.path.exists(terms_per_day_file_path):
                 # create file if it doesn't exist
                 with open(terms_per_day_file_path, 'w') as f:
-                    f.write("")
+                    f.write("{}")
             with open(terms_per_day_file_path, 'r') as terms_f:
                 # terms_done_dict = json.loads(f.readline())
                 terms_done_dict = json.load(terms_f)
@@ -690,7 +690,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             if not os.path.exists(terms_per_day_file_path):
                 # create file if it doesn't exist
                 with open(sessions_per_day_file_path, 'w') as f:
-                    f.write("")
+                    f.write("{}")
             with open(sessions_per_day_file_path, "r") as sessions_f:
                 sessions_done_dict = json.load(sessions_f)
 
