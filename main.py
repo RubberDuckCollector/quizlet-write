@@ -118,7 +118,7 @@ def make_session_bar_chart() -> str:
         result = f"Session bar chart created successfully in `{my_modules.color.Color.LightMagenta}stats/session-bar-charts/{my_modules.color.Color.Reset}`."
         return result
     except Exception as e:
-        result = f"Error: {e}"
+        result = f"Error: {e}\nTry revising some flash cards first so you have data to use!"
         return result
 
 
@@ -170,7 +170,7 @@ def make_flash_card_bar_chart() -> str:
         result = f"Flash card bar chart created successfully in `{my_modules.color.Color.LightMagenta}stats/flash-card-bar-charts/{my_modules.color.Color.Reset}`."
         return result
     except Exception as e:
-        result = f"Error: {e}"
+        result = f"Error: {e}\nTry revising some flash cards first so you have data to use!"
         return result
 
 
@@ -815,6 +815,9 @@ def main():
     # add optional arguments
     parser.add_argument("--explain_app_usage", action="store_true", help="gives a walkthrough of the average user's interactions with the program")
     parser.add_argument("--technical_explanation", action="store_true", help="gives a walkthrough of the average user's interactions with the program")
+    # bar charts
+    parser.add_argument("--make_session_bar_chart", action="store_true", help="Generates a bar chart of the sessions done on each day")
+    parser.add_argument("--make_flash_card_bar_chart", action="store_true", help="Generates a bar chart of the flash cards done on each day")
 
     """
     `nargs="?"`: makes the positional argument optional.
@@ -847,6 +850,12 @@ def main():
         sys.exit(0)
     elif args.technical_explanation:
         print("technical explanation - commands.py")
+        sys.exit(0)
+    elif args.make_session_bar_chart:
+        make_session_bar_chart()
+        sys.exit(0)
+    elif args.make_flash_card_bar_chart:
+        make_flash_card_bar_chart()
         sys.exit(0)
 
     file_path = args.flash_card_file_path
