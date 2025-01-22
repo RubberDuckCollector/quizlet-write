@@ -125,7 +125,8 @@ def make_session_bar_chart() -> str:
 def make_flash_card_bar_chart() -> str:
     # accesses stats/terms-per-day.json and plots a bar chart of the # terms done on each day
     try:
-        with open("stats/terms-per-day.json", "r") as f:
+        file_path = "stats/terms-per-day.json"
+        with open(file_path, "r") as f:
             data = f.read()
             terms_per_day = json.loads(data)
 
@@ -653,7 +654,12 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             # where only one session would add to the terms done count for that day
             # instead of a second session
             # disclaimer: bug only found with two concurrent sessions
-            with open("stats/terms-per-day.json", 'r') as terms_f:
+            terms_per_day_file_path = "stats/terms-per-day.json"
+            if not os.path.exists(terms_per_day_file_path):
+                # create file if it doesn't exist
+                with open(terms_per_day_file_path, 'w') as f:
+                    f.write("")
+            with open(terms_per_day_file_path, 'r') as terms_f:
                 # terms_done_dict = json.loads(f.readline())
                 terms_done_dict = json.load(terms_f)
 
@@ -680,7 +686,12 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
 
             # repeat the same process but for sessions done today
-            with open("stats/sessions-per-day.json", "r") as sessions_f:
+            sessions_per_day_file_path = "stats/sessions-per-day.json"
+            if not os.path.exists(terms_per_day_file_path):
+                # create file if it doesn't exist
+                with open(sessions_per_day_file_path, 'w') as f:
+                    f.write("")
+            with open(sessions_per_day_file_path, "r") as sessions_f:
                 sessions_done_dict = json.load(sessions_f)
 
             new_sessions_completed = 0
