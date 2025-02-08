@@ -191,7 +191,7 @@ none
     - need to save `card_set` dict and the index of the current flash card
     - need to save the stats when the session is exited
     - need to save the time the session was started at
-- [ ] sort out build log on github
+- [x] sort out build log on github
 - [ ] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
 - [ ] compile the program to be shipped
 - [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
