@@ -184,8 +184,12 @@ none
 - [wip] break up `main.py` into many smaller files containing their own procedures
     - maybe separate ones for the hint system, the quiz, and others
 - [wip] implement a `-help` command line argument
-    - can now calculate the average length of a flash card set on a given day knowing the total number of terms studied and the total number sessions studied
+    - can now calculate the average length of a flash card set/average time taken on a given day knowing the total number of terms studied and the total number sessions studied
     - implement it as a command line argument taken at the first position
+- [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file
+- [ ] implement a feature that allows the user to exit and save a session and resume a session
+    - need to save `card_set` dict and the index of the current flash card
+    - need to save the stats when the session is exited
 - [ ] sort out build log on github
 - [ ] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
 - [ ] compile the program to be shipped
