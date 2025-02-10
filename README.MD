@@ -181,6 +181,7 @@ none
 - [x] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
 - [x] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
 - [x] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
+- [x] sort out build log on github
 - [wip] break up `main.py` into many smaller files containing their own procedures
     - maybe separate ones for the hint system, the quiz, and others
 - [wip] implement a `-help` command line argument
@@ -191,7 +192,7 @@ none
     - need to save `card_set` dict and the index of the current flash card
     - need to save the stats when the session is exited
     - need to save the time the session was started at
-- [x] sort out build log on github
+    - implement `--resume` command line argument that prompts an interactive selection mode for the saved sessions
 - [ ] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
 - [ ] compile the program to be shipped
 - [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
