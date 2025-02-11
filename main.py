@@ -396,7 +396,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
 
                     # this is the percentage completed in the current set
-                    progress = round(num_answered / NUM_TERMS, 2) * 100 if num_answered > 0 else 0.0
+                    progress = round(num_answered / NUM_TERMS * 100, 2) if num_answered > 0 else 0.0
 
                     print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(sys_args[1])}{my_modules.color.Color.Reset}")
                     print(f"Remaining: {num_remaining}")
