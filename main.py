@@ -614,9 +614,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         plt.ylabel("% Accuracy")
         plt.ylim(0, 100)  # y axis goes from 0 to 100
         plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-        # plt.yticks([i for i in range(0, 101, 5)])
         plt.xticks([i for i in range(0, NUM_TERMS + 1, 1)])
-        plt.yticks([i for i in range(0, 101, 1)])
+        plt.yticks([i for i in range(0, 101, 1)])  # full y axis
+        # TODO: get the min and max of the accuracy
+        """
+        get min of the entire y_axis list and the max of it
+        """
+        max_each_round = max(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
+        min_each_round = min(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
+        plt.yticks(range(int(min_each_round), int(max_each_round) + 1))  # only the relevant parts of the graph
         plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
         plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
         plt.gca().yaxis.set_ticks_position('both')
@@ -798,7 +804,25 @@ def render_cards(filepath: str) -> dict:
     # return this as the dictionary of terms and definitions
     # e.g: "hello": "hola",
     # the key is on the left, its corresponding value is on the right
-    return rendered_cards
+    return rendered_cards  # this is a dict
+
+
+def flip_flash_card_file(filename: str, p_flash_cards: dict) -> str:
+    """
+    procedure: implement an optional command line argument
+    where the program switches the position of the term and
+    answer on each line of a flash card file, edits the file itself
+    """
+
+    result = "Swap term and definition of all cards completed successfully."
+    try:
+        for key, value in p_flash_cards.items():
+            key, value = value, key
+
+        output_filename = f"{filename}_output.txt"
+    except Exception as e:
+        result = f"Error: {e}"
+    return result
 
 
 # main() handles command line arguments

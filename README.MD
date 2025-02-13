@@ -47,17 +47,17 @@ Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD
 # Disclaimer
 
 - **NOT TESTED/ADAPTED FOR WINDOWS, ONLY MACOS AND LINUX**
+- ***For this reason. I personally recommend running this in WSL or changing the code to accommodate Windows if you want to use this program Windows.***
 - **"terms" and "flash cards" are interchangable. "term" refers to both the question and answer on each side of the flash card.**
-- **File names will have colons : in them, which is prohibited on Windows but not MacOS or Linux. I personally recommend running this in WSL or changing the code to accommodate Windows if you want to use this program Windows.**
+- Due to how [datetime](https://docs.python.org/3/library/datetime.html) formats the time, filenames may have colons in them. I don't know how these filenames behave on different systems.
 - A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
 - If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the terms done count for the 2nd of Jan., when the session is completed.
 - I know how cursed this file is if you open it raw. Try not to think about it.
-- If you don't want the `records/` dir to have my records in it when you download the repo, just delete the files
 
 # Prerequisites
 
 - a Python version past 3.10 (this was built on python 3.12)
-- matplotlib (i install this with `/usr/local/bin/python3 -m pip install matplotlib` on my MacOS computer)
+- [matplotlib](https://matplotlib.org/) (i install this with `/usr/local/bin/python3 -m pip install matplotlib` on my MacOS computer)
 - a nerd font <https://www.nerdfonts.com/>
 
 ## input for the program:
@@ -68,7 +68,7 @@ goodbye|adiós
 how are you?|¿qué tal?
 hello (japanese)|こんにちは
 ```
-for the whole length of the file, save for empty lines and starting with a `#`. They'll be ignored by the program as code comments/handled separately.
+For the whole length of the file, save for empty lines and starting with a `#`. They'll be ignored by the program as code comments/handled separately.
 
 # Optional
 
@@ -187,7 +187,9 @@ none
 - [wip] implement a `-help` command line argument
     - can now calculate the average length of a flash card set/average time taken on a given day knowing the total number of terms studied and the total number sessions studied
     - implement it as a command line argument taken at the first position
-- [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file
+- [x] ***make it so the graph only saves the relevant segment of the graph***
+    - [ ] make it so the saved graph adjusts to the relevant y axis coordinates that are saved
+- [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, edits the file itself
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
     - need to save the stats when the session is exited
