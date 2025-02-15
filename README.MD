@@ -158,37 +158,6 @@ none
 
 # Next features/TODO
 
-- [x] streak feature (100% = perfect streak)
-- [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
-- [x] statistics and tracking - daily word count of terms done
-- [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
-- [x] tell the user the previous terms done today and the new terms done today
-- [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
-    - 11-10-2024: (this is done by having separate files tracking the progress of each session, no two files would conceivably be of the same session because the name is decided by time up to 6 digits on the second)
-- [x] implement a feature that tracks every session's % correct and generates a line graph of the session
-- [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
-- [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
-- [x] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
-- [x] remove the 0/0 on the graph (2024-11-01)
-- [x] might not be recording accuracy at 100% completion of the round PLEASE FIX (2024-11-01)
-- [x] implement a feature where each round on the line graph has a different coloured line (2024-11-01)
-- [x] write the path to flash cards on the graph title
-- [x] make 2 txt files each for the data used to plot the x and y axis, saved under that session's particular dir
-- [x] make the graph generated gradute in 1s instead of 5s (have to make the graph taller to do so)
-- [x] add signals that tell the user the program is loading/importing libraries/when the program is first run and there's a big loading time, this would let the user that nothing's going wrong
-    - maybe with a ... that increments
-    - or integrate a logging system (with proper standardised logging library)
-- [x] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
-- [x] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
-- [x] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
-- [x] sort out build log on github
-- [wip] break up `main.py` into many smaller files containing their own procedures
-    - maybe separate ones for the hint system, the quiz, and others
-- [wip] implement a `-help` command line argument
-    - can now calculate the average length of a flash card set/average time taken on a given day knowing the total number of terms studied and the total number sessions studied
-    - implement it as a command line argument taken at the first position
-- [x] ***make it so the graph only saves the relevant segment of the graph***
-    - [ ] make it so the saved graph adjusts to the relevant y axis coordinates that are saved
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, edits the file itself
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
@@ -219,3 +188,34 @@ none
     - store the progress bar stages in a separate file and import them in `main.py`
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
 - [ ] port the app to the blessed library and make it a fully featured TUI app
+- [x] streak feature (100% = perfect streak)
+- [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
+- [x] statistics and tracking - daily word count of terms done
+- [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
+- [x] tell the user the previous terms done today and the new terms done today
+- [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
+    - 11-10-2024: (this is done by having separate files tracking the progress of each session, no two files would conceivably be of the same session because the name is decided by time up to 6 digits on the second)
+- [x] implement a feature that tracks every session's % correct and generates a line graph of the session
+- [x] implement a feature where the command line arguments that are passed into the quiz are also written to the record file
+- [x] add a stats tracker for the number of sessions finished in that day, not just the already established terms studied per day
+- [x] implement a feature where the program ignores lines starting with a # in the flash card file. this allows me to put metadata in the flash card file and print it out when the session starts.
+- [x] remove the 0/0 on the graph (2024-11-01)
+- [x] might not be recording accuracy at 100% completion of the round PLEASE FIX (2024-11-01)
+- [x] implement a feature where each round on the line graph has a different coloured line (2024-11-01)
+- [x] write the path to flash cards on the graph title
+- [x] make 2 txt files each for the data used to plot the x and y axis, saved under that session's particular dir
+- [x] make the graph generated gradute in 1s instead of 5s (have to make the graph taller to do so)
+- [x] add signals that tell the user the program is loading/importing libraries/when the program is first run and there's a big loading time, this would let the user that nothing's going wrong
+    - maybe with a ... that increments
+    - or integrate a logging system (with proper standardised logging library)
+- [x] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
+- [x] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
+- [x] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
+- [x] sort out build log on github
+- [wip] break up `main.py` into many smaller files containing their own procedures
+    - maybe separate ones for the hint system, the quiz, and others
+- [wip] implement a `-help` command line argument
+    - can now calculate the average length of a flash card set/average time taken on a given day knowing the total number of terms studied and the total number sessions studied
+    - implement it as a command line argument taken at the first position
+- [x] ***make it so the graph only saves the relevant segment of the graph***
+    - [x] make it so the saved graph adjusts to the relevant y axis coordinates that are saved
