@@ -26,9 +26,9 @@ IMPORT GUIDE (examples of how you would use my library code)
 `my_modules.color` refers to `my_modules/color.py`
 
 `my_modules.constants.chars_to_ignore[i]`  # access the value at index `i` in the chars_to_ignore list
-`my_modules.help.help_command()`  # call the help_command() procedure
 `my_modules.color.Color.Blue(/Magenta/Bold/Reset)`  # access the specific color from the Color class
 
+`my_modules.help.help_command()`  # call the help_command() procedure
 To explain it in a sentence (2 ways):
 1. "call the help command from the file `help`, which is in the folder/directory `my_modules`."
 2. "go to the folder/directory `my_modules`, go to the file `help`, call the help command."
