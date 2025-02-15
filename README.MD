@@ -68,7 +68,7 @@ goodbye|adiós
 how are you?|¿qué tal?
 hello (japanese)|こんにちは
 ```
-For the whole length of the file, save for empty lines and starting with a `#`. They'll be ignored by the program as code comments/handled separately.
+For the whole length of the file, save for empty lines and lines starting with a `#`. They'll be ignored by the program as code comments/handled separately.
 
 # Optional
 

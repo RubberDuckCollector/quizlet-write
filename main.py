@@ -584,6 +584,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         width_per_label = 0.3
 
+        min_each_round = min(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
+        max_each_round = max(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
+
         # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
         # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
         # ... (which are 2 different things)
@@ -592,7 +595,10 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # Calculate the figure width based on the number of x-axis labels
         fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
 
-        fig_height = width_per_label * 101  # 0.3 width per label multiplied by 101 y ticks from 0-100 inclusive
+        # fig_height = width_per_label * 101  # 0.3 width per label multiplied by 101 y ticks from 0-100 inclusive
+
+        # sets the height of the figure according to the range of percentages achieved by the user.
+        fig_height = width_per_label * (max_each_round - min_each_round + 1)  
 
         # Set up figure with calculated width
         plt.figure(figsize=(fig_width, fig_height))
@@ -612,16 +618,11 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         plt.title(f"Consistency line graph for session starting at {start_time}\nPath to cards: {sys.argv[1]}")
         plt.xlabel("# Terms answered")
         plt.ylabel("% Accuracy")
-        plt.ylim(0, 100)  # y axis goes from 0 to 100
+        # plt.ylim(0, 100)  # y axis goes from 0 to 100
+        plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
         plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
         plt.xticks([i for i in range(0, NUM_TERMS + 1, 1)])
-        plt.yticks([i for i in range(0, 101, 1)])  # full y axis
-        # TODO: get the min and max of the accuracy
-        """
-        get min of the entire y_axis list and the max of it
-        """
-        max_each_round = max(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
-        min_each_round = min(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
+        # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
         plt.yticks(range(int(min_each_round), int(max_each_round) + 1))  # only the relevant parts of the graph
         plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
         plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
