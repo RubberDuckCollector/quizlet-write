@@ -140,8 +140,8 @@ def make_normal_hint(msg: str) -> str:
 def make_easy_hint(msg: str) -> str:
     hint = ""
 
-    slashes = [i for i in range(len(msg)) if msg[i] == "/"]
-    msg = msg.replace("/", " ")
+    slashes = [i for i in range(len(msg)) if msg[i] == "/"]  # collect the indexes of where the slashes are in the hint
+    msg = msg.replace("/", " ")  # replace them with a space, so the character after will be shown in the hint
 
     msg = list(msg)  # type: ignore
 
@@ -187,7 +187,7 @@ def make_easy_hint(msg: str) -> str:
 
     hint = list(hint)
     for i in slashes:
-        hint[i] = "/"
+        hint[i] = "/"  # put the slashes back into the hint at the end to preserve the hint
 
     hint = "".join(hint)
 
