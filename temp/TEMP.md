@@ -1,3 +1,3 @@
-# TEMP
+# Temp
 
-This is where the temp files for each session live. Used for resuming sessions
+This is where the data for each session goes while the program is running

@@ -18,6 +18,7 @@ import my_modules.constants
 import my_modules.color
 import my_modules.hint_system
 
+
 """
 IMPORT GUIDE (examples of how you would use my library code)
 
@@ -345,19 +346,27 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # the user can specify a --resume command line argument
     # the user is put into an interactive mode
     # resume the flash card revision from where the user left off
-    session_and_data_time = datetime.now()
-    this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{session_and_data_time}"
+    # start_time = datetime.now()
+    this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{start_time}"
     os.mkdir(this_sessions_temp_dir_name)
-    this_sessions_temp_results_file = f"temp/{this_sessions_temp_dir_name}/temp_results_for_session_{session_and_data_time}.txt"
-    this_sessions_temp_data_file = f"temp/{this_sessions_temp_dir_name}temp_data_for_session_{session_and_data_time}.json"
+    this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{start_time}.txt"
+    this_sessions_temp_data_file = f"{this_sessions_temp_dir_name}/temp_data_for_session_{start_time}.json"
     
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
     # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
     # because it's a temp file and all actions are aborted if the session finishes early
     try:
-        with open(this_sessions_temp_results_file, "a") as f:
+        with open(this_sessions_temp_results_file, "a") as f, open(this_sessions_temp_data_file, "a") as g:
+            # TODO: add this_sessions_temp_data as JSON to its respective file
             f.write(f"cards from: {sys.argv[1]}\n")
+            this_sessions_data = {  # progress isn't here, it gets calculated during program execution
+                "remaining": 0,
+                "correct": 0,
+                "incorrect": 0,
+                "current_streak": 0,
+                "highest_streak": 0
+            }
             while len(card_set) != 0:
                 round_num += 1
 
@@ -737,7 +746,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
             # delete the temp file as it has served its purpose
             os.remove(this_sessions_temp_results_file)
-            os.rmdir(this_sessions_temp_data_file)
+            os.remove(this_sessions_temp_data_file)
             os.rmdir(this_sessions_temp_dir_name)
         except Exception as e:
             print("error while saving data.")
@@ -747,7 +756,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # if the user stops the program with ctrl c or ctrl d, also delete the file
         # to make it like nothing ever happened
         os.remove(this_sessions_temp_results_file)
-        os.rmdir(this_sessions_temp_data_file)
+        os.remove(this_sessions_temp_data_file)
         os.rmdir(this_sessions_temp_dir_name)
 
 
