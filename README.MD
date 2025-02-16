@@ -11,9 +11,9 @@
 * [Optional](#optional)
 * [Overview](#overview)
 * [Demo video (old)](#demo-video-old)
-* [Technical Explanation (WIP)](#technical-explanation-wip)
 * [Notes](#notes)
-* [Next features/TODO](#next-featurestodo)
+* [Top Priority TODO](#top-priority-todo)
+    * [Next features/TODO](#next-featurestodo)
 
 <!-- vim-markdown-toc -->
 
@@ -89,74 +89,11 @@ For the whole length of the file, save for empty lines and lines starting with a
 
 <https://youtu.be/rUKUTK_Q52E>
 
-# Technical Explanation (WIP)
-
-<details><summary>Technical Explanation:</summary>
-    <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
-        <details><summary><b>Files:</b></summary>
-            <ul>
-                <li>
-                    <p><u>File structure:</u></p>
-                    <pre>
-                        <code>
-.
-├── LICENSE
-├── README.md
-├── __pycache__
-│   └── constants.cpython-312.pyc
-├── constants.py
-├── main.py
-├── results.txt
-└── tests
-    ├── graveyard.py
-    ├── test.py
-    ├── test2.py
-    ├── test3.py
-    └── test4.py
-                        </code>
-                    </pre>
-                </li>
-                <li><a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/constants.py"><code>constants.py</code></a>: contains the <code>chars_to_ignore</code> list. It's in the file because It can be imported to all my test files. It lets me manage a global variable across many scripts, making it easy to test code in different files with a known piece of data. Being requireable in a separate file makes it easier to debug too. I want all my tests and <code>main.py</code> to be on the same page and working with the same constants.</li>
-                <li><code>main.py</code>: stores all of the logic of the program. Run this file to use it</li>
-                <li><code>README.md</code>: this file.</li>
-                <li><code>constants.py</code>: contains <code>chars_to_ignore</code> and is imported by my python scripts</li>
-                <li><code>LICENSE</code>: license</li>
-                <li><code>tests/</code>: contains files I've used to test python code that I've later added to <code>main.py</code>. I used these test files becauase I don't want to test within <code>main.py</code> to prevent something bad from happening. Feel free to poke around and read the shitty code</li>
-            </ul>
-        </details>
-        <details><summary><strong>The code:</strong></summary> <!-- THE CODE -->
-            <ul>
-                <li>I'll try to cover this line by line going downwards through the file</li>
-                <li>But this may not be possible because it's really hard</li>
-                <li>There may not be links to line numbers, and instead there'll be a reference of what is written <code>like this</code> because keeping this file up to date with line numbers that can change is a very daunting task. This is also only my second documentation project (apart from the ocr-programming-challenges) and it's also daunting because of that. I want to keep it at least somewhat easy for myself.</li>
-            </ul>
-            <ul> <!-- DON'T USE LIST ELEMENTS ON THIS LIST, THIS LIST IS HERE TO CREATE INDENTATION -->
-                <details><summary><u>Imports:</u></summary> <!-- IMPORTS -->
-                    <ol type="1">
-                        <li><code class="language-python">os</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L1"><code>main.py</code></a>: used to detect the operating system the user is running the revision on, clears the terminal to make sure each question appears starting from the same place. https://docs.python.org/3/library/os.html</li>
-                        <li><code>sys</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L2"><code>main.py</code></a>: used in conjunction with <code>os</code> to clear the terminal, also manages the command line arguments. https://docs.python.org/3/library/sys.html</li>
-                        <li><code>time</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L3"><code>main.py</code></a>: used to pause the program to let the user read what's on the screen. The text is also in different colours which makes it a bit easier to read because it stands out. https://docs.python.org/3/library/time.html</li>
-                        <li><code>random</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L4"><code>main.py</code></a>: I used <code>random.shuffle</code> to jumble up the key and value pairs in the <code>cards</code> dict, they will be in a pseudo-random order when they're looped through if user specifies <code>--rand</code> in the command line arguments. https://docs.python.org/3/library/random.html</li>
-                        <li><code>readline</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L5"><code>main.py</code></a>: this library attaches onto the builtin python <code>input</code> procedure, it adds support for UP arrow bringing back your last input, pasting from clipboard, arrow keys etc. It's really helpful if you mistype something and only have to change 1 letter, press UP and your previous answer will come back. https://stackoverflow.com/questions/45772230/arrow-keys-not-working-while-entering-data-for-input-function</li>
-                        <li><code>platform</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L6"><code>main.py</code></a>: need this to add Windows support. See <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L40"><code>here</code></a> for its usage. https://docs.python.org/3/library/platform.html https://www.geeksforgeeks.org/platform-module-in-python/</li>
-                        <li><code>from constants import chars_to_ignore</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L7"><code>main.py</code></a>: I'm importing/requiring <code>chars_to_ignore</code> from <code>constants.py</code> (the <code>.py</code> extension is not needed here). The <code>chars_to_ignore</code> list is now able to be used throughout <code>main.py</code>. https://www.educative.io/answers/how-to-import-custom-module-in-python</li>
-                    </ol>
-                </details>
-                <details><summary><u>Other data:</u></summary>
-                    <ul>
-                        <li>Class <code>Color</code> in <a href="https://github.com/RubberDuckCollector/quizlet-write/blob/main/main.py#L13"><code>main.py</code></a>: This defines the colours that the terminal can use. Python can print to the terminal using these colours. This is useful to me because showing important elements of the program's output to the user in different colours increases the program's usability. This isn't an import because it doesn't need to be. I'm only using this in one file.</li>
-                    </ul>
-                </details>
-            </ul>
-        </details>
-    </ul>
-</details>
-
 # Notes
 
 none
 
-# Next features/TODO
+# Top Priority TODO
 
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, edits the file itself
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
@@ -164,10 +101,15 @@ none
     - need to save the stats when the session is exited
     - need to save the time the session was started at
     - implement `--resume` command line argument that prompts an interactive selection mode for the saved sessions
-- [ ] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
-- [ ] compile the program to be shipped
 - [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
-- [ ] mirgrage to argparse
+- [ ] compile the program to be shipped
+- [ ] implement quizlet's bars that fill up and deplete as in the write mode according to the user's progress
+    - [ ] for the progress through the quiz, make a progress bar
+        - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
+        - store the progress bar stages in a separate file and import them in `main.py`
+
+## Next features/TODO
+
 - [ ] make the colours on the bar charts pretty
 - [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
@@ -183,11 +125,10 @@ none
     - maybe make the program run a bash script, integrating the `less` command or something idk
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
-- [ ] for the progress through the quiz, make a progress bar
-    - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
-    - store the progress bar stages in a separate file and import them in `main.py`
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
 - [ ] port the app to the blessed library and make it a fully featured TUI app
+- [x] mirgrate to argparse
+- [x] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 - [x] statistics and tracking - daily word count of terms done

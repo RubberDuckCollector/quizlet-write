@@ -218,13 +218,13 @@ def print_round_breakdown(
     print()
 
 
-def dump_results_to_records_file(p_start_time, this_sessions_results_file: str) -> str:
+def dump_results_to_records_file(p_start_time, this_sessions_temp_results_file: str) -> str:
     # when the session ends, find out when that is to put it in the session's file name
     end_time = str(datetime.now())
-    # this copies the data in this_sessions_results_file to the records file for that session
+    # this copies the data in this_sessions_temp_results_file to the records file for that session
     session_dir = f"stats/records/Session {p_start_time} to {end_time}"
     os.mkdir(session_dir)
-    with open(this_sessions_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
+    with open(this_sessions_temp_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
     
@@ -337,14 +337,26 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # e.g: if you spam create sessions, they probably won't fall on the same exact time
     # because datetime keeps time accuracy up to 6 decimal places
 
-    this_sessions_results_file = f"temp-results-for-session-{datetime.now()}.txt"
+    #TODO: implement saving feature
+    # create a temp dir for each session with temp results and temp data
+    # data is json
+    # when the program detects a KeyboardInterrupt ask if the user wants to save the session
+    # the dir will not be deleted
+    # the user can specify a --resume command line argument
+    # the user is put into an interactive mode
+    # resume the flash card revision from where the user left off
+    session_and_data_time = datetime.now()
+    this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{session_and_data_time}"
+    os.mkdir(this_sessions_temp_dir_name)
+    this_sessions_temp_results_file = f"temp/temp_results_for_session_{session_and_data_time}.txt"
+    this_sessions_temp_data_file = f"temp/temp_data_for_session_{session_and_data_time}.json"
     
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
-    # if it catches one, this_sessions_results_file will still be deleted, which is good
+    # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
     # because it's a temp file and all actions are aborted if the session finishes early
     try:
-        with open(this_sessions_results_file, "a") as f:
+        with open(this_sessions_temp_results_file, "a") as f:
             f.write(f"cards from: {sys.argv[1]}\n")
             while len(card_set) != 0:
                 round_num += 1
@@ -550,7 +562,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
                 # here the proc will look for the line in the file containing "Round"
                 # and the number of the current round with a : right after it
-                print_round_breakdown(this_sessions_results_file, f"Round {round_num}:", num_correct, num_answered)
+                print_round_breakdown(this_sessions_temp_results_file, f"Round {round_num}:", num_correct, num_answered)
                 
                 # randomise now if rand flag is set to --rand-every-round
                 if sys_args[3] == "-rand-every-round":
@@ -572,7 +584,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 this_rounds_y_axis = []
 
 
-            # write the round list to this_sessions_results_file
+            # write the round list to this_sessions_temp_results_file
             f.write(f"{sys_args[2]}\n")
             f.write(f"{sys_args[3]}\n")
             f.write(f"{sys_args[4]}\n")
@@ -580,7 +592,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
             f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
-        this_sessions_dir = dump_results_to_records_file(start_time, this_sessions_results_file)
+        this_sessions_dir = dump_results_to_records_file(start_time, this_sessions_temp_results_file)
 
         width_per_label = 0.3
 
@@ -645,7 +657,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         print(f"{my_modules.color.Color.Bold}Session breakdown:{my_modules.color.Color.Reset}")
 
-        with open(this_sessions_results_file, 'r') as f:
+        with open(this_sessions_temp_results_file, 'r') as f:
             for line in f:
                 # print the line without leading/trailing whitespaces
                 if '✓' in line:  # check for tick
@@ -724,7 +736,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
 
             # delete the temp file as it has served its purpose
-            os.remove(this_sessions_results_file)
+            os.remove(this_sessions_temp_results_file)
         except Exception as e:
             print("error while saving data.")
             print(e)
@@ -732,7 +744,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     except (KeyboardInterrupt, EOFError) as _:
         # if the user stops the program with ctrl c or ctrl d, also delete the file
         # to make it like nothing ever happened
-        os.remove(this_sessions_results_file)
+        os.remove(this_sessions_temp_results_file)
 
 
 def render_cards(filepath: str) -> dict:
