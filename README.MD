@@ -5,8 +5,7 @@
 * [Quizlet write my version](#quizlet-write-my-version)
 * [Features](#features)
 * [Why I made this](#why-i-made-this)
-* [Disclaimer](#disclaimer)
-* [Prerequisites](#prerequisites)
+* [Disclaimer and Prerequisites](#disclaimer-and-prerequisites)
     * [input for the program:](#input-for-the-program)
 * [Optional](#optional)
 * [Overview](#overview)
@@ -44,7 +43,7 @@ Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD
     Current drawbacks:
         - cannot filter activity by language.
 
-# Disclaimer
+# Disclaimer and Prerequisites
 
 - **NOT TESTED/ADAPTED FOR WINDOWS, ONLY MACOS AND LINUX**
 - ***For this reason. I personally recommend running this in WSL or changing the code to accommodate Windows if you want to use this program Windows.***
@@ -54,9 +53,7 @@ Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD
 - If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the terms done count for the 2nd of Jan., when the session is completed.
 - I know how cursed this file is if you open it raw. Try not to think about it.
 
-# Prerequisites
-
-- a Python version past 3.10 (this was built on python 3.12)
+- a Python version >= 3.10 because of the `match` key word (this was built on python 3.12)
 - [matplotlib](https://matplotlib.org/) (i install this with `/usr/local/bin/python3 -m pip install matplotlib` on my MacOS computer)
 - a nerd font <https://www.nerdfonts.com/>
 

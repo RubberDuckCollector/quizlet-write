@@ -348,8 +348,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     session_and_data_time = datetime.now()
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{session_and_data_time}"
     os.mkdir(this_sessions_temp_dir_name)
-    this_sessions_temp_results_file = f"temp/temp_results_for_session_{session_and_data_time}.txt"
-    this_sessions_temp_data_file = f"temp/temp_data_for_session_{session_and_data_time}.json"
+    this_sessions_temp_results_file = f"temp/{this_sessions_temp_dir_name}/temp_results_for_session_{session_and_data_time}.txt"
+    this_sessions_temp_data_file = f"temp/{this_sessions_temp_dir_name}temp_data_for_session_{session_and_data_time}.json"
     
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
@@ -737,6 +737,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
             # delete the temp file as it has served its purpose
             os.remove(this_sessions_temp_results_file)
+            os.rmdir(this_sessions_temp_data_file)
+            os.rmdir(this_sessions_temp_dir_name)
         except Exception as e:
             print("error while saving data.")
             print(e)
@@ -745,6 +747,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # if the user stops the program with ctrl c or ctrl d, also delete the file
         # to make it like nothing ever happened
         os.remove(this_sessions_temp_results_file)
+        os.rmdir(this_sessions_temp_data_file)
+        os.rmdir(this_sessions_temp_dir_name)
 
 
 def render_cards(filepath: str) -> dict:
