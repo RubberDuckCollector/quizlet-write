@@ -349,6 +349,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # `correct_answers` dict may help
     # `card_set` (parameter) may help, it would only be changed at the end of a round if the command line argument
         # -rand-every-round is present
+    # TODO: write a class called DataTracker that puts num_correct, num_answered under a single name
+        # write methods for them
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{start_time}"
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{start_time}.txt"
