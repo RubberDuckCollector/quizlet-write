@@ -254,10 +254,63 @@ def write_sessions_per_day(obj_to_be_written: str):
         json.dump(obj_to_be_written, f, indent=4)
 
 
-class StreakCounter:
-    def __init__(self):
+"""
+# num_correct and num_answered are for % of correct answers
+num_correct = 0
+num_answered = 0
+num_incorrect = 0
+num_remaining = len(card_set)
+"""
+
+# TODO: write a class called DataTracker that puts num_correct, num_answered under a single name
+    # write methods for them
+
+class SessionDataTracker:
+    def __init__(self, p_card_set: dict):
+        self.num_correct = 0
+        self.num_incorrect = 0
+        self.num_answered = 0
+        self.num_remaining = len(p_card_set)
         self.current_streak = 0
         self.highest_streak = 0
+        self.x_axes = []  # num of terms completed
+        self.y_axes = []  # % correct
+
+    def set_num_correct(self, p_num_correct):
+        self.num_correct = p_num_correct
+    
+    def set_num_incorrect(self, p_num_incorrect):
+        self.num_incorrect = p_num_incorrect
+
+    def set_num_answered(self, p_num_answered):
+        self.num_answered = p_num_answered
+
+    def set_num_remaining(self, p_num_remaining):
+        self.num_remaining = p_num_remaining
+
+    def set_x_axes(self, p_x_axes):
+        self.x_axes = p_x_axes
+
+    def set_y_axes(self, p_y_axes):
+        self.y_axes = p_y_axes
+
+    def get_num_correct(self):
+        return self.num_correct
+
+    def get_num_incorrect(self):
+        return self.num_incorrect
+
+    def get_num_answered(self):
+        return self.num_answered
+
+    def get_num_remaining(self):
+        return self.num_remaining
+
+    def get_x_axes(self):
+        return self.x_axes
+
+    def get_y_axes(self):
+        return self.y_axes
 
     def increment_streak(self):
         # increment the current streak by one
@@ -290,7 +343,6 @@ class StreakCounter:
     def get_highest_streak(self):
         return self.highest_streak
 
-
 def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     # when the session starts, find out when that is so it can be added to the session's file name
@@ -302,7 +354,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # find the length of the longest term on the left
     max_left_length = max(len(left) for left in card_set.keys())
 
-    quiz_counter = StreakCounter()
+    data_tracker = SessionDataTracker(card_set)
+    # print(data_tracker)
 
     # calculate the distance to the next tab stop
     # tab_stop = 8
@@ -315,8 +368,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
-    x_axes = []  # terms completed
-    y_axes = []  # % correct
+    # x_axes = []  # terms completed
+    # y_axes = []  # % correct
     
 
     # naming things from the same exact data to make more sense when reading code, communicates meaning better
@@ -349,8 +402,6 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # `correct_answers` dict may help
     # `card_set` (parameter) may help, it would only be changed at the end of a round if the command line argument
         # -rand-every-round is present
-    # TODO: write a class called DataTracker that puts num_correct, num_answered under a single name
-        # write methods for them
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{start_time}"
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{start_time}.txt"
@@ -371,8 +422,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     "num_remaining": len(card_set),
                     "num_correct": 0,
                     "num_incorrect": 0,
-                    "current_streak": quiz_counter.get_current_streak(),
-                    "highest_streak": quiz_counter.get_highest_streak()
+                    "current_streak": data_tracker.get_current_streak(),
+                    "highest_streak": data_tracker.get_highest_streak()
                 }
 
                 # num_correct and num_answered are for % of correct answers
@@ -429,7 +480,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
                     print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
                     print(f"Progress: {my_modules.color.Color.LightBlue}{progress}{my_modules.color.Color.Reset}%")
-                    print(f"Streak: {my_modules.color.Color.LightMagenta}{quiz_counter.get_current_streak()}{my_modules.color.Color.Reset} ({my_modules.color.Color.LightMagenta}{quiz_counter.get_highest_streak()}{my_modules.color.Color.Reset})")
+                    print(f"Streak: {my_modules.color.Color.LightMagenta}{data_tracker.get_current_streak()}{my_modules.color.Color.Reset} ({my_modules.color.Color.LightMagenta}{data_tracker.get_highest_streak()}{my_modules.color.Color.Reset})")
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
                     # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
@@ -443,7 +494,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     # i.e there were only spaces and strip() has removed them to leave an empty string
                     if not user_response:
                         print("Don't know? Copy out the answer so you remember it!")
-                        quiz_counter.reset_streak()
+                        data_tracker.reset_streak()
                         while True:
                             user_response = input(f"Copy the answer below ↓\n- {answer}\n> ").strip()
                             if user_response.lower() == answer.lower():
@@ -464,7 +515,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                         if user_response == answer:
                             print(f"{my_modules.color.Color.Green}Correct. Well done!{my_modules.color.Color.Reset}")
 
-                            quiz_counter.increment_streak()
+                            data_tracker.increment_streak()
                             num_correct += 1
 
                             time.sleep(0.5)
@@ -482,7 +533,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                         elif user_response.lower() == answer.lower():
                             print(f"{my_modules.color.Color.Green}Correct{my_modules.color.Color.Reset}")
 
-                            quiz_counter.increment_streak()
+                            data_tracker.increment_streak()
                             num_correct += 1
 
                             time.sleep(0.5)
@@ -506,7 +557,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                                 # mark as correct as the user wishes
                                 print(f"Overridden as {my_modules.color.Color.Green}Correct{my_modules.color.Color.Reset}.")
 
-                                quiz_counter.increment_streak()
+                                data_tracker.increment_streak()
                                 num_correct += 1
 
                                 f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
@@ -524,7 +575,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                                 f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                                 f.flush()
 
-                                quiz_counter.reset_streak()
+                                data_tracker.reset_streak()
                                 num_incorrect += 1
 
                                 time.sleep(0.5)
@@ -591,8 +642,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 this_rounds_x_axis.pop(0)
                 this_rounds_y_axis.pop(0)
 
-                x_axes.append(this_rounds_x_axis)
-                y_axes.append(this_rounds_y_axis)
+                data_tracker.x_axes.append(this_rounds_x_axis)
+                data_tracker.y_axes.append(this_rounds_y_axis)
 
                 this_rounds_x_axis = []
                 this_rounds_y_axis = []
@@ -603,15 +654,15 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
             f.write(f"{sys_args[3]}\n")
             f.write(f"{sys_args[4]}\n")
             f.write(f"No. terms in the card set = {NUM_TERMS}\n")
-            f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
-            f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
+            f.write(f"highest_streak = {data_tracker.get_highest_streak()}\n")
+            f.write(f"perfect_streak = {data_tracker.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
         this_sessions_dir = dump_results_to_records_file(start_time, this_sessions_temp_results_file)
 
         width_per_label = 0.3
 
-        min_each_round = min(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
-        max_each_round = max(list(map(max, y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
+        min_each_round = min(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
+        max_each_round = max(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
 
         # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
         # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
@@ -635,12 +686,12 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         # plot each y-axis data series with its corresponding x-axis values
         plotting_graph()
-        for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
+        for i, (x_data, y_data) in enumerate(zip(data_tracker.x_axes, data_tracker.y_axes)):
             plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
 
         plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
 
-        # plt.plot(x_axes, y_axes)
+        # plt.plot(data_tracker.x_axes, data_tracker.y_axes)
         plt.title(f"Consistency line graph for session starting at {start_time}\nPath to cards: {sys.argv[1]}")
         plt.xlabel("# Terms answered")
         plt.ylabel("% Accuracy")
@@ -662,10 +713,10 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         # write the x axis data and the y axis data to special files in `this_sessions_dir`
         # this allows the graph to be reproduced
         with open(f"{this_sessions_dir}/x-axis-data.txt", "w") as f:
-            f.write(f"{x_axes}")
+            f.write(f"{data_tracker.x_axes}")
 
         with open(f"{this_sessions_dir}/y-axis-data.txt", "w") as f:
-            f.write(f"{y_axes}")
+            f.write(f"{data_tracker.y_axes}")
 
         # after the record file is done, print the session breakdown to the user
 

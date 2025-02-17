@@ -92,6 +92,7 @@ none
 
 # Top Priority TODO
 
+- [ ] fix warning that generates if the lower and greater values for the y axis are the same
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, edits the file itself
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
