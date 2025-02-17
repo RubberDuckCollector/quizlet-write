@@ -55,7 +55,7 @@ Commands in help text are written in Cyan
 
 parser = argparse.ArgumentParser(prog="main.py",
                                  description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
-                                 epilog="Made for flash card revision. Recommended for short answers.")
+                                 epilog="Made for flash card revision. Type the answer. Recommended for short answers but works for any text answer.")
 
 
 def plotting_graph():
@@ -278,8 +278,6 @@ class StreakCounter:
     def reset_streak(self):
         self.current_streak = 0
 
-    # might not use these 4 that much
-
     def set_current_streak(self, p_current_streak):
         self.current_streak = p_current_streak
 
@@ -321,9 +319,10 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     y_axes = []  # % correct
     
 
-    THEORETICAL_MAX_STREAK = NUM_TERMS
+    # naming things from the same exact data to make more sense when reading code, communicates meaning better
+    THEORETICAL_MAX_STREAK = NUM_TERMS  
 
-    # each session will have a temporary results file. this allows more than one instance of
+    # each session will have a temporary results file, data file, and directory. this allows more than one instance of
     # the program to be running at a time, because in the old model with only one results file,
     # if the user created a new session while an old one was happening, `results.txt` would be
     # overwritten with data from the new session, which removes data integrity from my records system.
@@ -338,7 +337,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # e.g: if you spam create sessions, they probably won't fall on the same exact time
     # because datetime keeps time accuracy up to 6 decimal places
 
-    #TODO: implement saving feature
+    # TODO: implement saving feature
     # create a temp dir for each session with temp results and temp data
     # data is json
     # when the program detects a KeyboardInterrupt ask if the user wants to save the session
@@ -346,7 +345,10 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # the user can specify a --resume command line argument
     # the user is put into an interactive mode
     # resume the flash card revision from where the user left off
-    # start_time = datetime.now()
+    # TODO: find out how to save the exact terms answered correctly and incorrectly and remaining terms
+    # `correct_answers` dict may help
+    # `card_set` (parameter) may help, it would only be changed at the end of a round if the command line argument
+        # -rand-every-round is present
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{start_time}"
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{start_time}.txt"
@@ -360,15 +362,16 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
         with open(this_sessions_temp_results_file, "a") as f, open(this_sessions_temp_data_file, "a") as g:
             # TODO: add this_sessions_temp_data as JSON to its respective file
             f.write(f"cards from: {sys.argv[1]}\n")
-            this_sessions_data = {  # progress isn't here, it gets calculated during program execution
-                "remaining": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "current_streak": 0,
-                "highest_streak": 0
-            }
             while len(card_set) != 0:
                 round_num += 1
+
+                this_sessions_data = {  # progress isn't here, it gets calculated during program execution
+                    "num_remaining": len(card_set),
+                    "num_correct": 0,
+                    "num_incorrect": 0,
+                    "current_streak": quiz_counter.get_current_streak(),
+                    "highest_streak": quiz_counter.get_highest_streak()
+                }
 
                 # num_correct and num_answered are for % of correct answers
                 num_correct = 0
@@ -573,7 +576,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 # and the number of the current round with a : right after it
                 print_round_breakdown(this_sessions_temp_results_file, f"Round {round_num}:", num_correct, num_answered)
                 
-                # randomise now if rand flag is set to --rand-every-round
+                # randomise now if rand flag is set to -rand-every-round
                 if sys_args[3] == "-rand-every-round":
                     items = list(card_set.items())
                     random.shuffle(items)
