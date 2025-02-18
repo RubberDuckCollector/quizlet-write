@@ -78,7 +78,7 @@ For the whole length of the file, save for empty lines and lines starting with a
         <li>The program asks the user the questions. The key is the question and the value is the answer.</li>
         <li>If the user gets the question right, the program will add that key and value pair to a new dictionary called <code>correct_answers</code>. The program also writes a line to <code>results.txt</code> with a tick on the left, the prompt on the left, and the answer on the right.</li>
         <li>If the user gets the question wrong, the program will tell the user. The program asks the user to confirm the answer, and if they don't, the program will write a line to <code>results.txt</code>, where there's a cross on the left, then the promt, then the answer.</li>
-        <li>If the user inputs an empty string/answer made up of only spaces, the program will make them copy out the answer until they get it right. It then considers this as incorrect.</li>
+        <li>If the user inputs a blank answer or one made up of only spaces, the program will make them copy out the answer until they get it right. It then considers this as incorrect.</li>
     </ol>
 </details>
 
@@ -92,7 +92,6 @@ none
 
 # Top Priority TODO
 
-- [ ] implement a --test keyword that prevents stats from being saved but still allows the program to function normally otherwise
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
@@ -126,9 +125,7 @@ none
 - [ ] add feature that puts the start and end date/times in the results file
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
 - [ ] port the app to the blessed library and make it a fully featured TUI app
-- [x] fix warning that generates if the lower and greater values for the y axis are the same
 - [x] mirgrate to argparse
-- [x] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 - [x] statistics and tracking - daily word count of terms done
@@ -160,3 +157,6 @@ none
     - implement it as a command line argument taken at the first position
 - [x] ***make it so the graph only saves the relevant segment of the graph***
     - [x] make it so the saved graph adjusts to the relevant y axis coordinates that are saved
+- [x] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
+- [x] fix warning that generates if the lower and greater values for the y axis are the same
+- [x] implement a --test keyword that prevents stats from being saved but still allows the program to function normally otherwise

@@ -219,13 +219,13 @@ def print_round_breakdown(
     print()
 
 
-def dump_results_to_records_file(p_start_time, this_sessions_temp_results_file: str) -> str:
+def dump_results_to_records_file(p_start_time, p_this_sessions_temp_results_file: str) -> str:
     # when the session ends, find out when that is to put it in the session's file name
     end_time = str(datetime.now())
     # this copies the data in this_sessions_temp_results_file to the records file for that session
     session_dir = f"stats/records/Session {p_start_time} to {end_time}"
     os.mkdir(session_dir)
-    with open(this_sessions_temp_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
+    with open(p_this_sessions_temp_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
     
@@ -253,17 +253,6 @@ def write_sessions_per_day(obj_to_be_written: str):
 
         json.dump(obj_to_be_written, f, indent=4)
 
-
-"""
-# num_correct and num_answered are for % of correct answers
-num_correct = 0
-num_answered = 0
-num_incorrect = 0
-num_remaining = len(card_set)
-"""
-
-# TODO: write a class called DataTracker that puts num_correct, num_answered under a single name
-    # write methods for them
 
 class SessionDataTracker:
     def __init__(self, p_card_set: dict):
@@ -344,10 +333,9 @@ class SessionDataTracker:
         return self.highest_streak
 
 
-def quiz(card_set: dict, p_args):
+def quiz(card_set: dict, p_args, p_start_time):
 
     # when the session starts, find out when that is so it can be added to the session's file name
-    start_time = str(datetime.now())
 
     correct_answers = {}
     round_num = 0
@@ -392,20 +380,21 @@ def quiz(card_set: dict, p_args):
     # because datetime keeps time accuracy up to 6 decimal places
 
     # TODO: implement saving feature
-    # create a temp dir for each session with temp results and temp data
-    # data is json
+    # create a temp dir for each session with temp results
     # when the program detects a KeyboardInterrupt ask if the user wants to save the session
     # the dir will not be deleted
     # the user can specify a --resume command line argument
     # the user is put into an interactive mode
     # resume the flash card revision from where the user left off
     # TODO: find out how to save the exact terms answered correctly and incorrectly and remaining terms
+        # pass those as parameters in `quiz()`
+        # pass start time as a parameter
     # `correct_answers` dict may help
     # `card_set` (parameter) may help
         # -rand-every-round is present
-    this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{start_time}"
+    this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{p_start_time}"
     os.mkdir(this_sessions_temp_dir_name)
-    this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{start_time}.txt"
+    this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{p_start_time}.txt"
     # this_sessions_temp_data_file = f"{this_sessions_temp_dir_name}/temp_data_for_session_{start_time}.json"
     
     # user interaction will start in this try block
@@ -666,70 +655,141 @@ def quiz(card_set: dict, p_args):
             f.write(f"highest_streak = {data_tracker.get_highest_streak()}\n")
             f.write(f"perfect_streak = {data_tracker.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
-        this_sessions_dir = dump_results_to_records_file(start_time, this_sessions_temp_results_file)
+        new_sessions_completed = 0
+        new_terms_completed = 0
+        this_sessions_dir = dump_results_to_records_file(p_start_time, this_sessions_temp_results_file)
+        if not p_args.test:  # if `--test` is not present
 
-        width_per_label = 0.3
+            width_per_label = 0.3
 
-        min_each_round = min(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
-        max_each_round = max(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
-        if max_each_round - min_each_round == 0:  # if the difference is 0 (if perfect streak)
-            min_each_round -= 3  # make more room at the bottom of the graph to avoid the matplotlib warning
+            min_each_round = min(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
+            max_each_round = max(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
+            if max_each_round - min_each_round == 0:  # if the difference is 0 (if perfect streak)
+                min_each_round -= 3  # make more room at the bottom of the graph to avoid the matplotlib warning
 
-        # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
-        # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
-        # ... (which are 2 different things)
-        my_x_ticks = [i for i in range(1, NUM_TERMS + 1)]
-        
-        # Calculate the figure width based on the number of x-axis labels
-        fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
+            # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
+            # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
+            # ... (which are 2 different things)
+            my_x_ticks = [i for i in range(1, NUM_TERMS + 1)]
+            
+            # Calculate the figure width based on the number of x-axis labels
+            fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
 
-        # fig_height = width_per_label * 101  # 0.3 width per label multiplied by 101 y ticks from 0-100 inclusive
+            # fig_height = width_per_label * 101  # 0.3 width per label multiplied by 101 y ticks from 0-100 inclusive
 
-        # sets the height of the figure according to the range of percentages achieved by the user.
-        fig_height = width_per_label * (max_each_round - min_each_round + 1)  
+            # sets the height of the figure according to the range of percentages achieved by the user.
+            fig_height = width_per_label * (max_each_round - min_each_round + 1)  
 
-        # Set up figure with calculated width
-        plt.figure(figsize=(fig_width, fig_height))
+            # Set up figure with calculated width
+            plt.figure(figsize=(fig_width, fig_height))
+
+            # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
+            # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
+
+            # plot each y-axis data series with its corresponding x-axis values
+            plotting_graph()
+            for i, (x_data, y_data) in enumerate(zip(data_tracker.x_axes, data_tracker.y_axes)):
+                plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
+
+            plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+
+            # plt.plot(data_tracker.x_axes, data_tracker.y_axes)
+            plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to cards: {sys.argv[1]}")
+            plt.xlabel("# Terms answered")
+            plt.ylabel("% Accuracy")
+            # plt.ylim(0, 100)  # y axis goes from 0 to 100
+            plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
+            plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
+            plt.xticks([i for i in range(0, NUM_TERMS + 1, 1)])
+            # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
+            plt.yticks(range(int(min_each_round), int(max_each_round) + 1))  # only the relevant parts of the graph
+            plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
+            plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
+            plt.gca().yaxis.set_ticks_position('both')
+            plt.gca().tick_params(axis='y', labelright=True)  # enable y axis numbers on the top of the graph as well as the bottom
+            saving_graph()
+            # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
+            # https://stackoverflow.com/a/59372013
+            plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
+
+            # write the x axis data and the y axis data to special files in `this_sessions_dir`
+            # this allows the graph to be reproduced
+            with open(f"{this_sessions_dir}/x-axis-data.txt", "w") as f:
+                f.write(f"{data_tracker.x_axes}")
+
+            with open(f"{this_sessions_dir}/y-axis-data.txt", "w") as f:
+                f.write(f"{data_tracker.y_axes}")
+
+            # after the record file is done, print the session breakdown to the user
+
+            try:
+                # putting this code here instead of at the top of `quiz()` fixes the bug,
+                # where only one session would add to the terms done count for that day
+                # instead of a second session
+                # disclaimer: bug only found with two concurrent sessions
+                terms_per_day_file_path = "stats/terms-per-day.json"
+                if not os.path.exists(terms_per_day_file_path):
+                    # create file if it doesn't exist
+                    with open(terms_per_day_file_path, 'w') as f:
+                        f.write("{}")
+                with open(terms_per_day_file_path, 'r') as terms_f:
+                    # terms_done_dict = json.loads(f.readline())
+                    terms_done_dict = json.load(terms_f)
+
+                # show the user the previous terms done today
+                # and the new terms done today figure after the end of the session
+                new_terms_completed = 0
+
+                # at the end of the round, update the current day's terms done total
+                today = datetime.today().strftime('%Y-%m-%d')
+                if today in terms_done_dict:
+                    # need to look at the int stored at the date key, then add NUM_TERMS to it
+                    terms_done_dict[today] += NUM_TERMS
+                    new_terms_completed = terms_done_dict[today]
+                else:
+                    # not in there, can safely write new day
+                    terms_done_dict[today] = NUM_TERMS
+
+                    # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
+                    new_terms_completed += NUM_TERMS
+
+                write_terms_per_day(terms_done_dict)
 
 
-        # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
-        # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
+                # repeat the same process but for sessions done today
+                sessions_per_day_file_path = "stats/sessions-per-day.json"
+                if not os.path.exists(sessions_per_day_file_path):
+                    # create file if it doesn't exist
+                    with open(sessions_per_day_file_path, 'w') as f:
+                        f.write("{}")
+                with open(sessions_per_day_file_path, "r") as sessions_f:
+                    sessions_done_dict = json.load(sessions_f)
 
-        # plot each y-axis data series with its corresponding x-axis values
-        plotting_graph()
-        for i, (x_data, y_data) in enumerate(zip(data_tracker.x_axes, data_tracker.y_axes)):
-            plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
+                # current date and time not assigned again so we can have the same date for both the session and the terms count
+                # i.e date cannot progress in between that code and this code and have an effect on the code's function
 
-        plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+                # sessions that end on a particular day will contribute to the terms and sessions done per day counts
+                if today in sessions_done_dict:
+                    sessions_done_dict[today] += 1
+                    new_sessions_completed = sessions_done_dict[today]
+                else:
+                    # not in there, can safely write new day
+                    sessions_done_dict[today] = 1
 
-        # plt.plot(data_tracker.x_axes, data_tracker.y_axes)
-        plt.title(f"Consistency line graph for session starting at {start_time}\nPath to cards: {sys.argv[1]}")
-        plt.xlabel("# Terms answered")
-        plt.ylabel("% Accuracy")
-        # plt.ylim(0, 100)  # y axis goes from 0 to 100
-        plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
-        plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-        plt.xticks([i for i in range(0, NUM_TERMS + 1, 1)])
-        # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
-        plt.yticks(range(int(min_each_round), int(max_each_round) + 1))  # only the relevant parts of the graph
-        plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
-        plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
-        plt.gca().yaxis.set_ticks_position('both')
-        plt.gca().tick_params(axis='y', labelright=True)  # enable y axis numbers on the top of the graph as well as the bottom
-        saving_graph()
-        # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
-        # https://stackoverflow.com/a/59372013
-        plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
+                    # fixes the bug where new_sessions_completed is negative on a day with 0 previously completed sessions
+                    new_sessions_completed += 1
 
-        # write the x axis data and the y axis data to special files in `this_sessions_dir`
-        # this allows the graph to be reproduced
-        with open(f"{this_sessions_dir}/x-axis-data.txt", "w") as f:
-            f.write(f"{data_tracker.x_axes}")
+                write_sessions_per_day(sessions_done_dict)
 
-        with open(f"{this_sessions_dir}/y-axis-data.txt", "w") as f:
-            f.write(f"{data_tracker.y_axes}")
+                # show the user the increase in terms done today
+                print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
 
-        # after the record file is done, print the session breakdown to the user
+                # show the user the increase in sessions done today
+                print(f"Sessions done today: {new_sessions_completed - 1} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_sessions_completed}")
+
+            except Exception as e:
+                print("error while saving data.")
+                print(e)
 
         print(f"{my_modules.color.Color.Bold}Session breakdown:{my_modules.color.Color.Reset}")
 
@@ -743,81 +803,10 @@ def quiz(card_set: dict, p_args):
                 else:
                     print(line.strip())  # otherwise don't colour the line
 
-
-        try:
-            # putting this code here instead of at the top of `quiz()` fixes the bug,
-            # where only one session would add to the terms done count for that day
-            # instead of a second session
-            # disclaimer: bug only found with two concurrent sessions
-            terms_per_day_file_path = "stats/terms-per-day.json"
-            if not os.path.exists(terms_per_day_file_path):
-                # create file if it doesn't exist
-                with open(terms_per_day_file_path, 'w') as f:
-                    f.write("{}")
-            with open(terms_per_day_file_path, 'r') as terms_f:
-                # terms_done_dict = json.loads(f.readline())
-                terms_done_dict = json.load(terms_f)
-
-            # show the user the previous terms done today
-            # and the new terms done today figure after the end of the session
-            new_terms_completed = 0
-
-            # at the end of the round, update the current day's terms done total
-            today = datetime.today().strftime('%Y-%m-%d')
-            if today in terms_done_dict:
-                # need to look at the int stored at the date key, then add NUM_TERMS to it
-                terms_done_dict[today] += NUM_TERMS
-                new_terms_completed = terms_done_dict[today]
-            else:
-                # not in there, can safely write new day
-                terms_done_dict[today] = NUM_TERMS
-
-                # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
-                new_terms_completed += NUM_TERMS
-
-            write_terms_per_day(terms_done_dict)
-
-            # show the user the increase in terms done today
-            print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
-
-            # repeat the same process but for sessions done today
-            sessions_per_day_file_path = "stats/sessions-per-day.json"
-            if not os.path.exists(sessions_per_day_file_path):
-                # create file if it doesn't exist
-                with open(sessions_per_day_file_path, 'w') as f:
-                    f.write("{}")
-            with open(sessions_per_day_file_path, "r") as sessions_f:
-                sessions_done_dict = json.load(sessions_f)
-
-            new_sessions_completed = 0
-            
-            # current date and time not assigned again so we can have the same date for both the session and the terms count
-            # i.e date cannot progress in between that code and this code and have an effect on the code's function
-
-            # sessions that end on a particular day will contribute to the terms and sessions done per day counts
-            if today in sessions_done_dict:
-                sessions_done_dict[today] += 1
-                new_sessions_completed = sessions_done_dict[today]
-            else:
-                # not in there, can safely write new day
-                sessions_done_dict[today] = 1
-
-                # fixes the bug where new_sessions_completed is negative on a day with 0 previously completed sessions
-                new_sessions_completed += 1
-
-            write_sessions_per_day(sessions_done_dict)
-
-            # show the user the increase in sessions done today
-            print(f"Sessions done today: {new_sessions_completed - 1} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_sessions_completed}")
-
-
-            # delete the temp file as it has served its purpose
-            os.remove(this_sessions_temp_results_file)
-            # os.remove(this_sessions_temp_data_file)
-            os.rmdir(this_sessions_temp_dir_name)
-        except Exception as e:
-            print("error while saving data.")
-            print(e)
+        # delete the temp file as it has served its purpose
+        os.remove(this_sessions_temp_results_file)
+        # os.remove(this_sessions_temp_data_file)
+        os.rmdir(this_sessions_temp_dir_name)
 
     except (KeyboardInterrupt, EOFError) as _:
         # put the user in a TUI to choose a suspended session
@@ -954,7 +943,7 @@ def main():
     parser.add_argument("flash_card_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
     parser.add_argument("difficulty", nargs="?", default=None,  help="Difficulty of the quiz", type=str)
     parser.add_argument("randomise", nargs="?", default=None,  help="How you want to randomise the flash cards in the quiz", type=str)
-    parser.add_argument("flip_terms", nargs="?", default=None,  help="Wether or not you want to flip the cards over and answer with the question", type=str)
+    parser.add_argument("flip_terms", nargs="?", default=None,  help="Wether or not you want to 'flip the cards over' and answer with the question", type=str)
 
     # if sys.argv only contains `main.py`
     # print help and halt program execution
@@ -1019,7 +1008,8 @@ def main():
             return
 
     clear_screen()
-    quiz(cards, args)
+    start_time = str(datetime.now())
+    quiz(cards, args, start_time)
 
 
 if __name__ == '__main__':
