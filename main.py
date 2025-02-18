@@ -344,7 +344,7 @@ class SessionDataTracker:
         return self.highest_streak
 
 
-def quiz(card_set: dict, difficulty: str, sys_args: list):
+def quiz(card_set: dict, p_args):
 
     # when the session starts, find out when that is so it can be added to the session's file name
     start_time = str(datetime.now())
@@ -448,13 +448,13 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
                 for prompt, answer in card_set.items():
 
-                    if difficulty == my_modules.hint_system.VALID_DIFFICULTIES[0]:
+                    if p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[0]:
                         hint = my_modules.hint_system.make_easy_hint(answer)
-                    elif difficulty == my_modules.hint_system.VALID_DIFFICULTIES[1]:
+                    elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[1]:
                         hint = my_modules.hint_system.make_normal_hint(answer)
-                    elif difficulty == my_modules.hint_system.VALID_DIFFICULTIES[2]:
+                    elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[2]:
                         hint = my_modules.hint_system.make_hard_hint(answer)
-                    elif difficulty == my_modules.hint_system.VALID_DIFFICULTIES[3]:
+                    elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[3]:
                         hint = my_modules.hint_system.make_very_hard_hint()
 
                     # match difficulty:
@@ -480,7 +480,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                     # this is the percentage completed in the current set
                     progress = round(num_answered / NUM_TERMS * 100, 2) if num_answered > 0 else 0.0
 
-                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(sys_args[1])}{my_modules.color.Color.Reset}")
+                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flash_card_file_path)}{my_modules.color.Color.Reset}")
                     print(f"Remaining: {num_remaining}")
                     print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
                     print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
@@ -635,7 +635,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 print_round_breakdown(this_sessions_temp_results_file, f"Round {round_num}:", num_correct, num_answered)
                 
                 # randomise now if rand flag is set to -rand-every-round
-                if sys_args[3] == "-rand-every-round":
+                if p_args.randomise == "-rand-every-round":
                     items = list(card_set.items())
                     random.shuffle(items)
                     card_set = dict(items)
@@ -659,9 +659,9 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
             # END OF SESSION
             # write the round list to this_sessions_temp_results_file
-            f.write(f"{sys_args[2]}\n")
-            f.write(f"{sys_args[3]}\n")
-            f.write(f"{sys_args[4]}\n")
+            f.write(f"{p_args.difficulty}\n")
+            f.write(f"{p_args.randomise}\n")
+            f.write(f"{p_args.flip_terms}\n")
             f.write(f"No. terms in the card set = {NUM_TERMS}\n")
             f.write(f"highest_streak = {data_tracker.get_highest_streak()}\n")
             f.write(f"perfect_streak = {data_tracker.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
@@ -979,21 +979,17 @@ def main():
 
     file_path = args.flash_card_file_path
 
-    difficulty = args.difficulty
-
-    if difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
+    if args.difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass
     else:
         print("Error: difficulty selection can only be one of: easy | normal | hard | very-hard")
         return
 
-    randomise = args.randomise
-
     print("Rendering cards...")
     cards = render_cards(file_path)
 
     # will be handled in quiz()
-    match randomise:
+    match args.randomise:
         case "rand-once":
             # randomise only at the start of the session
             items = list(cards.items())
@@ -1004,7 +1000,6 @@ def main():
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
-            pass
         case "no-rand":
             # don't randomise, pass as the cards can be used as-is
             pass
@@ -1012,8 +1007,7 @@ def main():
             print("Error: randomise setting can only be one of: rand-once | no-rand | rand-every-round")
             return
 
-    flip_terms = args.flip_terms
-    match flip_terms:
+    match args.flip_terms:
         case "flip":
             # switch terms and definitions
             cards = {v: k for k, v in cards.items()}
@@ -1025,7 +1019,7 @@ def main():
             return
 
     clear_screen()
-    quiz(cards, difficulty, sys.argv)
+    quiz(cards, args)
 
 
 if __name__ == '__main__':
