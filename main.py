@@ -413,7 +413,7 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
     # because it's a temp file and all actions are aborted if the session finishes early
     try:
-        this_sessions_data = {}
+        this_sessions_data = {}  # declare this for scope
         with open(this_sessions_temp_results_file, "a") as f:
             # TODO: add this_sessions_temp_data as JSON to its respective file
             f.write(f"cards from: {sys.argv[1]}\n")
@@ -672,6 +672,8 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
         min_each_round = min(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
         max_each_round = max(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
+        if max_each_round - min_each_round == 0:  # if the difference is 0 (if perfect streak)
+            min_each_round -= 3  # make more room at the bottom of the graph to avoid the matplotlib warning
 
         # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
         # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
@@ -934,6 +936,7 @@ def main():
     # bar charts
     parser.add_argument("--make_session_bar_chart", action="store_true", help="Generates a bar chart of the sessions done on each day")
     parser.add_argument("--make_flash_card_bar_chart", action="store_true", help="Generates a bar chart of the flash cards done on each day")
+    parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
 
     """
     `nargs="?"`: makes the positional argument optional.

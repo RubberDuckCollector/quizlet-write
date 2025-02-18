@@ -92,7 +92,7 @@ none
 
 # Top Priority TODO
 
-- [ ] fix warning that generates if the lower and greater values for the y axis are the same
+- [ ] implement a --test keyword that prevents stats from being saved but still allows the program to function normally otherwise
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, edits the file itself
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
@@ -126,6 +126,7 @@ none
 - [ ] add feature that puts the start and end date/times in the results file
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
 - [ ] port the app to the blessed library and make it a fully featured TUI app
+- [x] fix warning that generates if the lower and greater values for the y axis are the same
 - [x] mirgrate to argparse
 - [x] make it so the session and terms bar charts have a minimum size to accommodoate for bar charts with little data
 - [x] streak feature (100% = perfect streak)
