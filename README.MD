@@ -93,7 +93,7 @@ none
 # Top Priority TODO
 
 - [ ] implement a --test keyword that prevents stats from being saved but still allows the program to function normally otherwise
-- [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, edits the file itself
+- [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
     - need to save the stats when the session is exited
