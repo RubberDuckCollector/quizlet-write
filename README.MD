@@ -99,6 +99,7 @@ none
     - need to save the stats when the session is exited
     - need to save the time the session was started at
     - implement `--resume` command line argument that prompts an interactive selection mode for the saved sessions
+    - need to take `start_time` as a parameter to `quiz()` if start time can be set arbritrarily by resuming a session
 - [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
 - [ ] compile the program to be shipped
 - [ ] implement quizlet's bars that fill up and deplete as in the write mode according to the user's progress

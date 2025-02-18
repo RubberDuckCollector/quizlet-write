@@ -343,6 +343,7 @@ class SessionDataTracker:
     def get_highest_streak(self):
         return self.highest_streak
 
+
 def quiz(card_set: dict, difficulty: str, sys_args: list):
 
     # when the session starts, find out when that is so it can be added to the session's file name
@@ -400,37 +401,41 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
     # resume the flash card revision from where the user left off
     # TODO: find out how to save the exact terms answered correctly and incorrectly and remaining terms
     # `correct_answers` dict may help
-    # `card_set` (parameter) may help, it would only be changed at the end of a round if the command line argument
+    # `card_set` (parameter) may help
         # -rand-every-round is present
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{start_time}"
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{start_time}.txt"
-    this_sessions_temp_data_file = f"{this_sessions_temp_dir_name}/temp_data_for_session_{start_time}.json"
+    # this_sessions_temp_data_file = f"{this_sessions_temp_dir_name}/temp_data_for_session_{start_time}.json"
     
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
     # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
     # because it's a temp file and all actions are aborted if the session finishes early
     try:
-        with open(this_sessions_temp_results_file, "a") as f, open(this_sessions_temp_data_file, "a") as g:
+        this_sessions_data = {}
+        with open(this_sessions_temp_results_file, "a") as f:
             # TODO: add this_sessions_temp_data as JSON to its respective file
             f.write(f"cards from: {sys.argv[1]}\n")
             while len(card_set) != 0:
                 round_num += 1
 
-                this_sessions_data = {  # progress isn't here, it gets calculated during program execution
-                    "num_remaining": len(card_set),
-                    "num_correct": 0,
-                    "num_incorrect": 0,
-                    "current_streak": data_tracker.get_current_streak(),
-                    "highest_streak": data_tracker.get_highest_streak()
-                }
 
                 # num_correct and num_answered are for % of correct answers
                 num_correct = 0
                 num_answered = 0
                 num_incorrect = 0
                 num_remaining = len(card_set)
+
+                this_sessions_data = {  # progress isn't here, it gets calculated during program execution
+                    "num_remaining": num_remaining,
+                    "num_correct": num_correct,
+                    "num_incorrect": num_incorrect,
+                    "current_streak": data_tracker.get_current_streak(),
+                    "highest_streak": data_tracker.get_highest_streak(),
+                    "correct_answers": correct_answers,
+                    "cards_remaining": card_set
+                }
 
                 this_rounds_x_axis = []
                 this_rounds_y_axis = []
@@ -645,10 +650,14 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
                 data_tracker.x_axes.append(this_rounds_x_axis)
                 data_tracker.y_axes.append(this_rounds_y_axis)
 
+                # reset the round-specific axes ready for the next round
                 this_rounds_x_axis = []
                 this_rounds_y_axis = []
+                
+                # END OF ROUND
 
 
+            # END OF SESSION
             # write the round list to this_sessions_temp_results_file
             f.write(f"{sys_args[2]}\n")
             f.write(f"{sys_args[3]}\n")
@@ -802,17 +811,18 @@ def quiz(card_set: dict, difficulty: str, sys_args: list):
 
             # delete the temp file as it has served its purpose
             os.remove(this_sessions_temp_results_file)
-            os.remove(this_sessions_temp_data_file)
+            # os.remove(this_sessions_temp_data_file)
             os.rmdir(this_sessions_temp_dir_name)
         except Exception as e:
             print("error while saving data.")
             print(e)
 
     except (KeyboardInterrupt, EOFError) as _:
-        # if the user stops the program with ctrl c or ctrl d, also delete the file
+        # put the user in a TUI to choose a suspended session
+        # but if the user stops the program with ctrl c or ctrl d, also delete the file
         # to make it like nothing ever happened
         os.remove(this_sessions_temp_results_file)
-        os.remove(this_sessions_temp_data_file)
+        # os.remove(this_sessions_temp_data_file)
         os.rmdir(this_sessions_temp_dir_name)
 
 
