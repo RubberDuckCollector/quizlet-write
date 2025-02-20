@@ -56,6 +56,9 @@ Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD
 - a Python version >= 3.10 because of the `match` key word (this was built on python 3.12)
 - [matplotlib](https://matplotlib.org/) (i install this with `/usr/local/bin/python3 -m pip install matplotlib` on my MacOS computer)
 - a nerd font <https://www.nerdfonts.com/>
+- ***To type an umlaut by itself (¨)***
+    - Mac: opt + u, then press Space
+    - Linux: AltGr + ;, then press Escape
 
 ## input for the program:
 - a text file in the format `content|more-content`, on each line of the file like this:
