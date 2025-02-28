@@ -128,6 +128,7 @@ none
 - [ ] add feature that puts the start and end date/times in the results file
 - [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
 - [ ] port the app to the blessed library and make it a fully featured TUI app
+- [ ] turn it into a spaced repitition software
 - [x] mirgrate to argparse
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir

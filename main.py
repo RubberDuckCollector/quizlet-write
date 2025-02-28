@@ -11,8 +11,7 @@ import readline
 # import platform
 from datetime import datetime
 import matplotlib.pyplot as plt  # type: ignore
-
-# my own library code
+# my own library code below
 import my_modules.constants
 # import my_modules.help
 import my_modules.color
@@ -55,7 +54,7 @@ Commands in help text are written in Cyan
 
 parser = argparse.ArgumentParser(prog="main.py",
                                  description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
-                                 epilog="Made for flash card revision. Type the answer. Recommended for short answers but works for any text answer.")
+                                 epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer")
 
 
 def plotting_graph():
@@ -254,52 +253,10 @@ def write_sessions_per_day(obj_to_be_written: str):
         json.dump(obj_to_be_written, f, indent=4)
 
 
-class SessionDataTracker:
-    def __init__(self, p_card_set: dict):
-        self.num_correct = 0
-        self.num_incorrect = 0
-        self.num_answered = 0
-        self.num_remaining = len(p_card_set)
+class StreakCounter:
+    def __init__(self):
         self.current_streak = 0
         self.highest_streak = 0
-        self.x_axes = []  # num of terms completed
-        self.y_axes = []  # % correct
-
-    def set_num_correct(self, p_num_correct):
-        self.num_correct = p_num_correct
-    
-    def set_num_incorrect(self, p_num_incorrect):
-        self.num_incorrect = p_num_incorrect
-
-    def set_num_answered(self, p_num_answered):
-        self.num_answered = p_num_answered
-
-    def set_num_remaining(self, p_num_remaining):
-        self.num_remaining = p_num_remaining
-
-    def set_x_axes(self, p_x_axes):
-        self.x_axes = p_x_axes
-
-    def set_y_axes(self, p_y_axes):
-        self.y_axes = p_y_axes
-
-    def get_num_correct(self):
-        return self.num_correct
-
-    def get_num_incorrect(self):
-        return self.num_incorrect
-
-    def get_num_answered(self):
-        return self.num_answered
-
-    def get_num_remaining(self):
-        return self.num_remaining
-
-    def get_x_axes(self):
-        return self.x_axes
-
-    def get_y_axes(self):
-        return self.y_axes
 
     def increment_streak(self):
         # increment the current streak by one
@@ -320,6 +277,8 @@ class SessionDataTracker:
     def reset_streak(self):
         self.current_streak = 0
 
+    # might not use these 4 that much
+
     def set_current_streak(self, p_current_streak):
         self.current_streak = p_current_streak
 
@@ -333,9 +292,8 @@ class SessionDataTracker:
         return self.highest_streak
 
 
-def quiz(card_set: dict, p_args, p_start_time):
+def quiz(card_set: dict, p_args, p_start_time: str):
 
-    # when the session starts, find out when that is so it can be added to the session's file name
 
     correct_answers = {}
     round_num = 0
@@ -343,8 +301,7 @@ def quiz(card_set: dict, p_args, p_start_time):
     # find the length of the longest term on the left
     max_left_length = max(len(left) for left in card_set.keys())
 
-    data_tracker = SessionDataTracker(card_set)
-    # print(data_tracker)
+    quiz_counter = StreakCounter()
 
     # calculate the distance to the next tab stop
     # tab_stop = 8
@@ -357,14 +314,13 @@ def quiz(card_set: dict, p_args, p_start_time):
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
-    # x_axes = []  # terms completed
-    # y_axes = []  # % correct
+    x_axes = []  # terms completed
+    y_axes = []  # % correct
     
 
-    # naming things from the same exact data to make more sense when reading code, communicates meaning better
-    THEORETICAL_MAX_STREAK = NUM_TERMS  
+    THEORETICAL_MAX_STREAK = NUM_TERMS
 
-    # each session will have a temporary results file, data file, and directory. this allows more than one instance of
+    # each session will have a temporary results file. this allows more than one instance of
     # the program to be running at a time, because in the old model with only one results file,
     # if the user created a new session while an old one was happening, `results.txt` would be
     # overwritten with data from the new session, which removes data integrity from my records system.
@@ -379,52 +335,40 @@ def quiz(card_set: dict, p_args, p_start_time):
     # e.g: if you spam create sessions, they probably won't fall on the same exact time
     # because datetime keeps time accuracy up to 6 decimal places
 
-    # TODO: implement saving feature
+    #TODO: implement saving feature
     # create a temp dir for each session with temp results
     # when the program detects a KeyboardInterrupt ask if the user wants to save the session
     # the dir will not be deleted
     # the user can specify a --resume command line argument
-    # the user is put into an interactive mode
+    # the user is put into an interactive mode (blessed library?)
     # resume the flash card revision from where the user left off
+    # start_time = datetime.now()
     # TODO: find out how to save the exact terms answered correctly and incorrectly and remaining terms
         # pass those as parameters in `quiz()`
         # pass start time as a parameter
+        # also need to keep track of the session data when saving and resuming a session
     # `correct_answers` dict may help
     # `card_set` (parameter) may help
         # -rand-every-round is present
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{p_start_time}"
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{p_start_time}.txt"
-    # this_sessions_temp_data_file = f"{this_sessions_temp_dir_name}/temp_data_for_session_{start_time}.json"
     
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
     # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
     # because it's a temp file and all actions are aborted if the session finishes early
     try:
-        this_sessions_data = {}  # declare this for scope
         with open(this_sessions_temp_results_file, "a") as f:
-            # TODO: add this_sessions_temp_data as JSON to its respective file
             f.write(f"cards from: {sys.argv[1]}\n")
             while len(card_set) != 0:
                 round_num += 1
-
 
                 # num_correct and num_answered are for % of correct answers
                 num_correct = 0
                 num_answered = 0
                 num_incorrect = 0
                 num_remaining = len(card_set)
-
-                this_sessions_data = {  # progress isn't here, it gets calculated during program execution
-                    "num_remaining": num_remaining,
-                    "num_correct": num_correct,
-                    "num_incorrect": num_incorrect,
-                    "current_streak": data_tracker.get_current_streak(),
-                    "highest_streak": data_tracker.get_highest_streak(),
-                    "correct_answers": correct_answers,
-                    "cards_remaining": card_set
-                }
 
                 this_rounds_x_axis = []
                 this_rounds_y_axis = []
@@ -474,7 +418,7 @@ def quiz(card_set: dict, p_args, p_start_time):
                     print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
                     print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
                     print(f"Progress: {my_modules.color.Color.LightBlue}{progress}{my_modules.color.Color.Reset}%")
-                    print(f"Streak: {my_modules.color.Color.LightMagenta}{data_tracker.get_current_streak()}{my_modules.color.Color.Reset} ({my_modules.color.Color.LightMagenta}{data_tracker.get_highest_streak()}{my_modules.color.Color.Reset})")
+                    print(f"Streak: {my_modules.color.Color.LightMagenta}{quiz_counter.get_current_streak()}{my_modules.color.Color.Reset} ({my_modules.color.Color.LightMagenta}{quiz_counter.get_highest_streak()}{my_modules.color.Color.Reset})")
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
                     # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
@@ -488,7 +432,7 @@ def quiz(card_set: dict, p_args, p_start_time):
                     # i.e there were only spaces and strip() has removed them to leave an empty string
                     if not user_response:
                         print("Don't know? Copy out the answer so you remember it!")
-                        data_tracker.reset_streak()
+                        quiz_counter.reset_streak()
                         while True:
                             user_response = input(f"Copy the answer below ↓\n- {answer}\n> ").strip()
                             if user_response.lower() == answer.lower():
@@ -509,7 +453,7 @@ def quiz(card_set: dict, p_args, p_start_time):
                         if user_response == answer:
                             print(f"{my_modules.color.Color.Green}Correct. Well done!{my_modules.color.Color.Reset}")
 
-                            data_tracker.increment_streak()
+                            quiz_counter.increment_streak()
                             num_correct += 1
 
                             time.sleep(0.5)
@@ -527,7 +471,7 @@ def quiz(card_set: dict, p_args, p_start_time):
                         elif user_response.lower() == answer.lower():
                             print(f"{my_modules.color.Color.Green}Correct{my_modules.color.Color.Reset}")
 
-                            data_tracker.increment_streak()
+                            quiz_counter.increment_streak()
                             num_correct += 1
 
                             time.sleep(0.5)
@@ -551,7 +495,7 @@ def quiz(card_set: dict, p_args, p_start_time):
                                 # mark as correct as the user wishes
                                 print(f"Overridden as {my_modules.color.Color.Green}Correct{my_modules.color.Color.Reset}.")
 
-                                data_tracker.increment_streak()
+                                quiz_counter.increment_streak()
                                 num_correct += 1
 
                                 f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
@@ -569,7 +513,7 @@ def quiz(card_set: dict, p_args, p_start_time):
                                 f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
                                 f.flush()
 
-                                data_tracker.reset_streak()
+                                quiz_counter.reset_streak()
                                 num_incorrect += 1
 
                                 time.sleep(0.5)
@@ -623,7 +567,7 @@ def quiz(card_set: dict, p_args, p_start_time):
                 # and the number of the current round with a : right after it
                 print_round_breakdown(this_sessions_temp_results_file, f"Round {round_num}:", num_correct, num_answered)
                 
-                # randomise now if rand flag is set to -rand-every-round
+                # randomise now if rand flag is set to --rand-every-round
                 if p_args.randomise == "-rand-every-round":
                     items = list(card_set.items())
                     random.shuffle(items)
@@ -636,36 +580,31 @@ def quiz(card_set: dict, p_args, p_start_time):
                 this_rounds_x_axis.pop(0)
                 this_rounds_y_axis.pop(0)
 
-                data_tracker.x_axes.append(this_rounds_x_axis)
-                data_tracker.y_axes.append(this_rounds_y_axis)
+                x_axes.append(this_rounds_x_axis)
+                y_axes.append(this_rounds_y_axis)
 
-                # reset the round-specific axes ready for the next round
                 this_rounds_x_axis = []
                 this_rounds_y_axis = []
-                
-                # END OF ROUND
 
 
-            # END OF SESSION
             # write the round list to this_sessions_temp_results_file
             f.write(f"{p_args.difficulty}\n")
             f.write(f"{p_args.randomise}\n")
             f.write(f"{p_args.flip_terms}\n")
             f.write(f"No. terms in the card set = {NUM_TERMS}\n")
-            f.write(f"highest_streak = {data_tracker.get_highest_streak()}\n")
-            f.write(f"perfect_streak = {data_tracker.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
+            f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
+            f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
         new_sessions_completed = 0
         new_terms_completed = 0
         this_sessions_dir = dump_results_to_records_file(p_start_time, this_sessions_temp_results_file)
-        if not p_args.test:  # if `--test` is not present
-
+        if not p_args.test:
             width_per_label = 0.3
 
-            min_each_round = min(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the minimums of each sublist. Then get the min of that list
-            max_each_round = max(list(map(max, data_tracker.y_axes)))  # using map, turn `y_axes` into a 1D list of the maximums of each sublist. Then get the max of that list
-            if max_each_round - min_each_round == 0:  # if the difference is 0 (if perfect streak)
-                min_each_round -= 3  # make more room at the bottom of the graph to avoid the matplotlib warning
+            # finds the smallest and biggest numbers in `y_axes`
+            min_each_round = min([min(i) for i in y_axes])
+            max_each_round = max([max(i) for i in y_axes])
+
 
             # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
             # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
@@ -683,24 +622,27 @@ def quiz(card_set: dict, p_args, p_start_time):
             # Set up figure with calculated width
             plt.figure(figsize=(fig_width, fig_height))
 
+
             # the graph is plotted and saved here at the end of the session to maintain the atomicity of the program.
             # either the session is completed in its entirity, or everything is aborted and it's like nothing happened at all
 
             # plot each y-axis data series with its corresponding x-axis values
             plotting_graph()
-            for i, (x_data, y_data) in enumerate(zip(data_tracker.x_axes, data_tracker.y_axes)):
+            for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
                 plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
 
             plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
 
-            # plt.plot(data_tracker.x_axes, data_tracker.y_axes)
+            # plt.plot(x_axes, y_axes)
             plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to cards: {sys.argv[1]}")
             plt.xlabel("# Terms answered")
             plt.ylabel("% Accuracy")
             # plt.ylim(0, 100)  # y axis goes from 0 to 100
+            if min_each_round == max_each_round:
+                min_each_round -= 2
             plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
             plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-            plt.xticks([i for i in range(0, NUM_TERMS + 1, 1)])
+            plt.xticks([i for i in range(1, NUM_TERMS + 1, 1)])
             # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
             plt.yticks(range(int(min_each_round), int(max_each_round) + 1))  # only the relevant parts of the graph
             plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
@@ -715,13 +657,24 @@ def quiz(card_set: dict, p_args, p_start_time):
             # write the x axis data and the y axis data to special files in `this_sessions_dir`
             # this allows the graph to be reproduced
             with open(f"{this_sessions_dir}/x-axis-data.txt", "w") as f:
-                f.write(f"{data_tracker.x_axes}")
+                f.write(f"{x_axes}")
 
             with open(f"{this_sessions_dir}/y-axis-data.txt", "w") as f:
-                f.write(f"{data_tracker.y_axes}")
+                f.write(f"{y_axes}")
 
             # after the record file is done, print the session breakdown to the user
 
+            print(f"{my_modules.color.Color.Bold}Session breakdown:{my_modules.color.Color.Reset}")
+
+            with open(this_sessions_temp_results_file, 'r') as f:
+                for line in f:
+                    # print the line without leading/trailing whitespaces
+                    if '✓' in line:  # check for tick
+                        print(f"{my_modules.color.Color.Green}{line.strip()}{my_modules.color.Color.Reset}")
+                    elif '✗' in line:  # check for cross
+                        print(f"{my_modules.color.Color.Red}{line.strip()}{my_modules.color.Color.Reset}")
+                    else:
+                        print(line.strip())  # otherwise don't colour the line
             try:
                 # putting this code here instead of at the top of `quiz()` fixes the bug,
                 # where only one session would add to the terms done count for that day
@@ -738,7 +691,6 @@ def quiz(card_set: dict, p_args, p_start_time):
 
                 # show the user the previous terms done today
                 # and the new terms done today figure after the end of the session
-                new_terms_completed = 0
 
                 # at the end of the round, update the current day's terms done total
                 today = datetime.today().strftime('%Y-%m-%d')
@@ -755,6 +707,8 @@ def quiz(card_set: dict, p_args, p_start_time):
 
                 write_terms_per_day(terms_done_dict)
 
+                # show the user the increase in terms done today
+                print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
 
                 # repeat the same process but for sessions done today
                 sessions_per_day_file_path = "stats/sessions-per-day.json"
@@ -781,39 +735,20 @@ def quiz(card_set: dict, p_args, p_start_time):
 
                 write_sessions_per_day(sessions_done_dict)
 
-                # show the user the increase in terms done today
-                print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
-
                 # show the user the increase in sessions done today
                 print(f"Sessions done today: {new_sessions_completed - 1} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_sessions_completed}")
 
             except Exception as e:
                 print("error while saving data.")
                 print(e)
-
-        print(f"{my_modules.color.Color.Bold}Session breakdown:{my_modules.color.Color.Reset}")
-
-        with open(this_sessions_temp_results_file, 'r') as f:
-            for line in f:
-                # print the line without leading/trailing whitespaces
-                if '✓' in line:  # check for tick
-                    print(f"{my_modules.color.Color.Green}{line.strip()}{my_modules.color.Color.Reset}")
-                elif '✗' in line:  # check for cross
-                    print(f"{my_modules.color.Color.Red}{line.strip()}{my_modules.color.Color.Reset}")
-                else:
-                    print(line.strip())  # otherwise don't colour the line
-
         # delete the temp file as it has served its purpose
         os.remove(this_sessions_temp_results_file)
-        # os.remove(this_sessions_temp_data_file)
         os.rmdir(this_sessions_temp_dir_name)
 
     except (KeyboardInterrupt, EOFError) as _:
-        # put the user in a TUI to choose a suspended session
-        # but if the user stops the program with ctrl c or ctrl d, also delete the file
+        # if the user stops the program with ctrl c or ctrl d, also delete the file
         # to make it like nothing ever happened
         os.remove(this_sessions_temp_results_file)
-        # os.remove(this_sessions_temp_data_file)
         os.rmdir(this_sessions_temp_dir_name)
 
 
@@ -895,6 +830,7 @@ def flip_flash_card_file(filename: str, p_flash_cards: dict) -> str:
     procedure: implement an optional command line argument
     where the program switches the position of the term and
     answer on each line of a flash card file, edits the file itself
+    MAYBE USE `render_cards()`
     """
 
     result = "Swap term and definition of all cards completed successfully."
@@ -989,6 +925,7 @@ def main():
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
+            pass
         case "no-rand":
             # don't randomise, pass as the cards can be used as-is
             pass
@@ -1008,6 +945,7 @@ def main():
             return
 
     clear_screen()
+    # just before the session starts, find out when that is so it can be added to the session's file name
     start_time = str(datetime.now())
     quiz(cards, args, start_time)
 
