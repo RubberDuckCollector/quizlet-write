@@ -760,6 +760,7 @@ def render_cards(filepath: str) -> dict:
         file_size = os.path.getsize(filepath)
         if file_size == 0:
             print(f"Error while parsing flash cards from {filepath}: File is empty.")
+            sys.exit(0)
     except FileNotFoundError as e:
         print("File NOT found.")
 
