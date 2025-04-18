@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2025-04-18 (19:26)](#2025-04-18-1926)
     * [2024-12-29 (1:00)](#2024-12-29-100)
     * [2024-12-29](#2024-12-29)
     * [2024-12-28 (21:28)](#2024-12-28-2128)
@@ -44,6 +45,10 @@
 
 
 # Build log
+
+## 2025-04-18 (19:26)
+
+- tidied up descriptions of command line arguments, progressed on flip_flash_card_file() and caught error case in render_cards() to give a helpful error if the flash card file exists, but is empty
 
 ## 2024-12-29 (1:00)
 
