@@ -54,7 +54,7 @@ Commands in help text are written in Cyan
 
 parser = argparse.ArgumentParser(prog="main.py",
                                  description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
-                                 epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer")
+                                 epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer. Remember to not change the file path to the flash cards while the program is running.")
 
 
 def plotting_graph():
@@ -755,7 +755,15 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 def render_cards(filepath: str) -> dict:
     rendered_cards = {}
 
-    # first, check that the cards have no errors in them
+    # first, check that the file is not empty
+    try:
+        file_size = os.path.getsize(filepath)
+        if file_size == 0:
+            print(f"Error while parsing flash cards from {filepath}: File is empty.")
+    except FileNotFoundError as e:
+        print("File NOT found.")
+
+    # then, check that the cards have no errors in them
     with open(filepath, "r") as f:
         line_num = 1
         for line in f:
@@ -825,20 +833,29 @@ def render_cards(filepath: str) -> dict:
     return rendered_cards  # this is a dict
 
 
-def flip_flash_card_file(filename: str, p_flash_cards: dict) -> str:
+def flip_flash_card_file(filepath: str) -> str:
     """
     procedure: implement an optional command line argument
     where the program switches the position of the term and
     answer on each line of a flash card file, edits the file itself
     MAYBE USE `render_cards()`
+    NEED `os.path.basename()` which gets the file name
+        path to the file specified by os.path.basename() which is where the "FILENAME_output" goes (the same dir)
     """
 
     result = "Swap term and definition of all cards completed successfully."
     try:
-        for key, value in p_flash_cards.items():
+        card_dict = {}
+        with open(filepath, "r") as f:
+            for line in f:
+                """split each line on |, the content on the left side of | is the value and the content on the right side is the key"""
+                data = f.readline().split()
+                print(data)
+                return ""
+        for key, value in card_dict.items():
             key, value = value, key
 
-        output_filename = f"{filename}_output.txt"
+        output_filepath = f"{filepath}_output.txt"
     except Exception as e:
         result = f"Error: {e}"
     return result
@@ -856,8 +873,8 @@ def main():
     # switch question and answer
 
     # add optional arguments
-    parser.add_argument("--explain_app_usage", action="store_true", help="gives a walkthrough of the average user's interactions with the program")
-    parser.add_argument("--technical_explanation", action="store_true", help="gives a walkthrough of the average user's interactions with the program")
+    parser.add_argument("--explain_app_usage", action="store_true", help="Gives a walkthrough of the average user's interactions with the program")
+    parser.add_argument("--technical_explanation", action="store_true", help="Gives a walkthrough of how the program works")
     # bar charts
     parser.add_argument("--make_session_bar_chart", action="store_true", help="Generates a bar chart of the sessions done on each day")
     parser.add_argument("--make_flash_card_bar_chart", action="store_true", help="Generates a bar chart of the flash cards done on each day")
@@ -874,7 +891,7 @@ def main():
     this is used to better keep track of what's going on with the positional arguments.
     since None is different to emtpy string/0 value it gives me more immediate information about
     how the program is behaving
-    """ 
+    """
     # add positional arguments
     parser.add_argument("flash_card_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
     parser.add_argument("difficulty", nargs="?", default=None,  help="Difficulty of the quiz", type=str)
