@@ -5,3 +5,4 @@ stats/flash-card-bar-charts/*.pdf
 stats/terms-per-day.json
 stats/sessions-per-day.json
 my_modules/__assets__
+my_modules/__pycache__
