@@ -423,8 +423,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
                     print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}\n> ", end='')
-                    # user_response = input("> ").strip()
                     user_response = sys.stdin.readline().strip()
+                    # user_response = input("> ").strip()  # OUTDATED
 
                     # print num_remaining, num_correct, num_incorrect
                     # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
@@ -435,7 +435,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                         print("Don't know? Copy out the answer so you remember it!")
                         quiz_counter.reset_streak()
                         while True:
-                            user_response = input(f"Copy the answer below ↓\n- {answer}\n> ").strip()
+                            print(f"Copy the answer below ↓\n- {answer}\n> ", end='')
+                            user_response = sys.stdin.readline().strip()
                             if user_response.lower() == answer.lower():
                                 print(f"{my_modules.color.Color.Cyan}Next question.{my_modules.color.Color.Reset}")
                                 time.sleep(0.5)
