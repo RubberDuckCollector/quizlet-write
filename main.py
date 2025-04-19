@@ -422,8 +422,9 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
                     # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
-                    print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}")
-                    user_response = input("> ").strip()
+                    print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}\n> ", end='')
+                    # user_response = input("> ").strip()
+                    user_response = sys.stdin.readline().strip()
 
                     # print num_remaining, num_correct, num_incorrect
                     # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
