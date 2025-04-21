@@ -38,9 +38,9 @@ Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD
 - This solution to flash cards is also ad-free.
 - Because this program is open source, the user can clone this repo and edit their version of the source code to suit their specific needs, another benefit over Quizlet
 - analysis of study patterns - `stats/terms-per-day.json` holds the number of flash cards studied on each day. JSON is easily machine-readable. Benefits:
-    - [x] I can import the file to a progam and create a graph of my study
+    - [x] I can import the file to a progam and create a graph of my revision
         - [x] Data mining opportunities
-    Current drawbacks:
+    - Current drawbacks:
         - cannot filter activity by language.
 
 # Disclaimer and Prerequisites
@@ -95,6 +95,7 @@ none
 
 # Top Priority TODO
 
+- [ ] make it so the key in the PDF graph is shown to the left of the plot instead of the right
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
