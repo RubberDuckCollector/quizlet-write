@@ -58,7 +58,8 @@ Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD
 - a nerd font <https://www.nerdfonts.com/>
 - ***To type an umlaut by itself (¨)***
     - Mac: opt + u, then press Space
-    - Linux: AltGr + ;, then press Escape
+    - Linux: AltGr + ;, then press Escape, or press that button combination once more
+    - Windows: With numlock on, hold down Alt and then press 0168, then release Alt.
 
 ## input for the program:
 - a text file in the format `content|more-content`, on each line of the file like this:
@@ -95,7 +96,7 @@ none
 
 # Top Priority TODO
 
-- [ ] make it so the key in the PDF graph is shown to the left of the plot instead of the right
+- [ ] pretty print a flash card file
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
@@ -109,6 +110,7 @@ none
     - [ ] for the progress through the quiz, make a progress bar
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
+- [x] make it so the key in the PDF graph is shown to the left of the plot instead of the right
 
 ## Next features/TODO
 

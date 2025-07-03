@@ -423,8 +423,9 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
                     print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}\n> ", end='')
-                    user_response = sys.stdin.readline().strip()
+                    # user_response = sys.stdin.readline().strip()
                     # user_response = input("> ").strip()  # OUTDATED
+                    user_response = input().strip()
 
                     # print num_remaining, num_correct, num_incorrect
                     # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
@@ -436,7 +437,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                         quiz_counter.reset_streak()
                         while True:
                             print(f"Copy the answer below ↓\n- {answer}\n> ", end='')
-                            user_response = sys.stdin.readline().strip()
+                            # user_response = sys.stdin.readline().strip()
+                            user_response = input().strip()
                             if user_response.lower() == answer.lower():
                                 print(f"{my_modules.color.Color.Cyan}Next question.{my_modules.color.Color.Reset}")
                                 time.sleep(0.5)
@@ -643,7 +645,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             if min_each_round == max_each_round:
                 min_each_round -= 2
             plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
-            plt.legend(loc="best")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
+            plt.legend(loc="upper left")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
             plt.xticks([i for i in range(1, NUM_TERMS + 1, 1)])
             # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
             plt.yticks(range(int(min_each_round), int(max_each_round) + 1))  # only the relevant parts of the graph
