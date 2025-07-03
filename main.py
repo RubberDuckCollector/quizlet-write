@@ -646,7 +646,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 min_each_round -= 2
             plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
             plt.legend(loc="upper left")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-            plt.xticks([i for i in range(1, NUM_TERMS + 1, 1)])
+            plt.xticks([i for i in range(1, NUM_TERMS + 1, 2)])
             # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
             plt.yticks(range(int(min_each_round), int(max_each_round) + 2, 2))  # only the relevant parts of the graph
             plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs

@@ -96,6 +96,7 @@ none
 
 # Top Priority TODO
 
+- [ ] add a total session correct and total session incorrect counters to the program that get printed out at the end of the session
 - [ ] pretty print a flash card file
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
