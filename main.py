@@ -635,7 +635,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
                 plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
 
-            plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+            plt.grid(color = 'grey', linestyle = '-', linewidth = 0.3)
 
             # plt.plot(x_axes, y_axes)
             plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to cards: {sys.argv[1]}")
@@ -648,7 +648,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             plt.legend(loc="upper left")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
             plt.xticks([i for i in range(1, NUM_TERMS + 1, 1)])
             # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
-            plt.yticks(range(int(min_each_round), int(max_each_round) + 1))  # only the relevant parts of the graph
+            plt.yticks(range(int(min_each_round), int(max_each_round) + 2, 2))  # only the relevant parts of the graph
             plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
             plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
             plt.gca().yaxis.set_ticks_position('both')
