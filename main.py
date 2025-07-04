@@ -895,6 +895,8 @@ def flip_flash_card_file(filepath: str) -> str:
 # needed for value checking and presence checking of the command line args
 def main():
 
+    initialize_stats()
+
     # order of arguments:
     # help/main.py/bar-chart
     # file path to file containing questions,
