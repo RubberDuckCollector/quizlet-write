@@ -68,7 +68,7 @@ def saving_graph():
 def initialize_stats():
     if not os.path.exists("stats/lifetime_stats.json"):
         initial_data = {
-            "initialized": true,  # type: ignore
+            "initialized": True,
             "lifetime_correct_answers": 0,
             "lifetime_incorrect_answers": 0,
             "sessions_per_day": {},
