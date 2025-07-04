@@ -75,7 +75,7 @@ def initialize_stats():
             "terms_per_day": {}
         }
         with open("stats/lifetime_stats", "w") as f:
-             json.dump(initial_data, f, indent = 2)
+             json.dump(initial_data, f, indent=4)
 
 
 def make_session_bar_chart() -> str:
@@ -698,63 +698,74 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # where only one session would add to the terms done count for that day
                 # instead of a second session
                 # disclaimer: bug only found with two concurrent sessions
-                terms_per_day_file_path = "stats/terms-per-day.json"
-                if not os.path.exists(terms_per_day_file_path):
-                    # create file if it doesn't exist
-                    with open(terms_per_day_file_path, 'w') as f:
-                        f.write("{}")
-                with open(terms_per_day_file_path, 'r') as terms_f:
+
+                # WILL DELETE IF CHANGES AFTER d930c92 WORK
+                # terms_per_day_file_path = "stats/terms-per-day.json"
+                # if not os.path.exists(terms_per_day_file_path):
+                #     # create file if it doesn't exist
+                #     with open(terms_per_day_file_path, 'w') as f:
+                #         f.write("{}")
+
+                lifetime_stats_file_path = "stats/lifetime_stats.json"
+                with open(lifetime_stats_file_path, 'r') as lifetime_f:
                     # terms_done_dict = json.loads(f.readline())
-                    terms_done_dict = json.load(terms_f)
+                    data = json.load(lifetime_f)
 
                 # show the user the previous terms done today
                 # and the new terms done today figure after the end of the session
 
                 # at the end of the round, update the current day's terms done total
                 today = datetime.today().strftime('%Y-%m-%d')
-                if today in terms_done_dict:
-                    # need to look at the int stored at the date key, then add NUM_TERMS to it
-                    terms_done_dict[today] += NUM_TERMS
-                    new_terms_completed = terms_done_dict[today]
+                if today in data["terms_per_day"]:
+                    # need to look at the int stored at the date key inside the `terms_per_day` field, then add NUM_TERMS to it
+                    data["terms_per_day"][today] += NUM_TERMS
+                    new_terms_completed = data["terms_per_day"][today]
                 else:
-                    # not in there, can safely write new day
-                    terms_done_dict[today] = NUM_TERMS
+                    # not in there, can safely write the new day into the data
+                    data["terms_per_day"][today] = NUM_TERMS
 
                     # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
                     new_terms_completed += NUM_TERMS
 
-                write_terms_per_day(terms_done_dict)
+                # WILL DELETE IF CHANGES AFTER d930c92 WORK
+                # write_terms_per_day(data["terms_per_day"])
 
                 # show the user the increase in terms done today
                 print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
 
+                # WILL DELETE IF CHANGES AFTER d930c92 WORK
                 # repeat the same process but for sessions done today
-                sessions_per_day_file_path = "stats/sessions-per-day.json"
-                if not os.path.exists(sessions_per_day_file_path):
-                    # create file if it doesn't exist
-                    with open(sessions_per_day_file_path, 'w') as f:
-                        f.write("{}")
-                with open(sessions_per_day_file_path, "r") as sessions_f:
-                    sessions_done_dict = json.load(sessions_f)
+                # sessions_per_day_file_path = "stats/sessions-per-day.json"
+                # if not os.path.exists(sessions_per_day_file_path):
+                #     # create file if it doesn't exist
+                #     with open(sessions_per_day_file_path, 'w') as f:
+                #         f.write("{}")
+                # with open(sessions_per_day_file_path, "r") as sessions_f:
+                #     sessions_done_dict = json.load(sessions_f)
 
                 # current date and time not assigned again so we can have the same date for both the session and the terms count
-                # i.e date cannot progress in between that code and this code and have an effect on the code's function
+                # i.e date cannot progress in between that code and this code and have an effect on the code's function, this makes the program's inner workings more simple and straight forward for the user and the developer
 
                 # sessions that end on a particular day will contribute to the terms and sessions done per day counts
-                if today in sessions_done_dict:
-                    sessions_done_dict[today] += 1
-                    new_sessions_completed = sessions_done_dict[today]
+                if today in data["sessions_per_day"]:
+                    data["sessions_per_day"][today] += 1
+                    new_sessions_completed = data["sessions_per_day"][today]
                 else:
                     # not in there, can safely write new day
-                    sessions_done_dict[today] = 1
+                    data["sessions_per_day"][today] = 1
 
                     # fixes the bug where new_sessions_completed is negative on a day with 0 previously completed sessions
                     new_sessions_completed += 1
 
-                write_sessions_per_day(sessions_done_dict)
+                # WILL DELETE IF CHANGES AFTER d930c92 WORK
+                # write_sessions_per_day(data["sessions_per_day"])
 
                 # show the user the increase in sessions done today
                 print(f"Sessions done today: {new_sessions_completed - 1} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_sessions_completed}")
+
+                # write all the changed data back to the lifetime stats file
+                with open(lifetime_stats_file_path, "w") as lifetime_f:
+                    json.dump(data, f, indent=4)
 
             except Exception as e:
                 print("error while saving data.")

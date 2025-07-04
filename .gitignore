@@ -6,3 +6,4 @@ stats/terms-per-day.json
 stats/sessions-per-day.json
 my_modules/__assets__
 my_modules/__pycache__
+temp/temp_*
