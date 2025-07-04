@@ -765,7 +765,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
                 # write all the changed data back to the lifetime stats file
                 with open(lifetime_stats_file_path, "w") as lifetime_f:
-                    json.dump(data, f, indent=4)
+                    json.dump(data, lifetime_f, indent=4)
 
             except Exception as e:
                 print("error while saving data.")
