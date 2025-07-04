@@ -65,12 +65,25 @@ def saving_graph():
     print("Saving graph...")
 
 
+def initialize_stats():
+    if not os.path.exists("stats/lifetime_stats"):
+        initial_data = {
+            "initialized": true,  # type: ignore
+            "lifetime_correct_answers": 0,
+            "lifetime_incorrect_answers": 0,
+            "sessions_per_day": {},
+            "terms_per_day": {}
+        }
+        with open("stats/lifetime_stats", "w") as f:
+             json.dump(initial_data, f, indent = 2)
+
+
 def make_session_bar_chart() -> str:
     # accesses stats/sessions-per-day.json to create a bar chart of sessions done per day using matplotlib
     try:
-        with open("stats/sessions-per-day.json", "r") as f:
-            data = f.read()
-            sessions = json.loads(data)
+        with open("stats/lifetime_stats.json", "r") as f:
+            data = json.load(f)
+            sessions = data["sessions_per_day"]
 
             # DEBUGGING
             # print(sessions)
@@ -98,7 +111,8 @@ def make_session_bar_chart() -> str:
             for key, value in sessions.items():
                 plt.barh(key, value)
 
-            plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+            plt.grid(color = 'grey', linestyle = '-', linewidth = 0.3)
+
             now = datetime.now()
             plt.title(f"Session bar chart generated at {now}")
             plt.xlabel("# Sessions completed")
@@ -125,10 +139,9 @@ def make_session_bar_chart() -> str:
 def make_flash_card_bar_chart() -> str:
     # accesses stats/terms-per-day.json and plots a bar chart of the # terms done on each day
     try:
-        file_path = "stats/terms-per-day.json"
-        with open(file_path, "r") as f:
-            data = f.read()
-            terms_per_day = json.loads(data)
+        with open("stats/lifetime_stats.json", "r") as f:
+            data = json.load(f)
+            terms_per_day = data["terms_per_day"]
 
             # DEBUGGING
             # print(terms_per_day)
@@ -151,7 +164,8 @@ def make_flash_card_bar_chart() -> str:
             for key, value in terms_per_day.items():
                 plt.barh(key, value)
 
-            plt.grid(color = 'grey', linestyle = '--', linewidth = 0.5)
+            plt.grid(color = 'grey', linestyle = '-', linewidth = 0.3)
+
             now = datetime.now()
             plt.title(f"Flash card bar chart generated at {now}")
             plt.xlabel("# Flash cards answered")
@@ -679,7 +693,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                         print(f"{my_modules.color.Color.Red}{line.strip()}{my_modules.color.Color.Reset}")
                     else:
                         print(line.strip())  # otherwise don't colour the line
-            try:
+            try:  # START OF STATS COLLECTION
                 # putting this code here instead of at the top of `quiz()` fixes the bug,
                 # where only one session would add to the terms done count for that day
                 # instead of a second session

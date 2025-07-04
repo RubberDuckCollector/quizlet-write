@@ -115,6 +115,7 @@ none
 
 ## Next features/TODO
 
+- [ ] optional command line argument that turns user input (except spaces) into * characters as they type
 - [ ] make the colours on the bar charts pretty
 - [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
