@@ -66,7 +66,7 @@ def saving_graph():
 
 
 def initialize_stats():
-    if not os.path.exists("stats/lifetime_stats"):
+    if not os.path.exists("stats/lifetime_stats.json"):
         initial_data = {
             "initialized": true,  # type: ignore
             "lifetime_correct_answers": 0,
@@ -74,7 +74,7 @@ def initialize_stats():
             "sessions_per_day": {},
             "terms_per_day": {}
         }
-        with open("stats/lifetime_stats", "w") as f:
+        with open("stats/lifetime_stats.json", "w") as f:
              json.dump(initial_data, f, indent=4)
 
 
