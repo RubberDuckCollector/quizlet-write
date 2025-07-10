@@ -99,9 +99,12 @@ none
 
 # Top Priority TODO
 
+- [ ] add a `--verbose` flag that prints to the user when each external module is loading when the program is executed
 - [ ] make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
 - [ ] make an automatic backup feature (basically duplicate all user data in a backup directory)
     - [ ] make the user able to restore from backup or manually overwrite backup
+- [wip] break up `main.py` into many smaller files containing their own procedures
+    - maybe separate ones for the hint system, the quiz, and others
 - [ ] pretty print a flash card file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
@@ -109,7 +112,7 @@ none
     - need to save the time the session was started at
     - implement `--resume` command line argument that prompts an interactive selection mode for the saved sessions
     - need to take `start_time` as a parameter to `quiz()` if start time can be set arbritrarily by resuming a session
-- [ ] make an optional command line argument that outputs the average number of sessions/flash cards done between 2 dates and overall
+- [ ] make an optional command line argument that outputs the average and total number of sessions/flash cards done between 2 dates
 - [ ] compile the program to be shipped
 - [ ] implement quizlet's bars that fill up and deplete as in the write mode according to the user's progress
     - [ ] for the progress through the quiz, make a progress bar
@@ -168,8 +171,6 @@ none
 - [x] implement a feature that creates a bar chart with cards done on each day (Y axis) and date (X axis). days with 0 cards do not take up a space on the bar chart (maybe add an option to show all days regardless?)
 - [x] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`
 - [x] sort out build log on github
-- [wip] break up `main.py` into many smaller files containing their own procedures
-    - maybe separate ones for the hint system, the quiz, and others
 - [x] ***make it so the graph only saves the relevant segment of the graph***
     - [x] make it so the saved graph adjusts to the relevant y axis coordinates that are saved
 - [x] make it so the session and cards bar charts have a minimum size to accommodoate for bar charts with little data

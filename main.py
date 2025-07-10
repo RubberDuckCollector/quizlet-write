@@ -15,7 +15,6 @@ from datetime import datetime
 import matplotlib.pyplot as plt  # type: ignore
 # my own library code below
 import my_modules.constants
-# import my_modules.help
 import my_modules.color
 import my_modules.hint_system
 
