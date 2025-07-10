@@ -6,6 +6,8 @@ import sys
 import time
 import json
 import random
+import pprint
+import pathlib
 import argparse
 import readline
 # import platform
@@ -40,13 +42,13 @@ To explain it in a sentence (2 ways):
 
 
 """
+CONVENTIONS:
+
 a variable starting with `p_...` denotes a parameter, not a pointer
 "terms" and "flash cards" are interchangable. 
     "term" refers to both the question and answer on each side of the flash card.
 A "session" is one completion of all the flash cards from a file.
     A completed session means you've answered all the cards correctly once.
-
-CONVENTIONS:
 
 File paths in help text are written in Light Magenta
 Commands in help text are written in Cyan
@@ -797,38 +799,47 @@ def quiz(card_set: dict, p_args, p_start_time: str):
         os.rmdir(this_sessions_temp_dir_name)
 
 
-def render_cards(filepath: str) -> dict:
-    rendered_cards = {}
+def validate_file(file_path: str) -> bool:
+    """
+    returns False if invalid, checks for proper formatting of flash card file:
+    1. content|more-content
+        - if there is missing data either side of |, False is returned
+        - if | is missing, False is returned
+        - there must be exactly one | on each line of the file that has content.
+    2. lines starting with a # are shown to the user
+    3. empty lines are ignored
+    """
 
     # first, check that the file is not empty
     try:
-        file_size = os.path.getsize(filepath)
+        file_size = os.path.getsize(file_path)
         if file_size == 0:
-            print(f"Error while parsing flash cards from {filepath}: File is empty.")
-            sys.exit(0)
+            print(f"Error while parsing flash cards from {file_path}: File is empty.")
+            return False
     except FileNotFoundError as e:
         print("File NOT found.")
+        return False
 
     # then, check that the cards have no errors in them
-    with open(filepath, "r") as f:
+    with open(file_path, "r") as f:
         line_num = 1
         for line in f:
             if line.strip() == "" or line[0] == "#":
                 continue
             elif "|" not in line:
                 # presence check for the | 
-                print(f"Error while parsing flash cards from {filepath}: a | character was not found at line {line_num}.")
-                sys.exit(0)
+                print(f"Error while parsing flash cards from {file_path}: a | character was not found at line {line_num}.")
+                return False
             elif line.count("|") > 1:
                 # presence check for the | 
-                print(f"Error while parsing flash cards from {filepath}: more than one | character not found at line {line_num}.")
-                sys.exit(0)
+                print(f"Error while parsing flash cards from {file_path}: more than one | character not found at line {line_num}.")
+                return False
             else:
                 left, right = line.split("|", 1)
                 if not left.strip():
                     # presence check for the content left of the |
-                    print(f"Error while parsing flash cards from {filepath}: term (content on the left of the |) was not found at line {line_num}.")
-                    sys.exit(0)
+                    print(f"Error while parsing flash cards from {file_path}: term (content on the left of the |) was not found at line {line_num}.")
+                    return False
                 if not right.strip():
                     # presence check for the content right of the |
                     """
@@ -836,14 +847,14 @@ def render_cards(filepath: str) -> dict:
                         - if there is no content on the right side on the line to begin with (e.g: `hello|`)
                         - an empty string will be processed, which is not what we want because the if statement will not trigger, we want the error to trigger.
                     """
-                    print(f"Error while parsing flash cards from {filepath}: definition (content on the right of the |) was not found at line {line_num}.")
-                    sys.exit(0)
+                    print(f"Error while parsing flash cards from {file_path}: definition (content on the right of the |) was not found at line {line_num}.")
+                    return False
             line_num += 1
 
     # TODO: make it so the program checks the whole file for #s instead of just the first instance. record the largest line number's length as a string and place the |s after the last digit of the longest line number found, e.g: `1  |, 100|`
     # then, print out the lines that start with hashtags
     hashtag_in_file = False
-    with open(filepath, "r") as f:
+    with open(file_path, "r") as f:
         for line in f:
             if line[0] == "#":
                 hashtag_in_file = True
@@ -851,7 +862,7 @@ def render_cards(filepath: str) -> dict:
 
     if hashtag_in_file is True:
         clear_screen()
-        with open(filepath, "r") as f:
+        with open(file_path, "r") as f:
             line_num = 1
             print("Comments found in the flash card file:")
             for line in f:
@@ -863,23 +874,30 @@ def render_cards(filepath: str) -> dict:
                 line_num += 1
             input("Press enter to proceed.")
 
-
-    # now we can start parsing.
-    with open(filepath, "r") as f:
-        for line in f:
-            if line.strip() == "" or line[0] == "#":
-                pass
-            else:
-                key, value = line.strip().split("|")
-                rendered_cards[key.strip()] = value.strip()
-
-    # return this as the dictionary of terms and definitions
-    # e.g: "hello": "hola",
-    # the key is on the left, its corresponding value is on the right
-    return rendered_cards  # this is a dict
+    return True
 
 
-def flip_flash_card_file(filepath: str) -> str:
+def render_cards(file_path: str) -> dict:
+    rendered_cards = {}
+
+    if validate_file(file_path):
+        with open(file_path, "r") as f:
+            for line in f:
+                if line.strip() == "" or line[0] == "#":
+                    pass
+                else:
+                    key, value = line.strip().split("|")
+                    rendered_cards[key.strip()] = value.strip()
+
+        # return this as the dictionary of terms and definitions
+        # e.g: "hello": "hola",
+        # the key is on the left, its corresponding value is on the right
+        return rendered_cards  # this is a dict
+    else:
+        raise ValueError("Cards are not correctly formatted. See above message to fix.")
+
+
+def flip_flash_card_file(file_path: str) -> str:
     """
     procedure: implement an optional command line argument
     where the program switches the position of the term and
@@ -889,19 +907,26 @@ def flip_flash_card_file(filepath: str) -> str:
         path to the file specified by os.path.basename() which is where the "FILENAME_output" goes (the same dir)
     """
 
-    result = "Swap term and definition of all cards completed successfully."
+    if not validate_file(file_path):
+        raise ValueError("Cards are not correctly formatted. See above message to fix.")
+
+    output_file_path = f"{os.getcwd()}/output/{os.path.basename(file_path)}_flipped.txt"
+    result = f"Swap term and definition of all cards completed successfully at destination {output_file_path}"
     try:
-        card_dict = {}
-        with open(filepath, "r") as f:
+        data = []
+        with open(file_path, "r") as f:
             for line in f:
                 """split each line on |, the content on the left side of | is the value and the content on the right side is the key"""
-                data = f.readline().split("|")
-                print(data)
-                return ""
-        for key, value in card_dict.items():
-            key, value = value, key
+                data = f.read().split("\n")
+                data = list(filter(None, data)) # removes any elements that are only empty strings
+        data = [i.split("|") for i in data]  # every element is a string. splits each string on the | and each half is its own element in a sublist
 
-        output_filepath = f"{filepath}_output.txt"
+        with open(output_file_path, "w") as f:
+            for i in data:
+                f.write(f"{i[1]}|{i[0]}\n")
+
+        # pprint.pprint(card_dict)
+
     except Exception as e:
         result = f"Error: {e}"
     return result
@@ -929,6 +954,7 @@ def main():
     # bar charts
     parser.add_argument("--make", choices=["session_bar_chart", "flash_card_bar_chart"], help="Generates a bar chart of the sessions OR flash cards done on each day")
     parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
+    parser.add_argument("--flip", type=pathlib.Path, help="Swaps the questions and answers in a file and outputs it in a new file")
 
     """
     `nargs="?"`: makes the positional argument optional.
@@ -969,6 +995,9 @@ def main():
         sys.exit(0)
     elif args.make == "flash_card_bar_chart":
         print(make_flash_card_bar_chart())
+        sys.exit(0)
+    elif args.flip:
+        print(flip_flash_card_file(args.flip))
         sys.exit(0)
 
     required_args = {

@@ -2,7 +2,8 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
-    * [2025_07-10 (16:45)](#2025_07-10-1645)
+    * [2025-07-10 (23:38)](#2025-07-10-2338)
+    * [2025-07-10 (16:45)](#2025-07-10-1645)
     * [2025-07-09 (21:30) - 2025-07-10 (01:20)](#2025-07-09-2130---2025-07-10-0120)
     * [2025-07-04](#2025-07-04)
     * [2025-04-18 (19:26)](#2025-04-18-1926)
@@ -49,7 +50,12 @@
 
 # Build log
 
-## 2025_07-10 (16:45)
+## 2025-07-10 (23:38)
+
+- implemented functionality to flip the questions and answers (aka terms and definitions) of flash cards in a file and output them in the project's `output/` directory
+- extracted flash card file validation functionality from `render_cards()` into its own function `validate_file()`
+
+## 2025-07-10 (16:45)
 
 - `main()` no longer has the logic error where the program would tell the use they're missing all positional arguments, regardless of how many they're missing
     - this was due to a print statement just saying they were missing all of the args instead of embedding the list of missing args in the print statement, which is correct

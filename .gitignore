@@ -11,3 +11,4 @@ temp/temp_*
 *.pyc
 venv/
 __pycache__/
+output/*.txt
