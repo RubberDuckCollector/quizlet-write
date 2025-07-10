@@ -96,9 +96,10 @@ none
 
 # Top Priority TODO
 
-- [ ] add a total session correct and total session incorrect counters to the program that get printed out at the end of the session
-- [ ] pretty print a flash card file
+- [ ] make an automatic backup feature (basically duplicate all user data in a backup directory)
+    - [ ] make the user able to restore from backup or manually overwrite backup
 - [ ] implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
+- [ ] pretty print a flash card file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
     - need to save the stats when the session is exited
@@ -111,12 +112,14 @@ none
     - [ ] for the progress through the quiz, make a progress bar
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
+- [x] add lifetime session correct and lifetime session incorrect counters to the program that get printed out at the end of the session
 - [x] make it so the key in the PDF graph is shown to the left of the plot instead of the right
 
 ## Next features/TODO
 
+- [ ] use a proper logging system with a logging library
 - [ ] optional command line argument that turns user input (except spaces) into * characters as they type
-- [ ] make the colours on the bar charts pretty
+- [ ] make an automatic backup feature (basically duplicate all user data in a backup directory)- [ ] make the colours on the bar charts pretty
 - [ ] a new command line argument where i use regex to highlight numbers and all 3 types of opening/closing brackets in a special colour
 - [ ] implement a feature where at the end of a session, ask the user if they want to save the terms they got incorrect on the first round to a new file
     - file called `"{filename} {session_end_date_and_time} incorrect.txt"`
@@ -138,7 +141,7 @@ none
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir
 - [x] statistics and tracking - daily word count of terms done
-- [x] expand --rand functionality to randomise at the end of each round, instead of only at the start of the session
+- [x] expand --rand functionality to randomize at the end of each round, instead of only at the start of the session
 - [x] tell the user the previous terms done today and the new terms done today
 - [x] 2024-08-31: implement a feature that allows the user to have more than one session open at a time 
     - 11-10-2024: (this is done by having separate files tracking the progress of each session, no two files would conceivably be of the same session because the name is decided by time up to 6 digits on the second)
@@ -154,7 +157,6 @@ none
 - [x] make the graph generated gradute in 1s instead of 5s (have to make the graph taller to do so)
 - [x] add signals that tell the user the program is loading/importing libraries/when the program is first run and there's a big loading time, this would let the user that nothing's going wrong
     - maybe with a ... that increments
-    - or integrate a logging system (with proper standardised logging library)
 - [x] implement a feature that creates bar charts of how many sessions completed with each command line argument (e.g how many sessions with `-rand-once`/`-rand-every-round`/`-no-rand`? how many sessions with `-flip`/`-no-flip`? how many sessions with each difficuly?)
 - [x] implement a feature that creates a bar chart with terms done on each day (Y axis) and date (X axis). days with 0 terms do not take up a space on the bar chart (maybe add an option to show all days regardless?)
 - [x] make it so a string such as `test/test` renders as `t___/t___` on normal mode and `tes_/tes_` on easy mode instead of `t___/____`

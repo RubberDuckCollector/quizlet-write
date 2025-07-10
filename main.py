@@ -52,10 +52,6 @@ File paths in help text are written in Light Magenta
 Commands in help text are written in Cyan
 """
 
-parser = argparse.ArgumentParser(prog="main.py",
-                                 description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
-                                 epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer. Remember to not change the file path to the flash cards while the program is running.")
-
 
 def plotting_graph():
     print("Plotting graph...")
@@ -308,7 +304,6 @@ class StreakCounter:
 
 def quiz(card_set: dict, p_args, p_start_time: str):
 
-
     correct_answers = {}
     round_num = 0
 
@@ -330,7 +325,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
     x_axes = []  # terms completed
     y_axes = []  # % correct
-    
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
 
@@ -368,6 +362,10 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{p_start_time}.txt"
     
+    test_indicator = ""
+    if p_args.test:
+        test_indicator = " TEST MODE - NO STATS SAVED"
+
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
     # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
@@ -375,6 +373,11 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     try:
         with open(this_sessions_temp_results_file, "a") as f:
             f.write(f"cards from: {sys.argv[1]}\n")
+
+            # used to add to lifetime stats
+            total_correct_in_session = 0
+            total_incorrect_in_session = 0
+
             while len(card_set) != 0:
                 round_num += 1
 
@@ -427,7 +430,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # this is the percentage completed in the current set
                     progress = round(num_answered / NUM_TERMS * 100, 2) if num_answered > 0 else 0.0
 
-                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flash_card_file_path)}{my_modules.color.Color.Reset}")
+                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flash_card_file_path)}{my_modules.color.Color.Reset}{test_indicator}")
                     print(f"Remaining: {num_remaining}")
                     print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
                     print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
@@ -585,8 +588,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # and the number of the current round with a : right after it
                 print_round_breakdown(this_sessions_temp_results_file, f"Round {round_num}:", num_correct, num_answered)
                 
-                # randomise now if rand flag is set to --rand-every-round
-                if p_args.randomise == "-rand-every-round":
+                # randomize now if rand flag is set to --rand-every-round
+                if p_args.randomize == "-rand-every-round":
                     items = list(card_set.items())
                     random.shuffle(items)
                     card_set = dict(items)
@@ -604,10 +607,13 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 this_rounds_x_axis = []
                 this_rounds_y_axis = []
 
+                total_correct_in_session += num_correct
+                total_incorrect_in_session += num_incorrect
+
 
             # write the round list to this_sessions_temp_results_file
             f.write(f"{p_args.difficulty}\n")
-            f.write(f"{p_args.randomise}\n")
+            f.write(f"{p_args.randomize}\n")
             f.write(f"{p_args.flip_terms}\n")
             f.write(f"No. terms in the card set = {NUM_TERMS}\n")
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
@@ -763,6 +769,16 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # show the user the increase in sessions done today
                 print(f"Sessions done today: {new_sessions_completed - 1} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_sessions_completed}")
 
+                # update lifetime correct and incorrect answers
+                lifetime_correct_before_change = data["lifetime_correct_answers"]
+                lifetime_incorrect_before_change = data["lifetime_incorrect_answers"]
+
+                data["lifetime_correct_answers"] += total_correct_in_session
+                data["lifetime_incorrect_answers"] += total_incorrect_in_session
+
+                print(f"Lifetime correct answers: {lifetime_correct_before_change} -> {data["lifetime_correct_answers"]}")
+                print(f"Lifetime incorrect answers: {lifetime_incorrect_before_change} -> {data["lifetime_incorrect_answers"]}")
+
                 # write all the changed data back to the lifetime stats file
                 with open(lifetime_stats_file_path, "w") as lifetime_f:
                     json.dump(data, lifetime_f, indent=4)
@@ -879,7 +895,7 @@ def flip_flash_card_file(filepath: str) -> str:
         with open(filepath, "r") as f:
             for line in f:
                 """split each line on |, the content on the left side of | is the value and the content on the right side is the key"""
-                data = f.readline().split()
+                data = f.readline().split("|")
                 print(data)
                 return ""
         for key, value in card_dict.items():
@@ -901,15 +917,17 @@ def main():
     # help/main.py/bar-chart
     # file path to file containing questions,
     # difficulty,
-    # randomise terms,
+    # randomize terms,
     # switch question and answer
 
+    parser = argparse.ArgumentParser(prog="main.py",
+                                     description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
+                                     epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer. Remember to not change the file path to the flash cards while the program is running.")
     # add optional arguments
     parser.add_argument("--explain_app_usage", action="store_true", help="Gives a walkthrough of the average user's interactions with the program")
     parser.add_argument("--technical_explanation", action="store_true", help="Gives a walkthrough of how the program works")
     # bar charts
-    parser.add_argument("--make_session_bar_chart", action="store_true", help="Generates a bar chart of the sessions done on each day")
-    parser.add_argument("--make_flash_card_bar_chart", action="store_true", help="Generates a bar chart of the flash cards done on each day")
+    parser.add_argument("--make", choices=["session_bar_chart", "flash_card_bar_chart"], help="Generates a bar chart of the sessions OR flash cards done on each day")
     parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
 
     """
@@ -925,10 +943,12 @@ def main():
     how the program is behaving
     """
     # add positional arguments
+    # nargs="?" overrides their default behaviour and makes them optional
+    # they will only be optional temporarily, and will be handled (manually) as usual later
     parser.add_argument("flash_card_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
-    parser.add_argument("difficulty", nargs="?", default=None,  help="Difficulty of the quiz", type=str)
-    parser.add_argument("randomise", nargs="?", default=None,  help="How you want to randomise the flash cards in the quiz", type=str)
-    parser.add_argument("flip_terms", nargs="?", default=None,  help="Wether or not you want to 'flip the cards over' and answer with the question", type=str)
+    parser.add_argument("difficulty", nargs="?", default=None, help="Difficulty of the quiz", type=str)
+    parser.add_argument("randomize", nargs="?", default=None, help="How you want to randomise the flash cards in the quiz", type=str)
+    parser.add_argument("flip_terms", nargs="?", default=None, help="Wether or not you want to 'flip the cards over' and answer with the question", type=str)
 
     # if sys.argv only contains `main.py`
     # print help and halt program execution
@@ -936,7 +956,7 @@ def main():
         parser.print_help()
         sys.exit(0)
 
-    args = parser.parse_args()  # parse arguments in the order declared in the code
+    args = parser.parse_intermixed_args()
 
     if args.explain_app_usage:
         print("explain app usage - import commands.py (write long things in there)")
@@ -944,14 +964,26 @@ def main():
     elif args.technical_explanation:
         print("technical explanation - commands.py")
         sys.exit(0)
-    elif args.make_session_bar_chart:
+    elif args.make == "session_bar_chart":
         print(make_session_bar_chart())
         sys.exit(0)
-    elif args.make_flash_card_bar_chart:
+    elif args.make == "flash_card_bar_chart":
         print(make_flash_card_bar_chart())
         sys.exit(0)
 
-    file_path = args.flash_card_file_path
+    required_args = {
+        'FLASH_CARD_FILE_PATH': args.flash_card_file_path,
+        'DIFFICULTY': args.difficulty,
+        'RANDOMIZE': args.randomize,
+        'FLIP_TERMS': args.flip_terms
+    }
+
+    # makes a list of all missing arguments
+    # uses the fact that if they aren't present, the list comp looks for None associated with its name
+    missing_required_args = [arg_name for arg_name, value in required_args.items() if value is None]
+
+    if missing_required_args:
+        parser.error("Missig one of: FLASH CARD FILE PATH, DIFFICULTY, RANDOMIZE, FLIP TERMS")
 
     if args.difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass
@@ -960,26 +992,26 @@ def main():
         return
 
     print("Rendering cards...")
-    cards = render_cards(file_path)
+    cards = render_cards(args.flash_card_file_path)
 
     # will be handled in quiz()
-    match args.randomise:
+    match args.randomize:
         case "rand-once":
-            # randomise only at the start of the session
+            # randomize only at the start of the session
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
         case "rand-every-round":
-            # randomise after the end of every round 
+            # randomize after the end of every round 
             items = list(cards.items())
             random.shuffle(items)
             cards = dict(items)
             pass
         case "no-rand":
-            # don't randomise, pass as the cards can be used as-is
+            # don't randomize, pass as the cards can be used as-is
             pass
         case _:
-            print("Error: randomise setting can only be one of: rand-once | no-rand | rand-every-round")
+            print("Error: randomize setting can only be one of: rand-once | no-rand | rand-every-round")
             return
 
     match args.flip_terms:

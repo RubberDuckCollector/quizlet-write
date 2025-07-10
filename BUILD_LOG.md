@@ -2,6 +2,8 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2025-07-09 (21:30) - 2025-07-10 (01:20)](#2025-07-09-2130---2025-07-10-0120)
+    * [2025-07-04](#2025-07-04)
     * [2025-04-18 (19:26)](#2025-04-18-1926)
     * [2024-12-29 (1:00)](#2024-12-29-100)
     * [2024-12-29](#2024-12-29)
@@ -45,6 +47,17 @@
 
 
 # Build log
+
+## 2025-07-09 (21:30) - 2025-07-10 (01:20)
+
+- refactored argparse code so that args all play nice with each other
+    - e.g `--test` can be used anywhere in between, before, or after the positional arguments in the command line relating to the primary function of the program as a flash card test
+    - the other optional commands function as intended at the same time as the above point is implemented
+- changed all instances of the word "randomise" to "randomize"
+
+## 2025-07-04
+
+- restructured the stats collection in \`main.py\` to point all json handling to one file (\`lifetime_stats.json\`) instead of separate files
 
 ## 2025-04-18 (19:26)
 
@@ -230,7 +243,7 @@ when i'm absolutely ready
 ## 2024-02-20
 
 - completed development of first revision
-- if there are vocab files that are empty, that is known (2024-03-08 update: vocab is at <https://github.com/RubberDuckCollector/my-flash-cards>)
+- if there are vocab files that are empty, that is known (2024-03-08 update: vocab is at <https://github.com/RubberDuckCollector/https://github.com/RubberDuckCollector/flash-card-collection>)
 
 # Known issues
 
