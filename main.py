@@ -972,10 +972,10 @@ def main():
         sys.exit(0)
 
     required_args = {
-        'FLASH_CARD_FILE_PATH': args.flash_card_file_path,
-        'DIFFICULTY': args.difficulty,
-        'RANDOMIZE': args.randomize,
-        'FLIP_TERMS': args.flip_terms
+        'flash_card_file_path': args.flash_card_file_path,
+        'difficulty': args.difficulty,
+        'randomize': args.randomize,
+        'flip_terms': args.flip_terms
     }
 
     # makes a list of all missing arguments
@@ -983,7 +983,7 @@ def main():
     missing_required_args = [arg_name for arg_name, value in required_args.items() if value is None]
 
     if missing_required_args:
-        parser.error("Missig one of: FLASH CARD FILE PATH, DIFFICULTY, RANDOMIZE, FLIP TERMS")
+        parser.error(f"Missig required positional argument(s): {missing_required_args}")
 
     if args.difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass

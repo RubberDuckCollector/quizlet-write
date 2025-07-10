@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2025_07-10 (16:45)](#2025_07-10-1645)
     * [2025-07-09 (21:30) - 2025-07-10 (01:20)](#2025-07-09-2130---2025-07-10-0120)
     * [2025-07-04](#2025-07-04)
     * [2025-04-18 (19:26)](#2025-04-18-1926)
@@ -48,12 +49,19 @@
 
 # Build log
 
+## 2025_07-10 (16:45)
+
+- `main()` no longer has the logic error where the program would tell the use they're missing all positional arguments, regardless of how many they're missing
+    - this was due to a print statement just saying they were missing all of the args instead of embedding the list of missing args in the print statement, which is correct
+- project now supports venv and modules are installed locally to the project
+
 ## 2025-07-09 (21:30) - 2025-07-10 (01:20)
 
 - refactored argparse code so that args all play nice with each other
     - e.g `--test` can be used anywhere in between, before, or after the positional arguments in the command line relating to the primary function of the program as a flash card test
     - the other optional commands function as intended at the same time as the above point is implemented
 - changed all instances of the word "randomise" to "randomize"
+- added an extra bit of text on the "Working from \[file name\]" line during the test that lets the user know if the program is in test mode and that stats will not be saved
 
 ## 2025-07-04
 

@@ -9,3 +9,5 @@ my_modules/__assets__
 my_modules/__pycache__
 temp/temp_*
 *.pyc
+venv/
+__pycache__/
