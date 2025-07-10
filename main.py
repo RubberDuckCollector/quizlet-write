@@ -45,8 +45,10 @@ To explain it in a sentence (2 ways):
 CONVENTIONS:
 
 a variable starting with `p_...` denotes a parameter, not a pointer
-"terms" and "flash cards" are interchangable. 
-    "term" refers to both the question and answer on each side of the flash card.
+"term" or "question" refers to just the question on the flash card.
+    - "definition" or "answer" refers to the answer on the flash card
+    - "term" and "question" are interchangeable
+    - "definition" and "answer" are interchangeable.
 A "session" is one completion of all the flash cards from a file.
     A completed session means you've answered all the cards correctly once.
 
@@ -70,7 +72,7 @@ def initialize_stats():
             "lifetime_correct_answers": 0,
             "lifetime_incorrect_answers": 0,
             "sessions_per_day": {},
-            "terms_per_day": {}
+            "cards_per_day": {}
         }
         with open("stats/lifetime_stats.json", "w") as f:
              json.dump(initial_data, f, indent=4)
@@ -135,31 +137,31 @@ def make_session_bar_chart() -> str:
 
 
 def make_flash_card_bar_chart() -> str:
-    # accesses stats/terms-per-day.json and plots a bar chart of the # terms done on each day
+    # accesses stats/lifetime_stats.json and plots a bar chart of the # cards done on each day
     try:
         with open("stats/lifetime_stats.json", "r") as f:
             data = json.load(f)
-            terms_per_day = data["terms_per_day"]
+            cards_per_day = data["cards_per_day"]
 
             # DEBUGGING
-            # print(terms_per_day)
-            # for key, value in terms_per_day.items():
+            # print(cards_per_day)
+            # for key, value in cards_per_day.items():
             #     print(f"KEY: {key}, VALUE: {value}")
 
             width_per_label = 0.3
 
-            most_terms_done = max(zip(terms_per_day.values(), terms_per_day.keys()))[0]
+            most_cards_done = max(zip(cards_per_day.values(), cards_per_day.keys()))[0]
 
-            # we're plotting horizontally, so the terms done go on the x axis, which controls the width of the graph
-            fig_width = width_per_label * most_terms_done
+            # we're plotting horizontally, so the  done go on the x axis, which controls the width of the graph
+            fig_width = width_per_label * most_cards_done
 
             # we're plotting horizontally, so the dates go on the y axis, which controls the height of the graph
-            fig_height = width_per_label * len(terms_per_day)
+            fig_height = width_per_label * len(cards_per_day)
 
             plt.figure(figsize=(fig_width, fig_height))
 
             plotting_graph()
-            for key, value in terms_per_day.items():
+            for key, value in cards_per_day.items():
                 plt.barh(key, value)
 
             plt.grid(color = 'grey', linestyle = '-', linewidth = 0.3)
@@ -168,7 +170,7 @@ def make_flash_card_bar_chart() -> str:
             plt.title(f"Flash card bar chart generated at {now}")
             plt.xlabel("# Flash cards answered")
             plt.ylabel("Date (YYYY-MM-DD)")
-            plt.xticks([i for i in range(0, most_terms_done + 1, 1)])  # this can be as a list or one of Python's range() objects
+            plt.xticks([i for i in range(0, most_cards_done + 1, 1)])  # this can be as a list or one of Python's range() objects
             plt.gca().xaxis.set_ticks_position('both')
             plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable the dates on the y axis to be on the top of the graph as well as the bottom, rotates 90 degrees to make them readable
             plt.gca().yaxis.set_ticks_position('both')
@@ -243,28 +245,6 @@ def dump_results_to_records_file(p_start_time, p_this_sessions_temp_results_file
     return session_dir
 
 
-def write_terms_per_day(obj_to_be_written: str):
-    file_path = "stats/terms-per-day.json"
-    with open(file_path, 'w') as f:
-        # comes in as a str, to turn it into a valid json obj
-        # this turns any ' into ", which fixes the problem
-        # to_be_written = json.dumps(obj_to_be_written)
-        # f.write(to_be_written)
-
-        json.dump(obj_to_be_written, f, indent=4)
-
-
-def write_sessions_per_day(obj_to_be_written: str):
-    file_path = "stats/sessions-per-day.json"
-    with open(file_path, 'w') as f:
-        # comes in as a str, to turn it into a valid json obj
-        # this turns any ' into ", which fixes the problem
-        # to_be_written = json.dumps(obj_to_be_written)
-        # f.write(to_be_written)
-
-        json.dump(obj_to_be_written, f, indent=4)
-
-
 class StreakCounter:
     def __init__(self):
         self.current_streak = 0
@@ -318,14 +298,14 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     # tab_stop = 8
     # tab_distance = tab_stop - (max_left_length % tab_stop)
 
-    # print the aligned terms
+    # print the aligned cards
     # for left, right in card_set.items():
     #     print(left.ljust(max_left_length),
     #           right.rjust(len(right) + tab_distance))
 
     NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
 
-    x_axes = []  # terms completed
+    x_axes = []  # cards completed
     y_axes = []  # % correct
 
     THEORETICAL_MAX_STREAK = NUM_TERMS
@@ -353,7 +333,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     # the user is put into an interactive mode (blessed library?)
     # resume the flash card revision from where the user left off
     # start_time = datetime.now()
-    # TODO: find out how to save the exact terms answered correctly and incorrectly and remaining terms
+    # TODO: find out how to save the exact cards answered correctly and incorrectly and remaining cards
         # pass those as parameters in `quiz()`
         # pass start time as a parameter
         # also need to keep track of the session data when saving and resuming a session
@@ -563,7 +543,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # now delete all the cards that the user got right
                 # this is to make sure only the things they got wrong are left
                 # meaning that on the next iteration, the dict will only have
-                # terms that the user got wrong
+                # cards that the user got wrong
                 keys_to_remove = []
 
                 # iterate over the keys of the new dictionary
@@ -616,13 +596,13 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             # write the round list to this_sessions_temp_results_file
             f.write(f"{p_args.difficulty}\n")
             f.write(f"{p_args.randomize}\n")
-            f.write(f"{p_args.flip_terms}\n")
-            f.write(f"No. terms in the card set = {NUM_TERMS}\n")
+            f.write(f"{p_args.flip_cards}\n")
+            f.write(f"No. cards in the card set = {NUM_TERMS}\n")
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
             f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
 
         new_sessions_completed = 0
-        new_terms_completed = 0
+        new_cards_completed = 0
         this_sessions_dir = dump_results_to_records_file(p_start_time, this_sessions_temp_results_file)
         if not p_args.test:
             width_per_label = 0.3
@@ -661,7 +641,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
             # plt.plot(x_axes, y_axes)
             plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to cards: {sys.argv[1]}")
-            plt.xlabel("# Terms answered")
+            plt.xlabel("# Cards answered")
             plt.ylabel("% Accuracy")
             # plt.ylim(0, 100)  # y axis goes from 0 to 100
             if min_each_round == max_each_round:
@@ -703,58 +683,38 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                         print(line.strip())  # otherwise don't colour the line
             try:  # START OF STATS COLLECTION
                 # putting this code here instead of at the top of `quiz()` fixes the bug,
-                # where only one session would add to the terms done count for that day
+                # where only one session would add to the cards done count for that day
                 # instead of a second session
                 # disclaimer: bug only found with two concurrent sessions
 
-                # WILL DELETE IF CHANGES AFTER d930c92 WORK
-                # terms_per_day_file_path = "stats/terms-per-day.json"
-                # if not os.path.exists(terms_per_day_file_path):
-                #     # create file if it doesn't exist
-                #     with open(terms_per_day_file_path, 'w') as f:
-                #         f.write("{}")
-
                 lifetime_stats_file_path = "stats/lifetime_stats.json"
                 with open(lifetime_stats_file_path, 'r') as lifetime_f:
-                    # terms_done_dict = json.loads(f.readline())
                     data = json.load(lifetime_f)
 
-                # show the user the previous terms done today
-                # and the new terms done today figure after the end of the session
+                # FUNCTIONALITY FOR THE USER:
+                # show the user the previous cards done today
+                # and the new cards done today figure after the end of the session
 
-                # at the end of the round, update the current day's terms done total
+                # at the end of the round, update the current day's cards done total
                 today = datetime.today().strftime('%Y-%m-%d')
-                if today in data["terms_per_day"]:
-                    # need to look at the int stored at the date key inside the `terms_per_day` field, then add NUM_TERMS to it
-                    data["terms_per_day"][today] += NUM_TERMS
-                    new_terms_completed = data["terms_per_day"][today]
+                if today in data["cards_per_day"]:
+                    # need to look at the int stored at the date key inside the `cards_per_day` field, then add NUM_TERMS to it
+                    data["cards_per_day"][today] += NUM_TERMS
+                    new_cards_completed = data["cards_per_day"][today]
                 else:
                     # not in there, can safely write the new day into the data
-                    data["terms_per_day"][today] = NUM_TERMS
+                    data["cards_per_day"][today] = NUM_TERMS
 
-                    # fixes the bug where new_terms_completed is negative on a day with 0 previously completed terms
-                    new_terms_completed += NUM_TERMS
+                    # fixes the bug where new_cards_completed is negative on a day with 0 previously completed cards
+                    new_cards_completed += NUM_TERMS
 
-                # WILL DELETE IF CHANGES AFTER d930c92 WORK
-                # write_terms_per_day(data["terms_per_day"])
+                # show the user the increase in cards done today
+                print(f"Cards done today: {new_cards_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_cards_completed}")
 
-                # show the user the increase in terms done today
-                print(f"Terms done today: {new_terms_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_terms_completed}")
-
-                # WILL DELETE IF CHANGES AFTER d930c92 WORK
-                # repeat the same process but for sessions done today
-                # sessions_per_day_file_path = "stats/sessions-per-day.json"
-                # if not os.path.exists(sessions_per_day_file_path):
-                #     # create file if it doesn't exist
-                #     with open(sessions_per_day_file_path, 'w') as f:
-                #         f.write("{}")
-                # with open(sessions_per_day_file_path, "r") as sessions_f:
-                #     sessions_done_dict = json.load(sessions_f)
-
-                # current date and time not assigned again so we can have the same date for both the session and the terms count
+                # current date and time not assigned again so we can have the same date for both the session and the cards count
                 # i.e date cannot progress in between that code and this code and have an effect on the code's function, this makes the program's inner workings more simple and straight forward for the user and the developer
 
-                # sessions that end on a particular day will contribute to the terms and sessions done per day counts
+                # sessions that end on a particular day will contribute to the cards and sessions done per day counts
                 if today in data["sessions_per_day"]:
                     data["sessions_per_day"][today] += 1
                     new_sessions_completed = data["sessions_per_day"][today]
@@ -942,7 +902,7 @@ def main():
     # help/main.py/bar-chart
     # file path to file containing questions,
     # difficulty,
-    # randomize terms,
+    # randomize cards,
     # switch question and answer
 
     parser = argparse.ArgumentParser(prog="main.py",
@@ -974,7 +934,7 @@ def main():
     parser.add_argument("flash_card_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
     parser.add_argument("difficulty", nargs="?", default=None, help="Difficulty of the quiz", type=str)
     parser.add_argument("randomize", nargs="?", default=None, help="How you want to randomise the flash cards in the quiz", type=str)
-    parser.add_argument("flip_terms", nargs="?", default=None, help="Wether or not you want to 'flip the cards over' and answer with the question", type=str)
+    parser.add_argument("flip_cards", nargs="?", default=None, help="Wether or not you want to 'flip the cards over' and answer with the question", type=str)
 
     # if sys.argv only contains `main.py`
     # print help and halt program execution
@@ -1004,7 +964,7 @@ def main():
         'flash_card_file_path': args.flash_card_file_path,
         'difficulty': args.difficulty,
         'randomize': args.randomize,
-        'flip_terms': args.flip_terms
+        'flip_cards': args.flip_cards
     }
 
     # makes a list of all missing arguments
@@ -1043,7 +1003,7 @@ def main():
             print("Error: randomize setting can only be one of: rand-once | no-rand | rand-every-round")
             return
 
-    match args.flip_terms:
+    match args.flip_cards:
         case "flip":
             # switch terms and definitions
             cards = {v: k for k, v in cards.items()}
