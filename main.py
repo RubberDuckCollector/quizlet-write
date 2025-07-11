@@ -1,5 +1,7 @@
 print("Loading...")
-
+import progressbar
+bar = progressbar.ProgressBar(maxval=100, term_width=40)
+bar.start()
 # external library code
 import os
 import sys
@@ -12,11 +14,11 @@ import argparse
 import readline
 # import platform
 from datetime import datetime
+# print("importing matplotlib (the biggest library)")
 import matplotlib.pyplot as plt  # type: ignore
 # my own library code below
-import my_modules.constants
-import my_modules.color
-import my_modules.hint_system
+import my_modules
+bar.finish()
 
 
 """
@@ -29,6 +31,7 @@ IMPORT GUIDE (examples of how you would use my library code)
 `my_modules.constants.chars_to_ignore[i]`  # access the value at index `i` in the chars_to_ignore list
 `my_modules.color.Color.Blue(/Magenta/Bold/Reset)`  # access the specific color from the Color class
 
+Example:
 `my_modules.help.help_command()`  # call the help_command() procedure
 To explain it in a sentence (2 ways):
 1. "call the help command from the file `help`, which is in the folder/directory `my_modules`."
@@ -371,6 +374,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 this_rounds_x_axis = []
                 this_rounds_y_axis = []
 
+
                 f.write(f"Round {round_num}:\n")
                 f.flush()
 
@@ -591,18 +595,30 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 total_correct_in_session += num_correct
                 total_incorrect_in_session += num_incorrect
 
-
             # write the round list to this_sessions_temp_results_file
             f.write(f"{p_args.difficulty}\n")
             f.write(f"{p_args.randomize}\n")
             f.write(f"{p_args.flip_cards}\n")
             f.write(f"No. cards in the card set = {NUM_TERMS}\n")
             f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
-            f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}")  # this should resolve to True or False
+            f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}\n")  # this should resolve to True or False
+            f.write("If you want to compute this data and you're not in test mode, there will be a session.json file in the session's folder.")
+
+        session_data = {
+            "file_path_to_cards": sys.argv[1],
+            "difficulty": p_args.difficulty,
+            "randomize": p_args.randomize,
+            "flip": p_args.flip_cards,
+            "num_cards_in_set": str(NUM_TERMS),
+            "highest_streak": str(quiz_counter.get_highest_streak()),
+            "is_perfect_streak": str(quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK)
+        }
+
+        this_sessions_dir = dump_results_to_records_file(p_start_time, this_sessions_temp_results_file)
 
         new_sessions_completed = 0
         new_cards_completed = 0
-        this_sessions_dir = dump_results_to_records_file(p_start_time, this_sessions_temp_results_file)
+
         if not p_args.test:
             width_per_label = 0.3
 
@@ -659,13 +675,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             # https://stackoverflow.com/a/59372013
             plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
 
-            # write the x axis data and the y axis data to special files in `this_sessions_dir`
-            # this allows the graph to be reproduced
-            with open(f"{this_sessions_dir}/x-axis-data.txt", "w") as f:
-                f.write(f"{x_axes}")
-
-            with open(f"{this_sessions_dir}/y-axis-data.txt", "w") as f:
-                f.write(f"{y_axes}")
 
             # after the record file is done, print the session breakdown to the user
 
@@ -685,6 +694,17 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # where only one session would add to the cards done count for that day
                 # instead of a second session
                 # disclaimer: bug only found with two concurrent sessions
+
+                # write the x axis data and the y axis data to special files in `this_sessions_dir`
+                # this allows the graph to be reproduced
+                with open(f"{this_sessions_dir}/x-axis-data.txt", "w") as f:
+                    f.write(f"{x_axes}")
+
+                with open(f"{this_sessions_dir}/y-axis-data.txt", "w") as f:
+                    f.write(f"{y_axes}")
+
+                with open(f"{this_sessions_dir}/session.json", "w") as f:
+                    json.dump(session_data, f, indent=4)
 
                 lifetime_stats_file_path = "stats/lifetime_stats.json"
                 with open(lifetime_stats_file_path, 'r') as lifetime_f:
@@ -745,15 +765,17 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     json.dump(data, lifetime_f, indent=4)
 
             except Exception as e:
-                print("error while saving data.")
+                print("Error while saving data.")
                 print(e)
         # delete the temp file as it has served its purpose
         os.remove(this_sessions_temp_results_file)
         os.rmdir(this_sessions_temp_dir_name)
 
-    except (KeyboardInterrupt, EOFError) as _:
+    except (KeyboardInterrupt, EOFError, Exception) as e:
         # if the user stops the program with ctrl c or ctrl d, also delete the file
         # to make it like nothing ever happened
+        print("An error has occurred.")
+        print(e)
         os.remove(this_sessions_temp_results_file)
         os.rmdir(this_sessions_temp_dir_name)
 
@@ -880,6 +902,7 @@ def flip_flash_card_file(file_path: str) -> str:
                 data = list(filter(None, data)) # removes any elements that are only empty strings
         data = [i.split("|") for i in data]  # every element is a string. splits each string on the | and each half is its own element in a sublist
 
+        # write to output file, swapping the questions and answers
         with open(output_file_path, "w") as f:
             for i in data:
                 f.write(f"{i[1]}|{i[0]}\n")
@@ -914,6 +937,7 @@ def main():
     parser.add_argument("--make", choices=["session_bar_chart", "flash_card_bar_chart"], help="Generates a bar chart of the sessions OR flash cards done on each day")
     parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
     parser.add_argument("--flip", type=pathlib.Path, help="Swaps the questions and answers in a file and outputs it in a new file")
+    parser.add_argument("--sync", action="store_true", help="Collects data in PROJECT_ROOT/stats/records/ and makes overwrites that data to PROJECT_ROOT/stats/lifetime_stats.json to fix parity issues")
 
     """
     `nargs="?"`: makes the positional argument optional.
@@ -957,6 +981,10 @@ def main():
         sys.exit(0)
     elif args.flip:
         print(flip_flash_card_file(args.flip))
+        sys.exit(0)
+    elif args.sync:
+        if my_modules.sync_stats.sync():  # this runs the function and evaluates its output (it has a bool output)
+            print(f"Stats synced to {os.getcwd()}/stats/lifetime_stats.json successfully.")
         sys.exit(0)
 
     required_args = {
@@ -1006,8 +1034,10 @@ def main():
         case "flip":
             # switch terms and definitions
             cards = {v: k for k, v in cards.items()}
+            args.flip_cards = True  # change the value from a string to a bool for easier processing in session stats collection later
         case "no-flip":
             # good to go, use cards as-is
+            args.flip_cards = False
             pass
         case _:
             print("Error: flip setting can only be one of: flip | no-flip")

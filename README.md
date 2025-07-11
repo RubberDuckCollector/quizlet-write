@@ -20,7 +20,7 @@
 
 - Find the flash cards that work with this program here: https://github.com/RubberDuckCollector/my-flash-cards
 - note: i recommend using this for german vocab where the plural conjugation can be in brackets. the program will preserve contents in the brackets so you don't have to memorise what's in the brackets.
-- e.g: the recipe - das Rezept *(-e)*
+- e.g: the recipe - das Rezept*(-e)*
 
 Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD_LOG.md>
 
@@ -100,7 +100,6 @@ none
 # Top Priority TODO
 
 - [ ] add a `--verbose` flag that prints to the user when each external module is loading when the program is executed
-- [ ] make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
 - [ ] make an automatic backup feature (basically duplicate all user data in a backup directory)
     - [ ] make the user able to restore from backup or manually overwrite backup
 - [wip] break up `main.py` into many smaller files containing their own procedures
@@ -118,9 +117,12 @@ none
     - [ ] for the progress through the quiz, make a progress bar
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
+- [wip] somewhat complete 2025-07-11: make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
+- [x] complete 2025-07-11: put the end of session data into a `session.json` file
+- [x] complete 2025-07-11: added `--sync` optional argument that reads data from `stats/records` and overwrites `stats/lifetime_stats.json` with the data collected
+- [x] complete 2025-07-10: implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
+- [x] complete 2025-07-09: add lifetime session correct and lifetime session incorrect counters to the program that get printed out at the end of the session
 - [x] make it so the key in the PDF graph is shown to the left of the plot instead of the right
-- [x] finished 2025-07-09: add lifetime session correct and lifetime session incorrect counters to the program that get printed out at the end of the session
-- [x] finished 2025-07-10: implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
 
 ## Next features/TODO
 

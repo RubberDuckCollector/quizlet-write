@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2025-07-11 (22:49)](#2025-07-11-2249)
     * [2025-07-10 (23:38)](#2025-07-10-2338)
     * [2025-07-10 (16:45)](#2025-07-10-1645)
     * [2025-07-09 (21:30) - 2025-07-10 (01:20)](#2025-07-09-2130---2025-07-10-0120)
@@ -49,6 +50,11 @@
 
 
 # Build log
+
+## 2025-07-11 (22:49)
+
+- added `--sync` optional argument that reads data from `stats/records` and overwrites `stats/lifetime_stats.json` with the data collected
+- currently only works for lifetime correct/incorrect figures
 
 ## 2025-07-10 (23:38)
 
