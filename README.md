@@ -99,6 +99,7 @@ none
 
 # Top Priority TODO
 
+- [ ] make an optional command line argument that outputs the average and total number of sessions/flash cards done between 2 dates
 - [ ] add a `--verbose` flag that prints to the user when each external module is loading when the program is executed
 - [ ] make an automatic backup feature (basically duplicate all user data in a backup directory)
     - [ ] make the user able to restore from backup or manually overwrite backup
@@ -111,7 +112,6 @@ none
     - need to save the time the session was started at
     - implement `--resume` command line argument that prompts an interactive selection mode for the saved sessions
     - need to take `start_time` as a parameter to `quiz()` if start time can be set arbritrarily by resuming a session
-- [ ] make an optional command line argument that outputs the average and total number of sessions/flash cards done between 2 dates
 - [ ] compile the program to be shipped
 - [ ] implement quizlet's bars that fill up and deplete as in the write mode according to the user's progress
     - [ ] for the progress through the quiz, make a progress bar
