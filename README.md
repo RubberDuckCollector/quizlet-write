@@ -99,6 +99,7 @@ none
 
 # Top Priority TODO
 
+- [ ] add a parity function to sync() that looks at sessions without a `session.json` file and retroactively creates it
 - [ ] make an optional command line argument that outputs the average and total number of sessions/flash cards done between 2 dates
 - [ ] add a `--verbose` flag that prints to the user when each external module is loading when the program is executed
 - [ ] make an automatic backup feature (basically duplicate all user data in a backup directory)

@@ -3,6 +3,12 @@ import json
 import pathlib
 
 def sync() -> bool:
+    # TODO: maybe try to scan before asking to sync
+
+    # will change to True when correct behavior is completed, at the end of the function returns this variable
+    # function returns False if there's an error
+    result: bool = False 
+
     # returns False if unsuccessful
     try:
         # get list of directories in PROJECT_ROOT/stats/records
@@ -36,7 +42,7 @@ def sync() -> bool:
                 data["lifetime_correct_answers"] = correct_count
                 data["lifetime_incorrect_answers"] = incorrect_count
                 json.dump(data, f, indent=4)
-                return True
+                result = True
         except Exception as e:
             print("Error while opening session files and counting correct and incorrect figures. Aborting operations.")
             print(e)
@@ -45,6 +51,16 @@ def sync() -> bool:
         print("Error while opening session files and counting correct and incorrect figures. Aborting operations.")
         print(e)
         return False
+    
+    try:
+        # try to retroactively build session.json files in record directories that don't have one
+        print("test")
+    except Exception as e:
+        print("Error while trying to retroactively build session.json files in record directories that don't have one.")
+        print(e)
+        return False
+
+    return result
 
 
 sync()
