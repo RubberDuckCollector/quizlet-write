@@ -61,6 +61,7 @@ def make_hard_hint(msg: str) -> str:
 
     return hint
 
+
 def make_normal_hint(msg: str) -> str:
     hint = ""
 
@@ -71,6 +72,8 @@ def make_normal_hint(msg: str) -> str:
     # print(msg)
 
     i = 0
+    given_chars_in_hint = 1
+
     # iterating through the list with a while loop
     # incrementing the iterating variable manually
 
@@ -100,15 +103,9 @@ def make_normal_hint(msg: str) -> str:
                 # preserve punctuation and numbers
                 hint += msg[i]
             else:
-                # if all above conditions haven't been met,
-                # if we're not inside_brackets
-                # add the letter to the hint if i == 0,
-                # or the previous letter is a space
-                # otherwise add a '_'
-                # hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"  # fancy but useless syntax 
-
-                if i == 0 or msg[i - 1].isspace():
+                if given_chars_in_hint > 0:
                     hint += msg[i]
+                    given_chars_in_hint -= 1
                 else:
                     # hint += '_'
                     # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
@@ -146,39 +143,36 @@ def make_easy_hint(msg: str) -> str:
 
     i = 0
     inside_brackets = False
+    given_chars_in_hint = 3
 
     while True:
         try:
-            if msg[i] in my_modules.constants.chars_to_ignore:
+            if msg[i] in ['(', '（']:
+                inside_brackets = True
+                hint += msg[i]  # add the open bracket to the hint
+            elif msg[i] in [')', '）']:
+                inside_brackets = False
+                hint += msg[i]  # add the close bracket to the hint
+            elif inside_brackets:
+                # we want to preserve the char, and put it in the hint
+                # to give the user leniency
+                # they don't have to memorise what's in the ()
+                # they'll only have to type it out
+                hint += msg[i]
+            elif not msg[i].isalpha():
                 hint += msg[i]
             else:
-                if msg[i] in ['(', '（']:
-                    inside_brackets = True
-                    hint += msg[i]  # add the open bracket to the hint
-                elif inside_brackets:
-                    # we want to preserve the char, and put it in the hint
-                    # to give the user leniency
-                    # they don't have to memorise what's in the ()
-                    # they'll only have to type it out
+                if given_chars_in_hint > 0:
                     hint += msg[i]
-                elif msg[i] in [')', '）']:
-                    inside_brackets = False
-                    hint += msg[i]  # add the close bracket to the hint
+                    given_chars_in_hint -= 1
                 else:
-                    if i == 0 or msg[i - 1].isspace():
-                        hint += msg[i]  # Keep the first character of the word
-                    elif msg[i - 2].isspace() or i == 1:
-                        hint += msg[i]  # Keep the second character of the word
-                    elif msg[i - 3].isspace() or i == 2:
-                        hint += msg[i]  # Keep the third character of the word
+                    # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
+                    if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+                        hint += '＿'
                     else:
-                        # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
-                        if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
-                            hint += '＿'
-                        else:
-                            # otherwise, it's most likely a latin alphabet character
-                            # replace other characters with underscore
-                            hint += '_'
+                        # otherwise, it's most likely a latin alphabet character
+                        # replace other characters with underscore
+                        hint += '_'
 
             i += 1
         except IndexError:

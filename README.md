@@ -105,6 +105,9 @@ none
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
 - [wip] somewhat complete 2025-07-11: make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
+- [x] completed 2025-07-15: make it so normal/easy hints show the first 1/3 letters (that is, return True from .isalpha()) as well as any non-alpha character, not just the old behaviour of showing the first 1/3 chars no matter what and possibly wasting the hint chars
+    - maybe use counters but not decrement the counters when there's a non-alpha char
+        - figure out when to put the counter check in the if statement branches
 - [x] complete 2025-07-11: put the end of session data into a `session.json` file
 - [x] complete 2025-07-11: added `--sync` optional argument that reads data from `stats/records` and overwrites `stats/lifetime_stats.json` with the data collected
 - [x] complete 2025-07-10: implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
