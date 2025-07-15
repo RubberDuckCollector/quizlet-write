@@ -51,6 +51,11 @@
 
 # Build log
 
+##
+
+- made it so normal/easy hints show the first 1/3 letters (that is, return True from .isalpha()) as well as any non-alpha character
+    - not just the old behaviour of showing the first 1/3 chars no matter what and possibly wasting the hint chars
+
 ## 2025-07-11 (22:49)
 
 - added `--sync` optional argument that reads data from `stats/records` and overwrites `stats/lifetime_stats.json` with the data collected
