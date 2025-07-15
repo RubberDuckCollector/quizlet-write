@@ -23,28 +23,28 @@ def make_hard_hint(msg: str) -> str:
     hint = ""
     inside_brackets = False
 
-    for i in range(len(msg)):
-        if msg[i] in my_modules.constants.chars_to_ignore:
-            # if char should be preserved when hint is being built
-            hint += msg[i]
-        elif msg[i] in ['(', '（']:
+    for i in msg:
+        if i in ['(', '（']:
             # if we're currently looking at a (
             # inside_brackets will be assigned True
             # add the ( to the hint
-            hint += msg[i]
+            hint += i
             inside_brackets = True
-        elif msg[i] in [')', '）']:
+        elif i in [')', '）']:
             # if we're at the end of the bracket
             # add the ) to the hint
             # inside_brackets becomes False
             inside_brackets = False
-            hint += msg[i]
-        elif inside_brackets is True:
+            hint += i
+        elif inside_brackets:
             # add the character stright to the hint
             # we want to preserve the characters inside brackets
             # into the hint
             # therefore they shouldn't be an _ underscore
-            hint += msg[i]
+            hint += i
+        elif not i.isalpha():
+            # preserve punctuation
+            hint += i
         else:
             inside_brackets = False
             # if we're not in brackets
@@ -53,14 +53,13 @@ def make_hard_hint(msg: str) -> str:
             # it must be turned into an _
 
             # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
-            if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+            if is_japanese_char(i) or is_chinese_char(i):  
                 hint += '＿'
             else:
                 # otherwise, it's most likely a latin alphabet character
                 hint += '_'
 
     return hint
-
 
 def make_normal_hint(msg: str) -> str:
     hint = ""
@@ -79,45 +78,45 @@ def make_normal_hint(msg: str) -> str:
 
     while True:
         try:
-            if msg[i] in my_modules.constants.chars_to_ignore:
+            if msg[i] in ['(', '（']:
+                # if we're currently looking at a (
+                # inside_brackets will be assigned True
+                # add the ( to the hint
+                inside_brackets = True
+                hint += msg[i]
+            elif msg[i] in [')', '）']:
+                # if we're at the end of the bracket
+                # add the ) to the hint
+                # inside_brackets becomes False
+                inside_brackets = False
+                hint += msg[i]
+            elif inside_brackets:
+                # add the character stright to the hint
+                # we want to preserve the characters inside brackets
+                # into the hint
+                # therefore they shouldn't be an _ underscore
+                hint += msg[i]
+            elif not msg[i].isalpha():
+                # preserve punctuation and numbers
                 hint += msg[i]
             else:
-                if msg[i] in ['(', '（']:
-                    # if we're currently looking at a (
-                    # inside_brackets will be assigned True
-                    # add the ( to the hint
-                    inside_brackets = True
-                    hint += msg[i]
-                elif msg[i] in [')', '）']:
-                    # if we're at the end of the bracket
-                    # add the ) to the hint
-                    # inside_brackets becomes False
-                    inside_brackets = False
-                    hint += msg[i]
-                elif inside_brackets:
-                    # add the character stright to the hint
-                    # we want to preserve the characters inside brackets
-                    # into the hint
-                    # therefore they shouldn't be an _ underscore
+                # if all above conditions haven't been met,
+                # if we're not inside_brackets
+                # add the letter to the hint if i == 0,
+                # or the previous letter is a space
+                # otherwise add a '_'
+                # hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"  # fancy but useless syntax 
+
+                if i == 0 or msg[i - 1].isspace():
                     hint += msg[i]
                 else:
-                    # if all above conditions haven't been met,
-                    # if we're not inside_brackets
-                    # add the letter to the hint if i == 0,
-                    # or the previous letter is a space
-                    # otherwise add a '_'
-                    # hint += msg[i] if i == 0 or msg[i - 1].isspace() else "_"  # fancy but useless syntax 
-
-                    if i == 0 or msg[i - 1].isspace():
-                        hint += msg[i]
+                    # hint += '_'
+                    # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
+                    if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+                        hint += '＿'
                     else:
-                        # hint += '_'
-                        # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
-                        if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
-                            hint += '＿'
-                        else:
-                            # otherwise, it's most likely a latin alphabet character
-                            hint += '_'
+                        # otherwise, it's most likely a latin alphabet character
+                        hint += '_'
 
             i += 1  # increment i, ready for the next element of the list
 
