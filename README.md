@@ -82,7 +82,6 @@ none
 
 # Top Priority TODO
 
-- [ ] migrate to x.isalpha() (works for different alphabets) instead of a list of chars to ignore
 - [ ] add a parity function to sync() that looks at sessions without a `session.json` file and retroactively creates it
     - [ ] add a function to sync() that corrects terms and sessions done on each day in `lifetime_stats.json["cards_per_day"]` and the same for sessions per day
         - need to get all session dir names, get all the text after the word "to" and parse that as a datetime object then go to each session.txt file for the specific day in question and count ONLY the ticks in each session.txt file and then overwrite the new figure in lifetime_stats.json
@@ -105,7 +104,8 @@ none
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
 - [wip] somewhat complete 2025-07-11: make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
-- [x] completed 2025-07-15: make it so normal/easy hints show the first 1/3 letters (that is, return True from .isalpha()) as well as any non-alpha character, not just the old behaviour of showing the first 1/3 chars no matter what and possibly wasting the hint chars
+- [x] complete 2025-07-15: migrate to x.isalpha() (works for different alphabets) instead of a list of chars to ignore
+- [x] complete 2025-07-15: make it so normal/easy hints show the first 1/3 letters (that is, return True from .isalpha()) as well as any non-alpha character, not just the old behaviour of showing the first 1/3 chars no matter what and possibly wasting the hint chars
     - maybe use counters but not decrement the counters when there's a non-alpha char
         - figure out when to put the counter check in the if statement branches
 - [x] complete 2025-07-11: put the end of session data into a `session.json` file
@@ -133,12 +133,12 @@ none
     - maybe make the program run a bash script, integrating the `less` command or something idk
 - [ ] add a fast mode where time.sleep() doesn't activate and the last term the user answered is displayed at the top of the screen as correct/incorrect
 - [ ] add feature that puts the start and end date/times in the results file
-- [ ] put the data stored at the bottom of the session `txt` file in a separate file as JSON
 - [ ] port the app to the blessed library and make it a fully featured TUI app
 - [ ] turn it into a spaced repitition software
 - [wip] implement a `-help` command line argument
     - can now calculate the average length of a flash card set/average time taken on a given day knowing the total number of cards studied and the total number sessions studied
     - implement it as a command line argument taken at the first position
+- [x] complete 2025-07-11: put the data stored at the bottom of the session `txt` file in a separate file as JSON
 - [x] mirgrate to argparse
 - [x] streak feature (100% = perfect streak)
 - [x] records system where the program dumps the contents of `results.txt` into a new file with the current date and time accurate to the second into a records dir

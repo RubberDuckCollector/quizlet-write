@@ -108,7 +108,7 @@ def make_normal_hint(msg: str) -> str:
                     given_chars_in_hint -= 1
                 else:
                     # hint += '_'
-                    # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
+                    # change the underscore to a double space one for monospaced languages, makes more sense for japanese and chinese that way
                     if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
                         hint += '＿'
                     else:
