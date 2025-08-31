@@ -2,6 +2,8 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2025-08-31 (22:35)](#2025-08-31-2235)
+    * [2025-07-15](#2025-07-15)
     * [2025-07-11 (22:49)](#2025-07-11-2249)
     * [2025-07-10 (23:38)](#2025-07-10-2338)
     * [2025-07-10 (16:45)](#2025-07-10-1645)
@@ -51,7 +53,11 @@
 
 # Build log
 
-##
+## 2025-08-31 (22:35)
+
+- fixed bug where easy/normal hints wouldn't reveal 1/3 characters at the start of words after the first one, this was due to `given_chars_in_hint` not resetting after the first word is finished processing
+
+## 2025-07-15
 
 - made it so normal/easy hints show the first 1/3 letters (that is, return True from .isalpha()) as well as any non-alpha character
     - not just the old behaviour of showing the first 1/3 chars no matter what and possibly wasting the hint chars
