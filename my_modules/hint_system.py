@@ -72,6 +72,8 @@ def make_normal_hint(msg: str) -> str:
     # print(msg)
 
     i = 0
+
+    # refers to the number of characters that will be revealed at the start of each word
     given_chars_in_hint = 1
 
     # iterating through the list with a while loop
@@ -81,35 +83,38 @@ def make_normal_hint(msg: str) -> str:
 
     while True:
         try:
-            if msg[i] in ['(', '（']:
+            char = msg[i]
+            if char in ['(', '（']:
                 # if we're currently looking at a (
                 # inside_brackets will be assigned True
                 # add the ( to the hint
                 inside_brackets = True
-                hint += msg[i]
-            elif msg[i] in [')', '）']:
+                hint += char
+            elif char in [')', '）']:
                 # if we're at the end of the bracket
                 # add the ) to the hint
                 # inside_brackets becomes False
                 inside_brackets = False
-                hint += msg[i]
+                hint += char
             elif inside_brackets:
                 # add the character stright to the hint
                 # we want to preserve the characters inside brackets
                 # into the hint
                 # therefore they shouldn't be an _ underscore
-                hint += msg[i]
-            elif not msg[i].isalpha():
+                hint += char
+            elif not char.isalpha():
+                if char.isspace():
+                    given_chars_in_hint = 1  # reset ready for the next word
                 # preserve punctuation and numbers
-                hint += msg[i]
+                hint += char
             else:
                 if given_chars_in_hint > 0:
-                    hint += msg[i]
+                    hint += char
                     given_chars_in_hint -= 1
                 else:
                     # hint += '_'
                     # change the underscore to a double space one for monospaced languages, makes more sense for japanese and chinese that way
-                    if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+                    if is_japanese_char(char) or is_chinese_char(char):  
                         hint += '＿'
                     else:
                         # otherwise, it's most likely a latin alphabet character
@@ -143,31 +148,36 @@ def make_easy_hint(msg: str) -> str:
 
     i = 0
     inside_brackets = False
+
+    # refers to the number of characters that will be revealed at the start of each word
     given_chars_in_hint = 3
 
     while True:
         try:
-            if msg[i] in ['(', '（']:
+            char = msg[i]
+            if char in ['(', '（']:
                 inside_brackets = True
                 hint += msg[i]  # add the open bracket to the hint
-            elif msg[i] in [')', '）']:
+            elif char in [')', '）']:
                 inside_brackets = False
-                hint += msg[i]  # add the close bracket to the hint
+                hint += char  # add the close bracket to the hint
             elif inside_brackets:
                 # we want to preserve the char, and put it in the hint
                 # to give the user leniency
                 # they don't have to memorise what's in the ()
                 # they'll only have to type it out
-                hint += msg[i]
-            elif not msg[i].isalpha():
-                hint += msg[i]
+                hint += char
+            elif not char.isalpha():
+                if char.isspace():  # reset ready for the next word
+                    given_chars_in_hint = 3
+                hint += char
             else:
                 if given_chars_in_hint > 0:
-                    hint += msg[i]
+                    hint += char
                     given_chars_in_hint -= 1
                 else:
                     # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
-                    if is_japanese_char(msg[i]) or is_chinese_char(msg[i]):  
+                    if is_japanese_char(char) or is_chinese_char(char):  
                         hint += '＿'
                     else:
                         # otherwise, it's most likely a latin alphabet character

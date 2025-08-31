@@ -1,4 +1,4 @@
-print("Loading...")
+print("Loading, will take a while...")
 import progressbar
 bar = progressbar.ProgressBar(maxval=11, term_width=40)
 bar.start()
@@ -22,6 +22,7 @@ bar.update(1)
 # import platform
 from datetime import datetime
 bar.update(1)
+print("Importing matplotlib, this is the longest part...")
 # print("importing matplotlib (the biggest library)")
 import matplotlib.pyplot as plt  # type: ignore
 bar.update(1)
