@@ -190,12 +190,12 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     #     print(left.ljust(max_left_length),
     #           right.rjust(len(right) + tab_distance))
 
-    NUM_TERMS = len(card_set)  # is only different between card sets of differing lengths
+    NUM_CARDS = len(card_set)  # is only different between card sets of differing lengths
 
     x_axes = []  # cards completed
     y_axes = []  # % correct
 
-    THEORETICAL_MAX_STREAK = NUM_TERMS
+    THEORETICAL_MAX_STREAK = NUM_CARDS
 
     # each session will have a temporary results file. this allows more than one instance of
     # the program to be running at a time, because in the old model with only one results file,
@@ -268,6 +268,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
                 for prompt, answer in card_set.items():
 
+                    # UPDATE IF ADDING NEW DIFFICULTIES OR RE-ORDERING THEM
                     if p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[0]:
                         hint = my_modules.hint_system.make_easy_hint(answer)
                     elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[1]:
@@ -275,7 +276,10 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[2]:
                         hint = my_modules.hint_system.make_hard_hint(answer)
                     elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[3]:
+                        hint = my_modules.hint_system.make_hard_with_spaces_hint(answer)
+                    elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[4]:
                         hint = my_modules.hint_system.make_very_hard_hint()
+
 
                     # match difficulty:
                     #     case "-easy":
@@ -298,7 +302,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
 
                     # this is the percentage completed in the current set
-                    progress = round(num_answered / NUM_TERMS * 100, 2) if num_answered > 0 else 0.0
+                    progress = round(num_answered / NUM_CARDS * 100, 2) if num_answered > 0 else 0.0
 
                     print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flash_card_file_path)}{my_modules.color.Color.Reset}{test_indicator}")
                     print(f"Remaining: {num_remaining}")
@@ -481,12 +485,12 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 total_incorrect_in_session += num_incorrect
 
             # write the round list to this_sessions_temp_results_file
-            f.write(f"{p_args.difficulty}\n")
-            f.write(f"{p_args.randomize}\n")
-            f.write(f"{p_args.flip_cards}\n")
-            f.write(f"No. cards in the card set = {NUM_TERMS}\n")
-            f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
-            f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}\n")  # this should resolve to True or False
+            # f.write(f"{p_args.difficulty}\n")
+            # f.write(f"{p_args.randomize}\n")
+            # f.write(f"{p_args.flip_cards}\n")
+            # f.write(f"No. cards in the card set = {NUM_CARDS}\n")
+            # f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
+            # f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}\n")  # this should resolve to True or False
             f.write("If you want to compute this data and you're not in test mode, there will be a session.json file in the session's folder.")
 
         session_data = {
@@ -494,10 +498,15 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             "difficulty": p_args.difficulty,
             "randomize": p_args.randomize,
             "flip": p_args.flip_cards,
-            "num_cards_in_set": str(NUM_TERMS),
+            "num_cards_in_set": str(NUM_CARDS),
             "highest_streak": str(quiz_counter.get_highest_streak()),
             "is_perfect_streak": str(quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK)
         }
+
+        keys_to_not_print = ["file_path_to_cards"]
+        for key, value in session_data.items():
+            if key not in keys_to_not_print:
+                print(f"{key}: {value}")
 
 
         new_sessions_completed = 0
@@ -515,7 +524,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             # defining the x ticks i need here so i can use the variable to set `plt.xticks()`
             # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
             # ... (which are 2 different things)
-            my_x_ticks = [i for i in range(1, NUM_TERMS + 1)]
+            my_x_ticks = [i for i in range(1, NUM_CARDS + 1)]
             
             # Calculate the figure width based on the number of x-axis labels
             fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
@@ -548,7 +557,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 min_each_round -= 2
             plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
             plt.legend(loc="upper left")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-            plt.xticks([i for i in range(1, NUM_TERMS + 1, 2)])
+            plt.xticks([i for i in range(1, NUM_CARDS + 1, 2)])
             # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
             plt.yticks(range(int(min_each_round), int(max_each_round) + 2, 2))  # only the relevant parts of the graph
             plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
@@ -602,18 +611,18 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # at the end of the round, update the current day's cards done total
                 today = datetime.today().strftime('%Y-%m-%d')
                 if today in data["cards_per_day"]:
-                    # need to look at the int stored at the date key inside the `cards_per_day` field, then add NUM_TERMS to it
-                    data["cards_per_day"][today] += NUM_TERMS
+                    # need to look at the int stored at the date key inside the `cards_per_day` field, then add NUM_CARDS to it
+                    data["cards_per_day"][today] += NUM_CARDS
                     new_cards_completed = data["cards_per_day"][today]
                 else:
                     # not in there, can safely write the new day into the data
-                    data["cards_per_day"][today] = NUM_TERMS
+                    data["cards_per_day"][today] = NUM_CARDS
 
                     # fixes the bug where new_cards_completed is negative on a day with 0 previously completed cards
-                    new_cards_completed += NUM_TERMS
+                    new_cards_completed += NUM_CARDS
 
                 # show the user the increase in cards done today
-                print(f"Cards done today: {new_cards_completed - NUM_TERMS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_cards_completed}")
+                print(f"Cards done today: {new_cards_completed - NUM_CARDS} {my_modules.color.Color.LightGreen}->{my_modules.color.Color.Reset} {new_cards_completed}")
 
                 # current date and time not assigned again so we can have the same date for both the session and the cards count
                 # i.e date cannot progress in between that code and this code and have an effect on the code's function, this makes the program's inner workings more simple and straight forward for the user and the developer
@@ -775,7 +784,7 @@ def main():
     if args.difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass
     else:
-        print("Error: difficulty selection can only be one of: easy | normal | hard | very-hard")
+        print("Error: difficulty selection can only be one of: easy | normal | hard | hard-with-spaces| very-hard")
         return
 
     print("Rendering cards...")
