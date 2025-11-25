@@ -1,6 +1,6 @@
 import my_modules.constants
 
-VALID_DIFFICULTIES = ["easy", "normal", "hard", "very-hard"]
+VALID_DIFFICULTIES = ["easy", "normal", "hard", "hard-with-spaces", "very-hard"]
 
 
 # https://www.geeksforgeeks.org/how-to-find-chinese-and-japanese-character-in-a-string-in-python/
@@ -58,6 +58,49 @@ def make_hard_hint(msg: str) -> str:
             else:
                 # otherwise, it's most likely a latin alphabet character
                 hint += '_'
+
+    return hint
+
+
+def make_hard_with_spaces_hint(msg: str) -> str:
+    hint = ""
+    inside_brackets = False
+
+    for i in msg:
+        if i in ['(', '（']:
+            # if we're currently looking at a (
+            # inside_brackets will be assigned True
+            # add the ( to the hint
+            hint += i
+            inside_brackets = True
+        elif i in [')', '）']:
+            # if we're at the end of the bracket
+            # add the ) to the hint
+            # inside_brackets becomes False
+            inside_brackets = False
+            hint += i
+        elif inside_brackets:
+            # add the character stright to the hint
+            # we want to preserve the characters inside brackets
+            # into the hint
+            # therefore they shouldn't be an _ underscore
+            hint += i
+        elif not i.isalpha():
+            # preserve punctuation
+            hint += i
+        else:
+            inside_brackets = False
+            # if we're not in brackets
+            # the character is neither of ( or )
+            # and the character isn't in my_modules.my_modules.constants.chars_to_ignore
+            # it must be turned into an _
+
+            # change the underscore to a monospaced one, makes more sense for japanese and chinese that way
+            if is_japanese_char(i) or is_chinese_char(i):  
+                hint += '　'
+            else:
+                # otherwise, it's most likely a latin alphabet character
+                hint += ' '
 
     return hint
 

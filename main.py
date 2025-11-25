@@ -503,11 +503,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             "is_perfect_streak": str(quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK)
         }
 
-        keys_to_not_print = ["file_path_to_cards"]
-        for key, value in session_data.items():
-            if key not in keys_to_not_print:
-                print(f"{key}: {value}")
-
 
         new_sessions_completed = 0
         new_cards_completed = 0
@@ -664,6 +659,11 @@ def quiz(card_set: dict, p_args, p_start_time: str):
         # delete the temp file as it has served its purpose
         os.remove(this_sessions_temp_results_file)
         os.rmdir(this_sessions_temp_dir_name)
+
+        keys_to_not_print = ["file_path_to_cards"]
+        for key, value in session_data.items():
+            if key not in keys_to_not_print:
+                print(f"{key}: {value}")
 
     except (KeyboardInterrupt, EOFError, Exception) as e:
         # if the user stops the program with ctrl c or ctrl d, also delete the file

@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2025-11-20 (15:17)](#2025-11-20-1517)
     * [2025-08-31 (22:35)](#2025-08-31-2235)
     * [2025-07-15](#2025-07-15)
     * [2025-07-11 (22:49)](#2025-07-11-2249)
@@ -52,6 +53,10 @@
 
 
 # Build log
+
+## 2025-11-20 (15:17)
+
+- renamed `NUM_TERMS` to `NUM_CARDS`
 
 ## 2025-08-31 (22:35)
 
@@ -220,14 +225,14 @@ implemented a feature where the command line arguments that are passed into the 
 ## 2024-07-18
 
 - fixed a bug in the terms per day functionality in `stats/terms-per-day.json` where the terms weren't being updated in the json object correctly
-- fixed by adding another constant called NUM_TERMS but in the correct scope, and switching from `readlines()` to `readline()`. `readlines()` returns a list of strings where each string is a line in the file, but `json.dumps()` cannot take a list input
+- fixed by adding another constant called NUM_CARDS but in the correct scope, and switching from `readlines()` to `readline()`. `readlines()` returns a list of strings where each string is a line in the file, but `json.dumps()` cannot take a list input
 
 ### 2024-08-15 additional explanation for above bugfix:
 
 the fix i made so that the date shows up correctly in `terms-per-day.json`:
 the date is figured out at the top of the quiz procedure, so the terms done in that day is
 either already there and can be incremented by the number of terms in the card set,
-or the date is created in the file and assigned the NUM_TERMS.
+or the date is created in the file and assigned the NUM_CARDS.
 
 `write_terms_per_day()` is called at the very end of the quiz after the whole card set has been
 studied. this ensures that the flash cards studied on that day are only written to the file if
