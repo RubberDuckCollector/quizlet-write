@@ -60,7 +60,7 @@
 
 ## 2025-08-31 (22:35)
 
-- fixed bug where easy/normal hints wouldn't reveal 1/3 characters at the start of words after the first one, this was due to `given_chars_in_hint` not resetting after the first word is finished processing
+- fixed bug where easy/normal hints wouldn't reveal 1 out of the first 3 characters at the start of words after the first one, this was due to `given_chars_in_hint` not resetting after the first word is finished processing
 
 ## 2025-07-15
 
