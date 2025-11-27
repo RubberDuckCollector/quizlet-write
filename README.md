@@ -3,6 +3,8 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Quizlet write my version](#quizlet-write-my-version)
+* [Hints](#hints)
+    * [Hint settings](#hint-settings)
 * [Features](#features)
 * [Why I made this](#why-i-made-this)
 * [Disclaimer and Prerequisites](#disclaimer-and-prerequisites)
@@ -19,6 +21,23 @@
 - e.g: the recipe - das Rezept*(-e)*
 
 Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD_LOG.md>
+
+# Hints
+
+The user types the answer to the flash card prompt.
+There is a hint system for this app. For example, `easy` gives the user the first 3 characters of each space-separated word on the flash card, and `very-hard` removes the hint entirely.
+
+## Hint settings
+
+There are different hint settings. See help screen/potential error messages to see all hints. The current hints as of 2025-11-27 are:
+
+| Hint name          | function                                                                             |
+|--------------------|--------------------------------------------------------------------------------------|
+| `easy`             | gives the user the first 3 characters of each space-separated word on the flash card |
+| `normal`           | gives the first character of the flash card answer                                   |
+| `hard`             | only gives content inside brackets `()` and symbols                                  |
+| `hard-with-spaces` | same as `hard` but spaces `" "` are present instead of underscores `_`               |
+| `very-hard`        | no hints!                                                                            |
 
 # Features
 
