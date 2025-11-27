@@ -7,7 +7,7 @@
     * [Hint settings](#hint-settings)
 * [Features](#features)
 * [Why I made this](#why-i-made-this)
-* [Disclaimer and Prerequisites](#disclaimer-and-prerequisites)
+* [Disclaimers and Prerequisites](#disclaimers-and-prerequisites)
     * [input for the program:](#input-for-the-program)
 * [Demo video (old)](#demo-video-old)
 * [Notes](#notes)
@@ -58,7 +58,7 @@ There are different hint settings. See help screen/potential error messages to s
     - Current drawbacks:
         - cannot filter activity by language.
 
-# Disclaimer and Prerequisites
+# Disclaimers and Prerequisites
 
 - **NOT TESTED/ADAPTED FOR WINDOWS, ONLY MACOS AND LINUX**
 - ***For this reason. I personally recommend running this in WSL or changing the code to accommodate Windows if you want to use this program Windows.***
