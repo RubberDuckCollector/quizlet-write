@@ -3,6 +3,8 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Quizlet write my version](#quizlet-write-my-version)
+* [Install](#install)
+* [Uninstall](#uninstall)
 * [Hints](#hints)
     * [Hint settings](#hint-settings)
 * [Features](#features)
@@ -21,6 +23,14 @@
 - e.g: the recipe - das Rezept*(-e)*
 
 Build log: <https://github.com/RubberDuckCollector/quizlet-write/blob/main/BUILD_LOG.md>
+
+# Install
+
+Run this command from where you want this project to be: `git clone https://github.com/RubberDuckCollector/quizlet-write.git`
+
+# Uninstall
+
+To uninstall, simply delete the folder you copied this project to. All of its data will be inside of that.
 
 # Hints
 
@@ -80,11 +90,12 @@ There are different hint settings. See help screen/potential error messages to s
     - Windows: With numlock on, hold down Alt and then press 0168, then release Alt.
 
 ## input for the program:
+
 - a text file in the format `content|more-content`, on each line of the file like this:
 ```txt
 hello (spanish)|hola
-goodbye|adiós
-how are you?|¿qué tal?
+goodbye (spanish)|adiós
+how are you? (spanish)|¿qué tal?
 hello (japanese)|こんにちは
 ```
 For the whole length of the file, save for empty lines and lines starting with a `#`. They'll be ignored by the program as code comments/handled separately.
