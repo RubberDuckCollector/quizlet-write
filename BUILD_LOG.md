@@ -34,7 +34,7 @@
     * [2024-08-26 (02:00)](#2024-08-26-0200)
     * [2024-08-25](#2024-08-25)
     * [2024-08-24 (22:02)](#2024-08-24-2202)
-    * [2024-08-24 01:53 (AM)](#2024-08-24-0153-am)
+    * [2024-08-24 01:53](#2024-08-24-0153)
     * [2024-07-18](#2024-07-18)
         * [2024-08-15 additional explanation for above bugfix:](#2024-08-15-additional-explanation-for-above-bugfix)
     * [2024-05-15 14:33](#2024-05-15-1433)
@@ -215,7 +215,7 @@ implemented a feature where the command line arguments that are passed into the 
 - previous solution in code converted between json and strings too much (inefficient usage of `json.dumps()` and `json.loads()` where `json.dump()` and `json.load()` was better)
 - new solution makes more efficient use of json so it can be written back to `terms-per-day.json` in a human-readable format (with `json.dump(obj_to_be_written, f, indent=4`)
 
-## 2024-08-24 01:53 (AM)
+## 2024-08-24 01:53
 
 - added an extra line to the record file saying the number of terms in the card set for the session. allows any people and future programs to see the theoretical max streak
 - updated the code to save each record file as a `.txt` instead of extensionless. more clarity on the purpose of the record files.
