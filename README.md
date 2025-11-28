@@ -82,7 +82,7 @@ There are different hint settings. See help screen/potential error messages to s
 - I know how cursed this file is if you open it raw. Try not to think about it.
 
 - a Python version >= 3.10 because of the `match` key word (this was built on python 3.12)
-- [matplotlib](https://matplotlib.org/) (i install this with `/usr/local/bin/python3 -m pip install matplotlib` on my MacOS computer)
+- [matplotlib](https://matplotlib.org/)
 - a nerd font, set one of these in your terminal settings as the font <https://www.nerdfonts.com/>
 - ***To type an umlaut by itself (¨)***
     - Mac: opt + u, then press Space

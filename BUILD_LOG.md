@@ -279,7 +279,7 @@ when i'm absolutely ready
 ## 2024-02-20
 
 - completed development of first revision
-- if there are vocab files that are empty, that is known (2024-03-08 update: vocab is at <https://github.com/RubberDuckCollector/https://github.com/RubberDuckCollector/flash-card-collection>)
+- if there are vocab files that are empty, that is known (2024-03-08 update: vocab is at <https://github.com/RubberDuckCollector/flash-card-collection>)
 
 # Known issues
 
