@@ -5,6 +5,7 @@
 * [Quizlet write my version](#quizlet-write-my-version)
 * [Install](#install)
 * [Uninstall](#uninstall)
+* [Running](#running)
 * [Hints](#hints)
     * [Hint settings](#hint-settings)
 * [Features](#features)
@@ -31,6 +32,11 @@ Run this command from where you want this project to be: `git clone https://gith
 # Uninstall
 
 To uninstall, simply delete the folder you copied this project to. All of its data will be inside of that.
+
+# Running
+
+run `python3 -m venv venv`.
+run `source venv/bin/activate`.
 
 # Hints
 
