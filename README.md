@@ -6,11 +6,12 @@
 * [Install](#install)
 * [Uninstall](#uninstall)
 * [Running](#running)
+* [Disclaimers and Prerequisites](#disclaimers-and-prerequisites)
+    * [How to type a standalone accent character](#how-to-type-a-standalone-accent-character)
 * [Hints](#hints)
     * [Hint settings](#hint-settings)
 * [Features](#features)
 * [Why I made this](#why-i-made-this)
-* [Disclaimers and Prerequisites](#disclaimers-and-prerequisites)
     * [input for the program:](#input-for-the-program)
 * [Demo video (old)](#demo-video-old)
 * [Notes](#notes)
@@ -37,6 +38,34 @@ To uninstall, simply delete the folder you copied this project to. All of its da
 
 run `python3 -m venv venv`.
 run `source venv/bin/activate`.
+
+
+# Disclaimers and Prerequisites
+
+- **NOT TESTED/ADAPTED FOR WINDOWS, ONLY MACOS AND LINUX**
+- ***For this reason. I personally recommend running this in WSL or changing the code to accommodate Windows if you want to use this program Windows.***
+***"term" or "question" refers to just the question on the flash card.***
+    - "definition" or "answer" refers to the answer on the flash card
+    - "term" and "question" are interchangeable
+    - "definition" and "answer" are interchangeable.
+- Due to how [datetime](https://docs.python.org/3/library/datetime.html) formats the time, filenames may have colons in them. I don't know how these filenames behave on different systems.
+- A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
+- If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the cards done count for the 2nd of Jan., when the session is completed.
+- I know how cursed this file is if you open it raw. Try not to think about it.
+
+- a Python version >= 3.10 because of the `match` key word
+- [matplotlib](https://matplotlib.org/)
+
+## How to type a standalone accent character
+
+- ***To type an umlaut by itself (¨)***
+    - Mac: opt + u, then press Space
+    - Linux: hold AltGr and Shift and press ' twice
+    - Windows: With numlock on, hold down Alt and then press 0168, then release Alt.
+- ***To type an acute accent by itself (´)***
+    - Mac: opt + e, then press Space
+    - Linux: hold AltGr and press ' twice
+    - Windows: With numlock on, hold down Alt and then press 0180, then release Alt.
 
 # Hints
 
@@ -73,27 +102,6 @@ There are different hint settings. See help screen/potential error messages to s
         - [x] Data mining opportunities
     - Current drawbacks:
         - cannot filter activity by language.
-
-# Disclaimers and Prerequisites
-
-- **NOT TESTED/ADAPTED FOR WINDOWS, ONLY MACOS AND LINUX**
-- ***For this reason. I personally recommend running this in WSL or changing the code to accommodate Windows if you want to use this program Windows.***
-***"term" or "question" refers to just the question on the flash card.***
-    - "definition" or "answer" refers to the answer on the flash card
-    - "term" and "question" are interchangeable
-    - "definition" and "answer" are interchangeable.
-- Due to how [datetime](https://docs.python.org/3/library/datetime.html) formats the time, filenames may have colons in them. I don't know how these filenames behave on different systems.
-- A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
-- If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the cards done count for the 2nd of Jan., when the session is completed.
-- I know how cursed this file is if you open it raw. Try not to think about it.
-
-- a Python version >= 3.10 because of the `match` key word (this was built on python 3.12)
-- [matplotlib](https://matplotlib.org/)
-- a nerd font, set one of these in your terminal settings as the font <https://www.nerdfonts.com/>
-- ***To type an umlaut by itself (¨)***
-    - Mac: opt + u, then press Space
-    - Linux: AltGr + ;, then press Escape, or press that button combination once more
-    - Windows: With numlock on, hold down Alt and then press 0168, then release Alt.
 
 ## input for the program:
 
