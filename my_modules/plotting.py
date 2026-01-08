@@ -70,7 +70,7 @@ def make_session_bar_chart() -> str:
         return result
 
 
-def make_flash_card_bar_chart() -> str:
+def make_flashcard_bar_chart() -> str:
     # accesses stats/lifetime_stats.json and plots a bar chart of the # cards done on each day
     try:
         with open("stats/lifetime_stats.json", "r") as f:

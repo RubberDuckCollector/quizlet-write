@@ -97,7 +97,7 @@
 
 ## 2025-04-18 (19:26)
 
-- tidied up descriptions of command line arguments, progressed on flip_flash_card_file() and caught error case in render_cards() to give a helpful error if the flash card file exists, but is empty
+- tidied up descriptions of command line arguments, progressed on flip_flashcard_file() and caught error case in render_cards() to give a helpful error if the flash card file exists, but is empty
 
 ## 2024-12-29 (1:00)
 

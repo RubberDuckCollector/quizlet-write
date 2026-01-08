@@ -1,7 +1,7 @@
 import os
 import my_modules
 
-def flip_flash_card_file(file_path: str) -> str:
+def flip_flashcard_file(file_path: str) -> str:
     """
     procedure: implement an optional command line argument
     where the program switches the position of the term and

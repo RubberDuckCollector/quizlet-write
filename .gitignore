@@ -12,3 +12,4 @@ temp/temp_*
 venv/
 __pycache__/
 output/*.txt
+tests/*

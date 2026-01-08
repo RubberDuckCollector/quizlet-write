@@ -304,7 +304,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # this is the percentage completed in the current set
                     progress = round(num_answered / NUM_CARDS * 100, 2) if num_answered > 0 else 0.0
 
-                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flash_card_file_path)}{my_modules.color.Color.Reset}{test_indicator}")
+                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flashcard_file_path)}{my_modules.color.Color.Reset}{test_indicator}")
                     print(f"Remaining: {num_remaining}")
                     print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
                     print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
@@ -714,7 +714,7 @@ def main():
     parser.add_argument("--explain_app_usage", action="store_true", help="Gives a walkthrough of the average user's interactions with the program")
     parser.add_argument("--technical_explanation", action="store_true", help="Gives a walkthrough of how the program works")
     # bar charts
-    parser.add_argument("--make", choices=["session_bar_chart", "flash_card_bar_chart"], help="Generates a bar chart of the sessions OR flash cards done on each day")
+    parser.add_argument("--make", choices=["session_bar_chart", "flashcard_bar_chart"], help="Generates a bar chart of the sessions OR flash cards done on each day")
     parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
     parser.add_argument("--flip", type=pathlib.Path, help="Swaps the questions and answers in a file and outputs it in a new file")
     parser.add_argument("--sync", action="store_true", help="Collects data in PROJECT_ROOT/stats/records/ and makes overwrites that data to PROJECT_ROOT/stats/lifetime_stats.json to fix parity issues")
@@ -734,7 +734,7 @@ def main():
     # add positional arguments
     # nargs="?" overrides their default behaviour and makes them optional
     # they will only be optional temporarily, and will be handled (manually) as usual later
-    parser.add_argument("flash_card_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
+    parser.add_argument("flashcard_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
     parser.add_argument("difficulty", nargs="?", default=None, help="Difficulty of the quiz", type=str)
     parser.add_argument("randomize", nargs="?", default=None, help="How you want to randomise the flash cards in the quiz", type=str)
     parser.add_argument("flip_cards", nargs="?", default=None, help="Wether or not you want to 'flip the cards over' and answer with the question", type=str)
@@ -756,11 +756,11 @@ def main():
     elif args.make == "session_bar_chart":
         print(my_modules.plotting.make_session_bar_chart())
         sys.exit(0)
-    elif args.make == "flash_card_bar_chart":
-        print(my_modules.plotting.make_flash_card_bar_chart())
+    elif args.make == "flashcard_bar_chart":
+        print(my_modules.plotting.make_flashcard_bar_chart())
         sys.exit(0)
     elif args.flip:
-        print(my_modules.flip_flash_card_file.flip_flash_card_file(args.flip))
+        print(my_modules.flip_flashcard_file.flip_flashcard_file(args.flip))
         sys.exit(0)
     elif args.sync:
         if my_modules.sync_stats.sync():  # this runs the function and evaluates its output (it has a bool output)
@@ -768,7 +768,7 @@ def main():
         sys.exit(0)
 
     required_args = {
-        'flash_card_file_path': args.flash_card_file_path,
+        'flashcard_file_path': args.flashcard_file_path,
         'difficulty': args.difficulty,
         'randomize': args.randomize,
         'flip_cards': args.flip_cards
@@ -788,7 +788,7 @@ def main():
         return
 
     print("Rendering cards...")
-    cards = render_cards(args.flash_card_file_path)
+    cards = render_cards(args.flashcard_file_path)
 
     # will be handled in quiz()
     match args.randomize:
