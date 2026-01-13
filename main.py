@@ -709,7 +709,7 @@ def main():
 
     parser = argparse.ArgumentParser(prog="main.py",
                                      description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
-                                     epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer. Remember to not change the file path to the flash cards while the program is running.")
+                                     epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer. Remember to not move where the flash cards are stored while the program is running.")
     # add optional arguments
     parser.add_argument("--explain_app_usage", action="store_true", help="Gives a walkthrough of the average user's interactions with the program")
     parser.add_argument("--technical_explanation", action="store_true", help="Gives a walkthrough of how the program works")
