@@ -784,7 +784,7 @@ def main():
     if args.difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass
     else:
-        print("Error: difficulty selection can only be one of: easy | normal | hard | hard-with-spaces| very-hard")
+        print("Error: difficulty selection can only be one of: easy | normal | hard | hard-with-spaces | very-hard")
         return
 
     print("Rendering cards...")

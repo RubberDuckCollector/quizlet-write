@@ -64,7 +64,7 @@ run `source venv/bin/activate`.
     - Windows: With numlock on, hold down Alt and then press 0168, then release Alt.
 - ***To type an acute accent by itself (´)***
     - Mac: opt + e, then press Space
-    - Linux: hold AltGr and press ' twice
+    - Linux: hold AltGr and press ; twice
     - Windows: With numlock on, hold down Alt and then press 0180, then release Alt.
 
 # Hints
