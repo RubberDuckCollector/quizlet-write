@@ -69,6 +69,8 @@ File paths in help text are written in Light Magenta
 Commands in help text are written in Cyan
 """
 
+def debug_print(msg: str):
+    print(msg)
 
 def initialize_stats():
     if not os.path.exists("stats/lifetime_stats.json"):
@@ -543,7 +545,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
             plt.grid(color = 'grey', linestyle = '-', linewidth = 0.3)
 
-            # plt.plot(x_axes, y_axes)
+            plt.plot(x_axes, y_axes)
             plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to cards: {sys.argv[1]}")
             plt.xlabel("# Cards answered")
             plt.ylabel("% Accuracy")
@@ -551,6 +553,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             if min_each_round == max_each_round:
                 min_each_round -= 2
             plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
+            # MAXIMUM RECURSION DEPTH EXCEEDED ERROR IS HERE
+            # TODO: put everything inside if not p_args.test: into its own function
             plt.legend(loc="upper left")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
             plt.xticks([i for i in range(1, NUM_CARDS + 1, 2)])
             # plt.yticks([i for i in range(0, 101, 1)])  # full y axis

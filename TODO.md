@@ -1,5 +1,6 @@
 # Top Priority TODO
 
+- [ ] CRITICAL: fix plotting functionality that newly gets a max recursion depth exceeded error (this is noted down (with a todo message) in `main.py` where i think it occurs)
 - [ ] make an optional command line argument that invokes a procedure that takes `n` number of file paths to flashcards as arguments and appends them into an output file, in their order as arguments
 - [ ] add a parity function to sync() that looks at sessions without a `session.json` file and retroactively creates it
     - [ ] add a function to sync() that corrects terms and sessions done on each day in `lifetime_stats.json["cards_per_day"]` and the same for sessions per day
