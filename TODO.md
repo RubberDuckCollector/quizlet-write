@@ -1,5 +1,21 @@
 # Top Priority TODO
 
+- [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and the x
+  and y data files from the `session.txt` file to the best of its ability
+    - may have to put `none` in the json fields that cannot be determined
+    - determine randomness by measuring the order of the flashcards
+        - if the session is 1 round long put `none` as it's impossible to
+          determine if the set was randomised to begin with
+        - if the session is 2 or more rounds long and all rounds have different
+          orders to the first round, it's `rand-every-round`
+        - if the session is 2 or more rounds long and all rounds have the same
+          order, it's either `rand-once` or `no-rand`, so put `none` in the
+          reconstructed `session.json` file
+
+- [x] add the number of rounds to `session.json`
+    - [ ] make the `sync()` function fix the parity issue this would create
+- [ ] fix initialization to accomomdate for the `lifetime_stats.json` file existing but being empty
+    - [ ] check for the format of the data, and if already in json format, check for the fields and if they're the correct ones that should be in the file
 - [ ] CRITICAL: fix plotting functionality that newly gets a max recursion depth exceeded error (this is noted down (with a todo message) in `main.py` where i think it occurs)
 - [ ] make an optional command line argument that invokes a procedure that takes `n` number of file paths to flashcards as arguments and appends them into an output file, in their order as arguments
 - [ ] add a parity function to sync() that looks at sessions without a `session.json` file and retroactively creates it
@@ -11,7 +27,7 @@
     - [ ] make the user able to restore from backup or manually overwrite backup
 - [wip] break up `main.py` into many smaller files containing their own procedures
     - maybe separate ones for the hint system, the quiz, and others
-- [ ] pretty print a flash card file
+- [ ] pretty print a flashcard file
 - [ ] implement a feature that allows the user to exit and save a session and resume a session
     - need to save `card_set` dict and the index of the current flash card
     - need to save the stats when the session is exited

@@ -1,6 +1,6 @@
 print("Loading, will take a while...")
 import progressbar
-bar = progressbar.ProgressBar(maxval=11, term_width=40)
+bar = progressbar.ProgressBar(maxval=12, term_width=40)
 bar.start()
 # external library code
 import os
@@ -18,6 +18,8 @@ bar.update(1)
 import argparse
 bar.update(1)
 import readline
+bar.update(1)
+import numpy as np
 bar.update(1)
 # import platform
 from datetime import datetime
@@ -50,7 +52,7 @@ To explain it in a sentence (2 ways):
 """
 
 
-# static analyser might say readline is unused
+# static analyzer might say readline is unused
 # but it attaches to the builtin input() func
 
 
@@ -73,16 +75,22 @@ def debug_print(msg: str):
     print(msg)
 
 def initialize_stats():
-    if not os.path.exists("stats/lifetime_stats.json"):
-        initial_data = {
+    initial_data = {
             "initialized": True,
             "lifetime_correct_answers": 0,
             "lifetime_incorrect_answers": 0,
             "sessions_per_day": {},
             "cards_per_day": {}
-        }
+            }
+    # TODO: accommodate for this file existing, but containing no data
+    if not os.path.exists("stats/lifetime_stats.json"):
         with open("stats/lifetime_stats.json", "w") as f:
              json.dump(initial_data, f, indent=4)
+    elif os.path.exists("stats/lifetime_stats.json"):
+        # if the file exists but is empty, initialise the data
+        if os.stat("stats/lifetime_stats.json").st_size == 0:
+            with open("stats/lifetime_stats.json", "w") as f:
+                 json.dump(initial_data, f, indent=4)
 
 
 def print_round_breakdown(
@@ -501,6 +509,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             "randomize": p_args.randomize,
             "flip": p_args.flip_cards,
             "num_cards_in_set": str(NUM_CARDS),
+            "num_rounds": len(x_axes),
             "highest_streak": str(quiz_counter.get_highest_streak()),
             "is_perfect_streak": str(quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK)
         }
@@ -540,34 +549,16 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
             # plot each y-axis data series with its corresponding x-axis values
             my_modules.plotting.plotting_graph()
-            for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
-                plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
 
-            plt.grid(color = 'grey', linestyle = '-', linewidth = 0.3)
+            # DEBUGGING
+            # for i, val in enumerate(zip(x_axes, y_axes)):
+            #     print(f"index {i} has value {val}")
+            # print(f"x_axes: {x_axes}")
+            # print(f"y_axes: {y_axes}")
+            # call plot graph here
+            # DEBUGGING
 
-            plt.plot(x_axes, y_axes)
-            plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to cards: {sys.argv[1]}")
-            plt.xlabel("# Cards answered")
-            plt.ylabel("% Accuracy")
-            # plt.ylim(0, 100)  # y axis goes from 0 to 100
-            if min_each_round == max_each_round:
-                min_each_round -= 2
-            plt.ylim(min_each_round, max_each_round)  # y axis graduates from min percentage achieved to highest percentage achieved
-            # MAXIMUM RECURSION DEPTH EXCEEDED ERROR IS HERE
-            # TODO: put everything inside if not p_args.test: into its own function
-            plt.legend(loc="upper left")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-            plt.xticks([i for i in range(1, NUM_CARDS + 1, 2)])
-            # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
-            plt.yticks(range(int(min_each_round), int(max_each_round) + 2, 2))  # only the relevant parts of the graph
-            plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
-            plt.gca().tick_params(axis='x', labeltop=True, rotation=90)  # enable x axis numbers on the right side of the graph as well as the left, also rotates those numbers by 90 degrees to make them readable
-            plt.gca().yaxis.set_ticks_position('both')
-            plt.gca().tick_params(axis='y', labelright=True)  # enable y axis numbers on the top of the graph as well as the bottom
-            my_modules.plotting.saving_graph()
-            # bbox_inches = "tight" removes the bug of the title going offscreen if it's too long
-            # https://stackoverflow.com/a/59372013
-            plt.savefig(f"{this_sessions_dir}/line-graph.pdf", bbox_inches = "tight")
-
+            my_modules.plotting.plot_session_graph(x_axes, y_axes, min_each_round, max_each_round, NUM_CARDS, p_start_time, this_sessions_dir, sys.argv[1])
 
             # after the record file is done, print the session breakdown to the user
 

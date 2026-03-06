@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2026-03-06](#2026-03-06)
     * [2025-11-20 (15:17)](#2025-11-20-1517)
     * [2025-08-31 (22:35)](#2025-08-31-2235)
     * [2025-07-15](#2025-07-15)
@@ -53,6 +54,10 @@
 
 
 # Build log
+
+## 2026-03-06
+
+- fixed graph plotting bug that made plotting graphs impossible
 
 ## 2025-11-20 (15:17)
 

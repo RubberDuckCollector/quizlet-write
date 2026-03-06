@@ -2,11 +2,29 @@ import os
 import json
 import pathlib
 
+"""
+will change to True when correct behavior is completed, at the end of the
+function returns this variable function returns False if there's an error
+"""
+
+def session_files_parity() -> bool:
+    ...
+
+def num_rounds_parity() -> bool:
+
+    # looks at the number of rounds the session was made up of and adds that to
+    # the session's `session.json` file if it's not already there, and also
+    # corrects it if it's wrong
+
+    result: bool = False
+
+    
+
+    return result
+
 def sync() -> bool:
     # TODO: maybe try to scan before asking to sync
 
-    # will change to True when correct behavior is completed, at the end of the function returns this variable
-    # function returns False if there's an error
     result: bool = False 
 
     # returns False if unsuccessful
