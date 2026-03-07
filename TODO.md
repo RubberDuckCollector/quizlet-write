@@ -1,5 +1,6 @@
 # Top Priority TODO
 
+- [ ] add lifetime sessions completed to `lifetime_stats.json`
 - [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and the x
   and y data files from the `session.txt` file to the best of its ability
     - may have to put `none` in the json fields that cannot be determined
@@ -14,9 +15,13 @@
 
 - [x] add the number of rounds to `session.json`
     - [ ] make the `sync()` function fix the parity issue this would create
-- [ ] fix initialization to accomomdate for the `lifetime_stats.json` file existing but being empty
-    - [ ] check for the format of the data, and if already in json format, check for the fields and if they're the correct ones that should be in the file
-- [ ] CRITICAL: fix plotting functionality that newly gets a max recursion depth exceeded error (this is noted down (with a todo message) in `main.py` where i think it occurs)
+
+- [x] fix initialization to accomomdate for the `lifetime_stats.json` file
+  existing but being empty
+    - [ ] check for the format of the data, and if already in json format,
+      check for the fields and if they're the correct ones that should be in
+      the file
+
 - [ ] make an optional command line argument that invokes a procedure that takes `n` number of file paths to flashcards as arguments and appends them into an output file, in their order as arguments
 - [ ] add a parity function to sync() that looks at sessions without a `session.json` file and retroactively creates it
     - [ ] add a function to sync() that corrects terms and sessions done on each day in `lifetime_stats.json["cards_per_day"]` and the same for sessions per day
@@ -40,6 +45,7 @@
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
 - [wip] somewhat complete 2025-07-11: make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
+- [x] complete 2026-03-06: CRITICAL: fix plotting functionality that newly gets a max recursion depth exceeded error (this is noted down (with a todo message) in `main.py` where i think it occurs)
 - [x] complete 2025-11-20: remove common data between `session.json` and `session.txt` and print out `session.json` instead of having duplicate data
 - [x] complete 2025-11-20: hard difficulty but the `_` are replaced by spaces
 - [x] complete 2025-07-15: migrate to x.isalpha() (works for different alphabets) instead of a list of chars to ignore
