@@ -1,5 +1,7 @@
 # Top Priority TODO
 
+- [ ] add normal difficulty that hides information in brackets, or at least only shows the first character
+    - [ ] call it `normal-brackets-off`
 - [ ] add lifetime sessions completed to `lifetime_stats.json`
 - [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and the x
   and y data files from the `session.txt` file to the best of its ability
