@@ -2,7 +2,6 @@
 
 - [ ] add normal difficulty that hides information in brackets, or at least only shows the first character
     - [ ] call it `normal-brackets-off`
-- [ ] add lifetime sessions completed to `lifetime_stats.json`
 - [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and the x
   and y data files from the `session.txt` file to the best of its ability
     - may have to put `none` in the json fields that cannot be determined
@@ -47,6 +46,7 @@
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
 - [wip] somewhat complete 2025-07-11: make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
+- [x] complete 2026-04-18: add lifetime sessions completed to `lifetime_stats.json` JUST GET THE SUM OF SESSIONS PER DAY
 - [x] complete 2026-03-06: CRITICAL: fix plotting functionality that newly gets a max recursion depth exceeded error (this is noted down (with a todo message) in `main.py` where i think it occurs)
 - [x] complete 2025-11-20: remove common data between `session.json` and `session.txt` and print out `session.json` instead of having duplicate data
 - [x] complete 2025-11-20: hard difficulty but the `_` are replaced by spaces

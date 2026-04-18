@@ -207,29 +207,32 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
     THEORETICAL_MAX_STREAK = NUM_CARDS
 
-    # each session will have a temporary results file. this allows more than one instance of
-    # the program to be running at a time, because in the old model with only one results file,
-    # if the user created a new session while an old one was happening, `results.txt` would be
-    # overwritten with data from the new session, which removes data integrity from my records system.
-    # this is passed to `quiz()` as a parameter with the type str.
-    # it's deleted at the end of the session as it's only job is to temporarily store data until
-    # the user completes the session. this is how i've implemented atomicity.
-    # either the user completes the whole flash card set, and i write their results to a file,
-    # or they don't complete it and nothing gets written. this is my methodolgy because it's very clear-cut and simple in my eyes
+    # each session will have a temporary results file. this allows more than
+    # one instance of the program to be running at a time, because in the old
+    # model with only one results file, if the user created a new session while
+    # an old one was happening, `results.txt` would be overwritten with data
+    # from the new session, which removes data integrity from my records
+    # system. this is passed to `quiz()` as a parameter with the type str. it's
+    # deleted at the end of the session as it's only job is to temporarily
+    # store data until the user completes the session. this is how i've
+    # implemented atomicity. either the user completes the whole flash card
+    # set, and i write their results to a file, or they don't complete it and
+    # nothing gets written. this is my methodolgy because it's very clear-cut
+    # and simple in my eyes
 
-    # i chose to format the temp results files this way using date and time
-    # as it's the most reliable way to not have a clash if sessions start close to each other
-    # e.g: if you spam create sessions, they probably won't fall on the same exact time
-    # because datetime keeps time accuracy up to 6 decimal places
+    # i chose to format the temp results files this way using date and time as
+    # it's the most reliable way to not have a clash if sessions start close to
+    # each other e.g: if you create many sessions, they probably won't fall on
+    # the same exact time because datetime keeps time accuracy up to 6 decimal
+    # places
 
     #TODO: implement saving feature
-    # create a temp dir for each session with temp results
-    # when the program detects a KeyboardInterrupt ask if the user wants to save the session
-    # the dir will not be deleted
-    # the user can specify a --resume command line argument
-    # the user is put into an interactive mode (blessed library?)
-    # resume the flash card revision from where the user left off
-    # start_time = datetime.now()
+    # create a temp dir for each session with temp results when the program
+    # detects a KeyboardInterrupt ask if the user wants to save the session the
+    # dir will not be deleted the user can specify a --resume command line
+    # argument the user is put into an interactive mode (blessed library?)
+    # resume the flash card revision from where the user left off start_time =
+    # datetime.now()
     # TODO: find out how to save the exact cards answered correctly and incorrectly and remaining cards
         # pass those as parameters in `quiz()`
         # pass start time as a parameter
