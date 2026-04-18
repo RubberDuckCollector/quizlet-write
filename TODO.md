@@ -1,5 +1,6 @@
 # Top Priority TODO
 
+- [ ] figure out how to plot graphs in rainbow color order
 - [ ] add normal difficulty that hides information in brackets, or at least only shows the first character
     - [ ] call it `normal-brackets-off`
 - [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and the x
