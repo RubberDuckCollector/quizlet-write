@@ -1,10 +1,14 @@
 # Top Priority TODO
 
+- [ ] add arguments to `--make flashcard_bar_chart` and `--make
+  session_bar_chart` that allow the user to plot graphs within a range of 2
+  dates. the 2 dates can be given in any order.
 - [ ] figure out how to plot graphs in rainbow color order
-- [ ] add normal difficulty that hides information in brackets, or at least only shows the first character
+- [ ] add normal difficulty that hides information in brackets, or at least
+  only shows the first character
     - [ ] call it `normal-brackets-off`
-- [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and the x
-  and y data files from the `session.txt` file to the best of its ability
+- [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and
+  the x and y data files from the `session.txt` file to the best of its ability
     - may have to put `none` in the json fields that cannot be determined
     - determine randomness by measuring the order of the flashcards
         - if the session is 1 round long put `none` as it's impossible to

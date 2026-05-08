@@ -1,16 +1,16 @@
 import matplotlib.pyplot as plt
 
-x_axes = [[1, 2, 3, 4], [1, 2], [1]]
-y_axes = [[100.0, 100.0, 67.0, 50.0], [100.0, 50.0], [100.0]]
+# x_axes = [[1, 2, 3, 4], [1, 2], [1]]
+# y_axes = [[100.0, 100.0, 67.0, 50.0], [100.0, 50.0], [100.0]]
 
-plt.figure(figsize=(8, 5))
+# plt.figure(figsize=(8, 5))
 
 # Use zip to pair up the sublists
 
-for i, (x, y) in enumerate(zip(x_axes, y_axes)):
-    plt.plot(x, y)
+# for i, (x, y) in enumerate(zip(x_axes, y_axes)):
+#     plt.plot(x, y)
 
-plt.show()
+# plt.show()
 
 # for i, (x_data, y_data) in enumerate(zip(x_axes, y_axes)):
 #     plt.plot(x_data, y_data, label=f'Round {i + 1}', marker='o')  # i think the dots make it more readable across a larger graph
