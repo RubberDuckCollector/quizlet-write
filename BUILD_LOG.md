@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2026-05-08](#2026-05-08)
     * [2026-03-06](#2026-03-06)
     * [2025-11-20 (15:17)](#2025-11-20-1517)
     * [2025-08-31 (22:35)](#2025-08-31-2235)
@@ -54,6 +55,16 @@
 
 
 # Build log
+
+## 2026-05-08
+
+- fixed a bug where the percentage progress would always go up as if it were
+  counting from the first round, because it was.
+- fixed a bug where if the user typed something in the input prompts but then
+  deleted it all, the prompt "> " would also disappear. this was due to how the
+  string was managed, having `end=''` in the print statement and then
+  collecting user input on a different line. now everything is inside a single
+  `input()`
 
 ## 2026-03-06
 

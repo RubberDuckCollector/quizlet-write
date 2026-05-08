@@ -315,7 +315,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
 
                     # this is the percentage completed in the current set
-                    progress = round(num_answered / NUM_CARDS * 100, 2) if num_answered > 0 else 0.0
+                    progress = round(num_answered / len(card_set) * 100, 2) if num_answered > 0 else 0.0
 
                     print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flashcard_file_path)}{my_modules.color.Color.Reset}{test_indicator}")
                     print(f"Remaining: {num_remaining}")
@@ -326,10 +326,10 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
                     # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
-                    print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}\n> ", end='')
+                    print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}")
                     # user_response = sys.stdin.readline().strip()
                     # user_response = input("> ").strip()  # OUTDATED
-                    user_response = input().strip()
+                    user_response = input("> ").strip()
 
                     # print num_remaining, num_correct, num_incorrect
                     # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
@@ -340,9 +340,9 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                         print("Don't know? Copy out the answer so you remember it!")
                         quiz_counter.reset_streak()
                         while True:
-                            print(f"Copy the answer below ↓\n- {answer}\n> ", end='')
+                            print(f"Copy the answer below ↓\n- {answer}")
                             # user_response = sys.stdin.readline().strip()
-                            user_response = input().strip()
+                            user_response = input("> ").strip()
                             if user_response.lower() == answer.lower():
                                 print(f"{my_modules.color.Color.Cyan}Next question.{my_modules.color.Color.Reset}")
                                 time.sleep(0.5)
@@ -394,7 +394,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
                         else:
                             # ask for override
-                            print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} Answer: {my_modules.color.Color.LightYellow}{answer}{my_modules.color.Color.Reset}")
+                            print(f"- {my_modules.color.Color.LightYellow}{answer}{my_modules.color.Color.Reset}")
+                            print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} Answer above.")
 
                             override = input("Override as correct? (empty answer = don't override) ")
 
@@ -474,7 +475,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # here the proc will look for the line in the file containing "Round"
                 # and the number of the current round with a : right after it
                 print_round_breakdown(this_sessions_temp_results_file, f"Round {round_num}:", num_correct, num_answered)
-                
+
                 # randomize now if rand flag is set to --rand-every-round
                 if p_args.randomize == "-rand-every-round":
                     items = list(card_set.items())
