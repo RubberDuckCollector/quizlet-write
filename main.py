@@ -17,7 +17,8 @@ import pathlib
 bar.update(1)
 import argparse
 bar.update(1)
-import readline
+# import readline
+import getpass
 bar.update(1)
 import numpy as np
 bar.update(1)
@@ -248,6 +249,10 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     if p_args.test:
         test_indicator = " TEST MODE - NO STATS SAVED"
 
+    hide_inputs_indicator = ""
+    if p_args.hide_inputs:
+        hide_inputs_indicator = " -- INPUTS HIDDEN"
+
     # user interaction will start in this try block
     # it's here to catch a keyboard interrupt such as ctrl-c
     # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
@@ -317,7 +322,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # this is the percentage completed in the current set
                     progress = round(num_answered / len(card_set) * 100, 2) if num_answered > 0 else 0.0
 
-                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flashcard_file_path)}{my_modules.color.Color.Reset}{test_indicator}")
+                    print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flashcard_file_path)}{my_modules.color.Color.Reset}{test_indicator}{hide_inputs_indicator}")
                     print(f"Remaining: {num_remaining}")
                     print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
                     print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
@@ -327,9 +332,10 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     # print(f"DEBUG: sys_args: {sys_args}")
                     print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
                     print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}")
-                    # user_response = sys.stdin.readline().strip()
-                    # user_response = input("> ").strip()  # OUTDATED
-                    user_response = input("> ").strip()
+                    if p_args.hide_inputs:
+                        user_response = getpass.getpass("> ").strip()
+                    else:
+                        user_response = input("> ").strip()
 
                     # print num_remaining, num_correct, num_incorrect
                     # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
@@ -341,7 +347,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                         quiz_counter.reset_streak()
                         while True:
                             print(f"Copy the answer below ↓\n- {answer}")
-                            # user_response = sys.stdin.readline().strip()
                             user_response = input("> ").strip()
                             if user_response.lower() == answer.lower():
                                 print(f"{my_modules.color.Color.Cyan}Next question.{my_modules.color.Color.Reset}")
@@ -394,8 +399,9 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
                         else:
                             # ask for override
-                            print(f"- {my_modules.color.Color.LightYellow}{answer}{my_modules.color.Color.Reset}")
-                            print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} Answer above.")
+                            print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
+                            print(f"✗ {my_modules.color.Color.LightMagenta}{user_response}{my_modules.color.Color.Reset}")
+                            print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} {my_modules.color.Color.Green}Correct answer{my_modules.color.Color.Reset} and {my_modules.color.Color.LightMagenta}your answer{my_modules.color.Color.Reset} above.")
 
                             override = input("Override as correct? (empty answer = don't override) ")
 
@@ -476,8 +482,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 # and the number of the current round with a : right after it
                 print_round_breakdown(this_sessions_temp_results_file, f"Round {round_num}:", num_correct, num_answered)
 
-                # randomize now if rand flag is set to --rand-every-round
-                if p_args.randomize == "-rand-every-round":
+                # randomize now if rand flag is set to rand-every-round
+                if p_args.randomize == "rand-every-round":
                     items = list(card_set.items())
                     random.shuffle(items)
                     card_set = dict(items)
@@ -717,6 +723,7 @@ def main():
     parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
     parser.add_argument("--flip", type=pathlib.Path, help="Swaps the questions and answers in a file and outputs it in a new file")
     parser.add_argument("--sync", action="store_true", help="Collects data in PROJECT_ROOT/stats/records/ and makes overwrites that data to PROJECT_ROOT/stats/lifetime_stats.json to fix parity issues")
+    parser.add_argument("--hide_inputs", action="store_true", help="Hides your inputs when you type.")
 
     """
     `nargs="?"`: makes the positional argument optional.

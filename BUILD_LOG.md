@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2026-05-09](#2026-05-09)
     * [2026-05-08](#2026-05-08)
     * [2026-03-06](#2026-03-06)
     * [2025-11-20 (15:17)](#2025-11-20-1517)
@@ -55,6 +56,10 @@
 
 
 # Build log
+
+## 2026-05-09
+
+- implemented a feature where there is an optional command line argument `--hide_inputs`. see `TODO.md` for more
 
 ## 2026-05-08
 
@@ -174,10 +179,10 @@
 - also gonna start screenshotting my tests
 - order of tests:
     1. pipe character `|` presence check - the `|` on the line has been removed on that line
-    1. pipe character `|` presence check - more `|` characters have been added on that line
-    1. content presence check - right side of the `|` has been removed on that line
-    1. content presence check - left side of the `|` has been removed on that line
-    1. content presence check - the content on both sides of the `|` has been removed, only the `|` remains on that line
+    2. pipe character `|` presence check - more `|` characters have been added on that line
+    3. content presence check - right side of the `|` has been removed on that line
+    4. content presence check - left side of the `|` has been removed on that line
+    5. content presence check - the content on both sides of the `|` has been removed, only the `|` remains on that line
 ![screenshot](assets/flash-card-data-presence-check.png)
 
 ## 2024-10-06 (02:21)

@@ -1,5 +1,6 @@
 # Top Priority TODO
 
+- [ ] let the user see how much time they spent revising vocab. can be time between 2 dates, time on 1 day or lifetime hours done. measured in hours and minutes
 - [ ] add arguments to `--make flashcard_bar_chart` and `--make session_bar_chart` that allow the user to plot graphs within a range of 2 dates. the 2 dates can be given in any order.
 - [ ] figure out how to plot graphs in rainbow color order
 - [ ] add normal difficulty that hides information in brackets, or at least only shows the first character [ ] call it `normal-brackets-off`
@@ -47,6 +48,9 @@
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
 - [wip] somewhat complete 2025-07-11: make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
+- [x] complete 2026-05-09: add an OPTIONAL command line argument that turns the regular input into `getpass.getpass("> ")`. could be called `--hide_input`.
+    - if this is ticked, also show `user_response` if they get something wrong.
+    - also add `-- INPUTS HIDDEN` after the `TEST MODE` string on the `working from file {filename}` line.
 - [x] complete 2026-05-08: percentage progress always ticks up as if it were the first round, no matter the round. fix: change `NUM_CARDS` for `len(card_set)` -- `progress = round(num_answered / len(card_set) * 100, 2) if num_answered > 0 else 0.0`
 - [x] complete 2026-04-18: add lifetime sessions completed to `lifetime_stats.json` JUST GET THE SUM OF SESSIONS PER DAY
 - [x] complete 2026-03-06: CRITICAL: fix plotting functionality that newly gets a max recursion depth exceeded error (this is noted down (with a todo message) in `main.py` where i think it occurs)
