@@ -1,6 +1,6 @@
 print("Loading, will take a while...")
 import progressbar
-bar = progressbar.ProgressBar(maxval=12, term_width=40)
+bar = progressbar.ProgressBar(maxval=11, term_width=40)
 bar.start()
 # external library code
 import os
@@ -17,7 +17,6 @@ import pathlib
 bar.update(1)
 import argparse
 bar.update(1)
-# import readline
 import getpass
 bar.update(1)
 import numpy as np
@@ -51,10 +50,6 @@ To explain it in a sentence (2 ways):
 1. "call the help command from the file `help`, which is in the folder/directory `my_modules`."
 2. "go to the folder/directory `my_modules`, go to the file `help`, call the help command."
 """
-
-
-# static analyzer might say readline is unused
-# but it attaches to the builtin input() func
 
 
 """
