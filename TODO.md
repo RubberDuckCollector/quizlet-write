@@ -1,5 +1,6 @@
 # Top Priority TODO
 
+- [ ] make the program print the error about no file found if everything is correct except a flashcard file
 - [ ] let the user see how much time they spent revising vocab. can be time between 2 dates, time on 1 day or lifetime hours done. measured in hours and minutes
 - [ ] add arguments to `--make flashcard_bar_chart` and `--make session_bar_chart` that allow the user to plot graphs within a range of 2 dates. the 2 dates can be given in any order.
 - [ ] figure out how to plot graphs in rainbow color order
