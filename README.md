@@ -52,6 +52,7 @@ run `source venv/bin/activate`.
 - A "session" is one completion of all the flash cards from a file. A completed session means you've answered all the cards correctly at least once.
 - If you wait until tomorrow to finish a session, you'll get credit for the day you finish the session on. e.g starting a session on the 1st of Jan. but finishing it on the 2nd will increase the cards done count for the 2nd of Jan., when the session is completed.
 - I know how cursed this file is if you open it raw. Try not to think about it.
+- **2026-05-19: Noted some errors with pyreadline3 and progressbar on a separate machine that I hadn't seen before, so you might have to comment them out in main.py**
 
 - a Python version >= 3.10 because of the `match` key word
 - [matplotlib](https://matplotlib.org/)
