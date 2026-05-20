@@ -21,8 +21,8 @@ import getpass
 bar.update(1)
 import readline
 bar.update(1)
-import pyreadline3
-bar.update(1)
+# import pyreadline3
+# bar.update(1)
 import numpy as np
 bar.update(1)
 # import platform
