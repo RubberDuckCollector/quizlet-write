@@ -243,7 +243,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{p_start_time}"
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{p_start_time}.txt"
-    
+
     test_indicator = ""
     if p_args.test:
         test_indicator = " TEST MODE - NO STATS SAVED"
