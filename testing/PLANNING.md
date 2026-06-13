@@ -16,8 +16,8 @@
                                                │                         │
                                                ▼                         ▼
                                         save `num_correct`,           allow the session to be resumed
-                                        `num_incorrect`, 
-                                        `num_remaining` etc
+                                        `num_incorrect`,              this requires rewriting `quiz()`
+                                        `num_remaining` etc           to take more general/generic parameters
 
 
 
