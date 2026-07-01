@@ -1,45 +1,33 @@
-use console::style;
+use ratatui::style::Stylize;
+use std::env;
 use std::{thread, time};
 
-mod file_reading;
+mod file_processing;
+mod terminal_processing;
 
 fn main() {
     // TODO: write this proc
-    file_reading::validate_cards();
 
-    clear_screen();
+    // this will later be a command line argument
+    let file_path: &str = "~/flash-cards/languages/basque/self-study/family_members.tx";
+    match file_processing::validate_cards(file_path) {
+        Ok(true) => println!("Validated GOOD"),
+        Ok(false) => println!("Validated BAD"),
+        Err(e) => {
+            eprintln!("Error validating file {}: {}", file_path.red(), e.0);
+            std::process::exit(1); // Exit the program with an error code
+        }
+    }
+
+    terminal_processing::clear_screen();
 
     // thread::sleep(time::Duration::from_secs(1));
 
-    let basque_family_members =
-        "/Users/luna/flash-cards/languages/basque/self-study/family_members.txt".to_string();
+    // let basque_family_members =
+    //     "/Users/luna/flash-cards/languages/basque/self-study/family_members.txt".to_string();
 
-    let words: Vec<Vec<String>> = file_reading::render_cards(&basque_family_members);
-    println!("{:#?}", words);
-
-    // for (key, value) in words {
-    //     println!("{}, {}", key, value);
-    // }
-
-    // match render_cards(&basque_family_members).len() {
-    //     0 => println!("CARD SET IS EMPTY"),
-    //     _ => println!("CARD SET IS NOT EMPTY"),
-    // }
-
-    // cards = render_cards(filepath);
-    // quiz(cards);
-
-    // let mut test_vec: Vec<Vec<String>> = vec![vec!["hello".to_string(), "world".to_string()], vec!["test1".to_string(), "test2".to_string()]];
-    // println!("{:?}", test_vec);
-
-    // test_vec[1].remove(0);
-    // println!("{:?}", test_vec);
-
-}
-
-pub fn clear_screen() {
-    // std::process::Command::new("clear");
-    clearscreen::clear().expect("failed to clear screen");
+    // let words: Vec<Vec<String>> = file_processing::render_cards(&basque_family_members);
+    // println!("{:#?}", words);
 }
 
 fn quiz() {}
