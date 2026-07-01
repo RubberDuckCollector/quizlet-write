@@ -1,14 +1,11 @@
 use console::style;
-use std::collections::BTreeMap;
-use std::collections::HashMap;
-use std::fs;
-use std::io::{self, BufRead, Write};
-use std::path::Path;
 use std::{thread, time};
-use itertools::Itertools;
+
+mod file_reading;
 
 fn main() {
-    validate_cards();
+    // TODO: write this proc
+    file_reading::validate_cards();
 
     clear_screen();
 
@@ -17,7 +14,7 @@ fn main() {
     let basque_family_members =
         "/Users/luna/flash-cards/languages/basque/self-study/family_members.txt".to_string();
 
-    let words: Vec<Vec<String>> = render_cards(&basque_family_members);
+    let words: Vec<Vec<String>> = file_reading::render_cards(&basque_family_members);
     println!("{:#?}", words);
 
     // for (key, value) in words {
@@ -43,46 +40,6 @@ fn main() {
 pub fn clear_screen() {
     // std::process::Command::new("clear");
     clearscreen::clear().expect("failed to clear screen");
-}
-
-// https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html#a-more-efficient-approach
-pub fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<fs::File>>>
-where
-    P: AsRef<Path>,
-{
-    let file = fs::File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
-}
-
-pub fn render_cards(filepath: &str) -> Vec<Vec<String>> {
-    let mut words: Vec<Vec<String>> = Vec::new();
-
-    // read whole file
-    // let result = fs::read_to_string(filepath);
-    // match result {
-    //     Ok(v) => println!("{}", v),
-    //     Err(e) => panic!("Error while reading file: {}\n{}", filepath, e)
-    // }
-
-    if let Ok(lines) = read_lines(filepath) {
-        // Consumes the iterator, returns an (Optional) String
-        for line in lines.map_while(Result::ok) {
-            // trim the whitespace off either side
-            let trimmed_line: &str = line.trim();
-
-            // split the string on | and then collect into Vec to allow for indexing
-            // let splitted_trimmed_line: Vec<&str> = trimmed_line.split("|").collect::<Vec<_>>();
-
-            if let Some((term, definition)) = trimmed_line.split_once('|') {
-                // convert the borrowed &str halves into owned Strings
-                // so everything is owned and can be looped on an returned safely
-                words.push(vec![term.to_string(), definition.to_string()]);
-            }
-
-        }
-    }
-
-    words
 }
 
 fn quiz() {}
