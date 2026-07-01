@@ -6,6 +6,7 @@ use std::path::Path;
 mod terminal_processing;
 
 pub struct ValidateFileError(pub &'static str);
+pub struct RenderCardsError(pub &'static str);
 
 // https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html#a-more-efficient-approach
 pub fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<fs::File>>>
@@ -16,6 +17,8 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
+// TODO: make it so it returns a Result<<Vec<Vec<String>>>, RenderCardsError>
+// do a match on this in `main()` to catch errors
 pub fn render_cards<P>(filepath: P) -> Vec<Vec<String>>
 where
     P: AsRef<Path>,
@@ -68,8 +71,8 @@ where
 
     let result = fs::exists(filepath);
     match result {
-        // will not give an output if file DOES INDEED exist
-        Ok(true) => Ok(true), // file exists
+        // the following is returned implicitly.
+        Ok(true) => Ok(true), // will not give an output if file DOES INDEED exist
         Ok(false) => Err(ValidateFileError("File does not exist.")), // file does not exist
         Err(_) => Err(ValidateFileError("Couldn't check for file's existence.")), // fundamental error
     }

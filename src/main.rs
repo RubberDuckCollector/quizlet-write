@@ -23,11 +23,8 @@ fn main() {
 
     // thread::sleep(time::Duration::from_secs(1));
 
-    // let basque_family_members =
-    //     "/Users/luna/flash-cards/languages/basque/self-study/family_members.txt".to_string();
-
-    // let words: Vec<Vec<String>> = file_processing::render_cards(&basque_family_members);
-    // println!("{:#?}", words);
+    let words: Vec<Vec<String>> = file_processing::render_cards(file_path);
+    println!("{:#?}", words);
 
 }
 
