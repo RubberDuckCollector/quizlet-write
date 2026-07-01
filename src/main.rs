@@ -1,6 +1,6 @@
-use ratatui::style::Stylize;
 use std::env;
 use std::{thread, time};
+use ratatui::crossterm::style::Stylize;
 
 mod file_processing;
 mod terminal_processing;
@@ -9,7 +9,7 @@ fn main() {
     // TODO: write this proc
 
     // this will later be a command line argument
-    let file_path: &str = "~/flash-cards/languages/basque/self-study/family_members.tx";
+    let file_path: &str = "/Users/luna/flash-cards/languages/basque/self-study/family_members.txt";
     match file_processing::validate_cards(file_path) {
         Ok(true) => println!("Validated GOOD"),
         Ok(false) => println!("Validated BAD"),
@@ -19,7 +19,7 @@ fn main() {
         }
     }
 
-    terminal_processing::clear_screen();
+    // terminal_processing::clear_screen();
 
     // thread::sleep(time::Duration::from_secs(1));
 
@@ -28,6 +28,7 @@ fn main() {
 
     // let words: Vec<Vec<String>> = file_processing::render_cards(&basque_family_members);
     // println!("{:#?}", words);
+
 }
 
 fn quiz() {}

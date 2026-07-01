@@ -22,26 +22,30 @@ where
 {
     let mut words: Vec<Vec<String>> = Vec::new();
 
-    // read whole file
-    // let result = fs::read_to_string(filepath);
-    // match result {
-    //     Ok(v) => println!("{}", v),
-    //     Err(e) => panic!("Error while reading file: {}\n{}", filepath, e)
-    // }
-
     if let Ok(lines) = read_lines(filepath) {
         // Consumes the iterator, returns an (Optional) String
+
+        // Likely to not need to read a file with 2^32 / 2^64 lines in it.
+        let mut line_number: usize = 0;
+
         for line in lines.map_while(Result::ok) {
+            line_number += 1;
+
             // trim the whitespace off either side
             let trimmed_line: &str = line.trim();
 
-            // split the string on | and then collect into Vec to allow for indexing
-            // let splitted_trimmed_line: Vec<&str> = trimmed_line.split("|").collect::<Vec<_>>();
+            if trimmed_line.chars().nth(0).unwrap() != '#' {
+                // lines starting with # are skipped
+                // split the string on | and then collect into Vec to allow for indexing
+                // let splitted_trimmed_line: Vec<&str> = trimmed_line.split("|").collect::<Vec<_>>();
 
-            if let Some((term, definition)) = trimmed_line.split_once('|') {
-                // convert the borrowed &str halves into owned Strings
-                // so everything is owned and can be looped on an returned safely
-                words.push(vec![term.to_string(), definition.to_string()]);
+                if let Some((term, definition)) = trimmed_line.split_once('|') {
+                    // convert the borrowed &str halves into owned Strings
+                    // so everything is owned and can be looped on an returned safely
+                    words.push(vec![term.to_string(), definition.to_string()]);
+                }
+            } else {
+                println!("# found on line {}", line_number);
             }
         }
     }
@@ -64,7 +68,8 @@ where
 
     let result = fs::exists(filepath);
     match result {
-        Ok(true) => Ok(true),                                        // file exists
+        // will not give an output if file DOES INDEED exist
+        Ok(true) => Ok(true), // file exists
         Ok(false) => Err(ValidateFileError("File does not exist.")), // file does not exist
         Err(_) => Err(ValidateFileError("Couldn't check for file's existence.")), // fundamental error
     }
