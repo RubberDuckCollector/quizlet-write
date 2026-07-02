@@ -2,12 +2,6 @@ use std::fs;
 use std::io::{self, BufRead, Write};
 use std::path::Path;
 
-#[path = "./terminal_processing.rs"]
-mod terminal_processing;
-
-pub struct ValidateFileError(pub &'static str);
-pub struct RenderCardsError(pub &'static str);
-
 // https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html#a-more-efficient-approach
 pub fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<fs::File>>>
 where
@@ -17,7 +11,7 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
-// TODO: make it so it returns a Result<<Vec<Vec<String>>>, RenderCardsError>
+// TODO: make it so it returns a Result<<Vec<Vec<String>>>, String>
 // do a match on this in `main()` to catch errors
 pub fn render_cards<P>(filepath: P) -> Vec<Vec<String>>
 where
@@ -53,10 +47,13 @@ where
         }
     }
 
+    // TODO: return an anonymous Result if that's valid
     words
 }
 
-pub fn validate_cards<P>(filepath: P) -> Result<bool, ValidateFileError>
+/// Returns nothing if flashcards have valid formatting, else returns a String which is handled in
+/// `main()`
+pub fn validate_cards<P>(filepath: P) -> Result<(), String>
 where
     P: AsRef<Path>,
 {
@@ -69,11 +66,27 @@ where
     // 2.4. check if no content to the left of |
     // 2.5. check if no content to the right of |
 
-    let result = fs::exists(filepath);
-    match result {
-        // the following is returned implicitly.
-        Ok(true) => Ok(true), // will not give an output if file DOES INDEED exist
-        Ok(false) => Err(ValidateFileError("File does not exist.")), // file does not exist
-        Err(_) => Err(ValidateFileError("Couldn't check for file's existence.")), // fundamental error
-    }
+    // if output is ever inspected before an appropriate check returns Ok, it will be an error by
+    // default
+    let mut output: Result<(), String> =
+        Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string());
+    assert!(output == Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string()));
+
+    match fs::exists(filepath) {
+        Ok(true) => output = Ok(()),
+        Ok(false) => {
+            // file does not exist
+            return Err("File does not exist.".to_string());
+            // return output
+        }
+        Err(_) => {
+            // fundamental error
+            return Err("Couldn't check for file's existence.".to_string());
+        }
+    };
+
+    // HOPEFULLY Ok(()) here
+    // OTHERWISE Err("...") by default
+    // all desired cases should be handled in the above branches
+    output
 }
