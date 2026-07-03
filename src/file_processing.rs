@@ -33,8 +33,6 @@ where
 
             if trimmed_line.chars().nth(0).unwrap() != '#' {
                 // lines starting with # are skipped
-                // split the string on | and then collect into Vec to allow for indexing
-                // let splitted_trimmed_line: Vec<&str> = trimmed_line.split("|").collect::<Vec<_>>();
 
                 if let Some((term, definition)) = trimmed_line.split_once('|') {
                     // convert the borrowed &str halves into owned Strings
@@ -57,33 +55,65 @@ pub fn validate_cards<P>(filepath: P) -> Result<(), String>
 where
     P: AsRef<Path>,
 {
-    // TODO:
-    // 1. check if file exists
-    // 2. check if file exists but not empty
-    // 2.1. check presence of | (display line number)
-    // 2.2. check if the only char on the line is |
-    // 2.3. check if there are more than 1 | chars (display line number)
-    // 2.4. check if no content to the left of |
-    // 2.5. check if no content to the right of |
+    let separator: &str = "|";
+    let separators_per_line: u8 = 1;
 
-    // if output is ever inspected before an appropriate check returns Ok, it will be an error by
-    // default
+    fn separator_presence_exists(line: &String, sep: &str) -> bool { line.contains(sep) }
+
+    fn separator_count(line: &String, sep: &str) -> u8 { line.matches(sep).count().try_into().unwrap() }
+
     let mut output: Result<(), String> =
         Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string());
     assert!(output == Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string()));
 
-    match fs::exists(filepath) {
+    match fs::exists(&filepath) {
         Ok(true) => output = Ok(()),
         Ok(false) => {
-            // file does not exist
             return Err("File does not exist.".to_string());
-            // return output
         }
         Err(_) => {
             // fundamental error
             return Err("Couldn't check for file's existence.".to_string());
         }
     };
+
+    // TODO:
+    // 1. check if file exists
+    // 2. check if file exists but empty
+    // 2.1. check presence of | (display line number)
+    // 2.2. check if the only char on the line is |
+    // 2.3. check if there are more than 1 | chars (display line number)
+    // 2.4. check if no content to the left of |
+    // 2.5. check if no content to the right of |
+
+    // if the file exists, try to return an Err by doing formatting checks
+    if output == Ok(()) {
+        if fs::read_to_string(&filepath) .expect("Should have been able to read the file") .len() == 0 {
+            return Err("File exists but is empty.".to_string());
+        }
+
+        if let Ok(lines) = read_lines(filepath) {
+            // Consumes the iterator, returns an (Optional) String
+
+            // Likely to not need to read a file with 2^32 / 2^64 lines in it.
+            let mut line_number: usize = 0;
+
+            for line in lines.map_while(Result::ok) {
+                line_number += 1;
+
+                if !separator_presence_exists(&line, separator) {
+                    let msg: String = format!("LINE {}: The designated separator ({}) wasn't found.", &line_number, separator);
+                    return Err(msg);
+                }
+
+                let count: u8 = separator_count(&line, separator);
+                if count > separators_per_line {
+                    let msg: String = format!("LINE {}: The designated separator ({}) appeared {} times -- more than the desired {} times.", &line_number, separator, count, &separators_per_line);
+                    return Err(msg);
+                }
+            }
+        }
+    }
 
     // HOPEFULLY Ok(()) here
     // OTHERWISE Err("...") by default
