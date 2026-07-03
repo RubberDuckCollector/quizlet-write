@@ -16,3 +16,4 @@ tests/*
 .zig-cache/
 zig-out/
 *.o
+target/

@@ -1,5 +1,7 @@
 # Top Priority TODO
 
+- [ ] change documentation to `PROMPT|ANSWER` the universal langauge for `flashcard` design
+
 - [ ] add parser functionality that accommodates for an optional third element after a second `|` for examples of the word
 - [ ] make the program print the error about no file found if everything is correct except a flashcard file
 - [ ] let the user see how much time they spent revising vocab. can be time between 2 dates, time on 1 day or lifetime hours done. measured in hours and minutes
