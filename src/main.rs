@@ -36,8 +36,9 @@ fn main() {
 
     // thread::sleep(time::Duration::from_secs(1));
 
+    #[allow(unused_variables)]
     let words: Vec<Vec<String>> = file_processing::render_cards(&args.flashcard_filepath);
-    println!("{:?}", words);
+    // println!("{:?}", words);
 
     /* TODO:
         run `quiz()` which will be in `quiz.rs`

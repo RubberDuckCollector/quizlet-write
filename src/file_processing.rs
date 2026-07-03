@@ -58,11 +58,32 @@ where
     let separator: &str = "|";
     let separators_per_line: u8 = 1;
 
-    fn separator_presence_exists(line: &String, sep: &str) -> bool { line.contains(sep) }
+    fn separator_exists(line: &String, sep: &str) -> bool {
+        line.contains(sep)
+    }
 
-    fn is_separator_only_char(line: &String, sep: &str) -> bool { line.len() == 1 && line.contains(sep) }
+    fn is_separator_only_char(line: &String, sep: &str) -> bool {
+        line.len() == sep.len() && line.contains(sep)
+    }
 
-    fn separator_count(line: &String, sep: &str) -> u8 { line.matches(sep).count().try_into().unwrap() }
+    fn separator_too_many(line: &String, sep: &str, expected_num: &u8) -> (u8, bool) {
+        let mut too_many_separators: bool = false;
+        let separator_count: u8 = line.matches(sep).count().try_into().unwrap();
+        if separator_count > *expected_num {
+            too_many_separators = true;
+        }
+        (separator_count, too_many_separators)
+    }
+
+    fn separator_content_exists(line: &String, sep: &str) -> Result<(), String> {
+        // a separator cannot be on the left OR right ends of the line
+        // 2 or more separators cannot be directly next to each other
+        if true {
+            Ok(())
+        } else {
+            Err("".to_string())
+        }
+    }
 
     let mut output: Result<(), String> =
         Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string());
@@ -80,17 +101,22 @@ where
     };
 
     // TODO:
-    // 1. check if file exists
-    // 2. check if file exists but empty
-    // 2.1. check presence of | (display line number)
-    // 2.2. check if the only char on the line is |
-    // 2.3. check if there are more than 1 | chars (display line number)
+    // - [x] 1. check if file exists
+    // - [x] 2. check if file exists but empty
+    // - [x] 2.1. check presence of | (display line number)
+    // - [x] 2.2. check if the only char on the line is |
+    // - [x] 2.3. check if there are more than `expected_count` | chars (display line number)
     // 2.4. check if no content to the left of |
     // 2.5. check if no content to the right of |
+    //      2.6: infer that there has to be content on both sides of every separator
 
     // if the file exists, try to return an Err by doing formatting checks
     if output == Ok(()) {
-        if fs::read_to_string(&filepath) .expect("Should have been able to read the file") .len() == 0 {
+        if fs::read_to_string(&filepath)
+            .expect("Should have been able to read the file")
+            .len()
+            == 0
+        {
             return Err("File exists but is empty.".to_string());
         }
 
@@ -103,21 +129,33 @@ where
             for line in lines.map_while(Result::ok) {
                 line_number += 1;
 
-                if !separator_presence_exists(&line, separator) {
-                    let msg: String = format!("LINE {}: The designated separator ({}) wasn't found.", &line_number, separator);
-                    return Err(msg);
-                }
-
-                let count: u8 = separator_count(&line, separator);
-                if count > separators_per_line {
-                    let msg: String = format!("LINE {}: The designated separator ({}) appeared {} times -- more than the desired {} times.", &line_number, separator, count, &separators_per_line);
+                if !separator_exists(&line, separator) {
+                    let msg: String = format!(
+                        "LINE {}: The designated separator ({}) wasn't found.",
+                        &line_number, separator
+                    );
                     return Err(msg);
                 }
 
                 if is_separator_only_char(&line, separator) {
-                    let msg: String = format!("LINE {}: The designated separator ({}) was the only character the line. The line needs a prompt and an answer on the left and right sides of the separator ({}) respectively.", &line_number, separator, separator);
+                    let msg: String = format!(
+                        "LINE {}: The designated separator ({}) was the only character the line. The line needs a prompt and an answer on the left and right sides of the separator ({}) respectively.",
+                        &line_number, separator, separator
+                    );
                     return Err(msg);
                 }
+
+                match separator_too_many(&line, separator, &separators_per_line) {
+                    (sep_count, true) => {
+                        let msg: String = format!(
+                            "LINE {}: The designated separator ({}) appeared {} times -- more than the desired {} times.",
+                            &line_number, separator, sep_count, &separators_per_line);
+                        return Err(msg)
+                    },
+                    (_, false) => () // do nothing if it returns false
+                }
+
+
             }
         }
     }
