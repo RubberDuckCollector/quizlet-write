@@ -69,7 +69,7 @@ where
     // - [ ] 2.5. disallow consecutive separators
 
     let separator: &str = "|";
-    let separators_per_line: u16 = 100;
+    let separators_per_line: u16 = 1;
 
     #[rustfmt::skip]
     let mut output: Result<(), String> = Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string());
@@ -136,11 +136,21 @@ where
                     }
                     (true, false) => {
                         #[rustfmt::skip]
+                        // TODO: improve the below message
+                        // ("please add content to the LEFT of the separator or remove the
+                        // separator.")
+                        // FIXME: there must be an algorithm for determining how many content
+                        // elements there are for a given number of separators, given that
+                        // separators cannot be on the far left end, far right end, OR be directly
+                        // next to each other
                         let msg: String = format!("LINE {}: The separator ({}) was found at the LEFT of the line (after trimming whitespace), which is disallowed.", &line_number, separator);
                         return Err(msg);
                     }
                     (false, true) => {
                         #[rustfmt::skip]
+                        // TODO: improve the below message
+                        // ("please add content to the RIGHT of the separator or remove the
+                        // separator.")
                         let msg: String = format!("LINE {}: The separator ({}) was found at the RIGHT of the line (after trimming whitespace), which is disallowed.", &line_number, separator);
                         return Err(msg);
                     }
@@ -177,12 +187,11 @@ where
             if trimmed_line.chars().nth(0).unwrap() != '#' {
                 // lines starting with # are skipped
 
-                // TODO: change this if you want to implement more than one separator for things
-                // like example sentences, tagging, etc.
-                // TODO: change this to split on every separator.
+                // OPTIMIZE: change this to split on every separator.
                 //      (i.e if there are 3 content elements on the line, the sublist would be of length 3).
-                // WARNING: implementing tagging would lend itself better to json so don't create
-                // technical debt by pursuing this more simplistic structure!
+                // WARNING: even though this can work with more than 1 separator on each line,
+                // implementing tagging would lend itself better to json
+                // so don't create technical debt by pursuing this more simplistic structure!
                 if let Some((term, definition)) = trimmed_line.split_once('|') {
                     // convert the borrowed &str halves into owned Strings
                     // so everything is owned and can be looped on an returned safely
