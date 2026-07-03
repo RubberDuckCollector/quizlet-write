@@ -11,14 +11,6 @@ fn main() {
 
     // clearscreen::clear().expect("failed to clear screen");
 
-    // // the addons turn PathBuf into a String to allow us to change its color with ratatui::cossterm...
-    // let file_path: String = args
-    //     .flashcard_filepath
-    //     .clone()
-    //     .into_os_string()
-    //     .into_string()
-    //     .unwrap();
-
     match file_processing::validate_cards(&args.flashcard_filepath) {
         Ok(()) => (),
         Err(e) => {
@@ -30,7 +22,7 @@ fn main() {
                     .into_string()
                     .unwrap()
                     .red(),
-                e
+                e.bold()
             );
             // exit the program with an error code because i don't want the program to run if the
             // flashcards are deemed invalid
@@ -53,4 +45,5 @@ fn main() {
     */
 }
 
+#[allow(dead_code)]
 fn quiz() {}
