@@ -60,6 +60,8 @@ where
 
     fn separator_presence_exists(line: &String, sep: &str) -> bool { line.contains(sep) }
 
+    fn is_separator_only_char(line: &String, sep: &str) -> bool { line.len() == 1 && line.contains(sep) }
+
     fn separator_count(line: &String, sep: &str) -> u8 { line.matches(sep).count().try_into().unwrap() }
 
     let mut output: Result<(), String> =
@@ -109,6 +111,11 @@ where
                 let count: u8 = separator_count(&line, separator);
                 if count > separators_per_line {
                     let msg: String = format!("LINE {}: The designated separator ({}) appeared {} times -- more than the desired {} times.", &line_number, separator, count, &separators_per_line);
+                    return Err(msg);
+                }
+
+                if is_separator_only_char(&line, separator) {
+                    let msg: String = format!("LINE {}: The designated separator ({}) was the only character the line. The line needs a prompt and an answer on the left and right sides of the separator ({}) respectively.", &line_number, separator, separator);
                     return Err(msg);
                 }
             }
