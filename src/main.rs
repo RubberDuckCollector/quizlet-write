@@ -3,7 +3,7 @@ use clearscreen;
 use ratatui::crossterm::style::Stylize;
 use std::{thread, time};
 
-mod file_processing;
+mod flashcard_processing;
 mod terminal_processing;
 
 fn main() {
@@ -11,11 +11,11 @@ fn main() {
 
     // clearscreen::clear().expect("failed to clear screen");
 
-    match file_processing::validate_cards(&args.flashcard_filepath) {
+    match flashcard_processing::validate_cards(&args.flashcard_filepath) {
         Ok(()) => (),
         Err(e) => {
-            eprintln!(
-                "Error validating file {}: {}\nStopping program.",
+            #[rustfmt::skip]
+            eprintln!("Error validating file {}: {}\nStopping program.",
                 &args
                     .flashcard_filepath
                     .into_os_string()
@@ -32,17 +32,19 @@ fn main() {
 
     // TODO: define required and optional args
 
-    // terminal_processing::clear_screen();
+    // clearscreen::clear().expect("Should be able to clear the screen.");
 
     // thread::sleep(time::Duration::from_secs(1));
 
     #[allow(unused_variables)]
-    let words: Vec<Vec<String>> = file_processing::render_cards(&args.flashcard_filepath);
-    // println!("{:?}", words);
+    let words: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath);
+    println!("{:?}", words);
 
     /* TODO:
         run `quiz()` which will be in `quiz.rs`
-        get outputs of `quiz()` and then run graph plotting functions here
+        get outputs of `quiz()`
+        write graph plotting functions in a separate file
+        call those functions here
     */
 }
 
