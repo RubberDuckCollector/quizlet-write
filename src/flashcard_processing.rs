@@ -68,8 +68,14 @@ where
     // - [x] 2.4. make sure a separator cannot be on the extreme left or right of the line
     // - [ ] 2.5. disallow consecutive separators
 
+    // OPTIMIZE: let the user specify the separator on the command line
+    // in the future by using a config file?
     let separator: &str = "|";
     let separators_per_line: u16 = 1;
+    // TODO: using the defined number of separators per line,
+    // calculate the expected number of content elements per line.
+    // on each line, count the number of content elements we actually see.
+    // see NOTE
 
     #[rustfmt::skip]
     let mut output: Result<(), String> = Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string());
@@ -139,10 +145,12 @@ where
                         // TODO: improve the below message
                         // ("please add content to the LEFT of the separator or remove the
                         // separator.")
-                        // FIXME: there must be an algorithm for determining how many content
+                        // NOTE: there must be an algorithm for determining how many content
                         // elements there are for a given number of separators, given that
                         // separators cannot be on the far left end, far right end, OR be directly
                         // next to each other
+                        // after calculating that, if the number of content elements is too low,
+                        // retur that info in the error message accordingly
                         let msg: String = format!("LINE {}: The separator ({}) was found at the LEFT of the line (after trimming whitespace), which is disallowed.", &line_number, separator);
                         return Err(msg);
                     }
@@ -166,7 +174,7 @@ where
 
 // TODO: make it so it returns a Result<<Vec<Vec<String>>>, String>
 // do a match on this in `main()` to catch errors
-pub fn render_cards<P>(filepath: P) -> Vec<Vec<String>>
+pub fn render_cards<P>(filepath: P, /* sep: &str */) -> Vec<Vec<String>>
 where
     P: AsRef<Path>,
 {
@@ -189,8 +197,9 @@ where
 
                 // OPTIMIZE: change this to split on every separator.
                 //      (i.e if there are 3 content elements on the line, the sublist would be of length 3).
+                //      USE THE `sep` PARAMETER
                 // WARNING: even though this can work with more than 1 separator on each line,
-                // implementing tagging would lend itself better to json
+                // extending funcionality and implementing tagging would lend itself better to json
                 // so don't create technical debt by pursuing this more simplistic structure!
                 if let Some((term, definition)) = trimmed_line.split_once('|') {
                     // convert the borrowed &str halves into owned Strings
