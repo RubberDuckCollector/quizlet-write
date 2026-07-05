@@ -1,4 +1,4 @@
 hello|world
 test|hello
 hello|test
-a|
+a|b|x|c

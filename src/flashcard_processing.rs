@@ -13,16 +13,16 @@ where
 }
 
 fn separator_exists(line: &String, sep: &str) -> bool {
-    line.trim().contains(sep)
+    line.contains(sep)
 }
 
 fn is_separator_only_char(line: &String, sep: &str) -> bool {
-    line.trim().len() == sep.len() && line.trim().contains(sep)
+    line.len() == sep.len() && line.contains(sep)
 }
 
 fn separator_too_many(line: &String, sep: &str, expected_num: &u16) -> (u16, bool) {
     let mut too_many_separators: bool = false;
-    let separator_count: u16 = line.trim().matches(sep).count().try_into().unwrap();
+    let separator_count: u16 = line.matches(sep).count().try_into().unwrap();
     if separator_count > *expected_num {
         too_many_separators = true;
     }
@@ -32,46 +32,105 @@ fn separator_too_many(line: &String, sep: &str, expected_num: &u16) -> (u16, boo
 fn separator_on_ends_of_line(line: &String, sep: &str) -> (bool, bool) {
     let mut is_sep_at_first_last: (bool, bool) = (false, false);
 
-    if line.trim().starts_with(sep) {
+    if line.starts_with(sep) {
         is_sep_at_first_last.0 = true;
     }
 
-    if line.trim().ends_with(sep) {
+    if line.ends_with(sep) {
         is_sep_at_first_last.1 = true;
     }
 
     is_sep_at_first_last
 }
 
+/// This function ensures that the length of the input is divisible by the desired increase in
+/// padding by adding extra characters accordingly.
+///
+/// This will ALWAYS add padding to a string, regardless of if it needs to or not.
+/// You should check ELSEWHERE if this needs to run.
+/// Therefore, be aware that if you do want to use it, this function has the capacity to not be needed.
+fn always_pad_out_string(msg: &String, padding_increase: usize) -> String {
+    let remainder: usize = msg.len() % padding_increase;
+
+    let num_padding_chars: usize = padding_increase - remainder;
+    let mut padding = String::with_capacity(num_padding_chars);
+    for _ in 0..num_padding_chars {
+        padding.push('*');
+    }
+
+    format!("{msg}{padding}")
+}
+
 // TODO: see below
+
 /// Returns a vector where each element is a tuple with two u32s that represent the start and end of
 /// where any consecutive separators are found (consecutive separators is disallowed).
-/// e.g: (10, 14) would be contiguous separators that start on index 10 and end on index 14; so
+/// e.g: (10, 14) would be contiguous separators that start on index 10 and end ON, NOT BEFORE index 14; so
 /// 10..=14
+///
+/// METHOD:
+/// 1. take the length of sep
+/// 2. start at index 0 of line
+/// 3. check sep against a slice of `line` that is of length `sep.len()`
+/// 4. if a separator found, move along sep.len() + 1 indexes
+/// 5. if no separator found, move along 1 index to the right
+/// 6. repeat step 3
+///
+/// We can make some assumptions here:
+/// line.len() > sep.len() due to requiring content on the flashcards.
+fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<(u32, u32)> {
+    let mut consecutive_sep_ranges: Vec<(u32, u32)> = Vec::new();
 
-// fn separator_consecutive(line: &String, sep: &str) -> Vec<(u32, u32)> {
+    // PRECONDITION: line.len() must be divisible by sep.len() to prevent indexing errors.
+    //
+    // Do line.len() % sep.len();
+    //
+    // If the remainder IS 0, carry on as normal.
+    //
+    // If the remainder ISN'T 0, you need to shorten line by the remainder to make it divisible.
+    //
+    //      BUT, we can't allow data to be lost, so we must make up that difference by APPENDING
+    //      data to make line.len() divisible by sep.len()
+    //
+    //      We take the difference between the remainder and the divisor, which I'll call `x`.
+    //      Append padding characters x times to line.
 
-// }
+    let padded_line: String = match line.len() % sep.len() {
+        0 => line.clone(),
+        _ => always_pad_out_string(&line, sep.len()),
+    };
 
-/// Returns nothing if flashcards have valid formatting, else returns a String which is handled in
-/// `main()`.
+    // logic here
+
+    consecutive_sep_ranges
+}
+
+/// Returns nothing if flashcards have valid formatting, else returns a String.
+/// The String is the error message which is pushed up to main() and handled there.
 pub fn validate_cards<P>(filepath: P) -> Result<(), String>
 where
     P: AsRef<Path>,
 {
-    // TODO:
+    // TODO: flashcard validation checklist below
     // - [x] 1. check if file exists
     // - [x] 2. check if file exists but empty
     // - [x] 2.1. check presence of | (display line number)
     // - [x] 2.2. check if the only char on the line is |
     // - [x] 2.3. check if there are more than `expected_count` | chars (display line number)
     // - [x] 2.4. make sure a separator cannot be on the extreme left or right of the line
-    // - [ ] 2.5. disallow consecutive separators
+    // - [ ] 2.5. disallow consecutive separators: this, compounded with the other checks, automatically ensures that all the content that should be present is there
+    //
+    //      NOTE: double check this logic
+    //      We check for consecutive separators, erroring on the first instance to avoid having to
+    //      count the number of separators,
+    //      which depends on rendering the cards.
+    //      Put differently, counting the number of separators would require knowing how many
+    //      content elements there are (and by process of elimination also the number of separators)
 
     // OPTIMIZE: let the user specify the separator on the command line
     // in the future by using a config file?
     let separator: &str = "|";
-    let separators_per_line: u16 = 1;
+    let separators_per_line: u16 = 3;
     // TODO: using the defined number of separators per line,
     // calculate the expected number of content elements per line.
     // on each line, count the number of content elements we actually see.
@@ -104,10 +163,10 @@ where
         if let Ok(lines) = read_lines(filepath) {
             // Consumes the iterator, returns an (Optional) String
 
-            // Likely to not need to read a file with 2^32 / 2^64 lines in it.
             let mut line_number: usize = 0;
 
-            for line in lines.map_while(Result::ok) {
+            for mut line in lines.map_while(Result::ok) {
+                line = line.trim().to_string();
                 line_number += 1;
 
                 if !separator_exists(&line, separator) {
@@ -150,7 +209,7 @@ where
                         // separators cannot be on the far left end, far right end, OR be directly
                         // next to each other
                         // after calculating that, if the number of content elements is too low,
-                        // retur that info in the error message accordingly
+                        // return that info in the error message accordingly
                         let msg: String = format!("LINE {}: The separator ({}) was found at the LEFT of the line (after trimming whitespace), which is disallowed.", &line_number, separator);
                         return Err(msg);
                     }
@@ -163,6 +222,19 @@ where
                         return Err(msg);
                     }
                 };
+
+                if separators_per_line > 1 {
+                    // if we expect more than 1 separator per line, consecutive separators are
+                    // possible
+                    match collate_consecutive_separators(&line, separator).len() {
+                        0 => (),
+                        _ => {
+                            // FIXME: write this error message
+                            let msg: String = format!("");
+                            return Err(msg)
+                        }
+                    }
+                }
             }
         }
     }
@@ -174,7 +246,7 @@ where
 
 // TODO: make it so it returns a Result<<Vec<Vec<String>>>, String>
 // do a match on this in `main()` to catch errors
-pub fn render_cards<P>(filepath: P, /* sep: &str */) -> Vec<Vec<String>>
+pub fn render_cards<P>(filepath: P /* sep: &str */) -> Vec<Vec<String>>
 where
     P: AsRef<Path>,
 {
@@ -211,6 +283,21 @@ where
             }
         }
     }
-    // TODO: return an anonymous Result if that's valid
+    // TODO: see above TODO
     words
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn padding() {
+
+        // FIXME: rewrite this test
+        // let mut result = pad_out_string(&"012345678900".to_string(), 3);
+        // println!("{}", &result);
+        // assert_eq!("012345678900".len(), result.len());
+
+    }
 }
