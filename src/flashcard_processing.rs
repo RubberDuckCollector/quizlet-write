@@ -22,11 +22,11 @@ fn is_separator_only_char(line: &String, sep: &str) -> bool {
 
 fn separator_too_many(line: &String, sep: &str, expected_num: &u16) -> (u16, bool) {
     let mut too_many_separators: bool = false;
-    let separator_count: u16 = line.matches(sep).count().try_into().unwrap();
-    if separator_count > *expected_num {
+    let sep_count: u16 = line.matches(sep).count().try_into().unwrap();
+    if sep_count > *expected_num {
         too_many_separators = true;
     }
-    (separator_count, too_many_separators)
+    (sep_count, too_many_separators)
 }
 
 fn separator_on_ends_of_line(line: &String, sep: &str) -> (bool, bool) {
@@ -49,6 +49,20 @@ fn separator_on_ends_of_line(line: &String, sep: &str) -> (bool, bool) {
 /// This will ALWAYS add padding to a string, regardless of if it needs to or not.
 /// You should check ELSEWHERE if this needs to run.
 /// Therefore, be aware that if you do want to use it, this function has the capacity to not be needed.
+// OPTIMIZE: I think this concept is redundant as you can just compare 2 slices for equality as is
+// PRECONDITION: line.len() must be divisible by sep.len() to prevent indexing errors.
+//
+// Do line.len() % sep.len();
+//
+// If the remainder IS 0, carry on as normal.
+//
+// If the remainder ISN'T 0, you need to shorten line by the remainder to make it divisible.
+//
+//      BUT, we can't allow data to be lost, so we must make up that difference by APPENDING
+//      data to make line.len() divisible by sep.len()
+//
+//      We take the difference between the remainder and the divisor, which I'll call `x`.
+//      Append padding characters x times to line.
 fn always_pad_out_string(msg: &String, padding_increase: usize) -> String {
     let remainder: usize = msg.len() % padding_increase;
 
@@ -71,7 +85,7 @@ fn always_pad_out_string(msg: &String, padding_increase: usize) -> String {
 /// METHOD:
 /// 1. take the length of sep
 /// 2. start at index 0 of line
-/// 3. check sep against a slice of `line` that is of length `sep.len()`
+/// 3. check sep for equality (==) against a slice of `line` that is of length `sep.len()`
 /// 4. if a separator found, move along sep.len() + 1 indexes
 /// 5. if no separator found, move along 1 index to the right
 /// 6. repeat step 3
@@ -81,26 +95,22 @@ fn always_pad_out_string(msg: &String, padding_increase: usize) -> String {
 fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<(u32, u32)> {
     let mut consecutive_sep_ranges: Vec<(u32, u32)> = Vec::new();
 
-    // PRECONDITION: line.len() must be divisible by sep.len() to prevent indexing errors.
-    //
-    // Do line.len() % sep.len();
-    //
-    // If the remainder IS 0, carry on as normal.
-    //
-    // If the remainder ISN'T 0, you need to shorten line by the remainder to make it divisible.
-    //
-    //      BUT, we can't allow data to be lost, so we must make up that difference by APPENDING
-    //      data to make line.len() divisible by sep.len()
-    //
-    //      We take the difference between the remainder and the divisor, which I'll call `x`.
-    //      Append padding characters x times to line.
-
-    let padded_line: String = match line.len() % sep.len() {
-        0 => line.clone(),
-        _ => always_pad_out_string(&line, sep.len()),
-    };
-
     // logic here
+
+    // slice range sep.len() compare
+    let mut done = false;
+    let mut found_sep = false;
+
+    let mut start_index: usize = 0;
+    let mut end_index: usize = sep.len() - 1;
+
+    while done == false {
+        // TODO: if found_sep == true at the top here, it signifies consecutive seps so append the
+        // start and end indexes of the seps to the Vec<>.
+        if line[start_index..end_index] == *sep {
+            found_sep = true;
+        }
+    }
 
     consecutive_sep_ranges
 }
@@ -118,14 +128,28 @@ where
     // - [x] 2.2. check if the only char on the line is |
     // - [x] 2.3. check if there are more than `expected_count` | chars (display line number)
     // - [x] 2.4. make sure a separator cannot be on the extreme left or right of the line
-    // - [ ] 2.5. disallow consecutive separators: this, compounded with the other checks, automatically ensures that all the content that should be present is there
+    // - [ ] 2.5. disallow consecutive separators by 2 methods
+    //      METHOD 1:
+    //      - calculate the highest expected number of content elements on that line given the max number of seps (separators_per_line).
+    //      - count number of seps
+    //      - say "given that there are x seps, we expect y number of content elements"
+    //      - if this assertion is false, return an error (maybe a Result?)
+    //
+    //      METHOD 2:
+    //      - see `collate_consecutive_separators()`
+    //
+    //      Method 1 might be simpler but method 2 allows you to say exactly where every error is at
+    //      once and all the col nums.
+    //      - given that this would be the final check, a failing flashcard file would have to pass
+    //      every other check to get to this point
+    //      NOTE: maybe a hybrid solution with the quick one, and then IF IT FAILS THAT
+    //      then go through and collate indices? -- collating indices is the feature the user would
+    //      get the most value out of
+    //
+    //      NOTE: let sep_count: Vec<&str> = line.matches("?!?").collect();
     //
     //      NOTE: double check this logic
-    //      We check for consecutive separators, erroring on the first instance to avoid having to
-    //      count the number of separators,
-    //      which depends on rendering the cards.
-    //      Put differently, counting the number of separators would require knowing how many
-    //      content elements there are (and by process of elimination also the number of separators)
+    //      don't need to check consecutive seps if you can count
 
     // OPTIMIZE: let the user specify the separator on the command line
     // in the future by using a config file?
@@ -187,7 +211,7 @@ where
                         let msg: String = format!("LINE {}: The designated separator ({}) appeared {} times -- more than the desired {} times.", &line_number, separator, sep_count, &separators_per_line);
                         return Err(msg);
                     }
-                    (_, false) => (), // do nothing if it returns false
+                    (_, false) => (), // do nothing if it returns false, in this case we also don't care about how many separators there are
                 }
 
                 match separator_on_ends_of_line(&line, separator) {
@@ -231,7 +255,7 @@ where
                         _ => {
                             // FIXME: write this error message
                             let msg: String = format!("");
-                            return Err(msg)
+                            return Err(msg);
                         }
                     }
                 }
@@ -291,13 +315,21 @@ where
 mod tests {
     use super::*;
 
+    // #[test]
+    // fn padding() {
+    // FIXME: rewrite this test
+    // let mut result = pad_out_string(&"012345678900".to_string(), 3);
+    // println!("{}", &result);
+    // assert_eq!("012345678900".len(), result.len());
+
+    // assert_eq!("0123", "012");
+    // }
+
     #[test]
-    fn padding() {
-
-        // FIXME: rewrite this test
-        // let mut result = pad_out_string(&"012345678900".to_string(), 3);
-        // println!("{}", &result);
-        // assert_eq!("012345678900".len(), result.len());
-
+    fn sep_too_many() {
+        let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
+        let sep_count: u16 = a.matches("?!?").count().try_into().unwrap();
+        // let sep_count: Vec<&str> = a.matches("?!?").collect();
+        assert_eq!(sep_count, 3);
     }
 }
