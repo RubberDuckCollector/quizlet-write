@@ -92,23 +92,38 @@ fn always_pad_out_string(msg: &String, padding_increase: usize) -> String {
 ///
 /// We can make some assumptions here:
 /// line.len() > sep.len() due to requiring content on the flashcards.
-fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<(u32, u32)> {
-    let mut consecutive_sep_ranges: Vec<(u32, u32)> = Vec::new();
+fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<usize> {
+    let mut consecutive_sep_ranges: Vec<usize> = Vec::new();
 
-    // logic here
+    let mut current_line: String = line.to_string();
+
+    if line.len() % sep.len() != 0 {
+        current_line = always_pad_out_string(line, sep.len());
+    }
 
     // slice range sep.len() compare
     let mut done = false;
     let mut found_sep = false;
 
     let mut start_index: usize = 0;
-    let mut end_index: usize = sep.len() - 1;
+
+    let mut end_index: usize;
 
     while done == false {
         // TODO: if found_sep == true at the top here, it signifies consecutive seps so append the
         // start and end indexes of the seps to the Vec<>.
-        if line[start_index..end_index] == *sep {
-            found_sep = true;
+        
+        end_index = start_index + (sep.len() - 1);
+
+        if current_line[start_index..=end_index] == *sep {
+            // found_sep = true;  // used for if we're collating them into a tuple, but i don't
+            // think that's necessary
+
+            // move sep.len() + 1 to the right
+            consecutive_sep_ranges.push(start_index);
+            start_index += sep.len() + 1;
+        } else {
+            start_index += 1;
         }
     }
 
@@ -325,11 +340,18 @@ mod tests {
     // assert_eq!("0123", "012");
     // }
 
+    // #[test]
+    // fn sep_too_many() {
+    //     let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
+    //     let sep_count: u16 = a.matches("?!?").count().try_into().unwrap();
+    //     // let sep_count: Vec<&str> = a.matches("?!?").collect();
+    //     assert_eq!(sep_count, 3);
+    // }
+
     #[test]
-    fn sep_too_many() {
+    fn find_sep() {
         let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
-        let sep_count: u16 = a.matches("?!?").count().try_into().unwrap();
-        // let sep_count: Vec<&str> = a.matches("?!?").collect();
-        assert_eq!(sep_count, 3);
+        println!("{}", a.len());
+        let b = collate_consecutive_separators(&a, "?!?");
     }
 }
