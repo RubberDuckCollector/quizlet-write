@@ -784,7 +784,7 @@ def main():
     missing_required_args = [arg_name for arg_name, value in required_args.items() if value is None]
 
     if missing_required_args:
-        parser.error(f"Missig required positional argument(s): {missing_required_args}")
+        parser.error(f"Missing required positional argument(s): {missing_required_args}")
 
     if args.difficulty in my_modules.hint_system.VALID_DIFFICULTIES:
         pass
