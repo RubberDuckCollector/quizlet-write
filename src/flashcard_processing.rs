@@ -119,6 +119,9 @@ fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<usize> {
             // found_sep = true;  // used for if we're collating them into a tuple, but i don't
             // think that's necessary
 
+            // FIXME: maybe add 1 more padding char to the end? index 46 on a string.len() of 46 is
+            // not passing
+
             // move sep.len() + 1 to the right
             consecutive_sep_ranges.push(start_index);
             start_index += sep.len() + 1;
