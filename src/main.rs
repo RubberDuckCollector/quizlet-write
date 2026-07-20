@@ -36,8 +36,10 @@ fn main() {
 
     // thread::sleep(time::Duration::from_secs(1));
 
+    let separator: &str = "|";
+
     #[allow(unused_variables)]
-    let words: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath);
+    let words: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
     println!("{:?}", words);
 
     /* TODO:

@@ -149,7 +149,7 @@ where
     // OPTIMIZE: let the user specify the separator on the command line
     // in the future by using a config file?
     let separator: &str = "|";
-    let separators_per_line: u16 = 3; // expected MAX number of seps per line
+    let separators_per_line: u16 = 1; // expected MAX number of seps per line
     // NOTE: using the defined number of separators per line,
     // calculate the expected number of content elements per line.
     // on each line, count the number of content elements we actually see.
@@ -246,7 +246,8 @@ where
                 if separators_per_line > 1 {
                     // if we expect more than 1 separator per line, consecutive separators are
                     // possible
-                    let mut consecutive_seps_result: Vec<(usize, usize)> = collate_consecutive_separators(&line, separator);
+                    let mut consecutive_seps_result: Vec<(usize, usize)> =
+                        collate_consecutive_separators(&line, separator);
                     match consecutive_seps_result.len() {
                         0 => (),
                         _ => {
@@ -258,7 +259,10 @@ where
                                 *start_idx += 1;
                                 *end_idx += 1;
                             }
-                            let msg: String = format!("LINE {}: consecutive separators were found on the following columns in the line: {:?}. Please correct this by adding content in between the consecutive separators, or delete separators until there are no consecutive separators.\nThere must be one separator at a time.", &line_number, consecutive_seps_result);
+                            let msg: String = format!(
+                                "LINE {}: consecutive separators were found on the following columns in the line: {:?}. Please correct this by adding content in between the consecutive separators, or delete separators until there are no consecutive separators.\nThere must be one separator at a time.",
+                                &line_number, consecutive_seps_result
+                            );
                             return Err(msg);
                         }
                     }
@@ -274,7 +278,7 @@ where
 
 // TODO: make it so it returns a Result<<Vec<Vec<String>>>, String>
 // do a match on this in `main()` to catch errors
-pub fn render_cards<P>(filepath: P /* sep: &str */) -> Vec<Vec<String>>
+pub fn render_cards<P>(filepath: P, sep: &str) -> Vec<Vec<String>>
 where
     P: AsRef<Path>,
 {
@@ -302,10 +306,15 @@ where
                 // WARNING: even though this can work with more than 1 separator on each line,
                 // extending funcionality and implementing tagging would lend itself better to json
                 // so don't create technical debt by pursuing this more simplistic structure!
-                if let Some((term, definition)) = trimmed_line.split_once('|') {
-                    // convert the borrowed &str halves into owned Strings
-                    // so everything is owned and can be looped on an returned safely
-                    words.push(vec![term.to_string(), definition.to_string()]);
+                let content: Vec<String> = trimmed_line
+                    .split(sep)
+                    .map(str::trim)
+                    .map(String::from)
+                    .collect();
+                // convert the borrowed &str halves into owned Strings
+                // so everything is owned and can be looped on an returned safely
+                if !content.is_empty() {
+                    words.push(content);
                 }
             } else {
                 println!("# found on line {}", line_number);
@@ -340,7 +349,6 @@ mod tests {
 
     #[test]
     fn find_sep() {
-
         // let a: String = String::from("asf?!?d;lkjasd;?!??!?fljkasd;?!??!?!?flkjasdf;lkj?!!!?");
         // println!("{}", a.len());
         // let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "?!?");
