@@ -60,10 +60,6 @@ To explain it in a sentence (2 ways):
 CONVENTIONS:
 
 a variable starting with `p_...` denotes a parameter, not a pointer
-"term" or "question" refers to just the question on the flash card.
-    - "definition" or "answer" refers to the answer on the flash card
-    - "term" and "question" are interchangeable
-    - "definition" and "answer" are interchangeable.
 A "session" is one completion of all the flash cards from a file.
     A completed session means you've answered all the cards correctly once.
 
@@ -138,7 +134,7 @@ def dump_results_to_records_file(p_start_time, p_this_sessions_temp_results_file
     with open(p_this_sessions_temp_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
         for line in results_f:
             record_f.write(line)
-    
+
     return session_dir
 
 
@@ -433,10 +429,10 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                                 time.sleep(0.5)
                                 my_modules.clear_screen.clear_screen()
 
-                    # if this is the first question answered,
+                    # if this is the first prompt answered,
                     # need to plot % on the graph early before
                     # num_answered and num_remaining are incremented
-                    # because otherwise it would plot 0% at question 1
+                    # because otherwise it would plot 0% at prompt 1
                     if num_answered == 0: 
                         current_percent_correct = round((num_correct / num_answered), 2) * 100 if num_answered > 0 else 0.0
                         # this is for adding data to the graph
@@ -690,7 +686,7 @@ def render_cards(file_path: str) -> dict:
                     key, value = line.strip().split("|")
                     rendered_cards[key.strip()] = value.strip()
 
-        # return this as the dictionary of terms and definitions
+        # return this as the dictionary of prompts and answers
         # e.g: "hello": "hola",
         # the key is on the left, its corresponding value is on the right
         return rendered_cards  # this is a dict
@@ -706,21 +702,21 @@ def main():
 
     # order of arguments:
     # help/main.py/bar-chart
-    # file path to file containing questions,
+    # file path to file containing prompts,
     # difficulty,
     # randomize cards,
-    # switch question and answer
+    # switch prompt and answer
 
     parser = argparse.ArgumentParser(prog="main.py",
                                      description="Quizlet Write my version <https://github.com/RubberDuckCollector/quizlet-write> (name may change)",
-                                     epilog="Made for flash card revision. Recommended for short answers, but works with any text-based question and answer. Remember to not move where the flash cards are stored while the program is running.")
+                                     epilog="Made for flash card revision. Recommended for short answers, but works with any text-based prompts and answer. Remember to not move where the flash cards are stored while the program is running.")
     # add optional arguments
     parser.add_argument("--explain_app_usage", action="store_true", help="Gives a walkthrough of the average user's interactions with the program")
     parser.add_argument("--technical_explanation", action="store_true", help="Gives a walkthrough of how the program works")
     # bar charts
     parser.add_argument("--make", choices=["session_bar_chart", "flashcard_bar_chart"], help="Generates a bar chart of the sessions OR flash cards done on each day")
     parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
-    parser.add_argument("--flip", type=pathlib.Path, help="Swaps the questions and answers in a file and outputs it in a new file")
+    parser.add_argument("--flip", type=pathlib.Path, help="Swaps the prompts and answers in a file and outputs it in a new file")
     parser.add_argument("--sync", action="store_true", help="Collects data in PROJECT_ROOT/stats/records/ and makes overwrites that data to PROJECT_ROOT/stats/lifetime_stats.json to fix parity issues")
     parser.add_argument("--hide_inputs", action="store_true", help="Hides your inputs when you type.")
 
@@ -742,7 +738,7 @@ def main():
     parser.add_argument("flashcard_file_path", nargs="?", default=None, help="This is a relative or absolute file path to a text file containing the flash cards you want to use", type=str)
     parser.add_argument("difficulty", nargs="?", default=None, help="Difficulty of the quiz", type=str)
     parser.add_argument("randomize", nargs="?", default=None, help="How you want to randomise the flash cards in the quiz", type=str)
-    parser.add_argument("flip_cards", nargs="?", default=None, help="Wether or not you want to 'flip the cards over' and answer with the question", type=str)
+    parser.add_argument("flip_cards", nargs="?", default=None, help="Wether or not you want to 'flip the cards over' and answer with the prompt instead.", type=str)
 
     # if sys.argv only contains `main.py`
     # print help and halt program execution
@@ -817,7 +813,7 @@ def main():
 
     match args.flip_cards:
         case "flip":
-            # switch terms and definitions
+            # switch prompts and answers
             cards = {v: k for k, v in cards.items()}
             args.flip_cards = True  # change the value from a string to a bool for easier processing in session stats collection later
         case "no-flip":

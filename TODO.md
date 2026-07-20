@@ -1,7 +1,5 @@
 # Top Priority TODO
 
-- [ ] change documentation to `PROMPT|ANSWER` the universal langauge for `flashcard` design
-
 - [ ] add parser functionality that accommodates for an optional third element after a second `|` for examples of the word
 - [ ] make the program print the error about no file found if everything is correct except a flashcard file
 - [ ] let the user see how much time they spent revising vocab. can be time between 2 dates, time on 1 day or lifetime hours done. measured in hours and minutes
@@ -52,6 +50,7 @@
         - increment the bar when the progress is divisible by a certain number, which corresponds to a pre-mapped version of the progress bar
         - store the progress bar stages in a separate file and import them in `main.py`
 - [wip] somewhat complete 2025-07-11: make a sync function that goes through all files in `records/` and counts how many ticks and crosses there are in each file, then overwrites those figures as the `lifetime_correct` and `lifetime_incorrect` stats in `lifetime_stats.json`
+- [x] complete 2026-07-20: change documentation to `PROMPT|ANSWER` the universal langauge for `flashcard` design
 - [x] complete 2026-05-09: add an OPTIONAL command line argument that turns the regular input into `getpass.getpass("> ")`. could be called `--hide_input`.
     - if this is ticked, also show `user_response` if they get something wrong.
     - also add `-- INPUTS HIDDEN` after the `TEST MODE` string on the `working from file {filename}` line.
@@ -66,7 +65,7 @@
         - figure out when to put the counter check in the if statement branches
 - [x] complete 2025-07-11: put the end of session data into a `session.json` file
 - [x] complete 2025-07-11: added `--sync` optional argument that reads data from `stats/records` and overwrites `stats/lifetime_stats.json` with the data collected
-- [x] complete 2025-07-10: implement an optional command line argument where the program switches the position of the term and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
+- [x] complete 2025-07-10: implement an optional command line argument where the program switches the position of the prompt and answer on each line of a flash card file, creates a "{filename}_OUTPUT.txt" file
 - [x] complete 2025-07-09: add lifetime session correct and lifetime session incorrect counters to the program that get printed out at the end of the session
 - [x] make it so the key in the PDF graph is shown to the left of the plot instead of the right
     - reasoning: we read english graphs from left to right so all sessions start on the left, all session plots are on the left so they key should be there too for better readability
