@@ -117,14 +117,13 @@ pub fn validate_cards<P>(filepath: P) -> Result<(), String>
 where
     P: AsRef<Path>,
 {
-    // TODO: flashcard validation checklist below
     // - [x] 1. check if file exists
     // - [x] 2. check if file exists but empty
     // - [x] 2.1. check presence of | (display line number)
     // - [x] 2.2. check if the only char on the line is |
     // - [x] 2.3. check if there are more than `expected_count` | chars (display line number)
     // - [x] 2.4. make sure a separator cannot be on the extreme left or right of the line
-    // - [ ] 2.5. disallow consecutive separators by 2 methods
+    // - [x] 2.5. disallow consecutive separators by 2 methods
     //      METHOD 1:
     //      - calculate the highest expected number of content elements on that line given the max number of seps (separators_per_line).
     //      - count number of seps
@@ -231,7 +230,7 @@ where
                         // separator.")
                         // after calculating that, if the number of content elements is too low,
                         // return that info in the error message accordingly
-                        let msg: String = format!("LINE {}: The separator ({}) was found at the LEFT of the line (after trimming whitespace), which is disallowed.", &line_number, separator);
+                        let msg: String = format!("LINE {}: The separator ({}) was found at the LEFT of the line (after trimming whitespace), which is disallowed. If you can have more than one separator per line (which is customisable), please add content to the LEFT of this separator.", &line_number, separator);
                         return Err(msg);
                     }
                     (false, true) => {
@@ -239,7 +238,7 @@ where
                         // TODO: improve the below message
                         // ("please add content to the RIGHT of the separator or remove the
                         // separator.")
-                        let msg: String = format!("LINE {}: The separator ({}) was found at the RIGHT of the line (after trimming whitespace), which is disallowed.", &line_number, separator);
+                        let msg: String = format!("LINE {}: The separator ({}) was found at the RIGHT of the line (after trimming whitespace), which is disallowed. If you can have more than one separator per line (which is customisable), please add content to the RIGHT of this separator.", &line_number, separator);
                         return Err(msg);
                     }
                 };
@@ -247,7 +246,7 @@ where
                 if separators_per_line > 1 {
                     // if we expect more than 1 separator per line, consecutive separators are
                     // possible
-                    let consecutive_seps_result: Vec<(usize, usize)> = collate_consecutive_separators(&line, separator);
+                    let mut consecutive_seps_result: Vec<(usize, usize)> = collate_consecutive_separators(&line, separator);
                     match consecutive_seps_result.len() {
                         0 => (),
                         _ => {
@@ -255,7 +254,11 @@ where
                             // SHOW THE TUPLES
                             // E.G.: "CONSECUTIVE SEPARATORS FOUND AT X, Y, Z. THIS IS NOT ALLOWED
                             // AS THERE MUST BE CONTENT IN BETWEEN ALL SEPARATORS"
-                            let msg: String = format!("");
+                            for (start_idx, end_idx) in consecutive_seps_result.iter_mut() {
+                                *start_idx += 1;
+                                *end_idx += 1;
+                            }
+                            let msg: String = format!("LINE {}: consecutive separators were found on the following columns in the line: {:?}. Please correct this by adding content in between the consecutive separators, or delete separators until there are no consecutive separators.\nThere must be one separator at a time.", &line_number, consecutive_seps_result);
                             return Err(msg);
                         }
                     }
@@ -292,6 +295,7 @@ where
             if trimmed_line.chars().nth(0).unwrap() != '#' {
                 // lines starting with # are skipped
 
+                // TODO: see below
                 // OPTIMIZE: change this to split on every separator.
                 //      (i.e if there are 3 content elements on the line, the sublist would be of length 3).
                 //      USE THE `sep` PARAMETER
@@ -336,9 +340,15 @@ mod tests {
 
     #[test]
     fn find_sep() {
-        let a: String = String::from("asf?!?d;lkjasd;?!??!?fljkasd;?!??!?!?flkjasdf;lkj?!!!?");
+
+        // let a: String = String::from("asf?!?d;lkjasd;?!??!?fljkasd;?!??!?!?flkjasdf;lkj?!!!?");
+        // println!("{}", a.len());
+        // let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "?!?");
+        // println!("{:?}", b);
+
+        let a: String = String::from("a|b||c||");
         println!("{}", a.len());
-        let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "?!?");
+        let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "|");
         println!("{:?}", b);
     }
 }
