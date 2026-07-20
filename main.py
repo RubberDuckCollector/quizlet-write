@@ -1,5 +1,8 @@
 print("Loading, will take a while...")
+from matplotlib import use
 import progressbar
+
+from my_modules import color
 bar = progressbar.ProgressBar(maxval=11, term_width=40)
 bar.start()
 # external library code
@@ -397,6 +400,21 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                             print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
                             print(f"✗ {my_modules.color.Color.LightMagenta}{user_response}{my_modules.color.Color.Reset}")
                             print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} {my_modules.color.Color.Green}Correct answer{my_modules.color.Color.Reset} and {my_modules.color.Color.LightMagenta}your answer{my_modules.color.Color.Reset} above.")
+
+                            # TODO: implement a feature where if the character is in the right place, underline it
+                            # BEWARE INDEXING PROBLEMS
+
+                            # print("✗ ", end='')
+                            #     for i, char in enumerate(user_response):
+                            #         try:
+                            #             if char == answer[i]:
+                            #                 print(f"{my_modules.color.Color.Underline}{my_modules.color.Color.LightMagenta}{char}{my_modules.color.Color.Reset}", end='')
+                            #             else:
+                            #                 print(f"{my_modules.color.Color.LightMagenta}{char}{my_modules.color.Color.Reset}", end='')
+                            #             print()
+                            #             print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} {my_modules.color.Color.Green}Correct answer{my_modules.color.Color.Reset} and {my_modules.color.Color.LightMagenta}your answer{my_modules.color.Color.Reset} above.")
+                            #         except IndexError:
+                            #             print(f"{my_modules.color.Color.LightMagenta}{char}{my_modules.color.Color.Reset}", end='')
 
                             override = input("Override as correct? (empty answer = don't override) ")
 
