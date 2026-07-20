@@ -43,90 +43,68 @@ fn separator_on_ends_of_line(line: &String, sep: &str) -> (bool, bool) {
     is_sep_at_first_last
 }
 
-/// This function ensures that the length of the input is divisible by the desired increase in
-/// padding by adding extra characters accordingly.
-///
-/// This will ALWAYS add padding to a string, regardless of if it needs to or not.
-/// You should check ELSEWHERE if this needs to run.
-/// Therefore, be aware that if you do want to use it, this function has the capacity to not be needed.
-// OPTIMIZE: I think this concept is redundant as you can just compare 2 slices for equality as is
-// PRECONDITION: line.len() must be divisible by sep.len() to prevent indexing errors.
-//
-// Do line.len() % sep.len();
-//
-// If the remainder IS 0, carry on as normal.
-//
-// If the remainder ISN'T 0, you need to shorten line by the remainder to make it divisible.
-//
-//      BUT, we can't allow data to be lost, so we must make up that difference by APPENDING
-//      data to make line.len() divisible by sep.len()
-//
-//      We take the difference between the remainder and the divisor, which I'll call `x`.
-//      Append padding characters x times to line.
-fn always_pad_out_string(msg: &String, padding_increase: usize) -> String {
-    let remainder: usize = msg.len() % padding_increase;
-
-    let num_padding_chars: usize = padding_increase - remainder;
-    let mut padding = String::with_capacity(num_padding_chars);
-    for _ in 0..num_padding_chars {
-        padding.push('*');
-    }
-
-    format!("{msg}{padding}")
-}
-
-// TODO: see below
-
 /// Returns a vector where each element is a tuple with two u32s that represent the start and end of
 /// where any consecutive separators are found (consecutive separators is disallowed).
-/// e.g: (10, 14) would be contiguous separators that start on index 10 and end ON, NOT BEFORE index 14; so
-/// 10..=14
+/// e.g: (10, 14) would signify contiguous separators that start on index 10 and end ON, NOT BEFORE index 14; so
+/// 10..=14 (as represented by a Rust range)
 ///
 /// METHOD:
 /// 1. take the length of sep
 /// 2. start at index 0 of line
-/// 3. check sep for equality (==) against a slice of `line` that is of length `sep.len()`
-/// 4. if a separator found, move along sep.len() + 1 indexes
-/// 5. if no separator found, move along 1 index to the right
-/// 6. repeat step 3
+/// 3.5. keep track of the start and end idx of the consecutive seps
+/// 4. if no separator found, move along 1 index to the right and go to the next iteration.
+/// 5. check sep for equality (==) against a slice of `line` that is of length `sep.len()`
+/// 6. if a separator found, move along sep.len() indexes
+/// 6.5. then, start looking for another separator immediately after
+/// 6.6. if this is the case, push a tuple of the start and end idx of the consecutive seps to the
+///   Vec
 ///
 /// We can make some assumptions here:
 /// line.len() > sep.len() due to requiring content on the flashcards.
-fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<usize> {
-    let mut consecutive_sep_ranges: Vec<usize> = Vec::new();
+fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<(usize, usize)> {
+    let mut consecutive_sep_ranges: Vec<(usize, usize)> = Vec::new();
 
-    let mut current_line: String = line.to_string();
+    // let mut current_line: String = line.to_string();
 
-    if line.len() % sep.len() != 0 {
-        current_line = always_pad_out_string(line, sep.len());
-    }
+    // if line.len() % sep.len() != 0 {
+    //     current_line = always_pad_out_string(line, sep.len());
+    // }
 
-    // slice range sep.len() compare
-    let mut done = false;
-    let mut found_sep = false;
+    let line_bytes = line.as_bytes();
+    let sep_bytes = sep.as_bytes();
 
-    let mut start_index: usize = 0;
+    let mut i: usize = 0;
 
-    let mut end_index: usize;
+    let last_possible_start_idx: usize = line_bytes.len() - sep.len();
 
-    while done == false {
-        // TODO: if found_sep == true at the top here, it signifies consecutive seps so append the
-        // start and end indexes of the seps to the Vec<>.
-        
-        end_index = start_index + (sep.len() - 1);
+    while i <= last_possible_start_idx {
+        // look for the first separator in the line.
+        // loop once more if a separator isn't found
+        if &line_bytes[i..i + sep_bytes.len()] != sep_bytes {
+            i += 1;
+            continue;
+        }
 
-        if current_line[start_index..=end_index] == *sep {
-            // found_sep = true;  // used for if we're collating them into a tuple, but i don't
-            // think that's necessary
+        // we found a separator if the code reaches this line
+        let consecutive_seps_start: usize = i;
+        let mut consecutive_seps_end: usize = i + sep_bytes.len() - 1; // final index of the line
+        let mut separator_count: usize = 1;
 
-            // FIXME: maybe add 1 more padding char to the end? index 46 on a string.len() of 46 is
-            // not passing
+        i += sep_bytes.len(); // progress through the line by the length of the sep as bytes
 
-            // move sep.len() + 1 to the right
-            consecutive_sep_ranges.push(start_index);
-            start_index += sep.len() + 1;
-        } else {
-            start_index += 1;
+        // while we're not at the end of the line,
+        // AND we've found a separator
+        while i + sep_bytes.len() <= line_bytes.len()
+            && &line_bytes[i..i + sep_bytes.len()] == sep_bytes
+        {
+            separator_count += 1; // we've seen 2 separators here, so increment this
+            consecutive_seps_end = i + sep_bytes.len() - 1; // final index
+            i += sep_bytes.len(); // progress through the line by the length of the sep as bytes
+        }
+
+        // only store runs of this algorithm where we find 2+ consecutive separators.
+        if separator_count >= 2 {
+            consecutive_sep_ranges.push((consecutive_seps_start, consecutive_seps_end));
         }
     }
 
@@ -172,11 +150,16 @@ where
     // OPTIMIZE: let the user specify the separator on the command line
     // in the future by using a config file?
     let separator: &str = "|";
-    let separators_per_line: u16 = 3;
-    // TODO: using the defined number of separators per line,
+    let separators_per_line: u16 = 3; // expected MAX number of seps per line
+    // NOTE: using the defined number of separators per line,
     // calculate the expected number of content elements per line.
     // on each line, count the number of content elements we actually see.
-    // see NOTE
+    // NOTE: there must be an algorithm for determining how many content
+    // elements there are for a given number of separators, given that
+    // separators cannot be on the far left end, far right end, OR be directly
+    // next to each other
+    // XXX: there are 2 competing solutions that both catch consecutive separators: the above
+    // solution, and `collate_consecutive_separators`
 
     #[rustfmt::skip]
     let mut output: Result<(), String> = Err("I'm an error by default until the flashcards have been validated. Double check the code's logic!".to_string());
@@ -246,10 +229,6 @@ where
                         // TODO: improve the below message
                         // ("please add content to the LEFT of the separator or remove the
                         // separator.")
-                        // NOTE: there must be an algorithm for determining how many content
-                        // elements there are for a given number of separators, given that
-                        // separators cannot be on the far left end, far right end, OR be directly
-                        // next to each other
                         // after calculating that, if the number of content elements is too low,
                         // return that info in the error message accordingly
                         let msg: String = format!("LINE {}: The separator ({}) was found at the LEFT of the line (after trimming whitespace), which is disallowed.", &line_number, separator);
@@ -268,10 +247,14 @@ where
                 if separators_per_line > 1 {
                     // if we expect more than 1 separator per line, consecutive separators are
                     // possible
-                    match collate_consecutive_separators(&line, separator).len() {
+                    let consecutive_seps_result: Vec<(usize, usize)> = collate_consecutive_separators(&line, separator);
+                    match consecutive_seps_result.len() {
                         0 => (),
                         _ => {
                             // FIXME: write this error message
+                            // SHOW THE TUPLES
+                            // E.G.: "CONSECUTIVE SEPARATORS FOUND AT X, Y, Z. THIS IS NOT ALLOWED
+                            // AS THERE MUST BE CONTENT IN BETWEEN ALL SEPARATORS"
                             let msg: String = format!("");
                             return Err(msg);
                         }
@@ -353,8 +336,9 @@ mod tests {
 
     #[test]
     fn find_sep() {
-        let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
+        let a: String = String::from("asf?!?d;lkjasd;?!??!?fljkasd;?!??!?!?flkjasdf;lkj?!!!?");
         println!("{}", a.len());
-        let b = collate_consecutive_separators(&a, "?!?");
+        let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "?!?");
+        println!("{:?}", b);
     }
 }
