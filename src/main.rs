@@ -39,6 +39,7 @@ fn main() {
     let separator: &str = "|";
 
     #[allow(unused_variables)]
+    #[rustfmt::skip]
     let words: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
     println!("{:?}", words);
 
@@ -47,6 +48,11 @@ fn main() {
         get outputs of `quiz()`
         write graph plotting functions in a separate file
         call those functions here
+
+        OPTIMIZE: i want quiz() to fully end before writing the session's x and y coordinate data
+        and plotting the graph for the session.
+            - essentially, quiz() SHOULD be called by assigning the output to a variable
+            `(e.g.: let session_data = quiz(words))`
     */
 }
 
