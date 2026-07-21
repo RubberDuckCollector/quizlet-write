@@ -42,33 +42,13 @@ bar.finish()
 
 
 """
-IMPORT GUIDE (examples of how you would use my library code)
-
-`my_modules.constants` refers to `my_modules/constants.py`
-`my_modules.help` refers to `my_modules/help.py`
-`my_modules.color` refers to `my_modules/color.py`
-
-`my_modules.constants.chars_to_ignore[i]`  # access the value at index `i` in the chars_to_ignore list
-`my_modules.color.Color.Blue(/Magenta/Bold/Reset)`  # access the specific color from the Color class
-
-Example:
-`my_modules.help.help_command()`  # call the help_command() procedure
-To explain it in a sentence (2 ways):
-1. "call the help command from the file `help`, which is in the folder/directory `my_modules`."
-2. "go to the folder/directory `my_modules`, go to the file `help`, call the help command."
-"""
-
-
-"""
 CONVENTIONS:
 
 a variable starting with `p_...` denotes a parameter, not a pointer
 A "session" is one completion of all the flash cards from a file.
     A completed session means you've answered all the cards correctly once.
-
-File paths in help text are written in Light Magenta
-Commands in help text are written in Cyan
 """
+
 
 def debug_print(msg: str):
     print(msg)
@@ -81,7 +61,6 @@ def initialize_stats():
             "sessions_per_day": {},
             "cards_per_day": {}
             }
-    # TODO: accommodate for this file existing, but containing no data
     if not os.path.exists("stats/lifetime_stats.json"):
         with open("stats/lifetime_stats.json", "w") as f:
              json.dump(initial_data, f, indent=4)
@@ -102,6 +81,7 @@ def print_round_breakdown(
     with open(filename, 'r') as file:
         for line in file:
             if found:
+                # Assume there can only be a tick OR a cross in a given line.
                 # print the line in green if there's a tick in it
                 if '✓' in line:
                     print(f"{my_modules.color.Color.Green}{line.strip()}{my_modules.color.Color.Reset}")
@@ -121,7 +101,7 @@ def print_round_breakdown(
     # print the sore the user got along with their percentage
     print(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)")
     with open(filename, "a") as f:
-        # this should never have division by 0 errors, bc cannot have a card set of 0 cards
+        # INFO: this should never have division by 0 errors, bc cannot have a card set of 0 cards
         f.write(f"Score: {num_correct}/{num_answered} ({num_correct / num_answered * 100}%)\n\n")
         f.flush()
 
@@ -132,7 +112,7 @@ def dump_results_to_records_file(p_start_time, p_this_sessions_temp_results_file
     # when the session ends, find out when that is to put it in the session's file name
     end_time = str(datetime.now())
     # this copies the data in this_sessions_temp_results_file to the records file for that session
-    session_dir = f"stats/records/Session {p_start_time} to {end_time}"
+    session_dir = f"stats/records/Session_{p_start_time}_to_{end_time}"
     os.mkdir(session_dir)
     with open(p_this_sessions_temp_results_file, 'r') as results_f, open(f"{session_dir}/session.txt", 'a') as record_f:
         for line in results_f:
@@ -225,7 +205,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     # the same exact time because datetime keeps time accuracy up to 6 decimal
     # places
 
-    #TODO: implement saving feature
+    # TODO: implement saving feature
     # create a temp dir for each session with temp results when the program
     # detects a KeyboardInterrupt ask if the user wants to save the session the
     # dir will not be deleted the user can specify a --resume command line
