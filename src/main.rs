@@ -15,7 +15,7 @@ fn main() {
         Ok(()) => (),
         Err(e) => {
             #[rustfmt::skip]
-            eprintln!("Error validating file {}: {}\nStopping program.",
+            eprintln!("Error validating the file {}: {}\nStopping program.",
                 &args
                     .flashcard_filepath
                     .into_os_string()
@@ -41,7 +41,7 @@ fn main() {
     #[allow(unused_variables)]
     #[rustfmt::skip]
     let words: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
-    println!("{:?}", words);
+    println!("{:#?}", words);
 
     /* TODO:
         run `quiz()` which will be in `quiz.rs`

@@ -48,27 +48,10 @@ fn separator_on_ends_of_line(line: &String, sep: &str) -> (bool, bool) {
 /// e.g: (10, 14) would signify contiguous separators that start on index 10 and end ON, NOT BEFORE index 14; so
 /// 10..=14 (as represented by a Rust range)
 ///
-/// METHOD:
-/// 1. take the length of sep
-/// 2. start at index 0 of line
-/// 3.5. keep track of the start and end idx of the consecutive seps
-/// 4. if no separator found, move along 1 index to the right and go to the next iteration.
-/// 5. check sep for equality (==) against a slice of `line` that is of length `sep.len()`
-/// 6. if a separator found, move along sep.len() indexes
-/// 6.5. then, start looking for another separator immediately after
-/// 6.6. if this is the case, push a tuple of the start and end idx of the consecutive seps to the
-///   Vec
-///
 /// We can make some assumptions here:
 /// line.len() > sep.len() due to requiring content on the flashcards.
 fn collate_consecutive_separators(line: &String, sep: &str) -> Vec<(usize, usize)> {
     let mut consecutive_sep_ranges: Vec<(usize, usize)> = Vec::new();
-
-    // let mut current_line: String = line.to_string();
-
-    // if line.len() % sep.len() != 0 {
-    //     current_line = always_pad_out_string(line, sep.len());
-    // }
 
     let line_bytes = line.as_bytes();
     let sep_bytes = sep.as_bytes();
@@ -124,27 +107,6 @@ where
     // - [x] 2.3. check if there are more than `expected_count` | chars (display line number)
     // - [x] 2.4. make sure a separator cannot be on the extreme left or right of the line
     // - [x] 2.5. disallow consecutive separators by 2 methods
-    //      METHOD 1:
-    //      - calculate the highest expected number of content elements on that line given the max number of seps (separators_per_line).
-    //      - count number of seps
-    //      - say "given that there are x seps, we expect y number of content elements"
-    //      - if this assertion is false, return an error (maybe a Result?)
-    //
-    //      METHOD 2:
-    //      - see `collate_consecutive_separators()`
-    //
-    //      Method 1 might be simpler but method 2 allows you to say exactly where every error is at
-    //      once and all the col nums.
-    //      - given that this would be the final check, a failing flashcard file would have to pass
-    //      every other check to get to this point
-    //      NOTE: maybe a hybrid solution with the quick one, and then IF IT FAILS THAT
-    //      then go through and collate indices? -- collating indices is the feature the user would
-    //      get the most value out of
-    //
-    //      NOTE: let sep_count: Vec<&str> = line.matches("?!?").collect();
-    //
-    //      NOTE: double check this logic
-    //      don't need to check consecutive seps if you can count
 
     // OPTIMIZE: let the user specify the separator on the command line
     // in the future by using a config file?
@@ -185,7 +147,7 @@ where
         }
 
         if let Ok(lines) = read_lines(filepath) {
-            // Consumes the iterator, returns an (Optional) String
+            // consumes the iterator, returns an (Optional) String
 
             let mut line_number: usize = 0;
 
@@ -272,7 +234,8 @@ where
     }
     // HOPEFULLY Ok(()) here
     // OTHERWISE Err("...") by default
-    // all desired cases should be handled in the above branches
+    // all desired cases should have be handled in the above branches
+    //
     output
 }
 
@@ -299,10 +262,6 @@ where
             if trimmed_line.chars().nth(0).unwrap() != '#' {
                 // lines starting with # are skipped
 
-                // TODO: see below
-                // OPTIMIZE: change this to split on every separator.
-                //      (i.e if there are 3 content elements on the line, the sublist would be of length 3).
-                //      USE THE `sep` PARAMETER
                 // WARNING: even though this can work with more than 1 separator on each line,
                 // extending funcionality and implementing tagging would lend itself better to json
                 // so don't create technical debt by pursuing this more simplistic structure!
@@ -321,7 +280,6 @@ where
             }
         }
     }
-    // TODO: see above TODO
     words
 }
 
@@ -329,23 +287,13 @@ where
 mod tests {
     use super::*;
 
-    // #[test]
-    // fn padding() {
-    // FIXME: rewrite this test
-    // let mut result = pad_out_string(&"012345678900".to_string(), 3);
-    // println!("{}", &result);
-    // assert_eq!("012345678900".len(), result.len());
-
-    // assert_eq!("0123", "012");
-    // }
-
-    // #[test]
-    // fn sep_too_many() {
-    //     let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
-    //     let sep_count: u16 = a.matches("?!?").count().try_into().unwrap();
-    //     // let sep_count: Vec<&str> = a.matches("?!?").collect();
-    //     assert_eq!(sep_count, 3);
-    // }
+    #[test]
+    fn sep_too_many() {
+        let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
+        let sep_count: u16 = a.matches("?!?").count().try_into().unwrap();
+        // let seps_vec: Vec<&str> = a.matches("?!?").collect();
+        assert_eq!(sep_count, 3);
+    }
 
     #[test]
     fn find_sep() {
