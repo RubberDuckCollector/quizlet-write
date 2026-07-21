@@ -72,6 +72,7 @@
 
 ## Next features/TODO
 
+- [ ] make `session.txt` into JSON (not sure what it would help but maybe data mining in the future)
 - [ ] use a proper logging system with a logging library
 - [ ] optional command line argument that turns user input (except spaces) into * characters as they type
 - [ ] make an automatic backup feature (basically duplicate all user data in a backup directory)- [ ] make the colours on the bar charts pretty

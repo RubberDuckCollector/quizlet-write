@@ -322,7 +322,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
 
                     print(f"Working from file {my_modules.color.Color.Dim}{os.path.basename(p_args.flashcard_file_path)}{my_modules.color.Color.Reset}{test_indicator}{hide_inputs_indicator}")
                     print(f"Remaining: {num_remaining}")
-                    print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({current_percent_correct}%)")
+                    print(f"Correct: {my_modules.color.Color.Green}{num_correct}{my_modules.color.Color.Reset} ({round(current_percent_correct, 2)}%)")
                     print(f"Incorrect: {my_modules.color.Color.Red}{num_incorrect}{my_modules.color.Color.Reset}")
                     print(f"Progress: {my_modules.color.Color.LightBlue}{progress}{my_modules.color.Color.Reset}%")
                     print(f"Streak: {my_modules.color.Color.LightMagenta}{quiz_counter.get_current_streak()}{my_modules.color.Color.Reset} ({my_modules.color.Color.LightMagenta}{quiz_counter.get_highest_streak()}{my_modules.color.Color.Reset})")
