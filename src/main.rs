@@ -5,6 +5,7 @@ use std::{thread, time};
 
 mod flashcard_processing;
 mod terminal_processing;
+mod hint_system;
 
 fn main() {
     let args: terminal_processing::Args = terminal_processing::Args::parse();
@@ -134,7 +135,7 @@ impl StreakTrait for StreakCounter {
 fn quiz() {}
 
 #[cfg(test)]
-mod tests {
+mod main_tests {
     use super::*;
 
     #[test]
