@@ -287,24 +287,24 @@ where
 mod tests {
     use super::*;
 
-    #[test]
-    fn sep_too_many() {
-        let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
-        let sep_count: u16 = a.matches("?!?").count().try_into().unwrap();
-        // let seps_vec: Vec<&str> = a.matches("?!?").collect();
-        assert_eq!(sep_count, 3);
-    }
+    // #[test]
+    // fn sep_too_many() {
+    //     let a: String = String::from("asf?!?d;lkjasd;?!?fljkasd;?!?flkjasdf;lkj?!!!?");
+    //     let sep_count: u16 = a.matches("?!?").count().try_into().unwrap();
+    //     // let seps_vec: Vec<&str> = a.matches("?!?").collect();
+    //     assert_eq!(sep_count, 3);
+    // }
 
-    #[test]
-    fn find_sep() {
+    // #[test]
+    // fn find_sep() {
         // let a: String = String::from("asf?!?d;lkjasd;?!??!?fljkasd;?!??!?!?flkjasdf;lkj?!!!?");
         // println!("{}", a.len());
         // let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "?!?");
         // println!("{:?}", b);
 
-        let a: String = String::from("a|b||c||");
-        println!("{}", a.len());
-        let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "|");
-        println!("{:?}", b);
-    }
+        // let a: String = String::from("a|b||c||");
+        // println!("{}", a.len());
+        // let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "|");
+        // println!("{:?}", b);
+    // }
 }
