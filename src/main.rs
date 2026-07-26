@@ -1,14 +1,22 @@
 use clap::Parser;
 use clearscreen;
 use ratatui::crossterm::style::Stylize;
+use std::time::{SystemTime, UNIX_EPOCH, Duration};
 use std::{thread, time};
 
 mod flashcard_processing;
-mod terminal_processing;
 mod hint_system;
+mod quiz;
+mod terminal_processing;
 
 fn main() {
     let args: terminal_processing::Args = terminal_processing::Args::parse();
+
+    let now = SystemTime::now();
+    let now_ms = now.duration_since(UNIX_EPOCH).expect("Time went backwards");
+    println!("{:?}", now_ms);
+
+    println!("{:#?}", args);
 
     // clearscreen::clear().expect("failed to clear screen");
 
@@ -31,7 +39,7 @@ fn main() {
         }
     }
 
-    // TODO: define required and optional args
+    // TODO: define optional args
 
     // clearscreen::clear().expect("Should be able to clear the screen.");
 
@@ -42,7 +50,7 @@ fn main() {
     #[allow(unused_variables)]
     #[rustfmt::skip]
     let words: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
-    println!("{:#?}", words);
+    println!("{:?}", words);
 
     /* TODO:
         run `quiz()` which will be in `quiz.rs`
@@ -57,6 +65,14 @@ fn main() {
         = to implement saving and resuming a session, maybe return early from `quiz()`
         with a special flag and if the flag is found, invoke saving session procedures
     */
+}
+
+// TODO:
+// add session.json
+// session.txt will have to be handled differently
+struct QuizData {
+    x_axes: Vec<Vec<u32>>,
+    y_axes: Vec<Vec<u32>>,
 }
 
 struct StreakCounter {
@@ -131,9 +147,6 @@ impl StreakTrait for StreakCounter {
     }
 }
 
-#[allow(dead_code)]
-fn quiz() {}
-
 #[cfg(test)]
 mod main_tests {
     use super::*;
@@ -166,5 +179,22 @@ mod main_tests {
         my_streak_counter.set_highest_streak(65535);
         assert_eq!(65535, my_streak_counter.get_highest_streak());
         assert_eq!(1001, my_streak_counter.get_current_streak());
+    }
+
+    #[test]
+    fn compare_times() {
+        let unix_time_1 = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_secs();
+        println!("{}", unix_time_1);
+
+        let unix_time_2 = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_secs();
+        println!("{}", unix_time_2);
+
+        assert_eq!(unix_time_2, unix_time_1);
     }
 }
