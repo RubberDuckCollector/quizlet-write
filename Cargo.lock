@@ -1055,6 +1055,7 @@ dependencies = [
  "itertools 0.15.0",
  "json",
  "ratatui",
+ "unicode-segmentation",
 ]
 
 [[package]]

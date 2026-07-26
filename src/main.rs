@@ -1,12 +1,14 @@
+use crate::streak_counter::StreakTrait;
 use clap::Parser;
 use clearscreen;
 use ratatui::crossterm::style::Stylize;
-use std::time::{SystemTime, UNIX_EPOCH, Duration};
+use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use std::{thread, time};
 
 mod flashcard_processing;
 mod hint_system;
 mod quiz;
+mod streak_counter;
 mod terminal_processing;
 
 fn main() {
@@ -14,7 +16,7 @@ fn main() {
 
     let now = SystemTime::now();
     let now_ms = now.duration_since(UNIX_EPOCH).expect("Time went backwards");
-    println!("{:?}", now_ms);
+    // println!("{:?}", now_ms);
 
     println!("{:#?}", args);
 
@@ -49,8 +51,8 @@ fn main() {
 
     #[allow(unused_variables)]
     #[rustfmt::skip]
-    let words: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
-    println!("{:?}", words);
+    let card_set: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
+    println!("{:?}", card_set);
 
     /* TODO:
         run `quiz()` which will be in `quiz.rs`
@@ -61,90 +63,12 @@ fn main() {
         OPTIMIZE: i want quiz() to fully end before writing the session's x and y coordinate data
         and plotting the graph for the session.
             - essentially, quiz() SHOULD be called by assigning the output to a variable
-            `(e.g.: let session_data = quiz(words))`
+            `(e.g.: let session_data = quiz(card_set))`
         = to implement saving and resuming a session, maybe return early from `quiz()`
         with a special flag and if the flag is found, invoke saving session procedures
     */
-}
 
-// TODO:
-// add session.json
-// session.txt will have to be handled differently
-struct QuizData {
-    x_axes: Vec<Vec<u32>>,
-    y_axes: Vec<Vec<u32>>,
-}
-
-struct StreakCounter {
-    current_streak: u16,
-    highest_streak: u16,
-}
-
-trait StreakTrait {
-    fn new(current_streak: u16, highest_streak: u16) -> Self;
-
-    fn increment_streak(&mut self);
-
-    fn decrement_streak(&mut self);
-
-    fn reset_streak(&mut self);
-
-    fn set_current_streak(&mut self, curr_streak: u16);
-
-    fn set_highest_streak(&mut self, highest_streak: u16);
-
-    fn get_current_streak(&self) -> u16;
-
-    fn get_highest_streak(&self) -> u16;
-}
-
-impl StreakTrait for StreakCounter {
-    fn new(current_streak: u16, highest_streak: u16) -> Self {
-        Self {
-            current_streak,
-            highest_streak,
-        }
-    }
-
-    fn increment_streak(&mut self) {
-        self.current_streak += 1;
-
-        if self.current_streak > self.highest_streak {
-            self.highest_streak = self.current_streak
-        }
-    }
-
-    fn decrement_streak(&mut self) {
-        if self.current_streak <= 0 {
-            self.current_streak = 0
-        } else {
-            self.current_streak -= 1
-        }
-    }
-
-    fn reset_streak(&mut self) {
-        self.current_streak = 0
-    }
-
-    fn set_current_streak(&mut self, curr_streak: u16) {
-        self.current_streak = curr_streak;
-
-        if self.current_streak > self.highest_streak {
-            self.highest_streak = self.current_streak
-        }
-    }
-
-    fn set_highest_streak(&mut self, highest_streak: u16) {
-        self.highest_streak = highest_streak
-    }
-
-    fn get_current_streak(&self) -> u16 {
-        return self.current_streak;
-    }
-
-    fn get_highest_streak(&self) -> u16 {
-        return self.highest_streak;
-    }
+    let quiz_data: quiz::QuizData = quiz::quiz(card_set, args, now_ms);
 }
 
 #[cfg(test)]
@@ -153,7 +77,7 @@ mod main_tests {
 
     #[test]
     fn streak_counter() {
-        let mut my_streak_counter = StreakCounter::new(0, 0);
+        let mut my_streak_counter = streak_counter::StreakCounter::new(0, 0);
         assert_eq!(0, my_streak_counter.get_current_streak());
 
         my_streak_counter.increment_streak();
