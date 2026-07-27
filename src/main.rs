@@ -9,10 +9,10 @@ mod flashcard_processing;
 mod hint_system;
 mod quiz;
 mod streak_counter;
-mod terminal_processing;
+mod session_settings_processing;
 
 fn main() {
-    let args: terminal_processing::Args = terminal_processing::Args::parse();
+    let args: session_settings_processing::Args = session_settings_processing::Args::parse();
 
     let now = SystemTime::now();
     let now_ms = now.duration_since(UNIX_EPOCH).expect("Time went backwards");

@@ -1,11 +1,12 @@
 use clap::{Parser, ValueEnum};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use unicode_segmentation::UnicodeSegmentation;
+use json::object;
 
 use crate::streak_counter;
 use crate::StreakTrait;
 use crate::hint_system;
-use crate::terminal_processing;
+use crate::session_settings_processing;
 
 // TODO:
 // add session.json
@@ -15,16 +16,6 @@ pub struct QuizData {
     pub x_axes: Vec<Vec<u32>>,
     pub y_axes: Vec<Vec<f32>>,
     pub session_settings_data: json::JsonValue,
-    // session_settings_data = {
-    //     "file_path_to_cards": sys.argv[1],
-    //     "difficulty": p_args.difficulty,
-    //     "randomize": p_args.randomize,
-    //     "flip": p_args.flip_cards,
-    //     "num_cards_in_set": str(NUM_CARDS),
-    //     "num_rounds": len(x_axes),
-    //     "highest_streak": str(quiz_counter.get_highest_streak()),
-    //     "is_perfect_streak": str(quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK)
-    // }
 }
 
 impl QuizData {
@@ -42,7 +33,7 @@ impl QuizData {
 }
 
 #[rustfmt::skip]
-pub fn quiz( card_set: Vec<Vec<String>>, args: terminal_processing::Args, start_time: Duration,) -> QuizData {
+pub fn quiz( card_set: Vec<Vec<String>>, args: session_settings_processing::Args, start_time: Duration,) -> QuizData {
     let mut correct_answers: Vec<Vec<String>> = Vec::new();
     let mut round_num: u16 = 0;
     let NUM_CARDS = card_set.len();
@@ -65,9 +56,32 @@ pub fn quiz( card_set: Vec<Vec<String>>, args: terminal_processing::Args, start_
 
     let mut quiz_counter: streak_counter::StreakCounter = streak_counter::StreakCounter::new(0, 0);
 
+    let session_data = object! {
+        "file_path_to_cards": args.flashcard_filepath.to_str(),
+        "difficulty": args.difficulty.to_string(),
+        "randomize": args.rand.to_string(),
+        "flip": args.flip.to_string(),
+        "num_cards_in_set": NUM_CARDS.to_string(),
+        "num_rounds": x_axes.len(),
+        "highest_streak": quiz_counter.get_highest_streak(),
+        "is_perfect_streak": &quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK,
+        // session_settings_data = {
+        //     "file_path_to_cards": sys.argv[1],
+        //     "difficulty": p_args.difficulty,
+        //     "randomize": p_args.randomize,
+        //     "flip": p_args.flip_cards,
+        //     "num_cards_in_set": str(NUM_CARDS),
+        //     "num_rounds": len(x_axes),
+        //     "highest_streak": str(quiz_counter.get_highest_streak()),
+        //     "is_perfect_streak": str(quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK)
+        // }
+    };
+
+    println!("SESSION DATA: {:?}", session_data);
+
     return QuizData::new(
         x_axes,
         y_axes,
-        json::JsonValue::new_object(),
+        session_data,
     );
 }

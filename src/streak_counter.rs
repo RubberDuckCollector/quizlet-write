@@ -1,10 +1,10 @@
 pub struct StreakCounter {
-    current_streak: u16,
-    highest_streak: u16,
+    current_streak: usize,
+    highest_streak: usize,
 }
 
 pub trait StreakTrait {
-    fn new(current_streak: u16, highest_streak: u16) -> Self;
+    fn new(current_streak: usize, highest_streak: usize) -> Self;
 
     fn increment_streak(&mut self);
 
@@ -12,17 +12,17 @@ pub trait StreakTrait {
 
     fn reset_streak(&mut self);
 
-    fn set_current_streak(&mut self, curr_streak: u16);
+    fn set_current_streak(&mut self, curr_streak: usize);
 
-    fn set_highest_streak(&mut self, highest_streak: u16);
+    fn set_highest_streak(&mut self, highest_streak: usize);
 
-    fn get_current_streak(&self) -> u16;
+    fn get_current_streak(&self) -> usize;
 
-    fn get_highest_streak(&self) -> u16;
+    fn get_highest_streak(&self) -> usize;
 }
 
 impl StreakTrait for StreakCounter {
-    fn new(current_streak: u16, highest_streak: u16) -> Self {
+    fn new(current_streak: usize, highest_streak: usize) -> Self {
         Self {
             current_streak,
             highest_streak,
@@ -49,7 +49,7 @@ impl StreakTrait for StreakCounter {
         self.current_streak = 0
     }
 
-    fn set_current_streak(&mut self, curr_streak: u16) {
+    fn set_current_streak(&mut self, curr_streak: usize) {
         self.current_streak = curr_streak;
 
         if self.current_streak > self.highest_streak {
@@ -57,15 +57,15 @@ impl StreakTrait for StreakCounter {
         }
     }
 
-    fn set_highest_streak(&mut self, highest_streak: u16) {
+    fn set_highest_streak(&mut self, highest_streak: usize) {
         self.highest_streak = highest_streak
     }
 
-    fn get_current_streak(&self) -> u16 {
+    fn get_current_streak(&self) -> usize {
         return self.current_streak;
     }
 
-    fn get_highest_streak(&self) -> u16 {
+    fn get_highest_streak(&self) -> usize {
         return self.highest_streak;
     }
 }
