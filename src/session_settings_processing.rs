@@ -3,6 +3,10 @@ use clap::{Parser, ValueEnum};
 use std::{fmt, path::PathBuf};
 
 // TODO: add descriptions for optional args
+
+// Source - https://stackoverflow.com/q/74721827
+// Posted by WebOrCode
+// Retrieved 2026-07-29, License - CC BY-SA 4.0
 #[derive(Parser, Debug)]
 pub struct Args {
     pub flashcard_filepath: PathBuf,
@@ -10,9 +14,9 @@ pub struct Args {
     pub rand: RandomSetting,
     pub flip: FlipSetting,
     #[clap(short, long, default_value_t = false)]
-    test: bool,
+    pub test: bool,
     #[clap(short, long, default_value_t = false)]
-    conceal_user_input: bool,
+    pub conceal_user_input: bool,
 }
 
 #[derive(ValueEnum, Clone, Debug, PartialEq, Eq)]

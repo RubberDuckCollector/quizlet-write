@@ -14,6 +14,8 @@ mod streak_counter;
 fn main() {
     let args: session_settings_processing::Args = session_settings_processing::Args::parse();
 
+    // println!("{:?}", &args);
+
     let now = SystemTime::now();
     let now_ms = now.duration_since(UNIX_EPOCH).expect("Time went backwards");
     // println!("{:?}", now_ms);
@@ -40,8 +42,6 @@ fn main() {
             std::process::exit(1);
         }
     }
-
-    // TODO: define optional args
 
     // clearscreen::clear().expect("Should be able to clear the screen.");
 
