@@ -16,7 +16,7 @@ pub struct Args {
     #[clap(short, long, default_value_t = false)]
     pub test: bool,
     #[clap(short, long, default_value_t = false)]
-    pub conceal_user_input: bool,
+    pub conceal_inputs: bool,
 }
 
 #[derive(ValueEnum, Clone, Debug, PartialEq, Eq)]

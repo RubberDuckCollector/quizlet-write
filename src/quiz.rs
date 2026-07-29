@@ -37,8 +37,10 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
     let THEORETICAL_MAX_STREAK = &NUM_CARDS;
     let mut x_axes: Vec<Vec<u32>> = Vec::new();
     let mut y_axes: Vec<Vec<f32>> = Vec::new();
+
+    // OPTIMIZE: assign these variables based on the --test and --conceal-user-input optional args
     let test_indicator: &str = "";
-    let hide_inputs_indicator: &str = "";
+    let conceal_inputs: &str = "";
 
     // TODO: make outline of quiz functionality from first commit of main branch
 
@@ -114,7 +116,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             // Source - https://stackoverflow.com/a/38384901
             // Posted by alexwlchan
             // Retrieved 2026-07-29, License - CC BY-SA 3.0
-            println!("Working from file {}{}{}", fs::canonicalize(&args.flashcard_filepath).unwrap().to_str().unwrap().dim(), &test_indicator, &hide_inputs_indicator);
+            println!("Working from file {}{}{}", fs::canonicalize(&args.flashcard_filepath).unwrap().to_str().unwrap().dim(), &test_indicator, &conceal_inputs);
             println!("Remaining: {}", num_remaining);
             println!("Correct: {} ({:.2})", &num_correct.to_string().green(), &current_percent_correct);
             println!("Incorrect: {}", &num_incorrect.to_string().red());
