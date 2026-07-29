@@ -9,11 +9,11 @@ const fn is_cjk_char(c: char) -> bool {
     )
 }
 
-fn make_very_hard_hint() -> String {
+pub fn make_very_hard_hint() -> String {
     "No hints!".to_string()
 }
 
-fn make_hard_with_spaces_hint(msg: &str) -> String {
+pub fn make_hard_with_spaces_hint(msg: &str) -> String {
     let mut hint: String = String::with_capacity(msg.len());
     let mut inside_brackets: bool = false;
 
@@ -39,9 +39,33 @@ fn make_hard_with_spaces_hint(msg: &str) -> String {
     hint
 }
 
-// fn make_hard_hint(msg: &str) -> &str {}
+pub fn make_hard_hint(msg: &str) -> String {
+    let mut hint: String = String::with_capacity(msg.len());
+    let mut inside_brackets: bool = false;
 
-fn make_normal_hint(msg: &str) -> String {
+    for ch in msg.chars() {
+        if ch == '(' || ch == '（' {
+            inside_brackets = true;
+            hint.push(ch);
+        } else if ch == ')' || ch == '）' {
+            inside_brackets = false;
+            hint.push(ch);
+        } else if inside_brackets {
+            // always reveal the character to the user if we're inside a pair of brackets
+            hint.push(ch);
+        } else if !ch.is_alphabetic() {
+            hint.push(ch);
+        } else {
+            // if we get here, it means the character has to be hidden from the user and replaced
+            // with an underscore
+            hint.push(if is_cjk_char(ch) { '＿' } else { '_' });
+        }
+    }
+
+    hint
+}
+
+pub fn make_normal_hint(msg: &str) -> String {
     let mut hint: String = String::with_capacity(msg.len());
     let mut inside_brackets: bool = false;
     let mut given_chars_in_hint: u16 = 1;
@@ -85,7 +109,7 @@ fn make_normal_hint(msg: &str) -> String {
     hint
 }
 
-fn make_easy_hint(msg: &str) -> String {
+pub fn make_easy_hint(msg: &str) -> String {
     let mut hint: String = String::with_capacity(msg.len());
     let mut inside_brackets: bool = false;
     let mut given_chars_in_hint: u16 = 3;

@@ -2,12 +2,17 @@ use json::{self, JsonValue};
 use clap::{Parser, ValueEnum};
 use std::{fmt, path::PathBuf};
 
+// TODO: add descriptions for optional args
 #[derive(Parser, Debug)]
 pub struct Args {
     pub flashcard_filepath: PathBuf,
     pub difficulty: Difficulty,
     pub rand: RandomSetting,
     pub flip: FlipSetting,
+    #[clap(short, long, default_value_t = false)]
+    test: bool,
+    #[clap(short, long, default_value_t = false)]
+    conceal_user_input: bool,
 }
 
 #[derive(ValueEnum, Clone, Debug, PartialEq, Eq)]

@@ -307,4 +307,5 @@ mod tests {
         // let b: Vec<(usize, usize)> = collate_consecutive_separators(&a, "|");
         // println!("{:?}", b);
     // }
+
 }

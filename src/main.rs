@@ -8,8 +8,8 @@ use std::{thread, time};
 mod flashcard_processing;
 mod hint_system;
 mod quiz;
-mod streak_counter;
 mod session_settings_processing;
+mod streak_counter;
 
 fn main() {
     let args: session_settings_processing::Args = session_settings_processing::Args::parse();
@@ -51,7 +51,7 @@ fn main() {
 
     #[allow(unused_variables)]
     #[rustfmt::skip]
-    let card_set: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
+    let mut card_set: Vec<Vec<String>> = flashcard_processing::render_cards(&args.flashcard_filepath, separator);
     println!("{:?}", card_set);
 
     /* TODO:
