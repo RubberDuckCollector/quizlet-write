@@ -716,7 +716,7 @@ def main():
     parser.add_argument("--test", action="store_true", help="Enabling this will make the stat collection functionality NOT work, But the program will still function as normal")
     parser.add_argument("--flip", type=pathlib.Path, help="Swaps the prompts and answers in a file and outputs it in a new file")
     parser.add_argument("--sync", action="store_true", help="Collects data in PROJECT_ROOT/stats/records/ and makes overwrites that data to PROJECT_ROOT/stats/lifetime_stats.json to fix parity issues")
-    parser.add_argument("--hide_inputs", action="store_true", help="Hides your inputs when you type.")
+    parser.add_argument("--hide-inputs", action="store_true", help="Hides your inputs when you type.")
 
     """
     `nargs="?"`: makes the positional argument optional.
