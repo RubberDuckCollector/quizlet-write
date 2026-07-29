@@ -6,8 +6,10 @@ edition = "2024"
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
 clearscreen = "4.0.6"
+ctrlc = "3.5.2"
 itertools = "0.15.0"
 json = "0.12.4"
 ratatui = "0.30.2"
+rpassword = "7.5.4"
 text_io = "0.1.13"
 unicode-segmentation = "1.13.3"

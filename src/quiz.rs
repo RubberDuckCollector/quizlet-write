@@ -1,11 +1,14 @@
 use clap::{Parser, ValueEnum};
+use rpassword::read_password;
 use json::object;
 use ratatui::crossterm::style::Stylize;
 use std::cmp::Ordering;
 use std::fs;
+use std::io::{Write, stdin, stdout};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
-use unicode_segmentation::UnicodeSegmentation;
+use std::{thread, time};
 use text_io::read;
+use unicode_segmentation::UnicodeSegmentation;
 
 use crate::StreakTrait;
 use crate::hint_system;
@@ -39,8 +42,14 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
     let mut y_axes: Vec<Vec<f32>> = Vec::new();
 
     // OPTIMIZE: assign these variables based on the --test and --conceal-user-input optional args
-    let test_indicator: &str = "";
-    let conceal_inputs: &str = "";
+    let test_indicator: &str = match &args.test {
+        true => " TEST MODE - NO STATS SAVED",
+        false => "",
+    };
+    let conceal_inputs: &str = match &args.conceal_inputs {
+        true => " -- INPUTS HIDDEN",
+        false => "",
+    };
 
     // TODO: make outline of quiz functionality from first commit of main branch
 
@@ -77,7 +86,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         let mut num_correct: u32 = 0;
         let mut num_answered: u32 = 0;
         let mut num_incorrect: u32 = 0;
-        let mut num_remaining = &card_set.len();
+        let mut num_remaining = card_set.len();
 
         for subl in &card_set {
             let [prompt, answer] = &subl[..] else {
@@ -116,6 +125,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             // Source - https://stackoverflow.com/a/38384901
             // Posted by alexwlchan
             // Retrieved 2026-07-29, License - CC BY-SA 3.0
+            stdout().flush().unwrap();
             println!("Working from file {}{}{}", fs::canonicalize(&args.flashcard_filepath).unwrap().to_str().unwrap().dim(), &test_indicator, &conceal_inputs);
             println!("Remaining: {}", num_remaining);
             println!("Correct: {} ({:.2})", &num_correct.to_string().green(), &current_percent_correct);
@@ -124,7 +134,77 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             println!("Streak: {} ({})", &quiz_counter.get_current_streak().to_string().magenta(), &quiz_counter.get_highest_streak().to_string().magenta());
             println!("What's the answer to {}?", prompt.clone().cyan());
             println!("Hint: {}", &hint.dim());
-            let user_response: String = read!("{}\n");
+            print!("> ");
+            stdout().flush().unwrap();
+
+            let mut user_response = match &args.conceal_inputs {
+                true => read_password().unwrap(),
+                // FIXME: replace text_io with rustyline or reedline
+                // https://github.com/kkawakam/rustyline
+                // https://github.com/nushell/reedline
+                false => read!("{}\n")
+            };
+            let mut user_response_trimmed = user_response.as_str().trim();
+
+            if user_response_trimmed.len() == 0 {
+                quiz_counter.reset_streak();
+                num_incorrect += 1;
+                println!("Don't know? Copy out the answer so you remember it!");
+                loop {
+                    print!("Copy the answer below ↓\n- {}\n> ", answer);
+                    user_response = read!("{}\n");
+                    user_response_trimmed = user_response.trim();
+                    if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
+                        println!("{}", "Next question.".cyan());
+                        thread::sleep(time::Duration::from_millis(500));
+                        clearscreen::clear().expect("failed to clear screen");
+                        break
+                    } println!("Try again.");
+                    // FIXME: add file stuff here (python below)
+                    // # mark as incorrect as the user doesn't know the answer
+                    // f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                    // f.flush()  # essential to prevent a file error
+                }
+            } else {
+                if user_response_trimmed == answer {
+                    quiz_counter.increment_streak();
+                    num_correct += 1;
+                    println!("{}", "Correct. Well done!".green());
+                    thread::sleep(time::Duration::from_millis(500));
+                    clearscreen::clear().expect("failed to clear screen");
+                    // FIXME: write files here
+                    // f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                    // f.flush()
+                } else if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
+                    quiz_counter.increment_streak();
+                    num_correct += 1;
+                    println!("{}", "Correct".green());
+                    thread::sleep(time::Duration::from_millis(500));
+                    clearscreen::clear().expect("failed to clear screen");
+                } else {
+                    stdout().flush().unwrap();
+                    println!("\n✓ {}", answer.clone().green());
+                    println!("✗ {}", user_response_trimmed.magenta());
+                    println!("{} {} and {} above.", "Incorrect.".red(), "Correct answer".green(), "your answer".magenta());
+                    stdout().flush().unwrap();
+
+                    print!("Override as correct? (empty answer = don't override) ");
+                    let veto_answer: String = read!("{}\n");
+
+                    if veto_answer.len() == 0 {
+                        quiz_counter.reset_streak();
+                        num_incorrect += 1;
+                        println!("{}", "Not overridden.".yellow());
+                        thread::sleep(time::Duration::from_millis(500));
+                        clearscreen::clear().expect("failed to clear screen");
+                    }
+                }
+            }
+
+            num_answered += 1;
+            num_remaining -= 1;
+
+            // WARNING: before anything else regarding stats collection, develop saving and resuming functionality
         }
     }
 

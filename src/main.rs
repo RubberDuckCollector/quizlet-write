@@ -1,4 +1,5 @@
 use crate::streak_counter::StreakTrait;
+use rpassword;
 use clap::Parser;
 use clearscreen;
 use ratatui::crossterm::style::Stylize;
@@ -12,6 +13,15 @@ mod session_settings_processing;
 mod streak_counter;
 
 fn main() {
+
+    // match rpassword::read_password() {
+    //     Ok(password) => password,
+    //     Err(e) => {
+    //         eprintln!("Error: {e}");
+    //         return;
+    //     }
+    // };
+
     let args: session_settings_processing::Args = session_settings_processing::Args::parse();
 
     // println!("{:?}", &args);
