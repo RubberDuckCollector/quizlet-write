@@ -376,25 +376,28 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                                 correct_answers[key_to_copy] = card_set[key_to_copy]
 
                         else:
+                            answer_msg = "\n✓ "
+                            user_response_msg = "✗ "
+                            for i in range(len(max([user_response, answer], key=len))):
+                                try:
+                                    if user_response[i] == answer[i]:
+                                        answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
+                                        user_response_msg += f"{my_modules.color.Color.LightMagenta}{user_response[i]}{my_modules.color.Color.Reset}"
+                                    else:
+                                        answer_msg += f"{my_modules.color.Color.LightGray}{answer[i]}{my_modules.color.Color.Reset}"
+                                        user_response_msg += f"{my_modules.color.Color.LightGray}{user_response[i]}{my_modules.color.Color.Reset}"
+                                except IndexError:
+                                    if len(user_response) < len(answer):
+                                        answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
+                                    else:
+                                        break
+
                             # ask for override
-                            print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
-                            print(f"✗ {my_modules.color.Color.LightMagenta}{user_response}{my_modules.color.Color.Reset}")
+                            print(answer_msg)
+                            print(user_response_msg)
+                            # print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
+                            # print(f"✗ {my_modules.color.Color.LightMagenta}{user_response}{my_modules.color.Color.Reset}")
                             print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} {my_modules.color.Color.Green}Correct answer{my_modules.color.Color.Reset} and {my_modules.color.Color.LightMagenta}your answer{my_modules.color.Color.Reset} above.")
-
-                            # TODO: implement a feature where if the character is in the right place, underline it
-                            # BEWARE INDEXING PROBLEMS
-
-                            # print("✗ ", end='')
-                            #     for i, char in enumerate(user_response):
-                            #         try:
-                            #             if char == answer[i]:
-                            #                 print(f"{my_modules.color.Color.Underline}{my_modules.color.Color.LightMagenta}{char}{my_modules.color.Color.Reset}", end='')
-                            #             else:
-                            #                 print(f"{my_modules.color.Color.LightMagenta}{char}{my_modules.color.Color.Reset}", end='')
-                            #             print()
-                            #             print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} {my_modules.color.Color.Green}Correct answer{my_modules.color.Color.Reset} and {my_modules.color.Color.LightMagenta}your answer{my_modules.color.Color.Reset} above.")
-                            #         except IndexError:
-                            #             print(f"{my_modules.color.Color.LightMagenta}{char}{my_modules.color.Color.Reset}", end='')
 
                             override = input("Override as correct? (empty answer = don't override) ")
 
@@ -534,7 +537,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             # and also calculate the graph's width based on the number of ticks, hence `len(my_x_ticks)` ...
             # ... (which are 2 different things)
             my_x_ticks = [i for i in range(1, NUM_CARDS + 1)]
-            
+
             # Calculate the figure width based on the number of x-axis labels
             fig_width = max(8, width_per_label * len(my_x_ticks))  # Ensure minimum width
 
