@@ -1,7 +1,9 @@
 use clap::{Parser, ValueEnum};
-use rpassword::read_password;
 use json::object;
 use ratatui::crossterm::style::Stylize;
+use rpassword::read_password;
+use rustyline::error::ReadlineError;
+use rustyline::{DefaultEditor};
 use std::cmp::Ordering;
 use std::fs;
 use std::io::{Write, stdin, stdout};
@@ -15,10 +17,8 @@ use crate::hint_system;
 use crate::session_settings_processing;
 use crate::session_settings_processing::Difficulty;
 use crate::streak_counter;
+use crate::user_input;
 
-// TODO:
-// add session.json
-// session.txt will have to be handled differently
 #[derive(Debug)]
 pub struct QuizData(pub Vec<Vec<u32>>, pub Vec<Vec<f32>>, pub json::JsonValue);
 
@@ -33,13 +33,14 @@ impl QuizData {
 }
 
 #[rustfmt::skip]
-pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::Args, start_time: Duration,) -> QuizData {
+pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::Args, start_time: Duration,) -> Result<QuizData, ReadlineError> {
     let mut correct_answers: Vec<Vec<String>> = Vec::new();
     let mut round_num: u32 = 0;
     let NUM_CARDS = card_set.len();
     let THEORETICAL_MAX_STREAK = &NUM_CARDS;
     let mut x_axes: Vec<Vec<u32>> = Vec::new();
     let mut y_axes: Vec<Vec<f32>> = Vec::new();
+    let mut rl = DefaultEditor::new()?;
 
     // OPTIMIZE: assign these variables based on the --test and --conceal-user-input optional args
     let test_indicator: &str = match &args.test {
@@ -134,72 +135,76 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             println!("Streak: {} ({})", &quiz_counter.get_current_streak().to_string().magenta(), &quiz_counter.get_highest_streak().to_string().magenta());
             println!("What's the answer to {}?", prompt.clone().cyan());
             println!("Hint: {}", &hint.dim());
-            print!("> ");
+            // print!("> ");
             stdout().flush().unwrap();
 
-            let mut user_response = match &args.conceal_inputs {
-                true => read_password().unwrap(),
-                // FIXME: replace text_io with rustyline or reedline
-                // https://github.com/kkawakam/rustyline
-                // https://github.com/nushell/reedline
-                false => read!("{}\n")
+            let mut user_response: Result<String, ReadlineError> = match &args.conceal_inputs {
+                true => {
+                    stdout().flush().unwrap();
+                    print!("> ");
+                    read_password()
+                    .map_err(|_| ReadlineError::Io(std::io::Error::other("failed to read password")))
+                }
+                false => {
+                    user_input::get_user_response()
+                }
             };
-            let mut user_response_trimmed = user_response.as_str().trim();
+            let mut user_response_trimmed = user_response.unwrap().as_str().trim();
 
-            if user_response_trimmed.len() == 0 {
-                quiz_counter.reset_streak();
-                num_incorrect += 1;
-                println!("Don't know? Copy out the answer so you remember it!");
-                loop {
-                    print!("Copy the answer below ↓\n- {}\n> ", answer);
-                    user_response = read!("{}\n");
-                    user_response_trimmed = user_response.trim();
-                    if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
-                        println!("{}", "Next question.".cyan());
-                        thread::sleep(time::Duration::from_millis(500));
-                        clearscreen::clear().expect("failed to clear screen");
-                        break
-                    } println!("Try again.");
-                    // FIXME: add file stuff here (python below)
-                    // # mark as incorrect as the user doesn't know the answer
-                    // f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
-                    // f.flush()  # essential to prevent a file error
-                }
-            } else {
-                if user_response_trimmed == answer {
-                    quiz_counter.increment_streak();
-                    num_correct += 1;
-                    println!("{}", "Correct. Well done!".green());
-                    thread::sleep(time::Duration::from_millis(500));
-                    clearscreen::clear().expect("failed to clear screen");
-                    // FIXME: write files here
-                    // f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
-                    // f.flush()
-                } else if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
-                    quiz_counter.increment_streak();
-                    num_correct += 1;
-                    println!("{}", "Correct".green());
-                    thread::sleep(time::Duration::from_millis(500));
-                    clearscreen::clear().expect("failed to clear screen");
-                } else {
-                    stdout().flush().unwrap();
-                    println!("\n✓ {}", answer.clone().green());
-                    println!("✗ {}", user_response_trimmed.magenta());
-                    println!("{} {} and {} above.", "Incorrect.".red(), "Correct answer".green(), "your answer".magenta());
-                    stdout().flush().unwrap();
+            // if user_response_trimmed.len() == 0 {
+            //     quiz_counter.reset_streak();
+            //     num_incorrect += 1;
+            //     println!("Don't know? Copy out the answer so you remember it!");
+            //     loop {
+            //         print!("Copy the answer below ↓\n- {}\n> ", answer);
+            //         user_response = read!("{}\n");
+            //         user_response_trimmed = user_response.trim();
+            //         if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
+            //             println!("{}", "Next question.".cyan());
+            //             thread::sleep(time::Duration::from_millis(500));
+            //             clearscreen::clear().expect("failed to clear screen");
+            //             break
+            //         } println!("Try again.");
+            //         // FIXME: add file stuff here (python below)
+            //         // # mark as incorrect as the user doesn't know the answer
+            //         // f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+            //         // f.flush()  # essential to prevent a file error
+            //     }
+            // } else {
+            //     if user_response_trimmed == answer {
+            //         quiz_counter.increment_streak();
+            //         num_correct += 1;
+            //         println!("{}", "Correct. Well done!".green());
+            //         thread::sleep(time::Duration::from_millis(500));
+            //         clearscreen::clear().expect("failed to clear screen");
+            //         // FIXME: write files here
+            //         // f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+            //         // f.flush()
+            //     } else if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
+            //         quiz_counter.increment_streak();
+            //         num_correct += 1;
+            //         println!("{}", "Correct".green());
+            //         thread::sleep(time::Duration::from_millis(500));
+            //         clearscreen::clear().expect("failed to clear screen");
+            //     } else {
+            //         stdout().flush().unwrap();
+            //         println!("\n✓ {}", answer.clone().green());
+            //         println!("✗ {}", user_response_trimmed.magenta());
+            //         println!("{} {} and {} above.", "Incorrect.".red(), "Correct answer".green(), "your answer".magenta());
+            //         stdout().flush().unwrap();
 
-                    print!("Override as correct? (empty answer = don't override) ");
-                    let veto_answer: String = read!("{}\n");
+            //         print!("Override as correct? (empty answer = don't override) ");
+            //         let veto_answer: String = read!("{}\n");
 
-                    if veto_answer.len() == 0 {
-                        quiz_counter.reset_streak();
-                        num_incorrect += 1;
-                        println!("{}", "Not overridden.".yellow());
-                        thread::sleep(time::Duration::from_millis(500));
-                        clearscreen::clear().expect("failed to clear screen");
-                    }
-                }
-            }
+            //         if veto_answer.len() == 0 {
+            //             quiz_counter.reset_streak();
+            //             num_incorrect += 1;
+            //             println!("{}", "Not overridden.".yellow());
+            //             thread::sleep(time::Duration::from_millis(500));
+            //             clearscreen::clear().expect("failed to clear screen");
+            //         }
+            //     }
+            // }
 
             num_answered += 1;
             num_remaining -= 1;
@@ -208,9 +213,9 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         }
     }
 
-    return QuizData::new(
+    return Ok(QuizData::new(
         x_axes,
         y_axes,
         session_data,
-    );
+    ));
 }

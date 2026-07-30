@@ -1,8 +1,9 @@
 use crate::streak_counter::StreakTrait;
-use rpassword;
 use clap::Parser;
 use clearscreen;
 use ratatui::crossterm::style::Stylize;
+use rpassword;
+use rustyline::error::ReadlineError;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use std::{thread, time};
 
@@ -11,9 +12,9 @@ mod hint_system;
 mod quiz;
 mod session_settings_processing;
 mod streak_counter;
+mod user_input;
 
 fn main() {
-
     // match rpassword::read_password() {
     //     Ok(password) => password,
     //     Err(e) => {
@@ -78,7 +79,7 @@ fn main() {
         with a special flag and if the flag is found, invoke saving session procedures
     */
 
-    let quiz_data: quiz::QuizData = quiz::quiz(card_set, args, now_ms);
+    let quiz_data: Result<quiz::QuizData, ReadlineError> = quiz::quiz(card_set, args, now_ms);
 }
 
 #[cfg(test)]
