@@ -7,6 +7,7 @@ use rustyline::error::ReadlineError;
 use std::cmp::Ordering;
 use std::fs;
 use std::io::{Write, stdin, stdout};
+use std::ops::Index;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use std::{thread, time};
 use text_io::read;
@@ -88,6 +89,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         let mut num_answered: u32 = 0;
         let mut num_incorrect: u32 = 0;
         let mut num_remaining = card_set.len();
+        let mut cards_to_remove: Vec<Vec<String>> = Vec::new();
 
         for subl in &card_set {
             let [prompt, answer] = &subl[..] else {
@@ -135,9 +137,9 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             println!("Streak: {} ({})", &quiz_counter.get_current_streak().to_string().magenta(), &quiz_counter.get_highest_streak().to_string().magenta());
             println!("What's the answer to {}?", prompt.clone().cyan());
             println!("Hint: {}", &hint.dim());
-            // print!("> ");
             stdout().flush().unwrap();
 
+            // logic for answering a question
             let user_response: Result<String, ReadlineError> = match &args.conceal_inputs {
                 true => {
                     stdout().flush().unwrap();
@@ -187,6 +189,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                 if &user_response_trimmed == answer {
                     quiz_counter.increment_streak();
                     num_correct += 1;
+                    cards_to_remove.push(vec![prompt.clone(), answer.clone()]);
                     println!("{}", "Correct. Well done!".green());
                     thread::sleep(time::Duration::from_millis(500));
                     clearscreen::clear().expect("failed to clear screen");
@@ -196,6 +199,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                 } else if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
                     quiz_counter.increment_streak();
                     num_correct += 1;
+                    cards_to_remove.push(vec![prompt.clone(), answer.clone()]);
                     println!("{}", "Correct".green());
                     thread::sleep(time::Duration::from_millis(500));
                     clearscreen::clear().expect("failed to clear screen");
@@ -215,6 +219,13 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                         println!("{}", "Not overridden.".yellow());
                         thread::sleep(time::Duration::from_millis(500));
                         clearscreen::clear().expect("failed to clear screen");
+                    } else {
+                        quiz_counter.increment_streak();
+                        num_correct += 1;
+                        cards_to_remove.push(vec![prompt.clone(), answer.clone()]);
+                        println!("Overridden as {}.", "Correct".green());
+                        thread::sleep(time::Duration::from_millis(500));
+                        clearscreen::clear().expect("failed to clear screen");
                     }
                 }
             }
@@ -223,12 +234,19 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             num_remaining -= 1;
 
             // WARNING: before anything else regarding stats collection, develop saving and resuming functionality
-            // TODO: explore ctrlc crate and maybe use that instead of the current readline ctrl c
-            // and ctrl d handling which only works when the user is being prompted to answer
-            // COUNTERPOINT: every game ever can be force quit to lose data or bug it out, i think
-            // the user should be partly responsible for how they use the program so long as the
-            // stipulations are clearly communicated
         }
+
+        println!("{:?}", card_set);
+        for (i, subl) in cards_to_remove.iter().enumerate() {
+            // BUG: this doesn't work
+            card_set.remove(i);
+        }
+        println!("{:?}", card_set);
+
+        // for each round, carry only the incorrect answers through to the next one
+        // make a vec of the correct answers for that round and one for the incorrect answers
+        // store them both under a 2d vec [[correct_vec, incorrect_vec]] where the index of each
+        // sublist denotes what round it is
     }
 
     return Ok(QuizData::new(
