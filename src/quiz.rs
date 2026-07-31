@@ -1,9 +1,9 @@
-use clap::{Parser, ValueEnum};
+use clap::{Error, Parser, ValueEnum};
 use json::object;
 use ratatui::crossterm::style::Stylize;
 use rpassword::read_password;
+use rustyline::DefaultEditor;
 use rustyline::error::ReadlineError;
-use rustyline::{DefaultEditor};
 use std::cmp::Ordering;
 use std::fs;
 use std::io::{Write, stdin, stdout};
@@ -138,7 +138,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             // print!("> ");
             stdout().flush().unwrap();
 
-            let mut user_response: Result<String, ReadlineError> = match &args.conceal_inputs {
+            let user_response: Result<String, ReadlineError> = match &args.conceal_inputs {
                 true => {
                     stdout().flush().unwrap();
                     print!("> ");
@@ -149,67 +149,85 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                     user_input::get_user_response()
                 }
             };
-            let mut user_response_trimmed = user_response.unwrap().as_str().trim();
+            match user_response {
+                Ok(ref _string) => (),
+                Err(ReadlineError::Eof) => return Err(ReadlineError::Eof),
+                Err(ReadlineError::Interrupted) => return Err(ReadlineError::Interrupted),
+                Err(err) => return Err(err),
+            }
+            let user_response_trimmed = user_response.unwrap().as_str().trim().to_string();
 
-            // if user_response_trimmed.len() == 0 {
-            //     quiz_counter.reset_streak();
-            //     num_incorrect += 1;
-            //     println!("Don't know? Copy out the answer so you remember it!");
-            //     loop {
-            //         print!("Copy the answer below ↓\n- {}\n> ", answer);
-            //         user_response = read!("{}\n");
-            //         user_response_trimmed = user_response.trim();
-            //         if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
-            //             println!("{}", "Next question.".cyan());
-            //             thread::sleep(time::Duration::from_millis(500));
-            //             clearscreen::clear().expect("failed to clear screen");
-            //             break
-            //         } println!("Try again.");
-            //         // FIXME: add file stuff here (python below)
-            //         // # mark as incorrect as the user doesn't know the answer
-            //         // f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
-            //         // f.flush()  # essential to prevent a file error
-            //     }
-            // } else {
-            //     if user_response_trimmed == answer {
-            //         quiz_counter.increment_streak();
-            //         num_correct += 1;
-            //         println!("{}", "Correct. Well done!".green());
-            //         thread::sleep(time::Duration::from_millis(500));
-            //         clearscreen::clear().expect("failed to clear screen");
-            //         // FIXME: write files here
-            //         // f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
-            //         // f.flush()
-            //     } else if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
-            //         quiz_counter.increment_streak();
-            //         num_correct += 1;
-            //         println!("{}", "Correct".green());
-            //         thread::sleep(time::Duration::from_millis(500));
-            //         clearscreen::clear().expect("failed to clear screen");
-            //     } else {
-            //         stdout().flush().unwrap();
-            //         println!("\n✓ {}", answer.clone().green());
-            //         println!("✗ {}", user_response_trimmed.magenta());
-            //         println!("{} {} and {} above.", "Incorrect.".red(), "Correct answer".green(), "your answer".magenta());
-            //         stdout().flush().unwrap();
+            if user_response_trimmed.len() == 0 {
+                quiz_counter.reset_streak();
+                num_incorrect += 1;
+                println!("Don't know? Copy out the answer so you remember it!");
+                loop {
+                    print!("Copy the answer below ↓\n- {}\n> ", answer);
+                    let user_response_dont_know = user_input::get_user_response();
+                    match user_response_dont_know {
+                            Ok(ref _string) => (),
+                            Err(ReadlineError::Eof) => return Err(ReadlineError::Eof),
+                            Err(ReadlineError::Interrupted) => return Err(ReadlineError::Interrupted),
+                            Err(err) => return Err(err)
+                        }
+                    let user_response_dont_know_trimmed = user_response_dont_know.unwrap().as_str().trim().to_string();
+                    // user_response_trimmed = user_response.trim();
+                    if user_response_dont_know_trimmed.to_lowercase() == answer.to_lowercase() {
+                        println!("{}", "Next question.".cyan());
+                        thread::sleep(time::Duration::from_millis(500));
+                        clearscreen::clear().expect("failed to clear screen");
+                        break
+                    } println!("Try again.");
+                    // FIXME: add file stuff here (python below)
+                    // # mark as incorrect as the user doesn't know the answer
+                    // f.write(f"✗ {prompt.ljust(max_left_length)} {answer}\n")
+                    // f.flush()  # essential to prevent a file error
+                }
+            } else {
+                if &user_response_trimmed == answer {
+                    quiz_counter.increment_streak();
+                    num_correct += 1;
+                    println!("{}", "Correct. Well done!".green());
+                    thread::sleep(time::Duration::from_millis(500));
+                    clearscreen::clear().expect("failed to clear screen");
+                    // FIXME: write files here
+                    // f.write(f"✓ {prompt.ljust(max_left_length)} {answer}\n")
+                    // f.flush()
+                } else if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
+                    quiz_counter.increment_streak();
+                    num_correct += 1;
+                    println!("{}", "Correct".green());
+                    thread::sleep(time::Duration::from_millis(500));
+                    clearscreen::clear().expect("failed to clear screen");
+                } else {
+                    stdout().flush().unwrap();
+                    println!("\n✓ {}", answer.clone().green());
+                    println!("✗ {}", user_response_trimmed.magenta());
+                    println!("{} {} and {} above.", "Incorrect.".red(), "Correct answer".green(), "your answer".magenta());
+                    stdout().flush().unwrap();
 
-            //         print!("Override as correct? (empty answer = don't override) ");
-            //         let veto_answer: String = read!("{}\n");
+                    print!("Override as correct? (empty answer = don't override) ");
+                    let veto_answer: String = read!("{}\n");
 
-            //         if veto_answer.len() == 0 {
-            //             quiz_counter.reset_streak();
-            //             num_incorrect += 1;
-            //             println!("{}", "Not overridden.".yellow());
-            //             thread::sleep(time::Duration::from_millis(500));
-            //             clearscreen::clear().expect("failed to clear screen");
-            //         }
-            //     }
-            // }
+                    if veto_answer.len() == 0 {
+                        quiz_counter.reset_streak();
+                        num_incorrect += 1;
+                        println!("{}", "Not overridden.".yellow());
+                        thread::sleep(time::Duration::from_millis(500));
+                        clearscreen::clear().expect("failed to clear screen");
+                    }
+                }
+            }
 
             num_answered += 1;
             num_remaining -= 1;
 
             // WARNING: before anything else regarding stats collection, develop saving and resuming functionality
+            // TODO: explore ctrlc crate and maybe use that instead of the current readline ctrl c
+            // and ctrl d handling which only works when the user is being prompted to answer
+            // COUNTERPOINT: every game ever can be force quit to lose data or bug it out, i think
+            // the user should be partly responsible for how they use the program so long as the
+            // stipulations are clearly communicated
         }
     }
 

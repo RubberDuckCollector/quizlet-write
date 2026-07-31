@@ -80,6 +80,19 @@ fn main() {
     */
 
     let quiz_data: Result<quiz::QuizData, ReadlineError> = quiz::quiz(card_set, args, now_ms);
+
+    match quiz_data {
+        Ok(_string) => (),
+        Err(ReadlineError::Eof) => {
+            println!("Eof happened here")
+        }
+        Err(ReadlineError::Interrupted) => {
+            println!("Interrupted happened here")
+        }
+        Err(err) => {
+            println!("err happened here: {}", err)
+        }
+    }
 }
 
 #[cfg(test)]
