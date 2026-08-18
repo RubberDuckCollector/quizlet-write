@@ -376,27 +376,27 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                                 correct_answers[key_to_copy] = card_set[key_to_copy]
 
                         else:
-                            answer_msg = "\n✓ "
-                            user_response_msg = "✗ "
-                            for i in range(len(max([user_response, answer], key=len))):
-                                try:
-                                    if user_response[i] == answer[i]:
-                                        answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
-                                        user_response_msg += f"{my_modules.color.Color.LightMagenta}{user_response[i]}{my_modules.color.Color.Reset}"
-                                    else:
-                                        answer_msg += f"{my_modules.color.Color.LightGray}{answer[i]}{my_modules.color.Color.Reset}"
-                                        user_response_msg += f"{my_modules.color.Color.LightGray}{user_response[i]}{my_modules.color.Color.Reset}"
-                                except IndexError:
-                                    if len(user_response) < len(answer):
-                                        answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
-                                    else:
-                                        break
+                            # answer_msg = "\n✓ "
+                            # user_response_msg = "✗ "
+                            # for i in range(len(max([user_response, answer], key=len))):
+                            #     try:
+                            #         if user_response[i] == answer[i]:
+                            #             answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
+                            #             user_response_msg += f"{my_modules.color.Color.LightMagenta}{user_response[i]}{my_modules.color.Color.Reset}"
+                            #         else:
+                            #             answer_msg += f"{my_modules.color.Color.LightGray}{answer[i]}{my_modules.color.Color.Reset}"
+                            #             user_response_msg += f"{my_modules.color.Color.LightGray}{user_response[i]}{my_modules.color.Color.Reset}"
+                            #     except IndexError:
+                            #         if len(user_response) < len(answer):
+                            #             answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
+                            #         else:
+                            #             break
 
                             # ask for override
-                            print(answer_msg)
-                            print(user_response_msg)
-                            # print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
-                            # print(f"✗ {my_modules.color.Color.LightMagenta}{user_response}{my_modules.color.Color.Reset}")
+                            # print(answer_msg)
+                            # print(user_response_msg)
+                            print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
+                            print(f"✗ {my_modules.color.Color.LightMagenta}{user_response}{my_modules.color.Color.Reset}")
                             print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} {my_modules.color.Color.Green}Correct answer{my_modules.color.Color.Reset} and {my_modules.color.Color.LightMagenta}your answer{my_modules.color.Color.Reset} above.")
 
                             override = input("Override as correct? (empty answer = don't override) ")
