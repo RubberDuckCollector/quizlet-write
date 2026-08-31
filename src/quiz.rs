@@ -243,10 +243,12 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         }
         println!("{:?}", card_set);
 
-        // for each round, carry only the incorrect answers through to the next one
-        // make a vec of the correct answers for that round and one for the incorrect answers
-        // store them both under a 2d vec [[correct_vec, incorrect_vec]] where the index of each
-        // sublist denotes what round it is
+        // vector where each round is a sublist containing 3 sublists:
+        // 1. the full flash card ste
+        // 2. the correct answers
+        // 3. the incorrect answers
+        // the incorrect answers are passed on to the next round if the length is > 0
+        // this way, the history of the session is preserved fully without compromises
     }
 
     return Ok(QuizData::new(
