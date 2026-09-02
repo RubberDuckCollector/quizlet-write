@@ -129,7 +129,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             // Posted by alexwlchan
             // Retrieved 2026-07-29, License - CC BY-SA 3.0
             stdout().flush().unwrap();
-            println!("Working from file {}{}{}", fs::canonicalize(&args.flashcard_filepath).unwrap().to_str().unwrap().dim(), &test_indicator, &conceal_inputs);
+            println!("Working from file {}{}{}", fs::canonicalize(&args.flashcard_filepath).unwrap().to_str().unwrap().dim(), &test_indicator, &conceal_inputs.bold());
             println!("Remaining: {}", num_remaining);
             println!("Correct: {} ({:.2})", &num_correct.to_string().green(), &current_percent_correct);
             println!("Incorrect: {}", &num_incorrect.to_string().red());
