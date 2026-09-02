@@ -33,6 +33,35 @@ impl QuizData {
     }
 }
 
+#[derive(Debug)]
+struct SessionCardAggregate {
+    total_correct: usize,
+    round_num: usize,
+    total_cards: Vec<Vec<Vec<String>>>,
+    round_correct_cards: Vec<Vec<String>>,
+    round_incorrect_cards: Vec<Vec<String>>,
+}
+
+impl SessionCardAggregate {
+    fn new(
+        total_correct: usize,
+        round_num: usize,
+        total_cards: Vec<Vec<Vec<String>>>,
+        round_correct_cards: Vec<Vec<String>>,
+        round_incorrect_cards: Vec<Vec<String>>,
+    ) -> Self {
+        Self {
+            total_correct,
+            round_num,
+            total_cards,
+            round_correct_cards,
+            round_incorrect_cards,
+            // add a space for current card set in question and replace card_set.len() != 0 with
+            // that
+        }
+    }
+}
+
 #[rustfmt::skip]
 pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::Args, start_time: Duration,) -> Result<QuizData, ReadlineError> {
     let mut correct_answers: Vec<Vec<String>> = Vec::new();
@@ -41,8 +70,12 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
     let THEORETICAL_MAX_STREAK = &NUM_CARDS;
     let mut x_axes: Vec<Vec<u32>> = Vec::new();
     let mut y_axes: Vec<Vec<f32>> = Vec::new();
-    let mut session_card_aggregate: Vec<Vec<Vec<String>>> = Vec::new();
-    session_card_aggregate.push(card_set.clone());
+    let mut s_c_a: SessionCardAggregate = SessionCardAggregate::new(0, 0, Vec::new(), Vec::new(), Vec::new());
+
+    s_c_a.total_cards.push(card_set.clone());
+    s_c_a.round_correct_cards.push(Vec::new());
+    s_c_a.round_incorrect_cards.push(Vec::new());
+    println!("{:#?}", s_c_a);
 
     let test_indicator: &str = match &args.test {
         true => " TEST MODE - NO STATS SAVED",
@@ -81,8 +114,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
 
     // println!("{:#?}", &card_set);
 
-    while card_set.len() != 0 {
-        round_num += 1;
+    while s_c_a.total_correct != s_c_a.total_cards[0][0].len() {
         let mut num_correct: u32 = 0;
         let mut num_answered: u32 = 0;
         let mut num_incorrect: u32 = 0;
@@ -160,6 +192,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             if user_response_trimmed.len() == 0 {
                 quiz_counter.reset_streak();
                 num_incorrect += 1;
+                s_c_a.round_incorrect_cards.push(subl.clone());
                 println!("Don't know? Copy out the answer so you remember it!");
                 loop {
                     print!("Copy the answer below ↓\n- {}\n> ", answer);
@@ -187,7 +220,8 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                 if &user_response_trimmed == answer {
                     quiz_counter.increment_streak();
                     num_correct += 1;
-                    cards_to_remove.push(vec![prompt.clone(), answer.clone()]);
+                    s_c_a.total_correct += 1;
+                    s_c_a.round_correct_cards.push(subl.clone());
                     println!("{}", "Correct. Well done!".green());
                     thread::sleep(time::Duration::from_millis(500));
                     clearscreen::clear().expect("failed to clear screen");
@@ -197,7 +231,8 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                 } else if user_response_trimmed.to_lowercase() == answer.to_lowercase() {
                     quiz_counter.increment_streak();
                     num_correct += 1;
-                    cards_to_remove.push(vec![prompt.clone(), answer.clone()]);
+                    s_c_a.total_correct += 1;
+                    s_c_a.round_correct_cards.push(subl.clone());
                     println!("{}", "Correct".green());
                     thread::sleep(time::Duration::from_millis(500));
                     clearscreen::clear().expect("failed to clear screen");
@@ -214,13 +249,15 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                     if veto_answer.len() == 0 {
                         quiz_counter.reset_streak();
                         num_incorrect += 1;
+                        s_c_a.round_incorrect_cards.push(subl.clone());
                         println!("{}", "Not overridden.".yellow());
                         thread::sleep(time::Duration::from_millis(500));
                         clearscreen::clear().expect("failed to clear screen");
                     } else {
                         quiz_counter.increment_streak();
                         num_correct += 1;
-                        cards_to_remove.push(vec![prompt.clone(), answer.clone()]);
+                        s_c_a.total_correct += 1;
+                        s_c_a.round_correct_cards[s_c_a.round_num].push(subl.clone());
                         println!("Overridden as {}.", "Correct".green());
                         thread::sleep(time::Duration::from_millis(500));
                         clearscreen::clear().expect("failed to clear screen");
@@ -234,12 +271,8 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
             // WARNING: before anything else regarding stats collection, develop saving and resuming functionality
         }
 
-        println!("{:?}", card_set);
-        for (i, subl) in cards_to_remove.iter().enumerate() {
-            // BUG: this doesn't work
-            card_set.remove(i);
-        }
-        println!("{:?}", card_set);
+        // println!("{:?}", card_set);
+        println!("{:#?}", &s_c_a.total_cards);
 
         // 3-D vector where each round is a sublist containing 3 sublists:
         // 1. the full flash card ste
@@ -247,6 +280,8 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         // 3. the incorrect answers
         // the incorrect answers are passed on to the next round if the length is > 0
         // this way, the history of the session is preserved fully without compromises
+
+        s_c_a.round_num += 1;
     }
 
     return Ok(QuizData::new(
