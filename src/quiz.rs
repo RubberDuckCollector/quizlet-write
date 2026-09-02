@@ -41,9 +41,9 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
     let THEORETICAL_MAX_STREAK = &NUM_CARDS;
     let mut x_axes: Vec<Vec<u32>> = Vec::new();
     let mut y_axes: Vec<Vec<f32>> = Vec::new();
-    let mut rl = DefaultEditor::new()?;
+    let mut session_card_aggregate: Vec<Vec<Vec<String>>> = Vec::new();
+    session_card_aggregate.push(card_set.clone());
 
-    // OPTIMIZE: assign these variables based on the --test and --conceal-user-input optional args
     let test_indicator: &str = match &args.test {
         true => " TEST MODE - NO STATS SAVED",
         false => "",
@@ -52,8 +52,6 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         true => " -- INPUTS HIDDEN",
         false => "",
     };
-
-    // TODO: make outline of quiz functionality from first commit of main branch
 
     // Source - https://stackoverflow.com/a/58770681
     // Posted by Lukas Kalbertodt, modified by community. See post 'Timeline' for change history
@@ -243,7 +241,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         }
         println!("{:?}", card_set);
 
-        // vector where each round is a sublist containing 3 sublists:
+        // 3-D vector where each round is a sublist containing 3 sublists:
         // 1. the full flash card ste
         // 2. the correct answers
         // 3. the incorrect answers
