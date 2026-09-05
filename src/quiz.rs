@@ -37,7 +37,8 @@ impl QuizData {
 struct SessionCardAggregate {
     total_correct: usize,
     round_num: usize,
-    total_cards: Vec<Vec<Vec<String>>>,
+    total_available_cards: Vec<Vec<Vec<String>>>,  // tracks the cards that are available to be
+    // picked from each round
     round_correct_cards: Vec<Vec<String>>,
     round_incorrect_cards: Vec<Vec<String>>,
 }
@@ -46,14 +47,14 @@ impl SessionCardAggregate {
     fn new(
         total_correct: usize,
         round_num: usize,
-        total_cards: Vec<Vec<Vec<String>>>,
+        total_available_cards: Vec<Vec<Vec<String>>>,
         round_correct_cards: Vec<Vec<String>>,
         round_incorrect_cards: Vec<Vec<String>>,
     ) -> Self {
         Self {
             total_correct,
             round_num,
-            total_cards,
+            total_available_cards,
             round_correct_cards,
             round_incorrect_cards,
             // add a space for current card set in question and replace card_set.len() != 0 with
@@ -72,7 +73,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
     let mut y_axes: Vec<Vec<f32>> = Vec::new();
     let mut s_c_a: SessionCardAggregate = SessionCardAggregate::new(0, 0, Vec::new(), Vec::new(), Vec::new());
 
-    s_c_a.total_cards.push(card_set.clone());
+    s_c_a.total_available_cards.push(card_set.clone());
     s_c_a.round_correct_cards.push(Vec::new());
     s_c_a.round_incorrect_cards.push(Vec::new());
     println!("{:#?}", s_c_a);
@@ -114,7 +115,8 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
 
     // println!("{:#?}", &card_set);
 
-    while s_c_a.total_correct != s_c_a.total_cards[0][0].len() {
+    println!("{:#?}", s_c_a.total_available_cards[0][0]);
+    while s_c_a.total_correct != s_c_a.total_available_cards[0][0].len() {
         let mut num_correct: u32 = 0;
         let mut num_answered: u32 = 0;
         let mut num_incorrect: u32 = 0;
@@ -257,7 +259,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
                         quiz_counter.increment_streak();
                         num_correct += 1;
                         s_c_a.total_correct += 1;
-                        s_c_a.round_correct_cards[s_c_a.round_num].push(subl.clone());
+                        s_c_a.round_correct_cards.push(subl.clone());
                         println!("Overridden as {}.", "Correct".green());
                         thread::sleep(time::Duration::from_millis(500));
                         clearscreen::clear().expect("failed to clear screen");
@@ -272,7 +274,7 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         }
 
         // println!("{:?}", card_set);
-        println!("{:#?}", &s_c_a.total_cards);
+        println!("{:#?}", &s_c_a.total_available_cards);
 
         // 3-D vector where each round is a sublist containing 3 sublists:
         // 1. the full flash card ste
@@ -280,6 +282,21 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         // 3. the incorrect answers
         // the incorrect answers are passed on to the next round if the length is > 0
         // this way, the history of the session is preserved fully without compromises
+        // NEED TO NOW MAKE THE ROUND USE THE LAST ELEMENT OF S_C_A.TOTAL_AVAILABLE_CARDS
+
+        // tidy up each list by removing elements that are empty vectors
+        s_c_a.round_incorrect_cards.retain(|x| !x.is_empty());
+        s_c_a.round_correct_cards.retain(|x| !x.is_empty());
+
+        s_c_a.total_available_cards.push(s_c_a.round_incorrect_cards.clone());
+
+        // NOTE: this would only be needed if the data coming in from `s_c_a.round_incorrect_cards`
+        // has empty list elements
+        // for outer in &mut s_c_a.total_available_cards {
+        //     outer.retain(|inner| !inner.is_empty());
+        // }
+
+        println!("{:?}", s_c_a.total_available_cards);
 
         s_c_a.round_num += 1;
     }
