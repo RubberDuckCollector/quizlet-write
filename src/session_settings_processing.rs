@@ -46,7 +46,6 @@ pub enum RandomSetting {
     RandOnce,
     RandEveryRound,
     NoRand,
-    Test,
 }
 
 impl fmt::Display for RandomSetting {
