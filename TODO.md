@@ -1,9 +1,9 @@
 # Top Priority TODO
 
-- [ ] add parser functionality that accommodates for an optional third element after a second `|` for examples of the word
-- [ ] make the program print the error about no file found if everything is correct except a flashcard file
+- [ ] change the date and time usage in the code to put underscores where there are colons
 - [ ] let the user see how much time they spent revising vocab. can be time between 2 dates, time on 1 day or lifetime hours done. measured in hours and minutes
 - [ ] add arguments to `--make flashcard_bar_chart` and `--make session_bar_chart` that allow the user to plot graphs within a range of 2 dates. the 2 dates can be given in any order.
+- [ ] make the program print the error about no file found if everything is correct except a flashcard file
 - [ ] figure out how to plot graphs in rainbow color order
 - [ ] add normal difficulty that hides information in brackets, or at least only shows the first character [ ] call it `normal-brackets-off`
 - [ ] SYNC FUNCTION: make functionality that reconstructs `session.json` and
