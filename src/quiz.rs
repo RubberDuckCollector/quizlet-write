@@ -276,6 +276,14 @@ pub fn quiz( mut card_set: Vec<Vec<String>>, args: session_settings_processing::
         // println!("{:?}", card_set);
         println!("{:#?}", &s_c_a.total_available_cards);
 
+        // TODO: make it so the round can be described in terms of a list that holds the available cards the
+        // quiz can pull from
+        // this means that index 0 would have all of the cards, index 1 would mean round 1 and have only the
+        // incorrect cards from round 1 which will be forwarded to round 2, etc.
+        // this repeats until there are no cards left to be passed on to another round and therefore all
+        // cards have been answered correctly
+
+        // TODO:
         // 3-D vector where each round is a sublist containing 3 sublists:
         // 1. the full flash card ste
         // 2. the correct answers
