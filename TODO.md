@@ -1,5 +1,6 @@
 # Top Priority TODO
 
+- [ ] add an optional `-adaptive_hint` flag where if the word is short enough, only the first 2 or 1 character will be shown even if the current difficulty allows for more
 - [ ] change the date and time usage in the code to put underscores where there are colons
 - [ ] let the user see how much time they spent revising vocab. can be time between 2 dates, time on 1 day or lifetime hours done. measured in hours and minutes
 - [ ] add arguments to `--make flashcard_bar_chart` and `--make session_bar_chart` that allow the user to plot graphs within a range of 2 dates. the 2 dates can be given in any order.
