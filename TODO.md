@@ -73,6 +73,7 @@
 
 ## Next features/TODO
 
+- [ ] add a `lifetime_sessions` field to `lifetime_stats.json`
 - [ ] make `session.txt` into JSON (not sure what it would help but maybe data mining in the future)
 - [ ] use a proper logging system with a logging library
 - [ ] optional command line argument that turns user input (except spaces) into * characters as they type
