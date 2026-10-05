@@ -308,8 +308,8 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     print(f"Streak: {my_modules.color.Color.LightMagenta}{quiz_counter.get_current_streak()}{my_modules.color.Color.Reset} ({my_modules.color.Color.LightMagenta}{quiz_counter.get_highest_streak()}{my_modules.color.Color.Reset})")
                     # print(f"DEBUG: THEORETICAL_MAX_STREAK: {THEORETICAL_MAX_STREAK}")
                     # print(f"DEBUG: sys_args: {sys_args}")
-                    print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
                     print(f"Hint: {my_modules.color.Color.Dim}{hint}{my_modules.color.Color.Reset}")
+                    print(f"What's the answer to {my_modules.color.Color.LightCyan}{prompt}{my_modules.color.Color.Reset}?")
                     if p_args.hide_inputs:
                         user_response = getpass.getpass("> ").strip()
                     else:
