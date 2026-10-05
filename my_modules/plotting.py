@@ -144,7 +144,7 @@ def plot_session_graph(p_x_axes, p_y_axes, p_min_each_round, p_max_each_round, P
     # MAXIMUM RECURSION DEPTH EXCEEDED ERROR IS HERE
     # TODO: put everything inside if not p_args.test: into its own function
     plt.legend(loc="upper left")  # force the key to appear on the graph, "best" means that matplotlib will put it in the least obtrusive area using its own judgement
-    plt.xticks([i for i in range(1, P_NUM_CARDS + 1, 2)])
+    plt.xticks([i for i in range(1, P_NUM_CARDS + 1)])
     # plt.yticks([i for i in range(0, 101, 1)])  # full y axis
     plt.yticks(range(int(p_min_each_round), int(p_max_each_round) + 2, 2))  # only the relevant parts of the graph
     plt.gca().xaxis.set_ticks_position('both')  # puts the x and y axes on the right and top of the graphs, increases readablilty for long graphs
