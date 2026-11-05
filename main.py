@@ -692,7 +692,7 @@ def render_cards(file_path: str) -> dict:
         # the key is on the left, its corresponding value is on the right
         return rendered_cards  # this is a dict
     else:
-        raise ValueError("Cards are not correctly formatted. See above message to fix.")
+        raise ValueError("Cards are not correctly formatted, or file does not exist. See above message to fix.")
 
 
 # main() handles command line arguments
