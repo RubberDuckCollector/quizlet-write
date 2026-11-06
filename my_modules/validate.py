@@ -1,5 +1,6 @@
 import os
 import my_modules.clear_screen
+import my_modules.color
 
 
 def validate_file(file_path: str) -> bool:
@@ -20,7 +21,7 @@ def validate_file(file_path: str) -> bool:
             print(f"Error while parsing flash cards from {file_path}: File is empty.")
             return False
     except FileNotFoundError as e:
-        print("File NOT found.")
+        print(f"{my_modules.color.Color.Red}File NOT found.{my_modules.color.Color.Reset}")
         print(e)
         return False
 
