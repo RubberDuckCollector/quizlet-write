@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2026-11-08 10:31 (German time)](#2026-11-08-1031-german-time)
     * [2026-05-09](#2026-05-09)
     * [2026-05-08](#2026-05-08)
     * [2026-03-06](#2026-03-06)
@@ -56,6 +57,11 @@
 
 
 # Build log
+
+## 2026-11-08 10:31 (German time)
+
+- made it so any `*` characters are shown in red, helps specifically if you need to differentiate between 2 different subgroups of vocab within a larger set.
+- plans to expand this to an arbitrary number of things? but that would need a config file and that's probably outside the scope of this project
 
 ## 2026-05-09
 
