@@ -507,7 +507,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
             # f.write(f"No. cards in the card set = {NUM_CARDS}\n")
             # f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
             # f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}\n")  # this should resolve to True or False
-            f.write("If you want to compute this data and you're not in test mode, there will be a session.json file in the session's folder.")
+            f.write("If you want to compute this data, there will be a session.json file in the session's folder.")
 
         session_data = {
             "file_path_to_cards": sys.argv[1],
