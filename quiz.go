@@ -17,7 +17,8 @@ func quiz() /* NEED TO FIGURE OUT RETURN TYPES E.G. WHEN THE SESSION FINISHES NO
 		log.Fatal(err)
 	}
 
-	fmt.Printf("file contents: %s", string(data))
+	clearScreen()
+	fmt.Printf("file contents:\n%s", string(data))
 
 	keys := make(chan rune, 10)
 
