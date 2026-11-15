@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2026-11-15 22:54 (German time)](#2026-11-15-2254-german-time)
     * [2026-11-08 10:31 (German time)](#2026-11-08-1031-german-time)
     * [2026-05-09](#2026-05-09)
     * [2026-05-08](#2026-05-08)
@@ -57,6 +58,10 @@
 
 
 # Build log
+
+## 2026-11-15 22:54 (German time)
+
+- added feature that underlines the different characters in your answers when you get something wrong, and made session graph y axis graduate in 2s
 
 ## 2026-11-08 10:31 (German time)
 

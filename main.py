@@ -5,7 +5,6 @@ import progressbar
 from my_modules import color
 bar = progressbar.ProgressBar(maxval=11, term_width=40)
 bar.start()
-# external library code
 import os
 bar.update(1)
 import sys
@@ -24,21 +23,11 @@ import getpass
 bar.update(1)
 import readline
 bar.update(1)
-# import pyreadline3
-# bar.update(1)
 import numpy as np
-bar.update(1)
-# import platform
 from datetime import datetime
-bar.update(1)
 print("Importing matplotlib, this is the longest part...")
-# print("importing matplotlib (the biggest library)")
 import matplotlib.pyplot as plt  # type: ignore
-bar.update(1)
-# my own library code below
 import my_modules
-bar.update(1)
-bar.finish()
 
 
 """
@@ -158,6 +147,35 @@ class StreakCounter:
 
     def get_highest_streak(self):
         return self.highest_streak
+
+
+def underine_str_diff(answer: str, user_input: str) -> str:
+    underlined_msg = ""
+
+    # hello
+    # hell
+
+    for i in range(len(user_input)):
+        underlined_msg += f"{my_modules.color.Color.LightMagenta}"
+        try:
+            if answer[i] == user_input[i]:
+                underlined_msg += f"{my_modules.color.Color.Reset}"
+                underlined_msg += f"{my_modules.color.Color.LightMagenta}"
+                underlined_msg += answer[i]
+            else:
+                underlined_msg += f"{my_modules.color.Color.Underline}"
+                underlined_msg += user_input[i]
+        except IndexError:
+            if len(answer) >= len(user_input):
+                break
+            else:
+                underlined_msg += f"{my_modules.color.Color.Underline}"
+                underlined_msg += user_input[i]
+
+    underlined_msg += f"{my_modules.color.Color.Reset}"
+    print(f"{my_modules.color.Color.Reset}", end='')
+
+    return underlined_msg
 
 
 def quiz(card_set: dict, p_args, p_start_time: str):
@@ -393,10 +411,11 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                             #             break
 
                             # ask for override
-                            # print(answer_msg)
-                            # print(user_response_msg)
+
+                            underlined = underine_str_diff(answer, user_response)
+
                             print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
-                            print(f"✗ {my_modules.color.Color.LightMagenta}{user_response}{my_modules.color.Color.Reset}")
+                            print(f"✗ {my_modules.color.Color.LightMagenta}{underlined}{my_modules.color.Color.Reset}")
                             print(f"{my_modules.color.Color.Red}Incorrect.{my_modules.color.Color.Reset} {my_modules.color.Color.Green}Correct answer{my_modules.color.Color.Reset} and {my_modules.color.Color.LightMagenta}your answer{my_modules.color.Color.Reset} above.")
 
                             override = input("Override as correct? (empty answer = don't override) ")
