@@ -13,7 +13,7 @@ func validateCards(filepath string) (string, bool) {
 		return "Error while reading file.", false
 	}
 
-	fmt.Println(data)
+	fmt.Println(string(data))
 
 	return "", true
 }

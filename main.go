@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
-
+	"os"
 )
 
 func main() {
-	quiz()
+	// quiz()
+
+	// programName := os.Args[0]
+	fmt.Println(os.Args)
 }
 
 func clearScreen() {
