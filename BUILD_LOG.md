@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Build log](#build-log)
+    * [2026-11-24 09:33 (German time)](#2026-11-24-0933-german-time)
     * [2026-11-15 22:54 (German time)](#2026-11-15-2254-german-time)
     * [2026-11-08 10:31 (German time)](#2026-11-08-1031-german-time)
     * [2026-05-09](#2026-05-09)
@@ -58,6 +59,10 @@
 
 
 # Build log
+
+## 2026-11-24 09:33 (German time)
+
+- added proper loading animation and removed redundant comments and code
 
 ## 2026-11-15 22:54 (German time)
 
