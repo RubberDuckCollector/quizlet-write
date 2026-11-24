@@ -134,8 +134,8 @@ def plot_session_graph(p_x_axes, p_y_axes, p_min_each_round, p_max_each_round, P
     plt.grid(color = 'grey', linestyle = '-', linewidth = 0.2)
 
     # plt.plot(p_x_axes, p_y_axes)
-    plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to cards: {sys.argv[1]}")
-    plt.xlabel("# Cards answered")
+    plt.title(f"Consistency line graph for session starting at {p_start_time}\nPath to flashcards: {sys.argv[1]}")
+    plt.xlabel("# Flashcards answered")
     plt.ylabel("% Accuracy")
     # plt.ylim(0, 100)  # y axis goes from 0 to 100
     if p_min_each_round == p_max_each_round:

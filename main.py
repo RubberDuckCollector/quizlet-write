@@ -1,8 +1,8 @@
 print("Loading, will take a while...")
-from matplotlib import use
+# from matplotlib import use
 import progressbar
 
-from my_modules import color
+# from my_modules import color
 bar = progressbar.ProgressBar(maxval=11, term_width=40)
 bar.start()
 import os
@@ -223,20 +223,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     # the same exact time because datetime keeps time accuracy up to 6 decimal
     # places
 
-    # TODO: implement saving feature
-    # create a temp dir for each session with temp results when the program
-    # detects a KeyboardInterrupt ask if the user wants to save the session the
-    # dir will not be deleted the user can specify a --resume command line
-    # argument the user is put into an interactive mode (blessed library?)
-    # resume the flash card revision from where the user left off start_time =
-    # datetime.now()
-    # TODO: find out how to save the exact cards answered correctly and incorrectly and remaining cards
-        # pass those as parameters in `quiz()`
-        # pass start time as a parameter
-        # also need to keep track of the session data when saving and resuming a session
-    # `correct_answers` dict may help
-    # `card_set` (parameter) may help
-        # -rand-every-round is present
     this_sessions_temp_dir_name = f"temp/temp_dir_for_session_{p_start_time}"
     os.mkdir(this_sessions_temp_dir_name)
     this_sessions_temp_results_file = f"{this_sessions_temp_dir_name}/temp_results_for_session_{p_start_time}.txt"
@@ -249,10 +235,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     if p_args.hide_inputs:
         hide_inputs_indicator = " -- INPUTS HIDDEN"
 
-    # user interaction will start in this try block
-    # it's here to catch a keyboard interrupt such as ctrl-c
-    # if it catches one, this_sessions_temp_results_file will still be deleted, which is good
-    # because it's a temp file and all actions are aborted if the session finishes early
+    # USER INTERACTION STARTS HERE, LOOKS FOR CTRL-C EXCEPTION
     try:
         with open(this_sessions_temp_results_file, "a") as f:
             f.write(f"cards from: {sys.argv[1]}\n")
@@ -294,19 +277,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                     elif p_args.difficulty == my_modules.hint_system.VALID_DIFFICULTIES[4]:
                         hint = my_modules.hint_system.make_very_hard_hint()
 
-
-                    # match difficulty:
-                    #     case "-easy":
-                    #         hint = my_modules.hint_system.make_easy_hint(answer)
-                    #     case "-normal":
-                    #         hint = my_modules.hint_system.make_normal_hint(answer)
-                    #     case "-hard":
-                    #         hint = my_modules.hint_system.make_hard_hint(answer)
-                    #     case "-very-hard":
-                    #         hint = my_modules.hint_system.make_very_hard_hint()
-                    #     case _:
-                    #         print("Error while trying to make hint")
-
                     # print(i) -> print the first side of the card
                     # print(prompt) -> print the first side of the card
                     # print(card_set[i]) -> print the answer/other side of the card
@@ -332,9 +302,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                         user_response = getpass.getpass("> ").strip()
                     else:
                         user_response = input("> ").strip()
-
-                    # print num_remaining, num_correct, num_incorrect
-                    # print(f"Remaining: {num_remaining}\nCorrect: {num_correct}\nIncorrect: {num_incorrect}")
 
                     # if the user input is falsy
                     # i.e there were only spaces and strip() has removed them to leave an empty string
@@ -394,24 +361,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                                 correct_answers[key_to_copy] = card_set[key_to_copy]
 
                         else:
-                            # answer_msg = "\n✓ "
-                            # user_response_msg = "✗ "
-                            # for i in range(len(max([user_response, answer], key=len))):
-                            #     try:
-                            #         if user_response[i] == answer[i]:
-                            #             answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
-                            #             user_response_msg += f"{my_modules.color.Color.LightMagenta}{user_response[i]}{my_modules.color.Color.Reset}"
-                            #         else:
-                            #             answer_msg += f"{my_modules.color.Color.LightGray}{answer[i]}{my_modules.color.Color.Reset}"
-                            #             user_response_msg += f"{my_modules.color.Color.LightGray}{user_response[i]}{my_modules.color.Color.Reset}"
-                            #     except IndexError:
-                            #         if len(user_response) < len(answer):
-                            #             answer_msg += f"{my_modules.color.Color.Green}{answer[i]}{my_modules.color.Color.Reset}"
-                            #         else:
-                            #             break
-
-                            # ask for override
-
                             underlined = underine_str_diff(answer, user_response)
 
                             print(f"\n✓ {my_modules.color.Color.Green}{answer}{my_modules.color.Color.Reset}")
@@ -519,13 +468,6 @@ def quiz(card_set: dict, p_args, p_start_time: str):
                 total_correct_in_session += num_correct
                 total_incorrect_in_session += num_incorrect
 
-            # write the round list to this_sessions_temp_results_file
-            # f.write(f"{p_args.difficulty}\n")
-            # f.write(f"{p_args.randomize}\n")
-            # f.write(f"{p_args.flip_cards}\n")
-            # f.write(f"No. cards in the card set = {NUM_CARDS}\n")
-            # f.write(f"highest_streak = {quiz_counter.get_highest_streak()}\n")
-            # f.write(f"perfect_streak = {quiz_counter.get_highest_streak() == THEORETICAL_MAX_STREAK}\n")  # this should resolve to True or False
             f.write("If you want to compute this data, there will be a session.json file in the session's folder.")
 
         session_data = {
