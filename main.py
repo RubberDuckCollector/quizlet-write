@@ -1,33 +1,21 @@
-print("Loading, will take a while...")
-# from matplotlib import use
-import progressbar
+import my_modules
 
-# from my_modules import color
-bar = progressbar.ProgressBar(maxval=11, term_width=40)
-bar.start()
+loader = my_modules.loading.Loader("Importing code...", "", 0.05).start()
+
 import os
-bar.update(1)
 import sys
-bar.update(1)
 import time
-bar.update(1)
 import json
-bar.update(1)
 import random
-bar.update(1)
 import pathlib
-bar.update(1)
 import argparse
-bar.update(1)
 import getpass
-bar.update(1)
 import readline
-bar.update(1)
 import numpy as np
 from datetime import datetime
-print("Importing matplotlib, this is the longest part...")
 import matplotlib.pyplot as plt  # type: ignore
-import my_modules
+
+loader.stop()
 
 
 """
@@ -38,9 +26,6 @@ A "session" is one completion of all the flash cards from a file.
     A completed session means you've answered all the cards correctly once.
 """
 
-
-def debug_print(msg: str):
-    print(msg)
 
 def initialize_stats():
     initial_data = {
@@ -134,8 +119,6 @@ class StreakCounter:
     def reset_streak(self):
         self.current_streak = 0
 
-    # might not use these 4 that much
-
     def set_current_streak(self, p_current_streak):
         self.current_streak = p_current_streak
 
@@ -151,9 +134,6 @@ class StreakCounter:
 
 def underine_str_diff(answer: str, user_input: str) -> str:
     underlined_msg = ""
-
-    # hello
-    # hell
 
     for i in range(len(user_input)):
         underlined_msg += f"{my_modules.color.Color.LightMagenta}"
@@ -183,7 +163,7 @@ def quiz(card_set: dict, p_args, p_start_time: str):
     correct_answers = {}
     round_num = 0
 
-    # find the length of the longest term on the left
+    # find the length of the longest question (which will be on the left)
     max_left_length = max(len(left) for left in card_set.keys())
 
     quiz_counter = StreakCounter()
